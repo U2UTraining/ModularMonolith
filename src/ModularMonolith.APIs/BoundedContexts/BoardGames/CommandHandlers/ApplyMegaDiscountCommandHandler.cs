@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.BoardGames.CommandHandlers;
+﻿namespace ModularMonolith.BoundedContexts.BoardGames.CommandHandlers;
 
 internal sealed class ApplyMegaDiscountCommandHandler
 : ICommandHandler<Commands.ApplyMegaDiscountCommand, bool>

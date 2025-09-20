@@ -1,5 +1,5 @@
 ﻿
-namespace ModularMonolithBoundedContexts.BoardGames.Repositories;
+namespace ModularMonolith.BoundedContexts.BoardGames.Repositories;
 
 public interface IBoardGameRepository 
 : IRepository<BoardGame>

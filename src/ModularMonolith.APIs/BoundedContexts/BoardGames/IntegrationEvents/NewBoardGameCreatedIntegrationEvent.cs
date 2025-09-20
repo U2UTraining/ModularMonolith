@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.BoardGames.IntegrationEvents;
+﻿namespace ModularMonolith.BoundedContexts.BoardGames.IntegrationEvents;
 
 /// <summary>
 /// A new board game has been created.

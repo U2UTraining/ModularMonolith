@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.BoardGames.ValueObjects;
+﻿namespace ModularMonolith.BoundedContexts.BoardGames.ValueObjects;
 
 /// <summary>
 /// PublisherName ensures that the Publisher name contraints are met

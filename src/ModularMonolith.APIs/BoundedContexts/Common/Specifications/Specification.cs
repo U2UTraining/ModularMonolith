@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.Common.Specifications;
+﻿namespace ModularMonolith.BoundedContexts.Common.Specifications;
 
 public class Specification<T>
 : ISpecification<T>

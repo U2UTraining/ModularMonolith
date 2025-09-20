@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.BoardGames.Infra;
+﻿namespace ModularMonolith.BoundedContexts.BoardGames.Infra;
 
 public static class ModelConfigurationBuilderExtensions
 {

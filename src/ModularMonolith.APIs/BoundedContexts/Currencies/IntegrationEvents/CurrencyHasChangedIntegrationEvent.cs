@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.Currencies.IntegrationEvents;
+﻿namespace ModularMonolith.BoundedContexts.Currencies.IntegrationEvents;
 
 public sealed record CurrencyHasChangedIntegrationEvent(
   string CurrencyName

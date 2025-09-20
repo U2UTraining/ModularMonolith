@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.Common.DomainEvents;
+﻿namespace ModularMonolith.BoundedContexts.Common.DomainEvents;
 
 public interface IDomainEventHandler
 { }

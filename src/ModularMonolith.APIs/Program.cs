@@ -9,7 +9,7 @@ builder.AddServiceDefaults();
 builder
   .AddCommon()
   .AddCurrencies()
-//.AddBoardGames(
+  .AddBoardGames()
 //  builder.Configuration.GetConnectionString("GamesDb")!)
 //.AddShopping(builder.Configuration.GetConnectionString("ShoppingDb")!)
 ;

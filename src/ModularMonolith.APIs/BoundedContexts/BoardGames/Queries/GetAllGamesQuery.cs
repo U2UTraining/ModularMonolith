@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.BoardGames.Queries;
+﻿namespace ModularMonolith.BoundedContexts.BoardGames.Queries;
 
 /// <summary>
 /// Query to retrieve all board games.

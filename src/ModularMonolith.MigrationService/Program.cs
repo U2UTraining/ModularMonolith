@@ -4,7 +4,8 @@ using Microsoft.Extensions.Hosting;
 using ModularMonolith.MigrationService;
 using ModularMonolith.ServiceDefaults;
 
-using ModularMonolithBoundedContexts.Currencies.Infra;
+using ModularMonolith.BoundedContexts.BoardGames.Infra;
+using ModularMonolith.BoundedContexts.Currencies.Infra;
 
 internal class Program
 {
@@ -21,6 +22,7 @@ internal class Program
     //builder.AddSqlServerDbContext<PostsContext>("posts-db");
 
     builder.AddSqlServerDbContext<CurrenciesDb>(CurrenciesDb.DatabaseName);
+    builder.AddSqlServerDbContext<GamesDb>(GamesDb.DatabaseName);
 
     var host = builder.Build();
     host.Run();

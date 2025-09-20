@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.BoardGames.QueryHandlers;
+﻿namespace ModularMonolith.BoundedContexts.BoardGames.QueryHandlers;
 
 /// <summary>
 /// Query handler for retrieving board games based on a specification.

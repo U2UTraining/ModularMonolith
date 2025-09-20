@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.Shopping.Entities;
+﻿namespace ModularMonolith.BoundedContexts.Shopping.Entities;
 
 public sealed class Customer 
 : EntityBase<PK<int>>

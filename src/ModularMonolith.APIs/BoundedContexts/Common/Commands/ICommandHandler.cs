@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.Common.Commands;
+﻿namespace ModularMonolith.BoundedContexts.Common.Commands;
 
 /// <summary>
 /// ICommandHandler performs the requested command.

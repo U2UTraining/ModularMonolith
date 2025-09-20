@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.Common.Entities;
+﻿namespace ModularMonolith.BoundedContexts.Common.Entities;
 
 /// <summary>
 /// Base class for Entities, supporting Domain Events

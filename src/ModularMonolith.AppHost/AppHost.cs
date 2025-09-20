@@ -21,13 +21,15 @@ internal class Program
 
     IResourceBuilder<AzureSqlDatabaseResource> currencyDb = 
       sql.AddDatabase("mm-currency-db");
+    IResourceBuilder<AzureSqlDatabaseResource> gamesDb =
+      sql.AddDatabase("mm-games-db");
 
     IResourceBuilder<ProjectResource> migrations = 
       builder.AddProject<Projects.ModularMonolith_MigrationService>("migrationservice")
         .WithReference(currencyDb)
         .WaitFor(currencyDb)
-        //.WithReference(postsDb)
-        //.WaitFor(postsDb)
+        .WithReference(gamesDb)
+        .WaitFor(gamesDb)
         ;
 
     IResourceBuilder<ProjectResource> apis = 

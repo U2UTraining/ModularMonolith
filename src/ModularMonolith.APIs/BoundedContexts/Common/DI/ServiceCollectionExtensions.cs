@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.Common.DI;
+﻿namespace ModularMonolith.BoundedContexts.Common.DI;
 
 /// <summary>
 /// Extension methods for IServiceCollection to add common services.
@@ -151,7 +151,8 @@ public static class ServiceCollectionExtensions
   /// <summary>
   /// Method that configures DI for the Common Bounded Context.
   /// </summary>
-  /// <returns>IServiceCollection</returns>
+  /// <returns>IHostApplicationBuilder</returns>
+  /// <remarks>Using IHostApplicationBuilder works better with Aspire</remarks>
   public static IHostApplicationBuilder AddCommon(
     this IHostApplicationBuilder builder
   )

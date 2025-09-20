@@ -1,7 +1,7 @@
 ﻿
 using EFCore.Core.Shopping.DomainEvents;
 
-namespace ModularMonolithBoundedContexts.Shopping.Entities;
+namespace ModularMonolith.BoundedContexts.Shopping.Entities;
 
 public sealed class ShoppingBasket
 : EntityBase<PK<int>>

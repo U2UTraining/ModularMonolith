@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.Common.ValueObjects;
+﻿namespace ModularMonolith.BoundedContexts.Common.ValueObjects;
 
 public sealed class NonEmptyStringConverter
 : ValueConverter<NonEmptyString, string>

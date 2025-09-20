@@ -1,9 +1,10 @@
-﻿namespace ModularMonolithBoundedContexts.BoardGames.Infra;
+﻿namespace ModularMonolith.BoundedContexts.BoardGames.Infra;
 
 public sealed partial class GamesDb 
 : DbContext
 {
   public const string SchemaName = "games";
+  public const string DatabaseName = "mm-games-db";
 
   public GamesDb() : base() { }
 

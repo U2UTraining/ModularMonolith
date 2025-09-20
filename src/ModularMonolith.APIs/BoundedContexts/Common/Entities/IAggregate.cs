@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.Common.Entities;
+﻿namespace ModularMonolith.BoundedContexts.Common.Entities;
 
 /// <summary>
 /// Marker interface to mark an entity belonging to an aggregate 

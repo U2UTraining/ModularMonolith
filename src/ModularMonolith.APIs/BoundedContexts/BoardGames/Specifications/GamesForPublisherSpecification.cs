@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.BoardGames.Specifications;
+﻿namespace ModularMonolith.BoundedContexts.BoardGames.Specifications;
 
 public sealed class GamesForPublisherSpecification 
 : Specification<BoardGame>

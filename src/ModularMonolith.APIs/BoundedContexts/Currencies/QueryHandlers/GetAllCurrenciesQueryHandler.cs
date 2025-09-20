@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.Currencies.QueryHandlers;
+﻿namespace ModularMonolith.BoundedContexts.Currencies.QueryHandlers;
 
 public sealed class GetAllCurrenciesQueryHandler 
 : IQueryHandler<GetCurrenciesQuery, IQueryable<Currency>>

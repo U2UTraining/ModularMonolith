@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.Currencies.CommandHandlers;
+﻿namespace ModularMonolith.BoundedContexts.Currencies.CommandHandlers;
 
 internal sealed class UpdateCurrencyValueInEuroCommandHandler
 : ICommandHandler<UpdateCurrencyValueInEuroCommand, Currency>

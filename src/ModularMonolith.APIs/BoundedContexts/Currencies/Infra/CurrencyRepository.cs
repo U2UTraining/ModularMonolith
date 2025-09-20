@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.Currencies.Infra;
+﻿namespace ModularMonolith.BoundedContexts.Currencies.Infra;
 
 public sealed class CurrencyRepository
 : Repository<Currency, CurrenciesDb>

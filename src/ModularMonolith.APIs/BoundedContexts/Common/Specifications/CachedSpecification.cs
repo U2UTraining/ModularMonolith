@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.Common.Specifications;
+﻿namespace ModularMonolith.BoundedContexts.Common.Specifications;
 
 /// <summary>
 /// A Specification with extra caching information.

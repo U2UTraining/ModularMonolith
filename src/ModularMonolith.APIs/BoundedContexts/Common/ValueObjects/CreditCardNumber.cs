@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.Common.ValueObjects;
+﻿namespace ModularMonolith.BoundedContexts.Common.ValueObjects;
 
 /// <summary>
 /// CreditCardNumber represents a credit card number

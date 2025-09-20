@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.Shopping.Infra;
+﻿namespace ModularMonolith.BoundedContexts.Shopping.Infra;
 
 internal sealed class BasketItemConfiguration
 : IEntityTypeConfiguration<BasketItem>

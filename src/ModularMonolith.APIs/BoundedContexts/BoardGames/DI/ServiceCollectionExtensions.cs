@@ -1,15 +1,42 @@
-﻿namespace ModularMonolithBoundedContexts.BoardGames.DI;
+﻿namespace ModularMonolith.BoundedContexts.BoardGames.DI;
 
 public static class ServiceCollectionExtensions
 {
 
-  public static IServiceCollection AddBoardGames(
-    this IServiceCollection services, string connectionString)
-  => services.AddBoardGamesInfra(connectionString)
+  public static IHostApplicationBuilder AddBoardGames(
+    this IHostApplicationBuilder builder)
+  {
+    builder.Services
              .AddBoardGamesQueries()
              .AddBoardGamesCommands()
              .AddBoardGamesIntegrationEventHandlers()
              ;
+    builder.AddSqlServerDbContext<GamesDb>(GamesDb.DatabaseName,
+    sqlServerOptions =>
+    {
+    },
+    optionsBuilder =>
+    {
+      optionsBuilder.AddInterceptors(
+        new SoftDeleteInterceptor(),
+        new HistoryInterceptor()
+      );
+      optionsBuilder.EnableDetailedErrors(true);
+#if DEBUG
+      optionsBuilder.EnableSensitiveDataLogging(true);
+#endif
+    });
+    _ = builder.Services.AddScoped<IBoardGameRepository, BoardGamesRepository>();
+    _ = builder.Services.AddMultiScoped<
+          BoardGamesRepository
+        , IReadonlyRepository<BoardGame>
+        , IRepository<BoardGame>>();
+    _ = builder.Services.AddMultiScoped<
+          PublisherRepository
+        , IReadonlyRepository<Publisher>
+        , IRepository<Publisher>>();
+    return builder;
+  }
 
   private static IServiceCollection AddBoardGamesQueries(
     this IServiceCollection services)

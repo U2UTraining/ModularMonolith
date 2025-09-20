@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ModularMonolithBoundedContexts.Currencies.Infra;
+using ModularMonolith.BoundedContexts.Currencies.Infra;
 
 #nullable disable
 
@@ -26,7 +26,7 @@ namespace ModularMonolithMigrations.Currencies
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ModularMonolithBoundedContexts.Currencies.Entities.Currency", b =>
+            modelBuilder.Entity("ModularMonolith.BoundedContexts.Currencies.Entities.Currency", b =>
                 {
                     b.Property<string>("Id")
                         .HasMaxLength(3)

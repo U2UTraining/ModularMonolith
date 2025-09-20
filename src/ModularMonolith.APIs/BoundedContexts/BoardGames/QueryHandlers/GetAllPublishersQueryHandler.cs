@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.BoardGames.QueryHandlers;
+﻿namespace ModularMonolith.BoundedContexts.BoardGames.QueryHandlers;
 
 public sealed class GetAllPublishersQueryHandler
 : IQueryHandler<GetAllPublishersQuery, IQueryable<Publisher>>

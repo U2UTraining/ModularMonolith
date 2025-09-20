@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.Common.Specifications;
+﻿namespace ModularMonolith.BoundedContexts.Common.Specifications;
 
 /// <summary>
 /// A ISpecification represents the filter (Where) and includes of a query,

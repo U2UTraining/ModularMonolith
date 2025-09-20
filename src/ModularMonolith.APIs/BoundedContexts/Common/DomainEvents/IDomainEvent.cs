@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.Common.DomainEvents;
+﻿namespace ModularMonolith.BoundedContexts.Common.DomainEvents;
 
 /// <summary>
 /// A Domain Event is an event within the bounded context.

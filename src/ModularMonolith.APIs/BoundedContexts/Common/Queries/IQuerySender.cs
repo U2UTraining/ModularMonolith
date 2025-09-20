@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.Common.Queries;
+﻿namespace ModularMonolith.BoundedContexts.Common.Queries;
 
 /// <summary>
 /// Interface to Ask Queries 

@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithBoundedContexts.BoardGames.Commands;
+﻿namespace ModularMonolith.BoundedContexts.BoardGames.Commands;
 
 /// <summary>
 /// Update the price of a board game.

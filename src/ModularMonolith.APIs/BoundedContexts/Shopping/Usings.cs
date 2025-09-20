@@ -1,15 +1,15 @@
-﻿global using ModularMonolithBoundedContexts.BoardGames.ValueObjects;
-global using ModularMonolithBoundedContexts.BoardGames.Entities;
-global using ModularMonolithBoundedContexts.BoardGames.Commands;
-global using ModularMonolithBoundedContexts.BoardGames.Repositories;
-global using ModularMonolithBoundedContexts.BoardGames.Specifications;
-global using ModularMonolithBoundedContexts.BoardGames.IntegrationEvents;
-global using ModularMonolithBoundedContexts.BoardGames.Queries;
-global using ModularMonolithBoundedContexts.BoardGames.Infra;
-global using ModularMonolithBoundedContexts.Shopping.ValueObjects;
-global using ModularMonolithBoundedContexts.Shopping.Entities;
-global using ModularMonolithBoundedContexts.Shopping.DomainEvents;
-global using ModularMonolithBoundedContexts.Shopping.DI;
+﻿global using ModularMonolith.BoundedContexts.BoardGames.ValueObjects;
+global using ModularMonolith.BoundedContexts.BoardGames.Entities;
+global using ModularMonolith.BoundedContexts.BoardGames.Commands;
+global using ModularMonolith.BoundedContexts.BoardGames.Repositories;
+global using ModularMonolith.BoundedContexts.BoardGames.Specifications;
+global using ModularMonolith.BoundedContexts.BoardGames.IntegrationEvents;
+global using ModularMonolith.BoundedContexts.BoardGames.Queries;
+global using ModularMonolith.BoundedContexts.BoardGames.Infra;
+global using ModularMonolith.BoundedContexts.Shopping.ValueObjects;
+global using ModularMonolith.BoundedContexts.Shopping.Entities;
+global using ModularMonolith.BoundedContexts.Shopping.DomainEvents;
+global using ModularMonolith.BoundedContexts.Shopping.DI;
 
 
 
