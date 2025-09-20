@@ -25,5 +25,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.AddCurrencyEndpoints();
+app.AddGamesEndpoints();
 
 app.Run();

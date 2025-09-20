@@ -20,4 +20,7 @@ public readonly record struct PK<T>
   => pk.Key;
   public static implicit operator PK<T>(T key)
   => new(key);
+
+  public override string ToString() 
+  => Key?.ToString() ?? string.Empty;
 }

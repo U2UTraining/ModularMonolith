@@ -15,7 +15,9 @@ public sealed class BoardGamesRepository
     _integrationEventPubslisher = integrationEventPubslisher;
   }
 
-  public async ValueTask ApplyMegaDiscountAsync(decimal discount, CancellationToken cancellationToken)
+  public async ValueTask ApplyMegaDiscountAsync(
+    decimal discount
+  , CancellationToken cancellationToken)
   {
     //DbSet<BoardGame> games = DbContext.Games;
     //foreach (BoardGame game in games)

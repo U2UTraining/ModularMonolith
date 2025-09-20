@@ -1,6 +1,22 @@
 @ModularMonolith.APIs_HostAddress = http://localhost:5118
 
-GET {{ModularMonolith.APIs_HostAddress}}/weatherforecast/
+### Get all currencies
+GET {{ModularMonolith.APIs_HostAddress}}/currencies/
 Accept: application/json
 
-###
+### Update Currency Value
+
+PUT {{ModularMonolith.APIs_HostAddress}}/currencies/
+Content-Type: application/json
+
+{
+  "currencyName": "USD",
+  "valueInEuro": 0.85
+}
+
+### Get all games
+
+GET {{ModularMonolith.APIs_HostAddress}}/games/
+Accept: application/json
+
+

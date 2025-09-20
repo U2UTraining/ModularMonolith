@@ -35,6 +35,7 @@ internal class Program
     IResourceBuilder<ProjectResource> apis = 
       builder.AddProject<Projects.ModularMonolith_APIs>("modular-monolith-apis")
         .WithReference(currencyDb)
+        .WithReference(gamesDb)
         .WaitForCompletion(migrations)
         ;
 
