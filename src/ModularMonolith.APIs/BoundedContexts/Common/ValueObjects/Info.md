@@ -1,0 +1,1 @@
+https://jscarle.medium.com/save-your-reputation-build-better-value-objects-in-net-58be1f54ca3a

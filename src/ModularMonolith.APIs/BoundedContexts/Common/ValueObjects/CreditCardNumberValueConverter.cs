@@ -1,0 +1,12 @@
+﻿namespace U2U.ModularMonolith.BoundedContexts.Common.ValueObjects;
+
+public sealed class CreditCardNumberValueConverter
+: ValueConverter<CreditCardNumber, string>
+{
+  public CreditCardNumberValueConverter()
+  : base(
+    ccn => ccn.Value,
+    value => new CreditCardNumber(value)
+  )
+  { }
+}

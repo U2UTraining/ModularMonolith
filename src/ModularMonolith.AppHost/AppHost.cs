@@ -19,18 +19,27 @@ internal class Program
       );
     }
 
-    //var usersDb = sql.AddDatabase("mm-currency-db");
+    IResourceBuilder<AzureSqlDatabaseResource> currencyDb = 
+      sql.AddDatabase("mm-currency-db");
+
+    IResourceBuilder<ProjectResource> migrations = 
+      builder.AddProject<Projects.ModularMonolith_MigrationService>("migrationservice")
+        .WithReference(currencyDb)
+        .WaitFor(currencyDb)
+        //.WithReference(postsDb)
+        //.WaitFor(postsDb)
+        ;
 
     IResourceBuilder<ProjectResource> apis = 
       builder.AddProject<Projects.ModularMonolith_APIs>("modular-monolith-apis")
-    //.WithReference(postsDb)
-    //.WaitForCompletion(migrations)
-    ;
+        .WithReference(currencyDb)
+        .WaitForCompletion(migrations)
+        ;
 
     if (builder.Environment.IsDevelopment())
     {
       var smtp4dev = builder.AddSmtp4dev("smtp4dev");
-      //web.WithReference(smtp4dev);
+      apis.WithReference(smtp4dev);
     }
 
     builder.Build().Run();

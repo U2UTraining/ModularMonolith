@@ -20,7 +20,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ModularMonolith.APIs\ModularMonolith.APIs.csproj" />
-    <ProjectReference Include="..\ModularMonolith.Smtp4Dev.Hosting\ModularMonolith.Smtp4Dev.Hosting.csproj"  IsAspireProjectResource="false"/>
+    <ProjectReference Include="..\ModularMonolith.MigrationService\ModularMonolith.MigrationService.csproj" />
+    <ProjectReference Include="..\ModularMonolith.Smtp4Dev.Hosting\ModularMonolith.Smtp4Dev.Hosting.csproj" IsAspireProjectResource="false" />
   </ItemGroup>
 
 </Project>
