@@ -1,7 +1,7 @@
-﻿using U2U.ModularMonolith.BoundedContexts.Shopping.Infra;
-using U2U.ModularMonolith.BoundedContexts.Shopping.Repositories;
+﻿using ModularMonolithBoundedContexts.Shopping.Infra;
+using ModularMonolithBoundedContexts.Shopping.Repositories;
 
-namespace U2U.ModularMonolith.BoundedContexts.Shopping.DI;
+namespace ModularMonolithBoundedContexts.Shopping.DI;
 
 public static class ServiceCollectionExtensions
 {

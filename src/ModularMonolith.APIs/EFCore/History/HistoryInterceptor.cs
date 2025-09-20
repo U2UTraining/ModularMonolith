@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.EFCore.History;
+﻿namespace ModularMonolithEFCore.History;
 
 /// <summary>
 /// EF Core Interceptor taking care of using maintenance columns

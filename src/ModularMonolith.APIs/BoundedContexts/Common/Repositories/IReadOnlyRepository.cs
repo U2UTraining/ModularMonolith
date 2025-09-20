@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Common.Repositories;
+﻿namespace ModularMonolithBoundedContexts.Common.Repositories;
 
 /// <summary>
 /// IReadonlyRepository<typeparamref name="T"/> allows you to retrieve entities

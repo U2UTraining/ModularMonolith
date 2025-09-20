@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Common.ValueObjects;
+﻿namespace ModularMonolithBoundedContexts.Common.ValueObjects;
 
 /// <summary>
 /// Percentage, with normal value between 0% and 100%

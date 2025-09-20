@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace U2U.ModularMonolith.Migrations.Currencies
+namespace ModularMonolithMigrations.Currencies
 {
     /// <inheritdoc />
     public partial class CurrenciesInit : Migration

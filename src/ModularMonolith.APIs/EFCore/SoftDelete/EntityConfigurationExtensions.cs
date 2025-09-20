@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.EFCore.SoftDelete;
+﻿namespace ModularMonolithEFCore.SoftDelete;
 
 public static partial class EntityConfigurationExtensions
 {

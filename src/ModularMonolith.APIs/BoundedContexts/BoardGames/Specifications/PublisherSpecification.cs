@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.BoardGames.Specifications;
+﻿namespace ModularMonolithBoundedContexts.BoardGames.Specifications;
 
 public static class PublisherSpecification
 {

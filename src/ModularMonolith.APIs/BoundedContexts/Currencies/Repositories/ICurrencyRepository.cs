@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Currencies.Repositories;
+﻿namespace ModularMonolithBoundedContexts.Currencies.Repositories;
 
 public interface ICurrencyRepository 
 : IRepository<Currency>

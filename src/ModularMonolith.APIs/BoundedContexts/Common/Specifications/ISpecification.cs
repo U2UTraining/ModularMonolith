@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Common.Specifications;
+﻿namespace ModularMonolithBoundedContexts.Common.Specifications;
 
 /// <summary>
 /// A ISpecification represents the filter (Where) and includes of a query,

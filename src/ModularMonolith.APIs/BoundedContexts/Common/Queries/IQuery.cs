@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Common.Queries;
+﻿namespace ModularMonolithBoundedContexts.Common.Queries;
 
 /// <summary>
 /// A IQuery fetches some data.

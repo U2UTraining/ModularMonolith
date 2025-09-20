@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Common.ValueObjects;
+﻿namespace ModularMonolithBoundedContexts.Common.ValueObjects;
 
 public sealed class EmailAddressValueConverter
 : ValueConverter<EmailAddress, string>

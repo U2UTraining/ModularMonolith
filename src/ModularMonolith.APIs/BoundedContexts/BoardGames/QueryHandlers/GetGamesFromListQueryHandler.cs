@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.BoardGames.QueryHandlers;
+﻿namespace ModularMonolithBoundedContexts.BoardGames.QueryHandlers;
 
 public sealed class GetGamesFromListQueryHandler
 : IQueryHandler<GetGamesFromListQuery, IQueryable<BoardGame>>

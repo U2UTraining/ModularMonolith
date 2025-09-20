@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.BoardGames.ValueObjects;
+﻿namespace ModularMonolithBoundedContexts.BoardGames.ValueObjects;
 
 public sealed class BoardGameNameValueConverter
 : ValueConverter<BoardGameName, string>

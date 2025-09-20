@@ -1,2 +1,2 @@
-﻿global using U2U.ModularMonolith.EFCore.History;
-global using U2U.ModularMonolith.EFCore.SoftDelete;
+﻿global using ModularMonolithEFCore.History;
+global using ModularMonolithEFCore.SoftDelete;

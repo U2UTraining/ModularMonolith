@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.EFCore.History;
+﻿namespace ModularMonolithEFCore.History;
 
 /// <summary>
 /// Maintenance default column names

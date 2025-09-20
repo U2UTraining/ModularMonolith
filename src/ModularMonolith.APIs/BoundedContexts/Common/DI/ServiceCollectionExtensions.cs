@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Common.DI;
+﻿namespace ModularMonolithBoundedContexts.Common.DI;
 
 /// <summary>
 /// Extension methods for IServiceCollection to add common services.
@@ -152,16 +152,19 @@ public static class ServiceCollectionExtensions
   /// Method that configures DI for the Common Bounded Context.
   /// </summary>
   /// <returns>IServiceCollection</returns>
-  public static IServiceCollection AddCommon(
-    this IServiceCollection services
+  public static IHostApplicationBuilder AddCommon(
+    this IHostApplicationBuilder builder
   )
-  => services
+  {
+    builder.Services
     .AddEFCoreInterceptors()
     .AddQueries()
     .AddCommands()
     .AddDomainEvents()
     .AddIntegrationEvents()
     ;
+    return builder;
+  }
 
   /// <summary>
   /// Register Domain Event Handler Infrastructure.

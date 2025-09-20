@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Common.Results;
+﻿namespace ModularMonolithBoundedContexts.Common.Results;
 
 /// <summary>
 /// Represents application errors.

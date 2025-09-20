@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Common.DomainEvents;
+﻿namespace ModularMonolithBoundedContexts.Common.DomainEvents;
 
 using Invoker = Func<object, object, CancellationToken, Task<object>>;
 

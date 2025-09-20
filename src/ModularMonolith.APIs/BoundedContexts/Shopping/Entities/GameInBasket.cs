@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Shopping.Entities;
+﻿namespace ModularMonolithBoundedContexts.Shopping.Entities;
 
 public sealed class BasketItem
 : EntityBase<PK<int>>

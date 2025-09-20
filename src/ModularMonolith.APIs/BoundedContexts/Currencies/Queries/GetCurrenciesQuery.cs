@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Currencies.Queries;
+﻿namespace ModularMonolithBoundedContexts.Currencies.Queries;
 
 /// <summary>
 /// Get all currencies query

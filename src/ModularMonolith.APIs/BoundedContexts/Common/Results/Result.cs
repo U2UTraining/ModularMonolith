@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Common.Results;
+﻿namespace ModularMonolithBoundedContexts.Common.Results;
 
 // For a more complete implementation of Result, see e.g.
 // https://github.com/altmann/FluentResults

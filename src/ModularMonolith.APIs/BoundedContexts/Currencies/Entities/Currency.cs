@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Currencies.Entities;
+﻿namespace ModularMonolithBoundedContexts.Currencies.Entities;
 
 [DebuggerDisplay("Currency {Name,nq} = {ValueInEuro}EUR")]
 public sealed class Currency

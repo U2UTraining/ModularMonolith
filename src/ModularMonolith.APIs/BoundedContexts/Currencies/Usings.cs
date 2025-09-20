@@ -1,13 +1,13 @@
-﻿global using U2U.ModularMonolith.BoundedContexts.Currencies.CommandHandlers;
-global using U2U.ModularMonolith.BoundedContexts.Currencies.Commands;
-global using U2U.ModularMonolith.BoundedContexts.Currencies.DI;
-global using U2U.ModularMonolith.BoundedContexts.Currencies.DomainEventHandlers;
-global using U2U.ModularMonolith.BoundedContexts.Currencies.DomainEvents;
-global using U2U.ModularMonolith.BoundedContexts.Currencies.Entities;
-global using U2U.ModularMonolith.BoundedContexts.Currencies.Infra;
-global using U2U.ModularMonolith.BoundedContexts.Currencies.IntegrationEvents;
-global using U2U.ModularMonolith.BoundedContexts.Currencies.Queries;
-global using U2U.ModularMonolith.BoundedContexts.Currencies.QueryHandlers;
-global using U2U.ModularMonolith.BoundedContexts.Currencies.Repositories;
-global using U2U.ModularMonolith.BoundedContexts.Currencies.ValueObjects;
+﻿global using ModularMonolithBoundedContexts.Currencies.CommandHandlers;
+global using ModularMonolithBoundedContexts.Currencies.Commands;
+global using ModularMonolithBoundedContexts.Currencies.DI;
+global using ModularMonolithBoundedContexts.Currencies.DomainEventHandlers;
+global using ModularMonolithBoundedContexts.Currencies.DomainEvents;
+global using ModularMonolithBoundedContexts.Currencies.Entities;
+global using ModularMonolithBoundedContexts.Currencies.Infra;
+global using ModularMonolithBoundedContexts.Currencies.IntegrationEvents;
+global using ModularMonolithBoundedContexts.Currencies.Queries;
+global using ModularMonolithBoundedContexts.Currencies.QueryHandlers;
+global using ModularMonolithBoundedContexts.Currencies.Repositories;
+global using ModularMonolithBoundedContexts.Currencies.ValueObjects;
 

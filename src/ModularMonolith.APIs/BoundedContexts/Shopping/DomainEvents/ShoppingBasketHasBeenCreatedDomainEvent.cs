@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Shopping.DomainEvents;
+﻿namespace ModularMonolithBoundedContexts.Shopping.DomainEvents;
 
 public sealed record class ShoppingBasketHasBeenCreatedDomainEvent(
   ShoppingBasket basket

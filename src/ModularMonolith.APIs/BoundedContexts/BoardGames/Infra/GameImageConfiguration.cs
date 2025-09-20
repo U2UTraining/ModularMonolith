@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.BoardGames.Infra;
+﻿namespace ModularMonolithBoundedContexts.BoardGames.Infra;
 
 internal sealed class GameImageConfiguration
 :IEntityTypeConfiguration<GameImage>

@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Common.DI;
+﻿namespace ModularMonolithBoundedContexts.Common.DI;
 
 /// <summary>
 /// Method to create an instance of type I.

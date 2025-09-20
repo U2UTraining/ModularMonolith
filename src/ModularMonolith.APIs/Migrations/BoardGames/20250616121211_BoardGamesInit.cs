@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace U2U.ModularMonolith.Migrations.BoardGames
+namespace ModularMonolithMigrations.BoardGames
 {
     /// <inheritdoc />
     public partial class BoardGamesInit : Migration

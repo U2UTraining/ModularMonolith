@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.BoardGames.Commands;
+﻿namespace ModularMonolithBoundedContexts.BoardGames.Commands;
 
 /// <summary>
 /// Add a board game to a publisher.

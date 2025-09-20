@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.BoardGames.Repositories;
+﻿namespace ModularMonolithBoundedContexts.BoardGames.Repositories;
 
 public sealed class BoardGamesRepository
 : Repository<BoardGame, GamesDb>

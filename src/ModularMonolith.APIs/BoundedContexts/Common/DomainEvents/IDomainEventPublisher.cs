@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Common.DomainEvents;
+﻿namespace ModularMonolithBoundedContexts.Common.DomainEvents;
 
 /// <summary>
 /// Publish a Domain Event to all IDomainEventHandlers

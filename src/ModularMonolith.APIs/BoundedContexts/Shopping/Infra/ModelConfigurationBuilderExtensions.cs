@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Shopping.Infra;
+﻿namespace ModularMonolithBoundedContexts.Shopping.Infra;
 
 public static class ModelConfigurationBuilderExtensions
 {

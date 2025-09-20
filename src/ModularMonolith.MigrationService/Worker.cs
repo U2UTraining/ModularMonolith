@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-using U2U.ModularMonolith.BoundedContexts.Currencies.Entities;
-using U2U.ModularMonolith.BoundedContexts.Currencies.Infra;
-using U2U.ModularMonolith.BoundedContexts.Currencies.ValueObjects;
+using ModularMonolithBoundedContexts.Currencies.Entities;
+using ModularMonolithBoundedContexts.Currencies.Infra;
+using ModularMonolithBoundedContexts.Currencies.ValueObjects;
 
 namespace ModularMonolith.MigrationService;
 

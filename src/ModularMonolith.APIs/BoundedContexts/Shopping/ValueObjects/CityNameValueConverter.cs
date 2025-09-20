@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Shopping.ValueObjects;
+﻿namespace ModularMonolithBoundedContexts.Shopping.ValueObjects;
 
 public sealed class CityNameValueConverter
 : ValueConverter<CityName, string>

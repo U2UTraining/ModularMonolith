@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.BoardGames.ValueObjects;
+﻿namespace ModularMonolithBoundedContexts.BoardGames.ValueObjects;
 
 [DebuggerDisplay("{Amount}{Currency,nq}")]
 public readonly record struct Money

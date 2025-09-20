@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Common.Entities;
+﻿namespace ModularMonolithBoundedContexts.Common.Entities;
 
 /// <summary>
 /// Base class for Entities, supporting Domain Events

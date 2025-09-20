@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Shopping.IntegrationEvents;
+﻿namespace ModularMonolithBoundedContexts.Shopping.IntegrationEvents;
 
 public sealed record class ShoppingBasketHasCheckedOutIntegrationEvent
 (

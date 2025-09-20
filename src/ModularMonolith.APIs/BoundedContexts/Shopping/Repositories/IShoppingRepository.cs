@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Shopping.Repositories;
+﻿namespace ModularMonolithBoundedContexts.Shopping.Repositories;
 
 public interface IShoppingRepository
 : IRepository<ShoppingBasket>

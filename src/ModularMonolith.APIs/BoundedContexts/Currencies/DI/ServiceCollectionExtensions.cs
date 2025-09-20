@@ -1,6 +1,6 @@
-﻿//using U2U.ModularMonolith.BoundedContexts.Shopping.IntegrationEventHandlers;
+﻿//using ModularMonolithBoundedContexts.Shopping.IntegrationEventHandlers;
 using Microsoft.EntityFrameworkCore;
-namespace U2U.ModularMonolith.BoundedContexts.Currencies.DI;
+namespace ModularMonolithBoundedContexts.Currencies.DI;
 
 public static class ServiceCollectionExtensions
 {

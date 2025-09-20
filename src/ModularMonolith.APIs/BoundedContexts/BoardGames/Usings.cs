@@ -1,13 +1,13 @@
-﻿global using U2U.ModularMonolith.BoundedContexts.BoardGames.ValueObjects;
-global using U2U.ModularMonolith.BoundedContexts.BoardGames.Entities;
-global using U2U.ModularMonolith.BoundedContexts.BoardGames.Commands;
-global using U2U.ModularMonolith.BoundedContexts.BoardGames.Repositories;
-global using U2U.ModularMonolith.BoundedContexts.BoardGames.Specifications;
-global using U2U.ModularMonolith.BoundedContexts.BoardGames.IntegrationEvents;
-global using U2U.ModularMonolith.BoundedContexts.BoardGames.Queries;
-global using U2U.ModularMonolith.BoundedContexts.BoardGames.QueryHandlers;
-global using U2U.ModularMonolith.BoundedContexts.BoardGames.Infra;
-global using U2U.ModularMonolith.BoundedContexts.BoardGames.DI;
-global using U2U.ModularMonolith.BoundedContexts.BoardGames.CommandHandlers;
+﻿global using ModularMonolithBoundedContexts.BoardGames.ValueObjects;
+global using ModularMonolithBoundedContexts.BoardGames.Entities;
+global using ModularMonolithBoundedContexts.BoardGames.Commands;
+global using ModularMonolithBoundedContexts.BoardGames.Repositories;
+global using ModularMonolithBoundedContexts.BoardGames.Specifications;
+global using ModularMonolithBoundedContexts.BoardGames.IntegrationEvents;
+global using ModularMonolithBoundedContexts.BoardGames.Queries;
+global using ModularMonolithBoundedContexts.BoardGames.QueryHandlers;
+global using ModularMonolithBoundedContexts.BoardGames.Infra;
+global using ModularMonolithBoundedContexts.BoardGames.DI;
+global using ModularMonolithBoundedContexts.BoardGames.CommandHandlers;
 
 

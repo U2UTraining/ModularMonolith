@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.BoardGames.CommandHandlers;
+﻿namespace ModularMonolithBoundedContexts.BoardGames.CommandHandlers;
 
 internal sealed class UpdateGamePriceCommandHandler 
 : ICommandHandler<UpdateGamePriceCommand, bool>

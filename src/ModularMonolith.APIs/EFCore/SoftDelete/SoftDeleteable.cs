@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.EFCore.SoftDelete;
+﻿namespace ModularMonolithEFCore.SoftDelete;
 
 /// <summary>
 /// Soft delete default column names

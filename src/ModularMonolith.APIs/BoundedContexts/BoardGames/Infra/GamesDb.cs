@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.BoardGames.Infra;
+﻿namespace ModularMonolithBoundedContexts.BoardGames.Infra;
 
 public sealed partial class GamesDb 
 : DbContext

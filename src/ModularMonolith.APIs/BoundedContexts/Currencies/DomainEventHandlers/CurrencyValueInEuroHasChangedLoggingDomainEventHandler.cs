@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Currencies.DomainEventHandlers;
+﻿namespace ModularMonolithBoundedContexts.Currencies.DomainEventHandlers;
 
 public sealed class CurrencyValueInEuroHasChangedLoggingDomainEventHandler
 : IDomainEventHandler<CurrencyValueInEuroHasChangedDomainEvent>

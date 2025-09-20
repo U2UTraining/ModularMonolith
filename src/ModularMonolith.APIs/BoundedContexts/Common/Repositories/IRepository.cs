@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Common.Repositories;
+﻿namespace ModularMonolithBoundedContexts.Common.Repositories;
 
 /// <summary>
 /// IRepository<typeparamref name="T"/> supports all actions of a IReadonlyRepository<typeparamref name="T"/>

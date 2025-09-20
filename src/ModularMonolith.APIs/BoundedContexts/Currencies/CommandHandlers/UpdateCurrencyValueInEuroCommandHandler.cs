@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Currencies.CommandHandlers;
+﻿namespace ModularMonolithBoundedContexts.Currencies.CommandHandlers;
 
 internal sealed class UpdateCurrencyValueInEuroCommandHandler
 : ICommandHandler<UpdateCurrencyValueInEuroCommand, Currency>

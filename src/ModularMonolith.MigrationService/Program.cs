@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 using ModularMonolith.MigrationService;
 using ModularMonolith.ServiceDefaults;
 
-using U2U.ModularMonolith.BoundedContexts.Currencies.Infra;
+using ModularMonolithBoundedContexts.Currencies.Infra;
 
 internal class Program
 {

@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Common.ValueObjects;
+﻿namespace ModularMonolithBoundedContexts.Common.ValueObjects;
 
 /// <summary>
 /// PositiveDecimal represents a decimal number which > 0M

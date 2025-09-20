@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Common.Specifications;
+﻿namespace ModularMonolithBoundedContexts.Common.Specifications;
 
 /// <summary>
 /// Extensions methods for ISpecification.

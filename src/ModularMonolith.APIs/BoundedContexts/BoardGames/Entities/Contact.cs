@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.BoardGames.Entities;
+﻿namespace ModularMonolithBoundedContexts.BoardGames.Entities;
 
 /// <summary>
 /// Entity representing a contact person for a publisher.

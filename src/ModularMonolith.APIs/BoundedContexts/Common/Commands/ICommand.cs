@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Common.Commands;
+﻿namespace ModularMonolithBoundedContexts.Common.Commands;
 
 /// <summary>
 /// Commands ask to do something, like update a table.

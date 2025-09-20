@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using U2U.ModularMonolith.BoundedContexts.BoardGames.Infra;
+using ModularMonolithBoundedContexts.BoardGames.Infra;
 
 #nullable disable
 
-namespace U2U.ModularMonolith.Migrations.BoardGames
+namespace ModularMonolithMigrations.BoardGames
 {
     [DbContext(typeof(GamesDb))]
     [Migration("20250616121211_BoardGamesInit")]
@@ -27,7 +27,7 @@ namespace U2U.ModularMonolith.Migrations.BoardGames
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("U2U.ModularMonolith.BoundedContexts.BoardGames.Entities.BoardGame", b =>
+            modelBuilder.Entity("ModularMonolithBoundedContexts.BoardGames.Entities.BoardGame", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -69,7 +69,7 @@ namespace U2U.ModularMonolith.Migrations.BoardGames
                         .HasColumnOrder(2147483644)
                         .HasDefaultValueSql("GETUTCDATE()");
 
-                    b.ComplexProperty<Dictionary<string, object>>("Price", "U2U.ModularMonolith.BoundedContexts.BoardGames.Entities.BoardGame.Price#Money", b1 =>
+                    b.ComplexProperty<Dictionary<string, object>>("Price", "ModularMonolithBoundedContexts.BoardGames.Entities.BoardGame.Price#Money", b1 =>
                         {
                             b1.Property<decimal>("Amount")
                                 .HasColumnType("decimal(4,2)")
@@ -92,7 +92,7 @@ namespace U2U.ModularMonolith.Migrations.BoardGames
                     b.ToTable("Games", "games");
                 });
 
-            modelBuilder.Entity("U2U.ModularMonolith.BoundedContexts.BoardGames.Entities.Contact", b =>
+            modelBuilder.Entity("ModularMonolithBoundedContexts.BoardGames.Entities.Contact", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -153,7 +153,7 @@ namespace U2U.ModularMonolith.Migrations.BoardGames
                     b.ToTable("Contact", "games");
                 });
 
-            modelBuilder.Entity("U2U.ModularMonolith.BoundedContexts.BoardGames.Entities.GameImage", b =>
+            modelBuilder.Entity("ModularMonolithBoundedContexts.BoardGames.Entities.GameImage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -196,7 +196,7 @@ namespace U2U.ModularMonolith.Migrations.BoardGames
                     b.ToTable("GameImage", "games");
                 });
 
-            modelBuilder.Entity("U2U.ModularMonolith.BoundedContexts.BoardGames.Entities.Publisher", b =>
+            modelBuilder.Entity("ModularMonolithBoundedContexts.BoardGames.Entities.Publisher", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -242,9 +242,9 @@ namespace U2U.ModularMonolith.Migrations.BoardGames
                     b.ToTable("Publishers", "games");
                 });
 
-            modelBuilder.Entity("U2U.ModularMonolith.BoundedContexts.BoardGames.Entities.BoardGame", b =>
+            modelBuilder.Entity("ModularMonolithBoundedContexts.BoardGames.Entities.BoardGame", b =>
                 {
-                    b.HasOne("U2U.ModularMonolith.BoundedContexts.BoardGames.Entities.Publisher", "Publisher")
+                    b.HasOne("ModularMonolithBoundedContexts.BoardGames.Entities.Publisher", "Publisher")
                         .WithMany("Games")
                         .HasForeignKey("PublisherId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -253,29 +253,29 @@ namespace U2U.ModularMonolith.Migrations.BoardGames
                     b.Navigation("Publisher");
                 });
 
-            modelBuilder.Entity("U2U.ModularMonolith.BoundedContexts.BoardGames.Entities.Contact", b =>
+            modelBuilder.Entity("ModularMonolithBoundedContexts.BoardGames.Entities.Contact", b =>
                 {
-                    b.HasOne("U2U.ModularMonolith.BoundedContexts.BoardGames.Entities.Publisher", null)
+                    b.HasOne("ModularMonolithBoundedContexts.BoardGames.Entities.Publisher", null)
                         .WithMany("Contacts")
                         .HasForeignKey("PublisherId");
                 });
 
-            modelBuilder.Entity("U2U.ModularMonolith.BoundedContexts.BoardGames.Entities.GameImage", b =>
+            modelBuilder.Entity("ModularMonolithBoundedContexts.BoardGames.Entities.GameImage", b =>
                 {
-                    b.HasOne("U2U.ModularMonolith.BoundedContexts.BoardGames.Entities.BoardGame", null)
+                    b.HasOne("ModularMonolithBoundedContexts.BoardGames.Entities.BoardGame", null)
                         .WithOne("Image")
-                        .HasForeignKey("U2U.ModularMonolith.BoundedContexts.BoardGames.Entities.GameImage", "Id")
+                        .HasForeignKey("ModularMonolithBoundedContexts.BoardGames.Entities.GameImage", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("U2U.ModularMonolith.BoundedContexts.BoardGames.Entities.BoardGame", b =>
+            modelBuilder.Entity("ModularMonolithBoundedContexts.BoardGames.Entities.BoardGame", b =>
                 {
                     b.Navigation("Image")
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("U2U.ModularMonolith.BoundedContexts.BoardGames.Entities.Publisher", b =>
+            modelBuilder.Entity("ModularMonolithBoundedContexts.BoardGames.Entities.Publisher", b =>
                 {
                     b.Navigation("Contacts");
 

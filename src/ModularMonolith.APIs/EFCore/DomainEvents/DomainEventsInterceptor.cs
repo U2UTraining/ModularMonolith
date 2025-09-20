@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.EFCore.DomainEvents;
+﻿namespace ModularMonolithEFCore.DomainEvents;
 
 class DomainEventsInterceptor
 {

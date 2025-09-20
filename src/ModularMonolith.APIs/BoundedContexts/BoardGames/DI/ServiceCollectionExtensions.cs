@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.BoardGames.DI;
+﻿namespace ModularMonolithBoundedContexts.BoardGames.DI;
 
 public static class ServiceCollectionExtensions
 {

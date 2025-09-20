@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Common.ValueObjects;
+﻿namespace ModularMonolithBoundedContexts.Common.ValueObjects;
 
 public sealed class PKIntValueConverter
 : ValueConverter<PK<int>, int>

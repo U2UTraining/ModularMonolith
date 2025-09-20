@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.Currencies.Infra;
+﻿namespace ModularMonolithBoundedContexts.Currencies.Infra;
 
 public sealed partial class CurrenciesDb 
 : DbContext

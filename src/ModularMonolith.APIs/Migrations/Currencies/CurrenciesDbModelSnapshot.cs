@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using U2U.ModularMonolith.BoundedContexts.Currencies.Infra;
+using ModularMonolithBoundedContexts.Currencies.Infra;
 
 #nullable disable
 
-namespace U2U.ModularMonolith.Migrations.Currencies
+namespace ModularMonolithMigrations.Currencies
 {
     [DbContext(typeof(CurrenciesDb))]
     partial class CurrenciesDbModelSnapshot : ModelSnapshot
@@ -23,7 +23,7 @@ namespace U2U.ModularMonolith.Migrations.Currencies
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("U2U.ModularMonolith.BoundedContexts.Currencies.Entities.Currency", b =>
+            modelBuilder.Entity("ModularMonolithBoundedContexts.Currencies.Entities.Currency", b =>
                 {
                     b.Property<string>("Id")
                         .HasMaxLength(3)

@@ -1,9 +1,9 @@
 ﻿using Azure.Core;
 
-using U2U.ModularMonolith.BoundedContexts.Shopping.Infra;
-using U2U.ModularMonolith.BoundedContexts.Shopping.Specifications;
+using ModularMonolithBoundedContexts.Shopping.Infra;
+using ModularMonolithBoundedContexts.Shopping.Specifications;
 
-namespace U2U.ModularMonolith.BoundedContexts.Shopping.Repositories;
+namespace ModularMonolithBoundedContexts.Shopping.Repositories;
 
 
 public sealed class ShoppingRepository

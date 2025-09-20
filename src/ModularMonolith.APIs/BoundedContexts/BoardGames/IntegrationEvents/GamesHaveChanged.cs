@@ -1,4 +1,4 @@
-﻿namespace U2U.ModularMonolith.BoundedContexts.BoardGames.IntegrationEvents;
+﻿namespace ModularMonolithBoundedContexts.BoardGames.IntegrationEvents;
 
 /// <summary>
 /// All board games received a discount.
