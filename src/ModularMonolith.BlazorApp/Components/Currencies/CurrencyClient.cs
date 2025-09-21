@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BlazorApp.Services;
+﻿namespace ModularMonolith.BlazorApp.Components.Currencies;
 
 public class CurrencyClient
 {

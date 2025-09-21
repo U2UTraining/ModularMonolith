@@ -1,0 +1,30 @@
+﻿@page "/games"
+
+@using Size20 = Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20
+
+<h3>@(new Size20.Games().ToMarkup()) Board Games</h3>
+
+<div>Add your selection of board games to your shopping basket</div>
+
+<br/>
+
+<div class="grid">
+  <FluentDataGrid Items="@this.Games" RowSize="DataGridRowSize.Medium" MultiLine="true">
+    <PropertyColumn Property="@(bg => bg.GameName)" title="Name" Sortable="true" />
+    <PropertyColumn Property="@(bg => bg.PublisherName)" Title="Publisher" Sortable="true" />
+    <PropertyColumn Property="@(bg => bg.Price.ToString())" Title="Price" Sortable="true" />
+    <TemplateColumn Context="game" Align="@Align.Center" Width="64px">
+      <img src="@BoardGameImageURL(game)" alt="@game.GameName" style="width:100%" />
+    </TemplateColumn>
+    <TemplateColumn Title="Actions" Context="game" Align="@Align.End">
+      <FluentButton OnClick="async () => await AddBoardGameToBasket(game)"
+                    Title="Add to basket"
+                    IconEnd="@(new Size20.ShoppingBagAdd())" />
+    </TemplateColumn>
+  </FluentDataGrid>
+</div>
+
+<div>
+  <FluentButton OnClick="Filter">Filter</FluentButton>
+  <FluentButton OnClick="GiveGlobalDiscount">Give Global Discount</FluentButton>
+</div>

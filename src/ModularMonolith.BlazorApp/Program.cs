@@ -1,5 +1,9 @@
 using ModularMonolith.BlazorApp.Components;
+using ModularMonolith.BlazorApp.Components.BoardGames;
+using ModularMonolith.BlazorApp.Components.Currencies;
 using ModularMonolith.ServiceDefaults;
+
+using U2U.ModularMonolith;
 
 namespace ModularMonolith.BlazorApp;
 
@@ -20,8 +24,15 @@ public partial class Program
     builder.Services
       .AddFluentUIComponents();
 
+    // State
+    builder.Services.AddSingleton<State>((_) => State.Instance);
+
     // API Services
     builder.Services.AddHttpClient<CurrencyClient>(client =>
+    {
+      client.BaseAddress = new("https+http://modular-monolith-apis");
+    });
+    builder.Services.AddHttpClient<BoardGamesClient>(client =>
     {
       client.BaseAddress = new("https+http://modular-monolith-apis");
     });

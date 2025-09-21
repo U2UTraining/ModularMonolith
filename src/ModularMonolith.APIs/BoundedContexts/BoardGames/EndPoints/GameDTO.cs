@@ -1,3 +1,9 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.EndPoints;
 
-public record GameDTO(string CurrencyName, decimal ValueInEuro);
+public sealed record class GameDTO(
+  int Id
+, string GameName
+, decimal Price
+, string? ImageUrl
+, string PublisherName
+);
