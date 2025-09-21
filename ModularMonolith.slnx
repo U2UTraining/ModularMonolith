@@ -12,6 +12,7 @@
   <Folder Name="/src/">
     <Project Path="src/ModularMonolith.APIs/ModularMonolith.APIs.csproj" />
     <Project Path="src/ModularMonolith.AppHost/ModularMonolith.AppHost.csproj" />
+    <Project Path="src/ModularMonolith.BlazorApp/ModularMonolith.BlazorApp.csproj" />
     <Project Path="src/ModularMonolith.MigrationService/ModularMonolith.MigrationService.csproj" Id="caf7cedd-d155-4a27-8468-08d0e8cefbac" />
     <Project Path="src/ModularMonolith.ServiceDefaults/ModularMonolith.ServiceDefaults.csproj" />
     <Project Path="src/ModularMonolith.Smtp4Dev.Hosting/ModularMonolith.Smtp4Dev.Hosting.csproj" />

@@ -1,0 +1,37 @@
+﻿@page "/currencies"
+
+@using Microsoft.FluentUI.AspNetCore.Components
+@using Size20 = Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20
+
+<h3>@(new Size20.CurrencyDollarEuro().ToMarkup()) Currencies</h3>
+
+<span>Here you can configure the exchange rate for different currencies.</span>
+
+@if (this._currencies is not null)
+{
+  <div class="grid">
+    <FluentDataGrid 
+    Items="@_currencies" 
+    HeaderCellAsButtonWithMenu="false" 
+    RowSize="DataGridRowSize.Medium">
+      <ChildContent>
+        <PropertyColumn Property="@(c => c.CurrencyName)" title="Currency" />
+        <PropertyColumn Property="@(c => c.ValueInEuro)" Title="Value in Euro" />
+        <TemplateColumn Title="Actions" Context="currency" Align="@Align.End">
+          <FluentButton OnClick="async () => await EditCurrency(currency)"
+          Disabled="@(currency.CurrencyName == CurrencyName.EUR.ToString())"
+          Title="Edit currency"
+          IconEnd="@(new Size20.Edit())" />
+        </TemplateColumn>
+      </ChildContent>
+    </FluentDataGrid>
+  </div>
+} else
+{
+  <FluentStack
+    Orientation="Orientation.Horizontal" 
+    VerticalAlignment="VerticalAlignment.Center" 
+    HorizontalAlignment="HorizontalAlignment.Center" HorizontalGap="10">
+    <FluentProgressRing></FluentProgressRing> Loading
+  </FluentStack>
+}

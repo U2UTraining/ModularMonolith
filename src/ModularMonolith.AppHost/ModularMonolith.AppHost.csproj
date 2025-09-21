@@ -7,8 +7,14 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <UserSecretsId>0892e8da-684d-43d5-9f31-8f4cff889ad8</UserSecretsId>
-  </PropertyGroup>
+
+		<!-- User Secrets -->
+		<UserSecretsId>0892e8da-684d-43d5-9f31-8f4cff889ad8</UserSecretsId>
+
+		<!-- Source Generator should emit to disk -->
+		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+
+	</PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" />
@@ -20,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ModularMonolith.APIs\ModularMonolith.APIs.csproj" />
+    <ProjectReference Include="..\ModularMonolith.BlazorApp\ModularMonolith.BlazorApp.csproj" />
     <ProjectReference Include="..\ModularMonolith.MigrationService\ModularMonolith.MigrationService.csproj" />
     <ProjectReference Include="..\ModularMonolith.Smtp4Dev.Hosting\ModularMonolith.Smtp4Dev.Hosting.csproj" IsAspireProjectResource="false" />
   </ItemGroup>

@@ -39,6 +39,11 @@ internal class Program
         .WaitForCompletion(migrations)
         ;
 
+    var ui = 
+      builder.AddProject<Projects.ModularMonolith_BlazorApp>("modular-monolith-ui")
+        .WithReference(apis)
+        ;
+
     if (builder.Environment.IsDevelopment())
     {
       var smtp4dev = builder.AddSmtp4dev("smtp4dev");

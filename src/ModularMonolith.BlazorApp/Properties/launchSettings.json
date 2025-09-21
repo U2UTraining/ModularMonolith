@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+    "profiles": {
+      "http": {
+        "commandName": "Project",
+        "dotnetRunMessages": true,
+        "launchBrowser": true,
+        "applicationUrl": "http://modularmonolith_blazorapp.dev.localhost:5020",
+        "environmentVariables": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+        }
+      },
+      "https": {
+        "commandName": "Project",
+        "dotnetRunMessages": true,
+        "launchBrowser": true,
+        "applicationUrl": "https://modularmonolith_blazorapp.dev.localhost:7066;http://modularmonolith_blazorapp.dev.localhost:5020",
+        "environmentVariables": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+        }
+      }
+    }
+  }

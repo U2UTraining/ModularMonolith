@@ -1,0 +1,50 @@
+﻿@inherits LayoutComponentBase
+
+@inject IOptions<ModularMonolithApplicationOptions> ApplicationOptions
+
+@using Microsoft.Extensions.Options
+@using Microsoft.Identity.Client
+@using ModularMonolith.BlazorApp.Configuration
+@using Size20 = Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20
+@using U2U.ModularMonolith._Icons
+
+<FluentLayout>
+  <FluentHeader>
+    @ApplicationOptions.Value.Title
+    <FluentSpacer />
+    <a href="https://www.u2u.be/" target="_blank">
+      <FluentIcon Value="@(new U2UIcons.U2U().WithColor(Color.Fill))" />
+    </a>
+    @* <FluentSpacer Width="5"/> *@
+    @* <a href="https://www.github.com/peterhimschoot" target="_blank"> *@
+    @*   <FluentIcon Value="@(new U2UIcons.GitHub().WithColor(Color.Fill))" /> *@
+    @* </a> *@
+    <FluentSpacer Width="5" />
+    <a href="/settings">
+      <FluentIcon Value="@(new Size20.ContentSettings().WithColor(Color.Fill))" />
+    </a>
+  </FluentHeader>
+  <FluentStack Class="main" Orientation="Orientation.Horizontal" Width="100%">
+    <NavMenu />
+    <FluentBodyContent Class="body-content">
+      <div class="content">
+        @Body
+      </div>
+    </FluentBodyContent>
+  </FluentStack>
+  <FluentFooter>
+    <a href="https://www.fluentui-blazor.net" target="_blank">Documentation and demos</a>
+    <FluentSpacer />
+    <a href="https://learn.microsoft.com/en-us/aspnet/core/blazor" target="_blank">About Blazor</a>
+  </FluentFooter>
+</FluentLayout>
+
+<FluentDialogProvider />
+<FluentToastProvider MaxToastCount="5" Position="@ToastPosition.BottomRight" Timeout="2000" />
+<FluentMenuProvider />
+
+<div id="blazor-error-ui" data-nosnippet>
+    An unhandled error has occurred.
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span>
+</div>
