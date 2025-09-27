@@ -17,5 +17,7 @@
     <Project Path="src/ModularMonolith.ServiceDefaults/ModularMonolith.ServiceDefaults.csproj" />
     <Project Path="src/ModularMonolith.Smtp4Dev.Hosting/ModularMonolith.Smtp4Dev.Hosting.csproj" />
   </Folder>
-  <Folder Name="/tests/" />
+  <Folder Name="/tests/">
+    <Project Path="test/Common.Specifications.Tests/Common.Specifications.Tests.csproj" Id="3cfbaf2c-2114-44d7-9268-b643856eefa4" />
+  </Folder>
 </Solution>
