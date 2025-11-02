@@ -42,6 +42,7 @@ internal class Program
     var ui = 
       builder.AddProject<Projects.ModularMonolith_BlazorApp>("modular-monolith-ui")
         .WithReference(apis)
+        .WaitFor(apis)
         ;
 
     if (builder.Environment.IsDevelopment())
