@@ -21,4 +21,8 @@ public readonly record struct BoardGameName
       , paramName: nameof(value));
     }
   }
+
+  public static implicit operator string(BoardGameName nes)
+  => nes.Value;
+
 }

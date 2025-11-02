@@ -1,22 +1,22 @@
 ﻿namespace ModularMonolith.BlazorApp.Components.BoardGames;
 
-public class BoardGamesClient
+public class PublishersClient
 {
   private readonly HttpClient _httpClient;
 
-  public BoardGamesClient(HttpClient httpClient)
+  public PublishersClient(HttpClient httpClient)
   {
     _httpClient = httpClient;
   }
 
-  public async Task<IEnumerable<GameDTO>> GetGamesAsync(
+  public async Task<IEnumerable<PublisherDTO>> GetPublishersAsync(
     CancellationToken cancellationToken = default)
   {
     HttpResponseMessage response =
       await _httpClient.GetAsync("", cancellationToken);
     response.EnsureSuccessStatusCode();
-    IEnumerable<GameDTO>? games =
-      await response.Content.ReadFromJsonAsync<IEnumerable<GameDTO>>(cancellationToken);
-    return games ?? [];
+    IEnumerable<PublisherDTO>? publishers =
+      await response.Content.ReadFromJsonAsync<IEnumerable<PublisherDTO>>(cancellationToken);
+    return publishers ?? [];
   }
 }

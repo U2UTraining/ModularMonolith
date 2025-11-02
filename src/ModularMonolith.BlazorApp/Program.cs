@@ -34,7 +34,11 @@ public partial class Program
     });
     builder.Services.AddHttpClient<BoardGamesClient>(client =>
     {
-      client.BaseAddress = new("https+http://modular-monolith-apis");
+      client.BaseAddress = new("https+http://modular-monolith-apis/games");
+    });
+    builder.Services.AddHttpClient<PublishersClient>(client =>
+    {
+      client.BaseAddress = new("https+http://modular-monolith-apis/publishers");
     });
 
     var app = builder.Build();

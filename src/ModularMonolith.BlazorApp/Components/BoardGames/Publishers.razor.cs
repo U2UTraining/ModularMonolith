@@ -8,16 +8,16 @@ public sealed partial class Publishers
   [Inject]
   public required IDialogService DialogService { get; set; }
 
+  [Inject]
+  public required PublishersClient PublishersClient { get; set; }
+
   private IQueryable<PublisherDTO>? _publishers;
 
   private async Task<IQueryable<PublisherDTO>> GetPublishersAsync()
   {
-    IEnumerable<PublisherDTO> result = new List<PublisherDTO>();
-    //await Sender.AskAsync(GetAllPublishersQuery.WithGames, default)
-    //            .ConfigureAwait(false);
-    await Task.CompletedTask; // Remove warning
-    return result.AsQueryable();
-    ;
+    IEnumerable<PublisherDTO> publishers =
+      await PublishersClient.GetPublishersAsync();
+    return publishers.AsQueryable();
   }
 
   protected override async Task OnInitializedAsync()
@@ -26,9 +26,7 @@ public sealed partial class Publishers
                       .ConfigureAwait(false);
   }
 
-  //public Publisher? SelectedPublisher { get; set; }
-
-  //public IEnumerable<Publisher> SelectedItems {get;set;} = [];
+  public IEnumerable<PublisherDTO> SelectedItems {get;set;} = [];
 
   //public IQueryable<BoardGame> Games 
   //=> SelectedItems.SelectMany(pub => pub.Games).AsQueryable();

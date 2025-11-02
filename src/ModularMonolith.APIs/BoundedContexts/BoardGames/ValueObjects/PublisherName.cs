@@ -22,4 +22,8 @@ public readonly record struct PublisherName
       , paramName: nameof(value));
     }
   }
+
+  public static implicit operator string(PublisherName nes)
+  => nes.Value;
+
 }

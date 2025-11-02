@@ -3,13 +3,16 @@
 internal class AddBoardGameToPublisherCommandHandler
 : ICommandHandler<AddBoardGameToPublisherCommand, Publisher>
 {
+  private readonly GamesDb _db;
   private readonly IRepository<Publisher> _repo;
   private readonly IIntegrationEventPublisher _publisher;
 
   public AddBoardGameToPublisherCommandHandler(
-    IRepository<Publisher> repo
+    GamesDb db
+  , IRepository<Publisher> repo
   , IIntegrationEventPublisher publisher)
   {
+    _db = db;
     _repo = repo;
     _publisher = publisher;
   }
@@ -19,8 +22,9 @@ internal class AddBoardGameToPublisherCommandHandler
   , CancellationToken cancellationToken)
   {
     ISpecification<Publisher> spec =
-      new PublisherWithIdSpecification(request.PublisherId);
+      PublisherSpecification.WithId(request.PublisherId);
     Publisher? publisher = await _repo.SingleAsync(spec, cancellationToken).ConfigureAwait(false);
+    //Publisher? publisher = await _db.PublisherWithId(request.PublisherId);
     if (publisher is not null)
     {
       BoardGame game = publisher.CreateGame(request.Name, request.PriceInEuro);

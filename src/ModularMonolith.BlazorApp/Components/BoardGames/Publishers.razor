@@ -8,14 +8,14 @@
   <FluentDataGrid Items="@_publishers" RowSize="DataGridRowSize.Medium" ShowHover="true">
     <SelectColumn SelectMode="DataGridSelectMode.Single"
                   SelectFromEntireRow="true"
-                 @*  @bind-SelectedItems="@SelectedItems"  *@/>
+                  @bind-SelectedItems="@SelectedItems"
+                  />
     <PropertyColumn Property="@(pub => pub.PublisherName)" title="Name" Sortable="true" />
-    <TemplateColumn Title="Actions" Context="currency" Align="@Align.End">
+    @* <TemplateColumn Title="Actions" Context="currency" Align="@Align.End"> *@
       @* <FluentButton OnClick="async () => await AddBoardGame(currency)"
                     Title="Edit currency"
                     IconEnd="@(new Size20.BookAdd())" /> *@
-    </TemplateColumn>
-
+    @* </TemplateColumn> *@
   </FluentDataGrid>
 </div>
 

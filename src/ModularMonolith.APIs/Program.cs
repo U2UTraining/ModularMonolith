@@ -1,3 +1,4 @@
+using ModularMonolith.APIs.BoundedContexts.BoardGames.EndPoints;
 using ModularMonolith.APIs.BoundedContexts.Currencies.EndPoints;
 using ModularMonolith.ServiceDefaults;
 
@@ -26,5 +27,6 @@ app.UseHttpsRedirection();
 
 app.AddCurrencyEndpoints();
 app.AddGamesEndpoints();
+app.AddPublishersEndpoints();
 
 app.Run();
