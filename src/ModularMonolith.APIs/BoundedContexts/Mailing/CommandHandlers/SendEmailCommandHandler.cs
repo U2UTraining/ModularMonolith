@@ -1,14 +1,6 @@
-﻿using System.Security.Cryptography;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Mailing.CommandHandlers;
 
-using MailKit.Net.Smtp;
-
-using MimeKit;
-
-using ModularMonolith.APIs.BoundedContexts.Mailing.Config;
-
-namespace ModularMonolith.APIs.BoundedContexts.Mailing.CommandHandlers;
-
-public class SendEmailCommandHandler
+public sealed class SendEmailCommandHandler
 : ICommandHandler<SendEmailCommand, bool>
 {
   private readonly EmailConfig _emailConfig;

@@ -1,8 +1,4 @@
-﻿using System.Configuration;
-
-using ModularMonolith.APIs.BoundedContexts.Mailing.Config;
-
-namespace ModularMonolith.APIs.BoundedContexts.Mailing.DI;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Mailing.DI;
 
 public static class WebApplicationBuilderExtensions
 {
@@ -19,8 +15,8 @@ public static class WebApplicationBuilderExtensions
       }
       else
       {
-        builder.Services.AddSingleton(emailConfig!);
-        builder.Services.AddMailings();
+        _ = builder.Services.AddSingleton(emailConfig!);
+        _ = builder.Services.AddMailings();
         return builder;
       }
     }
