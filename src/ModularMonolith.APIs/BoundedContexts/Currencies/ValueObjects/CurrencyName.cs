@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Currencies.ValueObjects;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.ValueObjects;
 
 /// <summary>
 /// Currency Code as defined by ISO 4217

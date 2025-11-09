@@ -49,7 +49,8 @@ internal class Program
 
     if (builder.Environment.IsDevelopment())
     {
-      IResourceBuilder<Smtp4devResource> smtp4dev = builder.AddSmtp4dev("smtp4dev");
+      IResourceBuilder<Smtp4devResource> smtp4dev = 
+        builder.AddSmtp4dev(name: "smtp4dev", httpPort: 5000, smtpPort: 5001);
       _ = apis.WithReference(smtp4dev);
     }
 

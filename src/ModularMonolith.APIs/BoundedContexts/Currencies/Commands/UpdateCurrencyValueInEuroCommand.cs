@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Currencies.Commands;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.Commands;
 
 /// <summary>
 /// Update Currency Euro Value.

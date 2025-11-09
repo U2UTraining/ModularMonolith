@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Currencies.CurrencyConversions;
+﻿namespace ModularMonolith.APIs.Currencies.CurrencyConversions;
 
 internal sealed class CurrencyConverterService
 : ICurrencyConverterService

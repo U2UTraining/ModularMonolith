@@ -9,6 +9,7 @@ builder.AddServiceDefaults();
 // Add support for bounded contexts
 builder
   .AddCommon()
+  .AddEmailServices()
   .AddCurrencies()
   .AddBoardGames()
 //  builder.Configuration.GetConnectionString("GamesDb")!)
@@ -25,7 +26,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.AddCurrencyEndpoints();
+RouteGroupBuilder x = app.MapGroup("/currencies")
+   .WithTags("Currencies")
+   .WithCurrencyEndpoints()
+   ;
+
+//app.AddCurrencyEndpoints();
 app.AddGamesEndpoints();
 app.AddPublishersEndpoints();
 

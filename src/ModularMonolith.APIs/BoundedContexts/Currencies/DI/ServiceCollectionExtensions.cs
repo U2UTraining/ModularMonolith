@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Currencies.DI;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.DI;
 
 public static class ServiceCollectionExtensions
 {
@@ -63,6 +63,9 @@ public static class ServiceCollectionExtensions
     .AddScoped<
       IDomainEventHandler<CurrencyValueInEuroHasChangedDomainEvent>
     , CurrencyValueInEuroHasChangedDomainEventHandler>()
+    .AddScoped<
+      IDomainEventHandler<CurrencyValueInEuroHasChangedDomainEvent>
+    , CurrencyValueInEuroHasChangedEmailDomainEventHandler>()
     // TEMP: MOve
     //.AddScoped<
     //  IIntegrationEventHandler<CurrencyHasChangedIntegrationEvent>

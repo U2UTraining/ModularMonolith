@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Currencies.CurrencyConversions;
+﻿namespace ModularMonolith.APIs.Currencies.CurrencyConversions;
 
 /// <summary>
 /// Convert an amount from one currency to another.

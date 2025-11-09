@@ -13,9 +13,10 @@ using ModularMonolith.BoundedContexts.BoardGames.Entities;
 using ModularMonolith.BoundedContexts.BoardGames.Infra;
 using ModularMonolith.BoundedContexts.BoardGames.ValueObjects;
 using ModularMonolith.BoundedContexts.Common.ValueObjects;
-using ModularMonolith.BoundedContexts.Currencies.Entities;
-using ModularMonolith.BoundedContexts.Currencies.Infra;
-using ModularMonolith.BoundedContexts.Currencies.ValueObjects;
+
+using ModularMonolith.APIs.BoundedContexts.Currencies.Entities;
+using ModularMonolith.APIs.BoundedContexts.Currencies.Infra;
+using ModularMonolith.APIs.BoundedContexts.Currencies.ValueObjects;
 
 namespace ModularMonolith.MigrationService;
 

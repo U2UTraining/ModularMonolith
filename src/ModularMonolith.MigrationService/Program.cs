@@ -5,7 +5,7 @@ using ModularMonolith.MigrationService;
 using ModularMonolith.ServiceDefaults;
 
 using ModularMonolith.BoundedContexts.BoardGames.Infra;
-using ModularMonolith.BoundedContexts.Currencies.Infra;
+using ModularMonolith.APIs.BoundedContexts.Currencies.Infra;
 
 internal class Program
 {

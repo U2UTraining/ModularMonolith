@@ -6,6 +6,7 @@ global using System.Diagnostics.CodeAnalysis;
 global using System.Globalization;
 global using System.Linq.Expressions;
 global using System.Text.RegularExpressions;
+global using Microsoft.AspNetCore.Mvc;
 
 // Blazor 
 global using Microsoft.AspNetCore.Components;
