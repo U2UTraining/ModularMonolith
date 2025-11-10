@@ -4,7 +4,8 @@
 /// EF Core Interceptor taking care of using soft delete
 /// Entities are not deleted, instead marked as deleted using a bit column.
 /// </summary>
-public sealed class SoftDeleteInterceptor : SaveChangesInterceptor
+public sealed class SoftDeleteInterceptor 
+: SaveChangesInterceptor
 {
   private readonly string _isDeleted;
   private readonly string _utcDeleted;

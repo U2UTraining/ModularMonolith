@@ -1,8 +1,8 @@
-﻿namespace ModularMonolithEFCore.DomainEvents;
+﻿//namespace ModularMonolithEFCore.DomainEvents;
 
-class DomainEventsInterceptor
-{
-  // TODO ?
+//class DomainEventsInterceptor
+//{
+//  // TODO ?
 
-  //https://learn.microsoft.com/en-us/ef/core/logging-events-diagnostics/diagnostic-listeners
-}
+//  //https://learn.microsoft.com/en-us/ef/core/logging-events-diagnostics/diagnostic-listeners
+//}

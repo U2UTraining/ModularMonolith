@@ -15,9 +15,16 @@ internal class Program
       builder.AddAzureSqlServer("sql");
     if (builder.Environment.IsDevelopment())
     {
+      // Create a parameter resource for the SQL admin password and set its value.
+      IResourceBuilder<ParameterResource> sqlPassword =
+        builder.AddParameter(name: "sql-admin-password")
+        ;
+
       _ = sql.RunAsContainer(sql =>
         sql.WithDataVolume("modularmonolith")
            .WithLifetime(ContainerLifetime.Persistent)
+           // Pass the parameter resource (not a raw string) to WithPassword.
+           .WithPassword(sqlPassword)
       );
     }
 
