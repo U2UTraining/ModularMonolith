@@ -1,9 +1,8 @@
 using ModularMonolith.BlazorApp.Components;
 using ModularMonolith.BlazorApp.Components.BoardGames;
 using ModularMonolith.BlazorApp.Components.Currencies;
+using ModularMonolith.BlazorApp.Components.Shopping;
 using ModularMonolith.ServiceDefaults;
-
-using U2U.ModularMonolith;
 
 namespace ModularMonolith.BlazorApp;
 
@@ -24,8 +23,13 @@ public partial class Program
     builder.Services
       .AddFluentUIComponents();
 
+    builder.Services
+           .AddDistributedMemoryCache()
+           .AddSession();
+
     // State
-    builder.Services.AddSingleton<State>((_) => State.Instance);
+    builder.Services.AddHttpContextAccessor(); // Singleton
+    builder.Services.AddScoped<State>();
 
     // API Services
     builder.Services.AddHttpClient<CurrencyClient>(client =>
@@ -40,6 +44,10 @@ public partial class Program
     {
       client.BaseAddress = new("https+http://modular-monolith-apis/publishers");
     });
+    builder.Services.AddHttpClient<ShoppingBasketClient>(client =>
+    {
+      client.BaseAddress = new("https+http://modular-monolith-apis/shopping");
+    });
 
     var app = builder.Build();
 
@@ -52,6 +60,8 @@ public partial class Program
     }
     app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);
     app.UseHttpsRedirection();
+
+    app.UseSession();
 
     app.UseAntiforgery();
 

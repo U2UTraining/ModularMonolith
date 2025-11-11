@@ -1,0 +1,60 @@
+﻿@page "/basket"
+
+@using Size20 = Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20
+@using Size48 = Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size48
+
+<h3>@(new Size20.ShoppingBag().ToMarkup()) Shopping Basket</h3>
+
+ <div>Shopping Basket Id @(State.ShoppingBasketId ?? -1)</div>
+
+
+@if (this._games is not null)
+{
+  @* <div>Shipment Id @(State.ShipmentId.Key.ToString() ?? "not found")</div>
+  <div>Handling Event Status @(State.HandlingEventName.ToString() ?? "not found")</div> *@
+
+  <div class="grid">
+    <FluentDataGrid Items="@_games" RowSize="DataGridRowSize.Medium" MultiLine="true">
+      <ChildContent>
+        @* <PropertyColumn Property="@(bg => bg.Name.Value)" title="Name" Sortable="true" />
+        <PropertyColumn Property="@(bg => bg.PublisherName)" Title="Publisher" Sortable="true" />
+        <PropertyColumn Property="@(bg => bg.Price.ToString())" Title="Price" Sortable="true" /> *@
+        @* <TemplateColumn Context="game" Align="@Align.Center" Width="64px">
+          <img src="@BoardGameImageURL(game)" alt="@game.Name.Value" style="width:100%" />
+        </TemplateColumn> *@
+        <TemplateColumn Title="Actions" Context="game" Align="@Align.End">
+          <FluentButton OnClick="async () => await RemoveGameFromBasket(game)"
+                        Title="Add to basket"
+                        IconEnd="@(new Size20.Delete())" />
+        </TemplateColumn>
+      </ChildContent>
+    </FluentDataGrid>
+  </div>
+
+  @* <div>
+    <FluentButton OnClick="CheckOut" Disabled="@(!ShowCheckOutButton)" IconStart="new Size20.ShoppingBagPlay()">
+      Check out
+    </FluentButton>
+    <FluentButton OnClick="Boxed" Disabled="@(!ShowBoxedButton)" IconStart="new Size20.Box()">
+      Box
+    </FluentButton>
+    <FluentButton OnClick="Move" Disabled="@(!ShowMoveButton)" IconStart="new Size20.VehicleShip()">
+      Move
+    </FluentButton>
+    <FluentButton OnClick="Deliver" Disabled="@(!ShowDeliverButton)" IconStart="new Size20.Target()">
+      Deliver
+    </FluentButton>
+  </div> *@
+}
+else
+{
+  <FluentStack Orientation="Orientation.Horizontal"
+               VerticalAlignment="VerticalAlignment.Center"
+               HorizontalAlignment="HorizontalAlignment.Center" HorizontalGap="10"
+               Class="empty-basket">
+    @* <FluentIcon Value="@(new Size48.Alert())" Color="@Color.Accent" /> *@
+    <div>There is nothing in your basket yet</div>
+
+  </FluentStack>
+}
+

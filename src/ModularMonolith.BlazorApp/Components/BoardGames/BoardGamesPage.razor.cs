@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel;
 
-using U2U.ModularMonolith;
-
 namespace ModularMonolith.BlazorApp.Components.BoardGames;
 
 public sealed partial class BoardGamesPage

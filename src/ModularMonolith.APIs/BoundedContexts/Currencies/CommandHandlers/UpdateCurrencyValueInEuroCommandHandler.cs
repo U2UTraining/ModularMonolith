@@ -34,7 +34,7 @@ internal sealed class UpdateCurrencyValueInEuroCommandHandler
 
       //_logger.LogInformation("Updated currency {currencyName} to {newValue} at {timestamp}", request.Name, request.NewValue, DateTime.UtcNow);
 
-      CurrencyLogger.UpdateCurrencyValueInEuroCommandInvoked(_logger, DateTime.UtcNow, request);
+      //CurrencyLogger.UpdateCurrencyValueInEuroCommandInvoked(_logger, DateTime.UtcNow, request);
      
       // Only trigger integration event after successful change
       await _publisher.PublishIntegrationEventAsync(
@@ -53,15 +53,14 @@ internal sealed class UpdateCurrencyValueInEuroCommandHandler
   }
 }
 
-internal sealed partial class CurrencyLogger {
-
-  [LoggerMessage(
-        EventId = 123
-      , Level = LogLevel.Information
-      , Message = "Updated currency at {timestamp}")]
-  public static partial void UpdateCurrencyValueInEuroCommandInvoked(
-        ILogger logger
-      , DateTime timestamp 
-      , [LogProperties] UpdateCurrencyValueInEuroCommand command);
-
-}
+//public sealed partial class CurrencyLogger
+//{
+//  [LoggerMessage(
+//        EventId = 123
+//      , Level = LogLevel.Information
+//      , Message = "Updated currency at {timestamp}")]
+//  public static partial void UpdateCurrencyValueInEuroCommandInvoked(
+//        ILogger logger
+//      , DateTime timestamp
+//      , [LogProperties] UpdateCurrencyValueInEuroCommand command);
+//}

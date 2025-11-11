@@ -31,6 +31,12 @@ RouteGroupBuilder x = app.MapGroup("/currencies")
    .WithCurrencyEndpoints()
    ;
 
+RouteGroupBuilder shoppingEndpoints =
+  app.MapGroup("/shopping")
+     .WithTags("Shopping")
+     //.WithShoppingBasketEndpoints()
+     ;
+
 //app.AddCurrencyEndpoints();
 app.AddGamesEndpoints();
 app.AddPublishersEndpoints();

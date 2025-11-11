@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace U2U.ModularMonolith;
+namespace ModularMonolith.BlazorApp;
 
 /// <summary>
 /// Singleton class holding the application's state
@@ -8,13 +8,45 @@ namespace U2U.ModularMonolith;
 public sealed record class State
 : INotifyPropertyChanged
 {
-  private State()
-  { }
+  private const string ShoppingBasketIdSessionKey = "SBK";
 
-  public static State Instance
+  public State(IHttpContextAccessor contextAccessor)
   {
-    get;
-  } = new();
+    _contextAccessor = contextAccessor;
+  }
+
+  //public static State Instance
+  //{
+  //  get;
+  //} = new();
+
+  public int? ShoppingBasketId
+  {
+    get
+    {
+      HttpContext? context = _contextAccessor.HttpContext;
+      if (context is not null)
+      {
+        return context.Session.GetInt32(ShoppingBasketIdSessionKey);
+      }
+      return null;
+    }
+    set
+    {
+      HttpContext? context = _contextAccessor.HttpContext;
+      if (context is not null)
+      {
+        if (value is not null)
+        {
+          context.Session.SetInt32(ShoppingBasketIdSessionKey, value.Value);
+        }
+        else
+        {
+          context.Session.Remove(ShoppingBasketIdSessionKey);
+        }
+      }
+    }
+  }
 
   public IQueryable<GameDTO>? Games
   {
@@ -36,7 +68,8 @@ public sealed record class State
   /// Flyweight used during triggering of the event
   /// </summary>
   private readonly PropertyChangedEventArgs _placeholder = new(string.Empty);
+  private readonly IHttpContextAccessor _contextAccessor;
 
-  public void StateHasChanged() 
+  public void StateHasChanged()
   => PropertyChanged?.Invoke(this, _placeholder);
 }
