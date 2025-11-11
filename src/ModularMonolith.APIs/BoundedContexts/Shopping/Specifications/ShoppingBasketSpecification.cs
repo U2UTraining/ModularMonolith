@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Shopping.Specifications;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.Specifications;
 
 public static class ShoppingBasketSpecification
 {

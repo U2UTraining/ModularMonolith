@@ -3,9 +3,8 @@ using Microsoft.Extensions.Hosting;
 
 using ModularMonolith.MigrationService;
 using ModularMonolith.ServiceDefaults;
-
-using ModularMonolith.BoundedContexts.BoardGames.Infra;
 using ModularMonolith.APIs.BoundedContexts.Currencies.Infra;
+using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
 
 internal class Program
 {
@@ -18,11 +17,9 @@ internal class Program
     builder.Services.AddOpenTelemetry()
         .WithTracing(tracing => tracing.AddSource(Worker.ActivitySourceName));
 
-    //builder.AddSqlServerDbContext<ApplicationDbContext>("users-db");
-    //builder.AddSqlServerDbContext<PostsContext>("posts-db");
-
     builder.AddSqlServerDbContext<CurrenciesDb>(CurrenciesDb.DatabaseName);
     builder.AddSqlServerDbContext<GamesDb>(GamesDb.DatabaseName);
+    builder.AddSqlServerDbContext<ShoppingDb>(ShoppingDb.DatabaseName);
 
     var host = builder.Build();
     host.Run();

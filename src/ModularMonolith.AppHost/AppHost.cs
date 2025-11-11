@@ -16,15 +16,15 @@ internal class Program
     if (builder.Environment.IsDevelopment())
     {
       // Create a parameter resource for the SQL admin password and set its value.
-      IResourceBuilder<ParameterResource> sqlPassword =
-        builder.AddParameter(name: "sql-admin-password")
-        ;
+      //IResourceBuilder<ParameterResource> sqlPassword =
+      //  builder.AddParameter(name: "sql-admin-password")
+      //  ;
 
       _ = sql.RunAsContainer(sql =>
         sql.WithDataVolume("modularmonolith")
            .WithLifetime(ContainerLifetime.Persistent)
            // Pass the parameter resource (not a raw string) to WithPassword.
-           .WithPassword(sqlPassword)
+           //.WithPassword(sqlPassword)
       );
     }
 
@@ -32,6 +32,8 @@ internal class Program
       sql.AddDatabase("mm-currency-db");
     IResourceBuilder<AzureSqlDatabaseResource> gamesDb =
       sql.AddDatabase("mm-games-db");
+    IResourceBuilder<AzureSqlDatabaseResource> shoppingDb =
+      sql.AddDatabase("mm-shopping-db");
 
     IResourceBuilder<ProjectResource> migrations =
       builder.AddProject<Projects.ModularMonolith_MigrationService>("migrationservice")
@@ -39,12 +41,15 @@ internal class Program
         .WaitFor(currencyDb)
         .WithReference(gamesDb)
         .WaitFor(gamesDb)
+        .WithReference(shoppingDb)
+        .WaitFor(shoppingDb);
         ;
 
     IResourceBuilder<ProjectResource> apis =
       builder.AddProject<Projects.ModularMonolith_APIs>("modular-monolith-apis")
         .WithReference(currencyDb)
         .WithReference(gamesDb)
+        .WithReference(shoppingDb)
         .WaitForCompletion(migrations)
         ;
 

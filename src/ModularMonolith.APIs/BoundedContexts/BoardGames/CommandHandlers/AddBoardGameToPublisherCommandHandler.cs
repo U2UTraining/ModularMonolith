@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.BoundedContexts.BoardGames.CommandHandlers;
+﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.Commands;
+
+namespace ModularMonolith.APIs.BoundedContexts.BoardGames.CommandHandlers;
 
 internal class AddBoardGameToPublisherCommandHandler
 : ICommandHandler<AddBoardGameToPublisherCommand, Publisher>

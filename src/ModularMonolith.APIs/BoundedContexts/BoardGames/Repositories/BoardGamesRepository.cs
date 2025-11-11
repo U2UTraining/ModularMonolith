@@ -1,4 +1,7 @@
-﻿namespace ModularMonolith.BoundedContexts.BoardGames.Repositories;
+﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
+using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
+
+namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Repositories;
 
 public sealed class BoardGamesRepository
 : Repository<BoardGame, GamesDb>

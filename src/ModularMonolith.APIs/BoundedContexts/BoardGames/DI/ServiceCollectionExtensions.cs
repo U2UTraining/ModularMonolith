@@ -1,4 +1,10 @@
-﻿namespace ModularMonolith.BoundedContexts.BoardGames.DI;
+﻿
+using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
+using ModularMonolith.APIs.BoundedContexts.BoardGames.Queries;
+using ModularMonolith.APIs.BoundedContexts.BoardGames.QueryHandlers;
+using ModularMonolith.APIs.BoundedContexts.BoardGames.Repositories;
+
+namespace ModularMonolith.APIs.BoundedContexts.BoardGames.DI;
 
 public static class ServiceCollectionExtensions
 {

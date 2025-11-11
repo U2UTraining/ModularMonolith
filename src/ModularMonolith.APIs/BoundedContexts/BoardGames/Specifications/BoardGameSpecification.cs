@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.BoundedContexts.BoardGames.Specifications;
+﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
+
+namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Specifications;
 
 public static class BoardGameSpecification
 {

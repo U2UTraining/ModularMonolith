@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Shopping.IntegrationEventHandlers;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.IntegrationEventHandlers;
 
 public class CurrencyHasChangedIntegrationEventHandler
 : IIntegrationEventHandler<CurrencyHasChangedIntegrationEvent>

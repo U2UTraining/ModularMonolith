@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.BoardGames.Commands;
+﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Commands;
 
 /// <summary>
 /// Apply discount by changing the price of every game in the database

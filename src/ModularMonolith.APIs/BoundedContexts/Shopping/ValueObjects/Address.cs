@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Shopping.ValueObjects;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.ValueObjects;
 
 public record struct Address(
   StreetName Street

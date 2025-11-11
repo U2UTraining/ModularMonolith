@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Shopping.ValueObjects;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.ValueObjects;
 
 public readonly record struct FirstName
 {

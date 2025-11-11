@@ -1,18 +1,17 @@
-﻿using ModularMonolith.BoundedContexts.Shopping.Infra;
-using ModularMonolith.BoundedContexts.Shopping.Repositories;
-
-namespace ModularMonolith.BoundedContexts.Shopping.DI;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.DI;
 
 public static class ServiceCollectionExtensions
 {
-  public static IServiceCollection AddShopping(
-    this IServiceCollection services
-  , string connectionString)
-  => services
-    .AddShoppingQueries()
+  public static IHostApplicationBuilder AddShopping(
+    this IHostApplicationBuilder builder)
+  {
+    builder.Services
     .AddShoppingCommands()
-    .AddShoppingInfra(connectionString)
-  ;
+    .AddShoppingQueries()
+    .AddShoppingInfra(ShoppingDb.DatabaseName)
+    ;
+    return builder;
+  }
 
   public static IServiceCollection AddShoppingInfra(
     this IServiceCollection services
@@ -42,9 +41,9 @@ public static class ServiceCollectionExtensions
   }
 
   public static IServiceCollection AddShoppingQueries(
-  this IServiceCollection services)
-=> services
-;
+    this IServiceCollection services)
+  => services
+  ;
 
   public static IServiceCollection AddShoppingCommands(
     this IServiceCollection services)

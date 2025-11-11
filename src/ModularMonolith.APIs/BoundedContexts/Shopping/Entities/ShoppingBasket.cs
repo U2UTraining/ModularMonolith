@@ -1,7 +1,6 @@
-﻿
-using EFCore.Core.Shopping.DomainEvents;
+﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.ValueObjects;
 
-namespace ModularMonolith.BoundedContexts.Shopping.Entities;
+namespace ModularMonolith.APIs.BoundedContexts.Shopping.Entities;
 
 public sealed class ShoppingBasket
 : EntityBase<PK<int>>

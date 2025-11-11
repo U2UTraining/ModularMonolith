@@ -1,9 +1,9 @@
-﻿namespace ModularMonolith.BoundedContexts.Shopping.Infra;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.Infra;
 
 public sealed partial class ShoppingDb : DbContext
 {
-
   public const string SchemaName = "shopping";
+  public const string DatabaseName = "mm-shopping-db";
 
   public ShoppingDb()
   : base() { }

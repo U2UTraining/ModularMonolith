@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.BoardGames.ValueObjects;
+﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.ValueObjects;
 
 public sealed class PublisherNameValueConverter
 : ValueConverter<PublisherName, string>

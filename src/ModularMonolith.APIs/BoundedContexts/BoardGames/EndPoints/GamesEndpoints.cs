@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
+using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
+using ModularMonolith.APIs.BoundedContexts.BoardGames.Queries;
 
 namespace ModularMonolith.APIs.BoundedContexts.Currencies.EndPoints;
 

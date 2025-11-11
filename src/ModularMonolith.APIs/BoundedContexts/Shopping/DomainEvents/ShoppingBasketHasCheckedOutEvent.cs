@@ -1,4 +1,4 @@
-﻿namespace EFCore.Core.Shopping.DomainEvents;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.DomainEvents;
 
 public sealed record class ShoppingBasketHasCheckedOutEvent(
   PK<int> ShoppingBasketId)

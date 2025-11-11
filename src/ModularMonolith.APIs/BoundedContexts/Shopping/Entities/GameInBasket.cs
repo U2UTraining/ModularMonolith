@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.BoundedContexts.Shopping.Entities;
+﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.ValueObjects;
+
+namespace ModularMonolith.APIs.BoundedContexts.Shopping.Entities;
 
 public sealed class BasketItem
 : EntityBase<PK<int>>

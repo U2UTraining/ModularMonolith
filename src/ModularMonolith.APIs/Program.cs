@@ -1,3 +1,4 @@
+using ModularMonolith.APIs.BoundedContexts.BoardGames.DI;
 using ModularMonolith.APIs.BoundedContexts.BoardGames.EndPoints;
 using ModularMonolith.APIs.BoundedContexts.Currencies.EndPoints;
 using ModularMonolith.ServiceDefaults;
@@ -12,9 +13,8 @@ builder
   .AddEmailServices()
   .AddCurrencies()
   .AddBoardGames()
-//  builder.Configuration.GetConnectionString("GamesDb")!)
-//.AddShopping(builder.Configuration.GetConnectionString("ShoppingDb")!)
-;
+  .AddShopping()
+  ;
 
 WebApplication app = builder.Build();
 

@@ -1,10 +1,4 @@
-﻿using Azure.Core;
-
-using ModularMonolith.BoundedContexts.Shopping.Infra;
-using ModularMonolith.BoundedContexts.Shopping.Specifications;
-
-namespace ModularMonolith.BoundedContexts.Shopping.Repositories;
-
+﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.Repositories;
 
 public sealed class ShoppingRepository
 : Repository<ShoppingBasket, ShoppingDb>
