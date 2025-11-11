@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
 
+using ModularMonolith.BlazorApp.Components.Shopping;
+
 namespace ModularMonolith.BlazorApp.Components.BoardGames;
 
 public sealed partial class BoardGamesPage
@@ -13,6 +15,12 @@ public sealed partial class BoardGamesPage
 
   [Inject]
   public required BoardGamesClient BoardGamesClient
+  {
+    get; init;
+  }
+
+  [Inject]
+  public required ShoppingBasketClient ShoppingBasketClient
   {
     get; init;
   }
@@ -46,9 +54,23 @@ public sealed partial class BoardGamesPage
 
   private async Task AddBoardGameToBasket(GameDTO game)
   {
-    //AddGameToShoppingBasketCommand cmd = new(State.ShoppingBasketId, game.Id, game.Price);
-    //State.ShoppingBasketId = await Sender.Execute(cmd, default);
-    await Task.CompletedTask.ConfigureAwait(true);
+    if (State.ShoppingBasketId is null)
+    {
+      int? shoppingBasketId = await ShoppingBasketClient.CreateShoppingBasket();
+      if (shoppingBasketId is null)
+      {
+        // TODO Show error
+        return;
+      }
+      else
+      {
+        State.ShoppingBasketId = shoppingBasketId;
+      }
+    }
+    await ShoppingBasketClient.SelectBoardGame(
+      shoppingBasketId: State.ShoppingBasketId!.Value
+    , boardGameId: game.Id
+    , priceInEuro: game.Price);
   }
 
   //public async Task UpdateGame()

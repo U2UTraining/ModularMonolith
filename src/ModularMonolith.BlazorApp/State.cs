@@ -22,30 +22,30 @@ public sealed record class State
 
   public int? ShoppingBasketId
   {
-    get
-    {
-      HttpContext? context = _contextAccessor.HttpContext;
-      if (context is not null)
-      {
-        return context.Session.GetInt32(ShoppingBasketIdSessionKey);
-      }
-      return null;
-    }
-    set
-    {
-      HttpContext? context = _contextAccessor.HttpContext;
-      if (context is not null)
-      {
-        if (value is not null)
-        {
-          context.Session.SetInt32(ShoppingBasketIdSessionKey, value.Value);
-        }
-        else
-        {
-          context.Session.Remove(ShoppingBasketIdSessionKey);
-        }
-      }
-    }
+    get;
+    //{
+    //  HttpContext? context = _contextAccessor.HttpContext;
+    //  if (context is not null)
+    //  {
+    //    return context.Session.GetInt32(ShoppingBasketIdSessionKey);
+    //  }
+    //  return null;
+    //}
+    set;
+    //{
+    //  HttpContext? context = _contextAccessor.HttpContext;
+    //  if (context is not null)
+    //  {
+    //    if (value is not null)
+    //    {
+    //      context.Session.SetInt32(ShoppingBasketIdSessionKey, value.Value);
+    //    }
+    //    else
+    //    {
+    //      context.Session.Remove(ShoppingBasketIdSessionKey);
+    //    }
+    //  }
+    //}
   }
 
   public IQueryable<GameDTO>? Games

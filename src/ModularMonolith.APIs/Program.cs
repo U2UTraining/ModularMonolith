@@ -1,6 +1,7 @@
 using ModularMonolith.APIs.BoundedContexts.BoardGames.DI;
 using ModularMonolith.APIs.BoundedContexts.BoardGames.EndPoints;
 using ModularMonolith.APIs.BoundedContexts.Currencies.EndPoints;
+using ModularMonolith.APIs.BoundedContexts.Shopping.Endpoints;
 using ModularMonolith.ServiceDefaults;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -32,12 +33,11 @@ RouteGroupBuilder x = app.MapGroup("/currencies")
    ;
 
 RouteGroupBuilder shoppingEndpoints =
-  app.MapGroup("/shopping")
+  app.MapGroup("shopping")
      .WithTags("Shopping")
-     //.WithShoppingBasketEndpoints()
+     .WithShoppingBasketEndpoints()
      ;
 
-//app.AddCurrencyEndpoints();
 app.AddGamesEndpoints();
 app.AddPublishersEndpoints();
 

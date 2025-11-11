@@ -1,4 +1,5 @@
-﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
+﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.EndPoints;
+using ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
 using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
 using ModularMonolith.APIs.BoundedContexts.BoardGames.Queries;
 
@@ -33,22 +34,7 @@ public static class GamesEndpoints
     .WithName("GetAllGames")
     .Produces<List<BoardGame>>(StatusCodes.Status200OK);
 
-    //  games.MapPut("/", 
-    //    async Task<Results<Ok<CurrencyDTO>, BadRequest<string>>>(
-    //      [FromBody] CurrencyDTO dto
-    //    , [FromServices] ICommandSender commandSender
-    //    , CancellationToken cancellationToken) =>
-    //  {
-    //    if (Enum.TryParse<CurrencyName>(dto.CurrencyName, out CurrencyName currencyName) == false)
-    //    {
-    //      return TypedResults.BadRequest(error: $"Currency '{dto.CurrencyName}' is not valid.");
-    //    }
 
-    //    await commandSender.ExecuteAsync(
-    //      new UpdateCurrencyValueInEuroCommand(currencyName, dto.ValueInEuro));
-    //    return TypedResults.Ok(dto);
-    //  })
-    //  .WithName("UpdateCurrencyValue")
-    //  .Produces<CurrencyDTO>(StatusCodes.Status200OK);
+
   }
 }

@@ -25,3 +25,11 @@ Accept: application/json
 GET {{ModularMonolith.APIs_HostAddress}}/publishers
 
 ###
+
+POST {{ModularMonolith.APIs_HostAddress}}/shopping
+Content-Type: application/json
+
+
+
+
+###
