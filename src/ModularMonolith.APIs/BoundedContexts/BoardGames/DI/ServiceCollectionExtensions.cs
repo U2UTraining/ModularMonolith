@@ -1,15 +1,4 @@
-﻿
-using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
-using ModularMonolith.APIs.BoundedContexts.BoardGames.Queries;
-using ModularMonolith.APIs.BoundedContexts.BoardGames.QueryHandlers;
-using ModularMonolith.APIs.BoundedContexts.BoardGames.Repositories;
-using ModularMonolith.APIs.BoundedContexts.Common.Commands;
-using ModularMonolith.APIs.BoundedContexts.Common.DI;
-using ModularMonolith.APIs.BoundedContexts.Common.Queries;
-using ModularMonolith.APIs.BoundedContexts.Common.Repositories;
-using ModularMonolith.APIs.BoundedContexts.Common.Specifications;
-
-namespace ModularMonolith.APIs.BoundedContexts.BoardGames.DI;
+﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.DI;
 
 public static class ServiceCollectionExtensions
 {

@@ -1,6 +1,4 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
-
-namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
+﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
 
 public sealed partial class GamesDb 
 : DbContext

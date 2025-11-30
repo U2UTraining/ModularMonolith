@@ -1,6 +1,4 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
-
-namespace ModularMonolith.APIs.BoundedContexts.BoardGames.IntegrationEvents;
+﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.IntegrationEvents;
 
 /// <summary>
 /// All board games received a discount.

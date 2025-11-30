@@ -1,7 +1,4 @@
-﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.Commands;
-using ModularMonolith.APIs.BoundedContexts.Common.Commands;
-
-namespace ModularMonolith.APIs.BoundedContexts.BoardGames.CommandHandlers;
+﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.CommandHandlers;
 
 internal sealed class UpdateGamePriceCommandHandler 
 : ICommandHandler<UpdateGamePriceCommand, bool>

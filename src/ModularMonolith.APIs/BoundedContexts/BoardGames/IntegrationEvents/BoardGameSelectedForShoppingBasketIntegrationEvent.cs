@@ -1,6 +1,4 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
-
-namespace ModularMonolith.APIs.BoundedContexts.BoardGames.IntegrationEvents;
+﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.IntegrationEvents;
 
 public sealed record class BoardGameSelectedForShoppingBasketIntegrationEvent(
   int ShoppingBasketId

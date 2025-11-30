@@ -1,6 +1,4 @@
-﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.ValueObjects;
-
-namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
+﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
 
 public static class ModelConfigurationBuilderExtensions
 {

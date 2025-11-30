@@ -1,7 +1,4 @@
-﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.Repositories;
-using ModularMonolith.APIs.BoundedContexts.Common.Commands;
-
-namespace ModularMonolith.APIs.BoundedContexts.BoardGames.CommandHandlers;
+﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.CommandHandlers;
 
 internal sealed class ApplyMegaDiscountCommandHandler
 : ICommandHandler<Commands.ApplyMegaDiscountCommand, bool>

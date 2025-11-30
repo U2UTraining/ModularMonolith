@@ -1,7 +1,4 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.Specifications;
-using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
-
-namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Specifications;
+﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Specifications;
 
 public static class PublisherSpecification
 {

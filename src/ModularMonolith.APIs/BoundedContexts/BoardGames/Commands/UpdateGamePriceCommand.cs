@@ -1,7 +1,4 @@
-﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.ValueObjects;
-using ModularMonolith.APIs.BoundedContexts.Common.Commands;
-
-namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Commands;
+﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Commands;
 
 /// <summary>
 /// Update the price of a board game.

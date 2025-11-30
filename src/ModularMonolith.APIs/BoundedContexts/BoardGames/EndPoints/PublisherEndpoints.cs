@@ -1,6 +1,4 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.Queries;
-
-namespace ModularMonolith.APIs.BoundedContexts.BoardGames.EndPoints;
+﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.EndPoints;
 
 public static class PublisherEndpoints
 {

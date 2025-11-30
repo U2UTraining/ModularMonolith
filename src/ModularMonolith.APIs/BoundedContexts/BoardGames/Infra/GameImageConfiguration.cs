@@ -1,7 +1,7 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
 
 internal sealed class GameImageConfiguration
-:IEntityTypeConfiguration<GameImage>
+: IEntityTypeConfiguration<GameImage>
 {
   public void Configure(EntityTypeBuilder<GameImage> gameImage)
   {
