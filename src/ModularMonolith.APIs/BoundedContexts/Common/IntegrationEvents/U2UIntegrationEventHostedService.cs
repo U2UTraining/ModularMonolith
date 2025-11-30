@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Common.IntegrationEvents;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
 
 /// <summary>
 /// Hosted service to process integration events from a channel.

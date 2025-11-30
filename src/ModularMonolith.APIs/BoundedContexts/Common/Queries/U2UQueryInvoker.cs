@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Common.Queries;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Common.Queries;
 
 using Invoker = Func<object, object, CancellationToken, Task<object>>;
 

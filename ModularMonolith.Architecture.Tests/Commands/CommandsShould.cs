@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.Architecture.Tests.Commands;
+﻿using ModularMonolith.APIs.BoundedContexts.Common.Commands;
+
+namespace ModularMonolith.Architecture.Tests.Commands;
 
 public sealed class CommandsShould
 {

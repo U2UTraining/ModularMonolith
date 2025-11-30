@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Mailing.DI;
+﻿using ModularMonolith.APIs.BoundedContexts.Common.Commands;
+
+namespace ModularMonolith.APIs.BoundedContexts.Mailing.DI;
 
 public static class ServiceCollectionExtensions
 {

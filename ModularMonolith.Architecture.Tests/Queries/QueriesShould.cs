@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-using ModularMonolith.BoundedContexts.Common.Queries;
+using ModularMonolith.APIs.BoundedContexts.Common.Queries;
 
 namespace ModularMonolith.Architecture.Tests.Queries;
 

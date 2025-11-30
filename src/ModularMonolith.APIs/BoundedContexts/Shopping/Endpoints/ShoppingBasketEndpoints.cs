@@ -1,8 +1,4 @@
-﻿using System.Threading.Tasks;
-
-using ModularMonolith.BoundedContexts.Common.Results;
-
-namespace ModularMonolith.APIs.BoundedContexts.Shopping.Endpoints;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.Endpoints;
 
 public static class ShoppingBasketEndpoints
 {

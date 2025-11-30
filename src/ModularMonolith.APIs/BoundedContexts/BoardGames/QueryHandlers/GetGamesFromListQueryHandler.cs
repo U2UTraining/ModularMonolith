@@ -1,4 +1,5 @@
 ﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.Repositories;
+using ModularMonolith.APIs.BoundedContexts.Common.Queries;
 
 namespace ModularMonolith.APIs.BoundedContexts.BoardGames.QueryHandlers;
 

@@ -1,4 +1,6 @@
 ﻿
+using ModularMonolith.APIs.BoundedContexts.Common.Commands;
+
 namespace ModularMonolith.APIs.BoundedContexts.Currencies.EndPoints;
 
 public static class CurrencyEndpoints

@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Common.DI;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Common.DI;
 
 /// <summary>
 /// Extension methods for IServiceCollection to add common services.

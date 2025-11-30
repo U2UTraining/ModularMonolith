@@ -1,4 +1,7 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Queries;
+﻿using ModularMonolith.APIs.BoundedContexts.Common.Queries;
+using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
+
+namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Queries;
 
 /// <summary>
 /// Query to retrieve a list of board games based on their IDs.

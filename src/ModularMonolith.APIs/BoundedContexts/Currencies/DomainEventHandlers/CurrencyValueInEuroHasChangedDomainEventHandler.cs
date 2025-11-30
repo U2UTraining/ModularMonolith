@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.DomainEventHandlers;
+﻿using ModularMonolith.APIs.BoundedContexts.Common.DomainEvents;
+
+namespace ModularMonolith.APIs.BoundedContexts.Currencies.DomainEventHandlers;
 
 public sealed class CurrencyValueInEuroHasChangedDomainEventHandler
 : IDomainEventHandler<CurrencyValueInEuroHasChangedDomainEvent>

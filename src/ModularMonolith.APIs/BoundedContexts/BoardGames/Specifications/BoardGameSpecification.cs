@@ -1,4 +1,6 @@
 ﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
+using ModularMonolith.APIs.BoundedContexts.Common.Specifications;
+using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
 
 namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Specifications;
 

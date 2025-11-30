@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Common.Commands;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Common.Commands;
 
 /// <summary>
 /// Interface to Execute Commands

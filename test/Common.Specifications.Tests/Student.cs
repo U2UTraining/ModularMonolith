@@ -1,4 +1,4 @@
-﻿using ModularMonolith.BoundedContexts.Common.Entities;
+﻿using ModularMonolith.APIs.BoundedContexts.Common.Entities;
 
 namespace Common.Specifications.Tests;
 

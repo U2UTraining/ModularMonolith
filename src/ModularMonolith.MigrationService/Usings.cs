@@ -4,8 +4,6 @@ global using Microsoft.EntityFrameworkCore.Storage;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Hosting;
 
-global using ModularMonolith.BoundedContexts.Common.ValueObjects;
-
 global using ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
 global using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
 global using ModularMonolith.APIs.BoundedContexts.BoardGames.ValueObjects;

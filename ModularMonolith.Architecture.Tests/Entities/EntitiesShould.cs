@@ -1,4 +1,6 @@
-﻿using ModularMonolithEFCore.History;
+﻿using ModularMonolith.APIs.BoundedContexts.Common.Entities;
+
+using ModularMonolithEFCore.History;
 using ModularMonolithEFCore.SoftDelete;
 
 namespace ModularMonolith.Architecture.Tests.Entities;

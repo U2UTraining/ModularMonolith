@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using ModularMonolith.BoundedContexts.Common.Commands;
-using ModularMonolith.BoundedContexts.Common.DomainEvents;
+﻿using ModularMonolith.APIs.BoundedContexts.Common.DomainEvents;
 
 namespace ModularMonolith.Architecture.Tests.DomainEvents;
 

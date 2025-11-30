@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Common.Repositories;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Common.Repositories;
 
 /// <summary>
 /// This is an automatic implementation for IReadonlyRepository.

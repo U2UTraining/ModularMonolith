@@ -1,6 +1,7 @@
 ﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
 using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
 using ModularMonolith.APIs.BoundedContexts.BoardGames.ValueObjects;
+using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
 
 namespace ModularMonolith.MigrationService;
 

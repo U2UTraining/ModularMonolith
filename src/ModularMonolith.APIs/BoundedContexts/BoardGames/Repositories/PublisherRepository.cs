@@ -1,4 +1,6 @@
 ﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
+using ModularMonolith.APIs.BoundedContexts.Common.DomainEvents;
+using ModularMonolith.APIs.BoundedContexts.Common.Repositories;
 
 namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Repositories;
 

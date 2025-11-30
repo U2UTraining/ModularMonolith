@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Common.Repositories;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Common.Repositories;
 
 /// <summary>
 /// IReadonlyRepository<typeparamref name="T"/> allows you to retrieve entities

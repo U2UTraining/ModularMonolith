@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Common.ValueObjects;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
 
 public static class ModelConfigurationBuilderExtensions
 {

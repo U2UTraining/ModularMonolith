@@ -1,4 +1,7 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
+﻿using ModularMonolith.APIs.BoundedContexts.Common.Entities;
+using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
+
+namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
 
 /// <summary>
 /// Entity representing a publisher of board games.

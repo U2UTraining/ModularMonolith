@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Common.Commands;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Common.Commands;
 
 /// <summary>
 /// Commands ask to do something, like update a table.

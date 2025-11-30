@@ -1,4 +1,6 @@
-﻿namespace Common.Specifications.Tests;
+﻿using ModularMonolith.APIs.BoundedContexts.Common.Specifications;
+
+namespace Common.Specifications.Tests;
 
 public class SpecificationShould
 {

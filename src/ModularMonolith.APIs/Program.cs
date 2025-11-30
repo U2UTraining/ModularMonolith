@@ -1,5 +1,6 @@
 using ModularMonolith.APIs.BoundedContexts.BoardGames.DI;
 using ModularMonolith.APIs.BoundedContexts.BoardGames.EndPoints;
+using ModularMonolith.APIs.BoundedContexts.Common.DI;
 using ModularMonolith.APIs.BoundedContexts.Currencies.EndPoints;
 using ModularMonolith.APIs.BoundedContexts.Shopping.Endpoints;
 using ModularMonolith.ServiceDefaults;

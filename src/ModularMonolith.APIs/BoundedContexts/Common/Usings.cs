@@ -1,12 +1,12 @@
-﻿global using ModularMonolith.BoundedContexts.Common.ValueObjects;
-global using ModularMonolith.BoundedContexts.Common.Entities;
-global using ModularMonolith.BoundedContexts.Common.Queries;
-global using ModularMonolith.BoundedContexts.Common.Specifications;
-global using ModularMonolith.BoundedContexts.Common.Commands;
-global using ModularMonolith.BoundedContexts.Common.Repositories;
-global using ModularMonolith.BoundedContexts.Common.DomainEvents;
-global using ModularMonolith.BoundedContexts.Common.IntegrationEvents;
-global using ModularMonolith.BoundedContexts.Common.DI;
+﻿global using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
+global using ModularMonolith.APIs.BoundedContexts.Common.Entities;
+global using ModularMonolith.APIs.BoundedContexts.Common.Queries;
+global using ModularMonolith.APIs.BoundedContexts.Common.Specifications;
+global using ModularMonolith.APIs.BoundedContexts.Common.Commands;
+global using ModularMonolith.APIs.BoundedContexts.Common.Repositories;
+global using ModularMonolith.APIs.BoundedContexts.Common.DomainEvents;
+global using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
+global using ModularMonolith.APIs.BoundedContexts.Common.DI;
 global using System.Threading.Channels;
 global using System.Reflection;
 

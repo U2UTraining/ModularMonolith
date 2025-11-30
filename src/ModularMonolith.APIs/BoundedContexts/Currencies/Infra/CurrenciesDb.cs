@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.Infra;
+﻿using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
+
+namespace ModularMonolith.APIs.BoundedContexts.Currencies.Infra;
 
 public sealed partial class CurrenciesDb 
 : DbContext

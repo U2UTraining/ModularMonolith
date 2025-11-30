@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Mailing.CommandHandlers;
+﻿using ModularMonolith.APIs.BoundedContexts.Common.Commands;
+
+namespace ModularMonolith.APIs.BoundedContexts.Mailing.CommandHandlers;
 
 public sealed class SendEmailCommandHandler
 : ICommandHandler<SendEmailCommand, bool>

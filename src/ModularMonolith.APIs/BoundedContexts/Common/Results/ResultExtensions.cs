@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Common.Results;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Common.Results;
 
 public static class ResultExtensions
 {

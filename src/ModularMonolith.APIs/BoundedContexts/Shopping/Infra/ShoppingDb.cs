@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.Infra;
+﻿using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
+
+namespace ModularMonolith.APIs.BoundedContexts.Shopping.Infra;
 
 public sealed partial class ShoppingDb : DbContext
 {

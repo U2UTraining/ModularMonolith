@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Common.IntegrationEvents;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
 
 public interface IIntegrationEventHandler
 { }

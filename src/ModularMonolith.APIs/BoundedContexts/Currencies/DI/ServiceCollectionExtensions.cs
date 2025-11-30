@@ -1,4 +1,8 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.DI;
+﻿using ModularMonolith.APIs.BoundedContexts.Common.Commands;
+using ModularMonolith.APIs.BoundedContexts.Common.DomainEvents;
+using ModularMonolith.APIs.BoundedContexts.Common.Queries;
+
+namespace ModularMonolith.APIs.BoundedContexts.Currencies.DI;
 
 public static class ServiceCollectionExtensions
 {

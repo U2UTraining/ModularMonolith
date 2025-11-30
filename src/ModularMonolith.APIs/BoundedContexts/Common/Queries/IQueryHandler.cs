@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Common.Queries;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Common.Queries;
 
 /// <summary>
 /// An IQueryHandler performs an IQuery

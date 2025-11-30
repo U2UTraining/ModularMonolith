@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.Architecture.Tests.DomainEvents;
+﻿using ModularMonolith.APIs.BoundedContexts.Common.DomainEvents;
+
+namespace ModularMonolith.Architecture.Tests.DomainEvents;
 
 public sealed class DomainEventHandlersShould
 {

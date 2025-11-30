@@ -1,4 +1,7 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.Entities;
+﻿using ModularMonolith.APIs.BoundedContexts.Common.Entities;
+using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
+
+namespace ModularMonolith.APIs.BoundedContexts.Currencies.Entities;
 
 [DebuggerDisplay("Currency {Name,nq} = {ValueInEuro}EUR")]
 public sealed class Currency

@@ -1,4 +1,4 @@
-﻿using ModularMonolith.BoundedContexts.Common.IntegrationEvents;
+﻿using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
 
 namespace ModularMonolith.Architecture.Tests.IntegrationEvents;
 

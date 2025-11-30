@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Common.Results;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Common.Results;
 
 /// <summary>
 /// Represents application errors.

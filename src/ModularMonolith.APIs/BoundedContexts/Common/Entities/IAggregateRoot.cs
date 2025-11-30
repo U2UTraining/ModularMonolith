@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.BoundedContexts.Common.Entities;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Common.Entities;
 
 /// <summary>
 /// Marker interface to say that this entity is an aggregate root

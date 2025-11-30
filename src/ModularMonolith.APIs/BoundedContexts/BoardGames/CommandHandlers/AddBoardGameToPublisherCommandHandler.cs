@@ -1,4 +1,8 @@
 ﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.Commands;
+using ModularMonolith.APIs.BoundedContexts.Common.Commands;
+using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
+using ModularMonolith.APIs.BoundedContexts.Common.Repositories;
+using ModularMonolith.APIs.BoundedContexts.Common.Specifications;
 
 namespace ModularMonolith.APIs.BoundedContexts.BoardGames.CommandHandlers;
 
