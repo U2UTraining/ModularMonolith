@@ -4,41 +4,49 @@ using ModularMonolith.APIs.BoundedContexts.Currencies.EndPoints;
 using ModularMonolith.APIs.BoundedContexts.Shopping.Endpoints;
 using ModularMonolith.ServiceDefaults;
 
-WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+namespace ModularMonolith.APIs;
 
-builder.AddServiceDefaults();
-
-// Add support for bounded contexts
-builder
-  .AddCommon()
-  .AddEmailServices()
-  .AddCurrencies()
-  .AddBoardGames()
-  .AddShopping()
-  ;
-
-WebApplication app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+public partial class Program
 {
-  app.MapOpenApi();
+  private static void Main(string[] args)
+  {
+    WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+
+    builder.AddServiceDefaults();
+
+    // Add support for bounded contexts
+    builder
+      .AddCommon()
+      .AddEmailServices()
+      .AddCurrencies()
+      .AddBoardGames()
+      .AddShopping()
+      ;
+
+    WebApplication app = builder.Build();
+
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+    {
+      app.MapOpenApi();
+    }
+
+    app.UseHttpsRedirection();
+
+    RouteGroupBuilder x = app.MapGroup("/currencies")
+       .WithTags("Currencies")
+       .WithCurrencyEndpoints()
+       ;
+
+    RouteGroupBuilder shoppingEndpoints =
+      app.MapGroup("shopping")
+         .WithTags("Shopping")
+         .WithShoppingBasketEndpoints()
+         ;
+
+    app.AddGamesEndpoints();
+    app.AddPublishersEndpoints();
+
+    app.Run();
+  }
 }
-
-app.UseHttpsRedirection();
-
-RouteGroupBuilder x = app.MapGroup("/currencies")
-   .WithTags("Currencies")
-   .WithCurrencyEndpoints()
-   ;
-
-RouteGroupBuilder shoppingEndpoints =
-  app.MapGroup("shopping")
-     .WithTags("Shopping")
-     .WithShoppingBasketEndpoints()
-     ;
-
-app.AddGamesEndpoints();
-app.AddPublishersEndpoints();
-
-app.Run();

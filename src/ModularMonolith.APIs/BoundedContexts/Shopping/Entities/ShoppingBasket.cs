@@ -34,7 +34,7 @@ public sealed class ShoppingBasket
     Customer = new Customer(default, new FirstName( "Jefke"), new LastName("Versmossen"));
     Customer.MoveToNewAddress(new Address(new StreetName("ResearchPark 110"), new CityName("Zellik")));
     RegisterDomainEvent(
-      new ShoppingBasketHasCheckedOutEvent(
+      new ShoppingBasketHasCheckedOutDomainEvent(
         ShoppingBasketId: Id));
   }
 

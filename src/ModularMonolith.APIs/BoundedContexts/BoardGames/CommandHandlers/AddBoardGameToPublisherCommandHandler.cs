@@ -2,7 +2,7 @@
 
 namespace ModularMonolith.APIs.BoundedContexts.BoardGames.CommandHandlers;
 
-internal class AddBoardGameToPublisherCommandHandler
+internal sealed class AddBoardGameToPublisherCommandHandler
 : ICommandHandler<AddBoardGameToPublisherCommand, Publisher>
 {
   private readonly GamesDb _db;

@@ -12,10 +12,15 @@ public static class CurrencyEndpoints
         [FromServices] CurrenciesDb db
       , CancellationToken cancellationToken) =>
       {
-        List<CurrencyDTO> allCurrencies = await db.Currencies
-            .AsNoTracking()
-            .Select(c => new CurrencyDTO(c.Id.ToString(), c.ValueInEuro))
-            .ToListAsync(cancellationToken);
+        // Using direct query
+        //List<CurrencyDTO> allCurrencies = await db.Currencies
+        //    .AsNoTracking()
+        //    .Select(c => new CurrencyDTO(c.Id.ToString(), c.ValueInEuro))
+        //    .ToListAsync(cancellationToken);
+        // Using Repository
+        List<CurrencyDTO> allCurrencies =
+          await db.GetAllCurrenciesAsync(cancellationToken);
+
         return TypedResults.Ok(allCurrencies);
       })
       .WithName("GetAllCurrencies")

@@ -1,9 +1,4 @@
-﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.EndPoints;
-using ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
-using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
-using ModularMonolith.APIs.BoundedContexts.BoardGames.Queries;
-
-namespace ModularMonolith.APIs.BoundedContexts.Currencies.EndPoints;
+﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.EndPoints;
 
 public static class GamesEndpoints
 {
@@ -32,9 +27,6 @@ public static class GamesEndpoints
       return TypedResults.Ok(allGames);
     })
     .WithName("GetAllGames")
-    .Produces<List<BoardGame>>(StatusCodes.Status200OK);
-
-
-
+    .Produces<List<GameDTO>>(StatusCodes.Status200OK);
   }
 }

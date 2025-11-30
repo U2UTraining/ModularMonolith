@@ -31,22 +31,22 @@ public partial class Program
     builder.Services.AddHttpContextAccessor(); // Singleton
     builder.Services.AddScoped<State>();
 
-    // API Services
+    // API Services -- DO NOT FORGET TRAILING SLASH! --
     builder.Services.AddHttpClient<CurrencyClient>(client =>
     {
-      client.BaseAddress = new("https+http://modular-monolith-apis");
+      client.BaseAddress = new("https+http://modular-monolith-apis/");
     });
     builder.Services.AddHttpClient<BoardGamesClient>(client =>
     {
-      client.BaseAddress = new("https+http://modular-monolith-apis/games");
+      client.BaseAddress = new("https+http://modular-monolith-apis/games/");
     });
     builder.Services.AddHttpClient<PublishersClient>(client =>
     {
-      client.BaseAddress = new("https+http://modular-monolith-apis/publishers");
+      client.BaseAddress = new("https+http://modular-monolith-apis/publishers/");
     });
     builder.Services.AddHttpClient<ShoppingBasketClient>(client =>
     {
-      client.BaseAddress = new("https+http://modular-monolith-apis/shopping");
+      client.BaseAddress = new("https+http://modular-monolith-apis/shopping/");
     });
 
     var app = builder.Build();

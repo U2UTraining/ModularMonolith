@@ -11,7 +11,7 @@ public static class ServiceCollectionExtensions
     => services
       .AddScoped<
         ICommandHandler<SendEmailCommand, bool>
-      , SendEmailCommandHandler>()
-      ;
+      , SendEmailCommandHandler
+      >();
   }
 }

@@ -52,6 +52,9 @@ public static class ServiceCollectionExtensions
        IQueryHandler<GetAllPublishersQuery, IQueryable<Publisher>>
      , GetAllPublishersQueryHandler>()
      .AddScoped<
+       IQueryHandler<GetPublisherWithGamesQuery, Publisher?>
+     , GetPublisherWithGamesQueryHandler>()
+     .AddScoped<
        IQueryHandler<GetGamesFromListQuery, IQueryable<BoardGame>>
      , GetGamesFromListQueryHandler>()
      .AddScoped<

@@ -5,7 +5,9 @@
 <h3>@(new Size20.BookTemplate().ToMarkup()) Publishers</h3>
 
 <div class="grid">
-  <FluentDataGrid Items="@_publishers" RowSize="DataGridRowSize.Medium" ShowHover="true">
+  <FluentDataGrid Items="@_publishers" RowSize="DataGridRowSize.Medium" ShowHover="true"
+                    @bind-SelectedItem="@SelectedPublisher"
+   >
     <SelectColumn SelectMode="DataGridSelectMode.Single"
                   SelectFromEntireRow="true"
                   @bind-SelectedItems="@SelectedItems"
@@ -19,17 +21,22 @@
   </FluentDataGrid>
 </div>
 
+@if(SelectedPublisher is not null)
+{
+    <div>@SelectedPublisher.PublisherName</div>
+}
+
 <h2>Publisher's Games</h2>
 
-@* <div class="games">
-  <FluentDataGrid Items="@Games" TGridItem="BoardGame" RowSize="DataGridRowSize.Medium">
-    <PropertyColumn Property="@(bg => bg.Name.Value)" title="Name" Sortable="true" />
+<div class="games">
+  <FluentDataGrid Items="@Games" TGridItem="GameDTO" RowSize="DataGridRowSize.Medium">
+    <PropertyColumn Property="@(bg => bg.GameName)" title="Name" Sortable="true" />
     <PropertyColumn Property="@(bg => bg.PublisherName)" Title="Publisher" Sortable="true" />
     <PropertyColumn Property="@(bg => bg.Price.ToString())" Title="Price" Sortable="true" />
   </FluentDataGrid>
 </div>
 
-<h2>Publisher's Contacts</h2>
+@* <h2>Publisher's Contacts</h2>
 
 <div class="games">
   <FluentDataGrid Items="@Contacts" TGridItem="Contact" RowSize="DataGridRowSize.Medium">

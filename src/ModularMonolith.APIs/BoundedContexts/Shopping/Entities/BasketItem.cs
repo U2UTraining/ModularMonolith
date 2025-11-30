@@ -5,6 +5,8 @@ namespace ModularMonolith.APIs.BoundedContexts.Shopping.Entities;
 public sealed class BasketItem
 : EntityBase<PK<int>>
 , IAggregate<ShoppingBasket>
+, IHistory
+, ISoftDeletable
 {
   public BasketItem(PK<int> id)
   : base(id) 

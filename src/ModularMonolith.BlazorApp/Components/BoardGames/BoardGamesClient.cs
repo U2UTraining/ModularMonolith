@@ -1,8 +1,4 @@
-﻿using System.Text;
-using System.Text.Json;
-using System.Threading;
-
-namespace ModularMonolith.BlazorApp.Components.BoardGames;
+﻿namespace ModularMonolith.BlazorApp.Components.BoardGames;
 
 public class BoardGamesClient
 {

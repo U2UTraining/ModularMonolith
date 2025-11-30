@@ -19,4 +19,16 @@ public class PublishersClient
       await response.Content.ReadFromJsonAsync<IEnumerable<PublisherDTO>>(cancellationToken);
     return publishers ?? [];
   }
+
+  public async Task<PublisherWithGamesDTO?> GetPublisherWithGamesAsync(
+    int publisherId
+  , CancellationToken cancellationToken = default)
+  {
+    HttpResponseMessage response =
+      await _httpClient.GetAsync($"{publisherId}", cancellationToken);
+    response.EnsureSuccessStatusCode();
+    PublisherWithGamesDTO? publisher =
+      await response.Content.ReadFromJsonAsync<PublisherWithGamesDTO>(cancellationToken);
+    return publisher;
+  }
 }

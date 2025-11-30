@@ -17,7 +17,7 @@ where TQuery
 : IQuery<TResponse> 
 {
   Task<TResponse> HandleAsync(
-    TQuery command
+    TQuery query
   , CancellationToken cancellationToken = default);
 }
 

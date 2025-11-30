@@ -6,6 +6,7 @@ global using ModularMonolith.APIs.BoundedContexts.Currencies.DomainEvents;
 global using ModularMonolith.APIs.BoundedContexts.Currencies.Entities;
 global using ModularMonolith.APIs.BoundedContexts.Currencies.Infra;
 global using ModularMonolith.APIs.BoundedContexts.Currencies.IntegrationEvents;
+global using ModularMonolith.APIs.BoundedContexts.Currencies.Loggers;
 global using ModularMonolith.APIs.BoundedContexts.Currencies.Queries;
 global using ModularMonolith.APIs.BoundedContexts.Currencies.QueryHandlers;
 global using ModularMonolith.APIs.BoundedContexts.Currencies.Repositories;

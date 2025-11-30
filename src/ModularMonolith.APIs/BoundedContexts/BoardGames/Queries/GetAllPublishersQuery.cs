@@ -6,10 +6,25 @@
 public sealed class GetAllPublishersQuery
 : IQuery<IQueryable<Publisher>>
 {
-  private GetAllPublishersQuery() { }
+  private GetAllPublishersQuery()
+  {
+  }
 
-  /// <summary>
-  /// Factory returning the query instance that retrieves all publishers.
-  /// </summary>
-  public static GetAllPublishersQuery WithGames { get; } = new();
+  public required bool IncludeGames { get; init; } = false;
+
+  public static GetAllPublishersQuery Default
+  {
+    get;
+  } = new()
+  {
+    IncludeGames = false
+  };
+
+  public static GetAllPublishersQuery WithGames
+  {
+    get;
+  } = new()
+  {
+    IncludeGames = true
+  };
 }

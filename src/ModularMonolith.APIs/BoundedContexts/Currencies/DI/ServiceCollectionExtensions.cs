@@ -77,8 +77,6 @@ public static class ServiceCollectionExtensions
   , string connectionString
   )
   {
-
-
     _ = services.AddDbContext<CurrenciesDb>((serviceProvider, optionsBuilder) =>
     {
       optionsBuilder.UseSqlServer(connectionString, sqlServerOptions =>

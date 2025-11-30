@@ -11,19 +11,24 @@ public static class ShoppingBasketEndpoints
     public RouteGroupBuilder WithShoppingBasketEndpoints()
     {
       //// Query DBContext directly
-      //group.MapGet("/{id:int}", async (
-      //  [FromRoute] int id
-      //, [FromServices] ShoppingDb db
-      //, CancellationToken cancellationToken) =>
-      //{
-      //  //List<ShoppingBasketDTO> allCurrencies = await db.
-      //  //    .AsNoTracking()
-      //  //    .Select(c => new ShoppingBasketDTO(c.Id.ToString(), c.ValueInEuro))
-      //  //    .ToListAsync(cancellationToken);
-      //  return TypedResults.Ok();
-      //})
-      //.WithName("GetAllCurrencies")
-      //.Produces<List<Currency>>(StatusCodes.Status200OK);
+      group.MapGet("/{id:int}", async (
+        [FromRoute] int id
+      , [FromServices] ShoppingDb db
+      , CancellationToken cancellationToken) =>
+      {
+        //ShoppingBasketDTO dto =
+        //  await db.Baskets.Where(sb=>sb.Id == id)
+        //  .Select( sb => new ShoppingBasketDTO(
+        //    sb.Id
+        //  , sb.Games.Select())
+        //List<ShoppingBasketDTO> allCurrencies = await db.
+        //    .AsNoTracking()
+        //    .Select(c => new ShoppingBasketDTO(c.Id.ToString(), c.ValueInEuro))
+        //    .ToListAsync(cancellationToken);
+        return TypedResults.Ok();
+      })
+      .WithName("GetShoppingBasketWithId")
+      .Produces<List<Currency>>(StatusCodes.Status200OK);
 
       group.MapPost("/", async Task<Results<Ok<int>, NotFound>> (
         [FromServices] ShoppingDb db
