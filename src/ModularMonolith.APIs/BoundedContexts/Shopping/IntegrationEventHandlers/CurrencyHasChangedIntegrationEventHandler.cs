@@ -1,6 +1,6 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.IntegrationEventHandlers;
 
-public class CurrencyHasChangedIntegrationEventHandler
+public sealed class CurrencyHasChangedIntegrationEventHandler
 : IIntegrationEventHandler<CurrencyHasChangedIntegrationEvent>
 {
   private readonly ILogger<CurrencyHasChangedIntegrationEventHandler> _logger;

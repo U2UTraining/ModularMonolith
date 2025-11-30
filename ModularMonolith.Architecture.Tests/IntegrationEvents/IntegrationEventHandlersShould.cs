@@ -1,16 +1,18 @@
-﻿namespace ModularMonolith.Architecture.Tests.Commands;
+﻿using ModularMonolith.BoundedContexts.Common.IntegrationEvents;
 
-public sealed class CommandsShould
+namespace ModularMonolith.Architecture.Tests.IntegrationEvents;
+
+public sealed class IntegrationEventHandlersShould
 {
   [Fact]
-  public void UseCommandSuffix()
+  public void UseIntegrationEventHandlerSuffix()
   {
     NetArchTest.Rules.TestResult result = Types
       .InAssembly(AssembliesUnderTest.ApiAssembly)
       .That()
-      .ImplementInterface(typeof(ICommand<>))
+      .ImplementInterface(typeof(IIntegrationEventHandler))
       .Should()
-      .HaveNameEndingWith("Command")
+      .HaveNameEndingWith("IntegrationEventHandler")
       .GetResult();
 
     if (result.IsSuccessful is false)
@@ -28,7 +30,7 @@ public sealed class CommandsShould
     NetArchTest.Rules.TestResult result = Types
       .InAssembly(AssembliesUnderTest.ApiAssembly)
       .That()
-      .ImplementInterface(typeof(ICommand<>))
+      .ImplementInterface(typeof(IIntegrationEventHandler))
       .Should()
       .BeSealed()
       .GetResult();
@@ -36,7 +38,7 @@ public sealed class CommandsShould
     if (result.IsSuccessful == false)
     {
       var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following Commands are not sealed: {failedTypes}");
+      throw new Xunit.Sdk.XunitException($"The following Integration Events Handlers are not sealed: {failedTypes}");
     }
     Assert.True(result.IsSuccessful);
   }

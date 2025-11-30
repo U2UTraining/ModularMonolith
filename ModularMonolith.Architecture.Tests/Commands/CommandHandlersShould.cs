@@ -23,7 +23,7 @@ public sealed class CommandHandlersShould
   }
 
   [Fact]
-  public void UseCommandHandlerBeSealed()
+  public void BeSealed()
   {
     NetArchTest.Rules.TestResult result = Types
       .InAssembly(AssembliesUnderTest.ApiAssembly)

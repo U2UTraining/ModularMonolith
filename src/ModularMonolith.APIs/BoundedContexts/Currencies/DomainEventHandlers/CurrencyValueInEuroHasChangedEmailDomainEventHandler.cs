@@ -1,6 +1,6 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.DomainEventHandlers;
 
-public class CurrencyValueInEuroHasChangedEmailDomainEventHandler
+public sealed class CurrencyValueInEuroHasChangedEmailDomainEventHandler
 : IDomainEventHandler<CurrencyValueInEuroHasChangedDomainEvent>
 {
   private readonly ICommandSender _commandSender;

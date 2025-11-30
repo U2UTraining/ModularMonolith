@@ -1,6 +1,6 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.IntegrationEvents;
 
-public record class BoardGameSelectedForShoppingBasketIntegrationEvent(
+public sealed record class BoardGameSelectedForShoppingBasketIntegrationEvent(
   int ShoppingBasketId
 , int BoardGameId
 , decimal PriceInEuro

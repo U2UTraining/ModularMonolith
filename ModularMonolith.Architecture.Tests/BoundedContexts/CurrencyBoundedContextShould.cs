@@ -4,6 +4,6 @@ using System.Text;
 
 namespace ModularMonolith.Architecture.Tests.BoundedContexts;
 
-internal class CurrencyBoundedContextShould
+public class CurrencyBoundedContextShould
 {
 }

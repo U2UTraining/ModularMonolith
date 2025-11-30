@@ -1,16 +1,22 @@
-﻿namespace ModularMonolith.Architecture.Tests.Commands;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-public sealed class CommandsShould
+using ModularMonolith.BoundedContexts.Common.IntegrationEvents;
+
+namespace ModularMonolith.Architecture.Tests.IntegrationEvents;
+
+public sealed class IntegrationEventsShould
 {
   [Fact]
-  public void UseCommandSuffix()
+  public void UseIntegrationEventSuffix()
   {
     NetArchTest.Rules.TestResult result = Types
       .InAssembly(AssembliesUnderTest.ApiAssembly)
       .That()
-      .ImplementInterface(typeof(ICommand<>))
+      .ImplementInterface(typeof(IIntegrationEvent))
       .Should()
-      .HaveNameEndingWith("Command")
+      .HaveNameEndingWith("IntegrationEvent")
       .GetResult();
 
     if (result.IsSuccessful is false)
@@ -28,7 +34,7 @@ public sealed class CommandsShould
     NetArchTest.Rules.TestResult result = Types
       .InAssembly(AssembliesUnderTest.ApiAssembly)
       .That()
-      .ImplementInterface(typeof(ICommand<>))
+      .ImplementInterface(typeof(IIntegrationEvent))
       .Should()
       .BeSealed()
       .GetResult();
@@ -36,7 +42,7 @@ public sealed class CommandsShould
     if (result.IsSuccessful == false)
     {
       var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following Commands are not sealed: {failedTypes}");
+      throw new Xunit.Sdk.XunitException($"The following Integration Events are not sealed: {failedTypes}");
     }
     Assert.True(result.IsSuccessful);
   }

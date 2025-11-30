@@ -40,7 +40,7 @@ public sealed class BoardGamesRepository
     // Now we need to update the entities that are in memory
     // We can do this using an Integration Event
     await _integrationEventPubslisher.PublishIntegrationEventAsync(
-      new GamesHaveChanged(), cancellationToken
+      new GamesHaveChangedIntegrationEvent(), cancellationToken
     ).ConfigureAwait(false);
   }
 
