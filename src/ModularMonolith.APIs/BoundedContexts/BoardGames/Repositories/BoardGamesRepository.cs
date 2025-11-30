@@ -1,13 +1,6 @@
-﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
-using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
-using ModularMonolith.APIs.BoundedContexts.Common.DomainEvents;
-using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
-using ModularMonolith.APIs.BoundedContexts.Common.Repositories;
-using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
+﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Repositories;
 
-namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Repositories;
-
-public sealed class BoardGamesRepository
+internal sealed class BoardGamesRepository
 : Repository<BoardGame, GamesDb>
 , IBoardGameRepository
 {

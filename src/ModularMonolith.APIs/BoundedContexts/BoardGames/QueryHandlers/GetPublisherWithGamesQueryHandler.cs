@@ -1,10 +1,6 @@
-﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.Repositories;
-using ModularMonolith.APIs.BoundedContexts.Common.Queries;
-using ModularMonolith.APIs.BoundedContexts.Common.Specifications;
+﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.QueryHandlers;
 
-namespace ModularMonolith.APIs.BoundedContexts.BoardGames.QueryHandlers;
-
-public sealed class GetPublisherWithGamesQueryHandler
+internal sealed class GetPublisherWithGamesQueryHandler
   : IQueryHandler<GetPublisherWithGamesQuery, Publisher?>
 {
   private readonly PublisherRepository _repo;

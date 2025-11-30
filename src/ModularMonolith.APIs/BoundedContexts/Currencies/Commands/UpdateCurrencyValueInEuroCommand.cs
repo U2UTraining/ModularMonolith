@@ -1,7 +1,4 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.Commands;
-using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
-
-namespace ModularMonolith.APIs.BoundedContexts.Currencies.Commands;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.Commands;
 
 /// <summary>
 /// Update Currency Euro Value.

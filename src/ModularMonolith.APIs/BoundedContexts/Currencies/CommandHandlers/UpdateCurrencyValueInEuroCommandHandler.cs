@@ -1,8 +1,4 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.Commands;
-using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
-using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
-
-namespace ModularMonolith.APIs.BoundedContexts.Currencies.CommandHandlers;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.CommandHandlers;
 
 internal sealed class UpdateCurrencyValueInEuroCommandHandler
 : ICommandHandler<UpdateCurrencyValueInEuroCommand, Currency>

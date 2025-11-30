@@ -1,9 +1,6 @@
-﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.Repositories;
-using ModularMonolith.APIs.BoundedContexts.Common.Queries;
+﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.QueryHandlers;
 
-namespace ModularMonolith.APIs.BoundedContexts.BoardGames.QueryHandlers;
-
-public sealed class GetGamesFromListQueryHandler
+internal sealed class GetGamesFromListQueryHandler
 : IQueryHandler<GetGamesFromListQuery, IQueryable<BoardGame>>
 {
   private readonly IBoardGameRepository _repo;

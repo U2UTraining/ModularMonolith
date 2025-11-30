@@ -42,4 +42,23 @@ public sealed class CommandHandlersShould
     }
     Assert.True(result.IsSuccessful);
   }
+
+  [Fact]
+  public void BeNotBePublic()
+  {
+    NetArchTest.Rules.TestResult result = Types
+      .InAssembly(AssembliesUnderTest.ApiAssembly)
+      .That()
+      .ImplementInterface(typeof(ICommandHandler<,>))
+      .Should()
+      .NotBePublic()
+      .GetResult();
+
+    if (result.IsSuccessful == false)
+    {
+      var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
+      throw new Xunit.Sdk.XunitException($"The following Command Handlers are public: {failedTypes}");
+    }
+    Assert.True(result.IsSuccessful);
+  }
 }

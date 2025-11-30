@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
+using ModularMonolith.APIs.BoundedContexts.Common.Commands;
 using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
 
 namespace ModularMonolith.Architecture.Tests.IntegrationEvents;
@@ -43,6 +44,25 @@ public sealed class IntegrationEventsShould
     {
       var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following Integration Events are not sealed: {failedTypes}");
+    }
+    Assert.True(result.IsSuccessful);
+  }
+
+  [Fact]
+  public void BePublic()
+  {
+    NetArchTest.Rules.TestResult result = Types
+      .InAssembly(AssembliesUnderTest.ApiAssembly)
+      .That()
+      .ImplementInterface(typeof(IIntegrationEvent))
+      .Should()
+      .BeSealed()
+      .GetResult();
+
+    if (result.IsSuccessful == false)
+    {
+      var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
+      throw new Xunit.Sdk.XunitException($"The following Integration Events are not public: {failedTypes}");
     }
     Assert.True(result.IsSuccessful);
   }

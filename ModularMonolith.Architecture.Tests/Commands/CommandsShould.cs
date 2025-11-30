@@ -42,4 +42,23 @@ public sealed class CommandsShould
     }
     Assert.True(result.IsSuccessful);
   }
+
+  [Fact]
+  public void BePublic()
+  {
+    NetArchTest.Rules.TestResult result = Types
+      .InAssembly(AssembliesUnderTest.ApiAssembly)
+      .That()
+      .ImplementInterface(typeof(ICommand<>))
+      .Should()
+      .BeSealed()
+      .GetResult();
+
+    if (result.IsSuccessful == false)
+    {
+      var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
+      throw new Xunit.Sdk.XunitException($"The following Commands are not public: {failedTypes}");
+    }
+    Assert.True(result.IsSuccessful);
+  }
 }

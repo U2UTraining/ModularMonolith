@@ -1,10 +1,6 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.DomainEvents;
-using ModularMonolith.APIs.BoundedContexts.Common.Repositories;
-using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.Infra;
 
-namespace ModularMonolith.APIs.BoundedContexts.Currencies.Infra;
-
-public sealed class CurrencyRepository
+internal sealed class CurrencyRepository
 : Repository<Currency, CurrenciesDb>
 , ICurrencyRepository
 {

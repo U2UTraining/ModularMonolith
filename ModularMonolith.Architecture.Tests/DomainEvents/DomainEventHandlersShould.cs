@@ -1,4 +1,5 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.DomainEvents;
+﻿using ModularMonolith.APIs.BoundedContexts.Common.Commands;
+using ModularMonolith.APIs.BoundedContexts.Common.DomainEvents;
 
 namespace ModularMonolith.Architecture.Tests.DomainEvents;
 
@@ -39,6 +40,25 @@ public sealed class DomainEventHandlersShould
     {
       var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following Domain Event Handlers are not sealed: {failedTypes}");
+    }
+    Assert.True(result.IsSuccessful);
+  }
+
+  [Fact]
+  public void NotBePublic()
+  {
+    NetArchTest.Rules.TestResult result = Types
+      .InAssembly(AssembliesUnderTest.ApiAssembly)
+      .That()
+      .ImplementInterface(typeof(IDomainEventHandler<>))
+      .Should()
+      .NotBePublic()
+      .GetResult();
+
+    if (result.IsSuccessful == false)
+    {
+      var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
+      throw new Xunit.Sdk.XunitException($"The following Domain Event Handlers are public: {failedTypes}");
     }
     Assert.True(result.IsSuccessful);
   }

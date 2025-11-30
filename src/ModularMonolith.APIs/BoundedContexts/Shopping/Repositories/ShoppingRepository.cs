@@ -1,10 +1,6 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.DomainEvents;
-using ModularMonolith.APIs.BoundedContexts.Common.Repositories;
-using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.Repositories;
 
-namespace ModularMonolith.APIs.BoundedContexts.Shopping.Repositories;
-
-public sealed class ShoppingRepository
+internal sealed class ShoppingRepository
 : Repository<ShoppingBasket, ShoppingDb>
 , IShoppingRepository
 {

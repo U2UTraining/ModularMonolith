@@ -1,8 +1,6 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.Queries;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.QueryHandlers;
 
-namespace ModularMonolith.APIs.BoundedContexts.Currencies.QueryHandlers;
-
-public sealed class GetAllCurrenciesQueryHandler 
+internal sealed class GetAllCurrenciesQueryHandler 
 : IQueryHandler<GetCurrenciesQuery, IQueryable<Currency>>
 {
   private readonly ICurrencyRepository _repo;
