@@ -36,12 +36,12 @@
   </FluentDataGrid>
 </div>
 
-@* <h2>Publisher's Contacts</h2>
+<h2>Publisher's Contacts</h2>
 
 <div class="games">
-  <FluentDataGrid Items="@Contacts" TGridItem="Contact" RowSize="DataGridRowSize.Medium">
-    <PropertyColumn Property="@(c => c.FirstName.Value)" title="First Name" Sortable="true" />
-    <PropertyColumn Property="@(c => c.LastName.Value)" Title="Last Name" Sortable="true" />
-    <PropertyColumn Property="@(c => c.Email.Value)" Title="Street" Sortable="true" />
+  <FluentDataGrid Items="@Contacts" TGridItem="ContactDTO" RowSize="DataGridRowSize.Medium">
+    <PropertyColumn Property="@(c => c.FirstName)" title="First Name" Sortable="true" />
+    <PropertyColumn Property="@(c => c.LastName)" Title="Last Name" Sortable="true" />
+    <PropertyColumn Property="@(c => c.Email)" Title="Street" Sortable="true" />
   </FluentDataGrid>
-</div> *@
+</div>

@@ -63,11 +63,14 @@ public sealed partial class PublishersPage
   {
     PublisherWithGamesDTO? pub = await PublishersClient.GetPublisherWithGamesAsync(selectedPublisher.Id);
     Games = pub?.Games.AsQueryable();
+    Contacts = pub?.Contacts.AsQueryable();
     await this.InvokeAsync(() => StateHasChanged());
   }
 
-  //public IQueryable<Contact> Contacts 
-  //=> SelectedItems.SelectMany(pub => pub.Contacts).AsQueryable();
+  public IQueryable<ContactDTO>? Contacts
+  {
+    get; set;
+  } = default!;
 
   //public async Task AddBoardGame(Publisher publisher)
   //{

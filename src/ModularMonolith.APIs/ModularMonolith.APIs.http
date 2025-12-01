@@ -40,6 +40,6 @@ Acctept: application/json
 
 ###
 
-GET {{ModularMonolith.APIs_HostAddress}}/publishers/3
+GET {{ModularMonolith.APIs_HostAddress}}/publishers/1
 
 ###

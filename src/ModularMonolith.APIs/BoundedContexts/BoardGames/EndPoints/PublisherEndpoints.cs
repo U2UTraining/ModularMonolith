@@ -32,20 +32,26 @@ public static class PublisherEndpoints
           , [FromRoute] int id
           , CancellationToken cancellationToken) =>
           {
-            GetPublisherWithGamesQuery query = new(id);
-            Publisher? publisher = await querySender.AskAsync(query, cancellationToken);
-            if (publisher is not null)
-            {
-              PublisherWithGamesDTO publisherDto = new(
-                Id: publisher.Id
-              , PublisherName: publisher.Name
-              , Games: publisher.Games.Select(g => new GameDTO(
-                  Id: g.Id
-                , GameName: g.Name
-                , Price: g.Price.Amount
-                , ImageUrl: g.ImageURL
-                , PublisherName: publisher.Name)
-                ).ToList()
+          GetPublisherWithGamesQuery query = new(id);
+          Publisher? publisher = await querySender.AskAsync(query, cancellationToken);
+          if (publisher is not null)
+          {
+            PublisherWithGamesDTO publisherDto = new(
+              Id: publisher.Id
+            , PublisherName: publisher.Name
+            , Games: publisher.Games.Select(g => new GameDTO(
+                Id: g.Id
+              , GameName: g.Name
+              , Price: g.Price.Amount
+              , ImageUrl: g.ImageURL
+              , PublisherName: publisher.Name)
+              ).ToList()
+            , Contacts: publisher.Contacts.Select(c => new ContactDTO
+                {
+                  FirstName= c.FirstName
+                , LastName= c.LastName
+                  , Email= c.Email
+                }).ToList()
               );
               return TypedResults.Ok(publisherDto);
             }
