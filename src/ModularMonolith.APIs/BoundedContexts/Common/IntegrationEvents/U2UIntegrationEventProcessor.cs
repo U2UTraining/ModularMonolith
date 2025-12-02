@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
+﻿using OpenTelemetryDemo.ServiceDefaults.Meters;
+
+namespace ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
 
 /// <summary>
 /// Processes integration events by invoking the appropriate handlers.
@@ -7,11 +9,15 @@
 public class U2UIntegrationEventProcessor
 {
   private readonly IServiceProvider _serviceProvider;
+  private readonly IntegrationEventsMetrics _metrics;
 
   public U2UIntegrationEventProcessor(
     IServiceProvider serviceProvider
   )
-  => _serviceProvider = serviceProvider;
+  {
+    _serviceProvider = serviceProvider;
+    _metrics = _serviceProvider.GetRequiredService<IntegrationEventsMetrics>();
+  }
 
   public async ValueTask ProcessIntegrationEventAsync(
     IIntegrationEvent @event
@@ -30,7 +36,15 @@ public class U2UIntegrationEventProcessor
       {
         if (handler is not null)
         {
-          await invoker(handler, @event, cancellationToken);
+          try
+          {
+            await invoker(handler, @event, cancellationToken);
+            _metrics.IncreaseIntegrationEventsCounter();
+          }
+          catch
+          {
+            _metrics.IncreaseIntegrationEventsErrorCounter();
+          }
         }
       }
     }

@@ -10,6 +10,8 @@ using OpenTelemetry;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 
+using OpenTelemetryDemo.ServiceDefaults.Meters;
+
 namespace ModularMonolith.ServiceDefaults;
 
 // Adds common .NET Aspire services: service discovery, resilience, health checks, and OpenTelemetry.
@@ -59,7 +61,9 @@ public static class Extensions
         {
           _ = metrics.AddAspNetCoreInstrumentation()
                      .AddHttpClientInstrumentation()
-                     .AddRuntimeInstrumentation();
+                     .AddRuntimeInstrumentation()
+                     .AddMeter(IntegrationEventsMetrics.IntegrationEventsMetricsName);
+          ;
         })
         .WithTracing(tracing =>
         {

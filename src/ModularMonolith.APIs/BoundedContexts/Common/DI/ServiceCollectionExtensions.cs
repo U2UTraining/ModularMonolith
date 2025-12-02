@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Common.DI;
+﻿using OpenTelemetryDemo.ServiceDefaults.Meters;
+
+namespace ModularMonolith.APIs.BoundedContexts.Common.DI;
 
 /// <summary>
 /// Extension methods for IServiceCollection to add common services.
@@ -192,6 +194,7 @@ public static class ServiceCollectionExtensions
     .AddHostedService<U2UIntegrationEventHostedService>()
     .AddSingleton<IIntegrationEventPublisher, U2UIntegrationEventPublisher>()
     .AddSingleton<U2UIntegrationEventProcessor>()
+    .AddSingleton<IntegrationEventsMetrics>()
     ;
 
   public static IServiceCollection AddQueries(
