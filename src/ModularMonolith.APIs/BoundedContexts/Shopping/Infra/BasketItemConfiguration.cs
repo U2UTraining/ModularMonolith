@@ -1,4 +1,5 @@
 ﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.ValueObjects;
+using ModularMonolith.APIs.BoundedContexts.Shopping.Entities;
 
 namespace ModularMonolith.APIs.BoundedContexts.Shopping.Infra;
 
@@ -38,5 +39,8 @@ internal sealed class BasketItemConfiguration
             .HasMaxLength(3)
             ;
     });
+
+    _ = gameInBasket.HasHistory().HasSoftDelete();
+
   }
 }
