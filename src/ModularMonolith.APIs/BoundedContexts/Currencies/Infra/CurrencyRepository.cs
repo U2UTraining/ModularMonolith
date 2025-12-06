@@ -16,14 +16,10 @@ internal sealed class CurrencyRepository
   /// <param name="cancellationToken"></param>
   /// <returns>List of untracked currencies</returns>
   /// <remarks>This method uses good old LINQ</remarks>
-  public async ValueTask<IQueryable<Currency>> GetAllCurrenciesAsync(
+  public async ValueTask<List<Currency>> GetAllCurrenciesAsync(
     CancellationToken cancellationToken = default
-  )
-  {
-    return await ValueTask.FromResult(DbContext.Currencies);
-      //.AsNoTracking()
-      //.ToListAsync(cancellationToken);
-  }
+  ) 
+  => await DbContext.Currencies.AsNoTracking().ToListAsync(cancellationToken);
 
   /// <summary>
   /// Get Currency by name

@@ -55,7 +55,7 @@ public static class ServiceCollectionExtensions
     //  IQueryHandler<GetCurrenciesQuery, IQueryable<Currency>>,
     //  GetAllCurrenciesQueryHandler2>()
     .AddScoped<
-      IQueryHandler<GetCurrenciesQuery, IQueryable<Currency>>,
+      IQueryHandler<GetCurrenciesQuery, List<Currency>>,
       GetAllCurrenciesQueryHandler3>()
       ;
 

@@ -1,25 +1,25 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.QueryHandlers;
 
 internal sealed class GetAllCurrenciesQueryHandler
-: IQueryHandler<GetCurrenciesQuery, IQueryable<Currency>>
+: IQueryHandler<GetCurrenciesQuery, List<Currency>>
 {
   private readonly ICurrencyRepository _repo;
 
   public GetAllCurrenciesQueryHandler(ICurrencyRepository repo)
   => _repo = repo;
 
-  public async Task<IQueryable<Currency>> HandleAsync(
+  public async Task<List<Currency>> HandleAsync(
     GetCurrenciesQuery request
   , CancellationToken cancellationToken = default)
   {
-    IQueryable<Currency> result =
+    List<Currency> result =
       await _repo.GetAllCurrenciesAsync(cancellationToken);
     return result;
   }
 }
 
 internal sealed class GetAllCurrenciesQueryHandler2
-: IQueryHandler<GetCurrenciesQuery, IQueryable<Currency>>
+: IQueryHandler<GetCurrenciesQuery, List<Currency>>
 {
   private readonly CurrenciesDb _db;
 
@@ -28,15 +28,15 @@ internal sealed class GetAllCurrenciesQueryHandler2
     _db = db;
   }
 
-  public async Task<IQueryable<Currency>> HandleAsync(
+  public async Task<List<Currency>> HandleAsync(
     GetCurrenciesQuery request
   , CancellationToken cancellationToken = default)
-    => await ValueTask.FromResult(_db.Currencies);
+    => await _db.Currencies.AsNoTracking().ToListAsync(cancellationToken);
 }
 
 
 internal sealed class GetAllCurrenciesQueryHandler3
-: IQueryHandler<GetCurrenciesQuery, IQueryable<Currency>>
+: IQueryHandler<GetCurrenciesQuery, List<Currency>>
 {
   private readonly IDbContextFactory<CurrenciesDb> _dbFactory;
 
@@ -45,12 +45,15 @@ internal sealed class GetAllCurrenciesQueryHandler3
     _dbFactory = dbFactory;
   }
 
-  public async Task<IQueryable<Currency>> HandleAsync(
+  public async Task<List<Currency>> HandleAsync(
     GetCurrenciesQuery request
   , CancellationToken cancellationToken = default)
   {
-    CurrenciesDb db =
+    // When using IDbContextFactory, it is important to manage the lifetime of the DbContext instances
+    // properly. The instances created by the factory are not managed by the application's service provider
+    // and must be disposed of by the application.
+    using CurrenciesDb db =
       await _dbFactory.CreateDbContextAsync(cancellationToken);
-    return db.Currencies;
+    return await db.Currencies.AsNoTracking().ToListAsync(cancellationToken);
   }
 }

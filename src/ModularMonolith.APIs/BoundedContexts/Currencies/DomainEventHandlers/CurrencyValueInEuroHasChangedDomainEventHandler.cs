@@ -20,7 +20,7 @@ internal sealed class CurrencyValueInEuroHasChangedDomainEventHandler
   {
     // Testing only...
     // See if this passes the changes that were made
-    IQueryable<Currency> list = await _repo.GetAllCurrenciesAsync();
+    List<Currency> list = await _repo.GetAllCurrenciesAsync();
     int count = list.Count();
   }
 }

@@ -20,11 +20,10 @@ public static class CurrencyEndpoints
         //    .Select(c => new CurrencyDTO(c.Id.ToString(), c.ValueInEuro))
         //    .ToListAsync(cancellationToken);
         // Using Repository
-        IQueryable<Currency> currencies = 
+        List<Currency> currencies = 
           await querySender.AskAsync(GetCurrenciesQuery.All, cancellationToken);
         List<CurrencyDTO> allCurrencies =
-          await currencies.Select(c => new CurrencyDTO(c.Id.ToString(), c.ValueInEuro)).ToListAsync(cancellationToken);
-
+          currencies.Select(c => new CurrencyDTO(c.Id.ToString(), c.ValueInEuro)).ToList();
         return TypedResults.Ok(allCurrencies);
       })
 .WithName("GetAllCurrencies")

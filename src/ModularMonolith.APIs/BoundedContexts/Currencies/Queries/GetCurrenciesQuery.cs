@@ -9,7 +9,7 @@ namespace ModularMonolith.APIs.BoundedContexts.Currencies.Queries;
 /// This is a perfect example for a Flyweight  
 /// </remarks>
 public record class GetCurrenciesQuery
-: IQuery<IQueryable<Currency>> 
+: IQuery<List<Currency>> 
 {
   private GetCurrenciesQuery() { }
 

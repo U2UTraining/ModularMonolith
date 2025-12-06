@@ -1,12 +1,9 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.Repositories;
-using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
-
-namespace ModularMonolith.APIs.BoundedContexts.Currencies.Repositories;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.Repositories;
 
 public interface ICurrencyRepository 
 : IRepository<Currency>
 {
-  ValueTask<IQueryable<Currency>> GetAllCurrenciesAsync(
+  ValueTask<List<Currency>> GetAllCurrenciesAsync(
     CancellationToken cancellationToken = default
   );
 
