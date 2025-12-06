@@ -9,10 +9,10 @@ public static class CurrencyEndpoints
   {
     public RouteGroupBuilder WithCurrencyEndpoints()
     {
-      // Query DBContext directly
+
       group.MapGet("/", async (
-        [FromServices] CurrenciesDb db
-      , CancellationToken cancellationToken) =>
+  [FromServices] IQuerySender querySender
+, CancellationToken cancellationToken) =>
       {
         // Using direct query
         //List<CurrencyDTO> allCurrencies = await db.Currencies
@@ -20,13 +20,34 @@ public static class CurrencyEndpoints
         //    .Select(c => new CurrencyDTO(c.Id.ToString(), c.ValueInEuro))
         //    .ToListAsync(cancellationToken);
         // Using Repository
+        IQueryable<Currency> currencies = 
+          await querySender.AskAsync(GetCurrenciesQuery.All, cancellationToken);
         List<CurrencyDTO> allCurrencies =
-          await db.GetAllCurrenciesAsync(cancellationToken);
+          await currencies.Select(c => new CurrencyDTO(c.Id.ToString(), c.ValueInEuro)).ToListAsync(cancellationToken);
 
         return TypedResults.Ok(allCurrencies);
       })
-      .WithName("GetAllCurrencies")
-      .Produces<List<Currency>>(StatusCodes.Status200OK);
+.WithName("GetAllCurrencies")
+.Produces<List<Currency>>(StatusCodes.Status200OK);
+
+      //// Query DBContext directly
+      //group.MapGet("/", async (
+      //  [FromServices] CurrenciesDb db
+      //, CancellationToken cancellationToken) =>
+      //{
+      //  // Using direct query
+      //  //List<CurrencyDTO> allCurrencies = await db.Currencies
+      //  //    .AsNoTracking()
+      //  //    .Select(c => new CurrencyDTO(c.Id.ToString(), c.ValueInEuro))
+      //  //    .ToListAsync(cancellationToken);
+      //  // Using Repository
+      //  List<CurrencyDTO> allCurrencies =
+      //    await db.GetAllCurrenciesAsync(cancellationToken);
+
+      //  return TypedResults.Ok(allCurrencies);
+      //})
+      //.WithName("GetAllCurrencies")
+      //.Produces<List<Currency>>(StatusCodes.Status200OK);
 
       group.MapPut("/",
         async Task<Results<Ok<CurrencyDTO>, BadRequest<string>>> (

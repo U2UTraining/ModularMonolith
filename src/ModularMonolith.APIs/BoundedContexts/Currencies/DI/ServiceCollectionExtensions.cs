@@ -13,6 +13,8 @@ public static class ServiceCollectionExtensions
       .AddCurrenciesCore()
       .AddCurrenciesQueries()
       .AddCurrenciesCommands();
+
+
     builder.AddSqlServerDbContext<CurrenciesDb>(CurrenciesDb.DatabaseName
     , sqlServerOptions => {
     }
@@ -27,6 +29,8 @@ public static class ServiceCollectionExtensions
     #endif
     });
     _ = builder.Services.AddScoped<ICurrencyRepository, CurrencyRepository>();
+
+    builder.Services.AddDbContextFactory<CurrenciesDb>();
 
     return builder;
   }
@@ -44,9 +48,15 @@ public static class ServiceCollectionExtensions
   public static IServiceCollection AddCurrenciesQueries(
     this IServiceCollection services)
   => services
+    //.AddScoped<
+    //  IQueryHandler<GetCurrenciesQuery, IQueryable<Currency>>,
+    //  GetAllCurrenciesQueryHandler>()
+    //.AddScoped<
+    //  IQueryHandler<GetCurrenciesQuery, IQueryable<Currency>>,
+    //  GetAllCurrenciesQueryHandler2>()
     .AddScoped<
       IQueryHandler<GetCurrenciesQuery, IQueryable<Currency>>,
-      GetAllCurrenciesQueryHandler>()
+      GetAllCurrenciesQueryHandler3>()
       ;
 
   public static IServiceCollection AddCurrenciesCommands(
