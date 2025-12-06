@@ -5,10 +5,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- Aspire -->
-    <PackageVersion Include="Aspire.Hosting" Version="13.0.1" />
-    <PackageVersion Include="Aspire.Hosting.AppHost" Version="13.0.1" />
-    <PackageVersion Include="Aspire.Hosting.Azure.Sql" Version="13.0.1" />
-    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="13.0.1" />
+    <PackageVersion Include="Aspire.Hosting" Version="13.0.2" />
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="13.0.2" />
+    <PackageVersion Include="Aspire.Hosting.Azure.Sql" Version="13.0.2" />
+    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="13.0.2" />
   </ItemGroup>
   <ItemGroup>
     <!-- Mailing -->
