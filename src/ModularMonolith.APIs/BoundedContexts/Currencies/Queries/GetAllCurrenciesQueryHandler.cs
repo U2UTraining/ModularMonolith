@@ -1,4 +1,4 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.QueryHandlers;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.Queries;
 
 internal sealed class GetAllCurrenciesQueryHandler
 : IQueryHandler<GetCurrenciesQuery, List<Currency>>
@@ -18,12 +18,12 @@ internal sealed class GetAllCurrenciesQueryHandler
   }
 }
 
-internal sealed class GetAllCurrenciesQueryHandler2
+internal sealed class GetAllCurrencies2QueryHandler
 : IQueryHandler<GetCurrenciesQuery, List<Currency>>
 {
   private readonly CurrenciesDb _db;
 
-  public GetAllCurrenciesQueryHandler2(CurrenciesDb db) 
+  public GetAllCurrencies2QueryHandler(CurrenciesDb db) 
   => _db = db;
 
   public async Task<List<Currency>> HandleAsync(
@@ -33,12 +33,12 @@ internal sealed class GetAllCurrenciesQueryHandler2
 }
 
 
-internal sealed class GetAllCurrenciesQueryHandler3
+internal sealed class GetAllCurrencies3QueryHandler
 : IQueryHandler<GetCurrenciesQuery, List<Currency>>
 {
   private readonly IDbContextFactory<CurrenciesDb> _dbFactory;
 
-  public GetAllCurrenciesQueryHandler3(IDbContextFactory<CurrenciesDb> dbFactory) 
+  public GetAllCurrencies3QueryHandler(IDbContextFactory<CurrenciesDb> dbFactory) 
   => _dbFactory = dbFactory;
 
   public async Task<List<Currency>> HandleAsync(

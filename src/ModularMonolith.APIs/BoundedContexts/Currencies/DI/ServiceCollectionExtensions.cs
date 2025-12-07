@@ -56,7 +56,7 @@ public static class ServiceCollectionExtensions
     //  GetAllCurrenciesQueryHandler2>()
     .AddScoped<
       IQueryHandler<GetCurrenciesQuery, List<Currency>>,
-      GetAllCurrenciesQueryHandler3>()
+      GetAllCurrencies3QueryHandler>()
       ;
 
   public static IServiceCollection AddCurrenciesCommands(

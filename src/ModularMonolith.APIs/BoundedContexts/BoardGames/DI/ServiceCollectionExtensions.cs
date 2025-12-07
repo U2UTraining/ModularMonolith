@@ -33,6 +33,9 @@ public static class ServiceCollectionExtensions
           PublisherRepository
         , IReadonlyRepository<Publisher>
         , IRepository<Publisher>>();
+
+    builder.Services.AddDbContextFactory<GamesDb>();
+
     return builder;
   }
 

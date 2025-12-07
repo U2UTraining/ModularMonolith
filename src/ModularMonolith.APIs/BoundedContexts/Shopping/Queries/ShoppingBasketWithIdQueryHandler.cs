@@ -1,6 +1,6 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.QueryHandlers;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.Queries;
 
-public sealed class ShoppingBasketWithIdQueryHandler
+internal sealed class ShoppingBasketWithIdQueryHandler
   : IQueryHandler<ShoppingBasketWithIdQuery, ShoppingBasketDTO?>
 {
   private readonly ShoppingDb _db;

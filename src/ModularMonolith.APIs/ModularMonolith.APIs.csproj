@@ -73,4 +73,8 @@
     <ProjectReference Include="..\ModularMonolith.ServiceDefaults\ModularMonolith.ServiceDefaults.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="BoundedContexts\Currencies\DomainEventHandlers\" />
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,4 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Shopping.QueryHandlers;
-
-namespace ModularMonolith.APIs.BoundedContexts.Shopping.DI;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.DI;
 
 public static class ServiceCollectionExtensions
 {
@@ -27,6 +25,9 @@ public static class ServiceCollectionExtensions
       }
     );
     //builder.Services.AddScoped<IShoppingRepository, ShoppingRepository>() ;
+
+    builder.Services.AddDbContextFactory<ShoppingDb>();
+
     return builder;
   }
 

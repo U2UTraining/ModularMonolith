@@ -1,9 +1,8 @@
-﻿using ModularMonolith.APIs.BoundedContexts.UI.Commands;
-using ServiceCollectionExtensions = ModularMonolith.APIs.BoundedContexts.UI.DI.ServiceCollectionExtensions;
+﻿using ServiceCollectionExtensions = ModularMonolith.APIs.BoundedContexts.UI.DI.ServiceCollectionExtensions;
 
-namespace ModularMonolith.APIs.BoundedContexts.UI.CommandHandlers;
+namespace ModularMonolith.APIs.BoundedContexts.UI.Commands;
 
-public sealed class UpdateUICommandHandler
+internal sealed class UpdateUICommandHandler
   : ICommandHandler<UpdateUICommand, bool>
 {
   private readonly Channel<string> _updateChannel;

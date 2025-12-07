@@ -1,7 +1,7 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.CommandHandlers;
+﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Commands;
 
 internal sealed class ApplyMegaDiscountCommandHandler
-: ICommandHandler<Commands.ApplyMegaDiscountCommand, bool>
+: ICommandHandler<ApplyMegaDiscountCommand, bool>
 {
   private readonly IBoardGameRepository _repo;
 
@@ -9,7 +9,7 @@ internal sealed class ApplyMegaDiscountCommandHandler
   => _repo = repo;
 
   public async Task<bool> HandleAsync(
-    Commands.ApplyMegaDiscountCommand request
+    ApplyMegaDiscountCommand request
   , CancellationToken cancellationToken)
   {
     decimal discount = 

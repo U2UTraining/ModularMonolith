@@ -6,19 +6,6 @@ public static class UIEndPoints
 {
   extension(RouteGroupBuilder group)
   {
-    //public RouteGroupBuilder WithUIEndpoints()
-    //{
-    //  group.MapGet("/ui_updates",
-    //    static ([FromKeyedServices(ServiceCollectionExtensions.UIUpdateEventStreamKey)] Channel<string> updateChannel
-    //    , CancellationToken token) =>
-    //    TypedResults.ServerSentEvents(
-    //      updateChannel.Reader.ReadAllAsync(token),
-    //      eventType: "ui_update")
-    //  );
-    //  return group;
-    //}
-
-
     public RouteGroupBuilder WithUIEndpoints()
     {
       group.MapGet("/ui_updates",
