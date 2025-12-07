@@ -44,8 +44,12 @@ internal sealed class BoardGamesRepository
   public ValueTask<IQueryable<BoardGame>> GetBoardGamesFromList(
     PK<int>[] gameIds
   , CancellationToken cancellationToken)
-  => ValueTask.FromResult(DbContext.Games.Where(game => gameIds.Contains(game.Id)));
+  => ValueTask.FromResult(Includes(DbContext.Games).Where(game => gameIds.Contains(game.Id)));
 
   protected override IQueryable<BoardGame> Includes(IQueryable<BoardGame> q)
-  => q.Include(g => g.Image);
+  {
+    q = q.Include(g => g.Image);
+    q = q.Include(g => g.Publisher);
+    return q;
+  }
 }

@@ -64,16 +64,16 @@ public sealed class BoardGame
     //this.RegisterDomainEvent(new GamePriceHasChanged(this));
   }
 
-  public void SetImage(Uri imageUrl)
+  public void SetImage(Uri ImageURL)
   {
     if (Image == null)
     {
-      GameImage image = new(default, imageUrl);
+      GameImage image = new(default, ImageURL);
       Image = image;
     }
     else
     {
-      Image.SetImageUri(imageUrl);
+      Image.SetImageUri(ImageURL);
     }
   }
 

@@ -16,12 +16,12 @@
   <div class="grid">
     <FluentDataGrid Items="@_games" RowSize="DataGridRowSize.Medium" MultiLine="true">
       <ChildContent>
-        @* <PropertyColumn Property="@(bg => bg.Name.Value)" title="Name" Sortable="true" />
+        <PropertyColumn Property="@(bg => bg.GameName)" title="Name" Sortable="true" />
         <PropertyColumn Property="@(bg => bg.PublisherName)" Title="Publisher" Sortable="true" />
-        <PropertyColumn Property="@(bg => bg.Price.ToString())" Title="Price" Sortable="true" /> *@
-        @* <TemplateColumn Context="game" Align="@Align.Center" Width="64px">
-          <img src="@BoardGameImageURL(game)" alt="@game.Name.Value" style="width:100%" />
-        </TemplateColumn> *@
+        <PropertyColumn Property="@(bg => bg.Price.ToString())" Title="Price" Sortable="true" />
+        <TemplateColumn Context="game" Align="@Align.Center" Width="64px">
+          <img src="@BoardGameImageURL(game)" alt="@game.GameName" style="width:100%" />
+        </TemplateColumn>
         <TemplateColumn Title="Actions" Context="game" Align="@Align.End">
           <FluentButton OnClick="async () => await RemoveGameFromBasket(game)"
                         Title="Add to basket"

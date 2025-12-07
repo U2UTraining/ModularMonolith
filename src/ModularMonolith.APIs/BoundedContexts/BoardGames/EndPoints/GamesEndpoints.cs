@@ -21,7 +21,7 @@ public static class GamesEndpoints
           Id: g.Id
         , GameName: g.Name.Value
         , Price: g.Price.Amount
-        , ImageUrl: g.ImageURL
+        , ImageURL: g.ImageURL
         , PublisherName: g.PublisherName))
         .ToList();
       return TypedResults.Ok(allGames);

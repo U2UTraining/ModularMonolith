@@ -43,7 +43,7 @@ public static class PublisherEndpoints
                 Id: g.Id
               , GameName: g.Name
               , Price: g.Price.Amount
-              , ImageUrl: g.ImageURL
+              , ImageURL: g.ImageURL
               , PublisherName: publisher.Name)
               ).ToList()
             , Contacts: publisher.Contacts.Select(c => new ContactDTO

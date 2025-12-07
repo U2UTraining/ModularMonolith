@@ -83,7 +83,7 @@ public sealed partial class BoardGamesPage
   //}
 
   private string BoardGameImageURL(GameDTO game)
-  => game.ImageUrl ?? "https://u2ublogimages.blob.core.windows.net/cleanarchitecture/GamesStore_BoardGame.jpg";
+  => game.ImageURL ?? "https://u2ublogimages.blob.core.windows.net/cleanarchitecture/GamesStore_BoardGame.jpg";
 
   private async Task GiveGlobalDiscount()
   {

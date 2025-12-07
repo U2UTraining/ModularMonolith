@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.Endpoints;
+﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.EndPoints;
+
+namespace ModularMonolith.APIs.BoundedContexts.Shopping.Endpoints;
 
 public static class ShoppingBasketEndpoints
 {
@@ -7,21 +9,55 @@ public static class ShoppingBasketEndpoints
     public RouteGroupBuilder WithShoppingBasketEndpoints()
     {
       //// Query DBContext directly
-      group.MapGet("/{id:int}", async (
+      group.MapGet("/{id:int}", async Task<Results<Ok<ShoppingBasketDTO>, NotFound>> (
         [FromRoute] int id
-      , [FromServices] ShoppingDb db
+      , [FromServices] IQuerySender querySender
       , CancellationToken cancellationToken) =>
       {
-        //ShoppingBasketDTO dto =
-        //  await db.Baskets.Where(sb=>sb.Id == id)
-        //  .Select( sb => new ShoppingBasketDTO(
-        //    sb.Id
-        //  , sb.Games.Select())
-        //List<ShoppingBasketDTO> allCurrencies = await db.
-        //    .AsNoTracking()
-        //    .Select(c => new ShoppingBasketDTO(c.Id.ToString(), c.ValueInEuro))
-        //    .ToListAsync(cancellationToken);
-        return TypedResults.Ok();
+        ShoppingBasketDTO? dto = await querySender.AskAsync(
+          new ShoppingBasketWithIdQuery(id, includeGames: true), cancellationToken);
+        if (dto is null)
+        {
+
+          return TypedResults.NotFound();
+        }
+        else
+        {
+        
+        return TypedResults.Ok(dto);
+        }
+
+          //ShoppingBasket? basket = await db.GetShoppingBasketAsync(id, cancellationToken);
+          //ShoppingBasketDTO dto = new ShoppingBasketDTO(
+          //  ShoppingBasketId: basket!.Id.Key
+          //, Games: basket.Items.Select(it => new GameDTO(
+          //    Id: it.BoardGameId.Key,
+          //    GameName: "",
+          //    Price: it.Price
+          //    )))
+
+          //ShoppingBasketDTO dto =
+          //  await db.Baskets.Where(sb=>sb.Id == id)
+          //  .Select( sb => new ShoppingBasketDTO(
+          //    sb.Id
+          //  , sb.Games.Select())
+          //List<ShoppingBasketDTO> allCurrencies = await db.Baskets
+          //    .AsNoTracking()
+          //    .Where( b => b.Id == id)
+          //    .Select(c => new ShoppingBasketDTO(
+          //      ShoppingBasketId: c.Id.Key,
+          //      Games: c.Items
+          //        .Select(gi => new GameDTO(
+          //          Id: gi.BoardGameId.Key,
+          //          GameName: gi.BoardGame!.Name,
+          //          PriceInEuro: gi.Price.Value
+          //        ))
+          //        .ToList()
+
+
+          //      ))
+          //    .SingleAsync(cancellationToken);
+          //return TypedResults.Ok();
       })
       .WithName("GetShoppingBasketWithId")
       .Produces<List<Currency>>(StatusCodes.Status200OK);

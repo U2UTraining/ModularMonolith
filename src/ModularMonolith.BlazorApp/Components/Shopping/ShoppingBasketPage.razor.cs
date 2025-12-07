@@ -24,7 +24,7 @@ public sealed partial class ShoppingBasketPage
     get; set;
   }
 
-  private IQueryable<BoardGameDTO> _games = default!;
+  private IQueryable<GameDTO> _games = default!;
 
   protected override async Task OnInitializedAsync()
   {
@@ -35,23 +35,20 @@ public sealed partial class ShoppingBasketPage
     {
       ShoppingBasket =
         await ShoppingBasketClient.GetShoppingBasket(State.ShoppingBasketId.Value);
-      //  await CQSender.Ask(new GetShoppingBasketQuery(State.ShoppingBasketId), default);
-
-      //if (ShoppingBasket is not null)
-      //{
-      //  PK<int>[] gameIds = ShoppingBasket.Items.Select(item => item.BoardGameId).ToArray();
-      //  _games = await CQSender.Ask(new GetGamesFromListQuery(gameIds));
-      //}
+      if (ShoppingBasket is not null)
+      {
+        _games = ShoppingBasket.Games.AsQueryable();
+      }
     }
   }
 
-  private async Task RemoveGameFromBasket(BoardGameDTO game)
+  private async Task RemoveGameFromBasket(GameDTO game)
   {
     await Task.CompletedTask;
   }
 
-  //  private string BoardGameImageURL(BoardGameDTO game)
-  //=> game.ImageURL ?? "https://u2ublogimages.blob.core.windows.net/cleanarchitecture/GamesStore_BoardGame.jpg";
+  private string BoardGameImageURL(GameDTO game)
+=> game.ImageURL ?? "https://u2ublogimages.blob.core.windows.net/cleanarchitecture/GamesStore_BoardGame.jpg";
 
   //private async Task CheckOut() 
   //=> await CQSender.Execute(new CheckOutShoppingBasketCommand(ShoppingBasket!));
