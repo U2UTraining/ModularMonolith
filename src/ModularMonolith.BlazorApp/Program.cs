@@ -2,6 +2,7 @@ using ModularMonolith.BlazorApp.Components;
 using ModularMonolith.BlazorApp.Components.BoardGames;
 using ModularMonolith.BlazorApp.Components.Currencies;
 using ModularMonolith.BlazorApp.Components.Shopping;
+using ModularMonolith.BlazorApp.UIUpdates;
 using ModularMonolith.ServiceDefaults;
 
 namespace ModularMonolith.BlazorApp;
@@ -47,6 +48,10 @@ public partial class Program
     builder.Services.AddHttpClient<ShoppingBasketClient>(client =>
     {
       client.BaseAddress = new("https+http://modular-monolith-apis/shopping/");
+    });
+    builder.Services.AddHttpClient<UpdateClient>(client =>
+    {
+      client.BaseAddress = new("https+http://modular-monolith-apis/ui/");
     });
 
     var app = builder.Build();

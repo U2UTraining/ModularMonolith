@@ -23,10 +23,8 @@ internal sealed class GetAllCurrenciesQueryHandler2
 {
   private readonly CurrenciesDb _db;
 
-  public GetAllCurrenciesQueryHandler2(CurrenciesDb db)
-  {
-    _db = db;
-  }
+  public GetAllCurrenciesQueryHandler2(CurrenciesDb db) 
+  => _db = db;
 
   public async Task<List<Currency>> HandleAsync(
     GetCurrenciesQuery request
@@ -40,10 +38,8 @@ internal sealed class GetAllCurrenciesQueryHandler3
 {
   private readonly IDbContextFactory<CurrenciesDb> _dbFactory;
 
-  public GetAllCurrenciesQueryHandler3(IDbContextFactory<CurrenciesDb> dbFactory)
-  {
-    _dbFactory = dbFactory;
-  }
+  public GetAllCurrenciesQueryHandler3(IDbContextFactory<CurrenciesDb> dbFactory) 
+  => _dbFactory = dbFactory;
 
   public async Task<List<Currency>> HandleAsync(
     GetCurrenciesQuery request
@@ -52,7 +48,7 @@ internal sealed class GetAllCurrenciesQueryHandler3
     // When using IDbContextFactory, it is important to manage the lifetime of the DbContext instances
     // properly. The instances created by the factory are not managed by the application's service provider
     // and must be disposed of by the application.
-    using CurrenciesDb db =
+    await using CurrenciesDb db =
       await _dbFactory.CreateDbContextAsync(cancellationToken);
     return await db.Currencies.AsNoTracking().ToListAsync(cancellationToken);
   }

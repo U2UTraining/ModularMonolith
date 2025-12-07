@@ -50,7 +50,7 @@ public sealed partial class BoardGamesPage
   }
 
   private void OnPropertyChanged(object? sender, PropertyChangedEventArgs e)
-  => this.StateHasChanged();
+  => this.InvokeAsync(StateHasChanged);
 
   private async Task AddBoardGameToBasket(GameDTO game)
   {

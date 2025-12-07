@@ -1,0 +1,1 @@
+﻿global using ModularMonolith.APIs.BoundedContexts.UI.DI;
