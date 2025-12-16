@@ -1,6 +1,18 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Common.Commands;
+﻿using FluentValidation.Results;
 
-using Invoker = Func<object, object, CancellationToken, Task<object>>;
+namespace ModularMonolith.APIs.BoundedContexts.Common.Commands;
+
+using Invoker = Func<
+  object                      // CommandHandler
+, object                      // Command
+, CancellationToken
+, Task<object>>;
+
+using Validator = Func<
+    object                    // IValidator<T>
+  , object                    // command
+  , CancellationToken
+  , Task<ValidationResult>>;
 
 /// <summary>
 /// Generate the Invoker for an ICommandHandler<TCommand, TResponse>
@@ -74,5 +86,58 @@ public sealed class U2UCommandInvoker
     invoker = CreateInvoker(invokerType);
     _invokers[invokerType] = invoker;
     return invoker;
+  }
+
+  private Validator CreateValidator(
+    Type commandValidatorType)
+  {
+    Type commandType = commandValidatorType.GetGenericArguments()[0];
+
+    // (validator, command, cancellationToken)
+    // => validator.ValidateAsync(@command, cancellationToken)
+    ParameterExpression validator =
+      Expression.Parameter(typeof(object), "validator");
+    ParameterExpression command =
+      Expression.Parameter(typeof(object), "command");
+    ParameterExpression cancellationToken =
+      Expression.Parameter(typeof(CancellationToken), "cancellationToken");
+    UnaryExpression validatorCast =
+      Expression.Convert(validator, commandValidatorType);
+    UnaryExpression commandCast =
+      Expression.Convert(command, commandType);
+    MethodInfo? validateAsyncMethod =
+      commandValidatorType.GetMethod("ValidateAsync");
+    MethodCallExpression method =
+      Expression.Call(validatorCast, validateAsyncMethod!, commandCast, cancellationToken);
+    //Expression<Func<object, object, CancellationToken, Task<object>>> lambda =
+    //  Expression.Lambda<Func<object, object, CancellationToken, Task<object>>>(method, commandHandler, command, cancellationToken);
+
+    Type lambdaType = typeof(Func<,,,>)
+      .MakeGenericType(
+        typeof(object)               // validator
+      , typeof(object)               // command
+      , typeof(CancellationToken)
+      , typeof(Task<ValidationResult>)
+      );
+    var lambda = Expression.Lambda(lambdaType, method, validator, command, cancellationToken);
+    Validator compiled = (Validator) lambda.Compile();
+
+    // Wrap Task<TResult> as Task<object>
+    return compiled;
+  }
+
+  private Dictionary<Type, Validator> _validators
+    = new();
+
+  public Validator GetValidator(
+    Type validatorType)
+  {
+    if (_validators.TryGetValue(validatorType, out Validator? validator))
+    {
+      return validator;
+    }
+    validator = CreateValidator(validatorType);
+    _validators[validatorType] = validator;
+    return validator;
   }
 }

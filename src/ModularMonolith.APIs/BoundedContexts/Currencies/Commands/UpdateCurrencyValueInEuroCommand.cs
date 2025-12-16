@@ -10,14 +10,14 @@ public record struct UpdateCurrencyValueInEuroCommand
     PK<CurrencyName> name
   , PositiveDecimal newValue)
   {
-    // Fail Fast
-    if (name.Key == CurrencyName.EUR)
-    {
-      throw new ArgumentException(
-        message: $"Currency EUR cannot be modified"
-      , paramName: nameof(name)
-      );
-    }
+    //// Fail Fast
+    //if (name.Key == CurrencyName.EUR)
+    //{
+    //  throw new ArgumentException(
+    //    message: $"Currency EUR cannot be modified"
+    //  , paramName: nameof(name)
+    //  );
+    //}
     Name = name;
     NewValue = newValue;
   }

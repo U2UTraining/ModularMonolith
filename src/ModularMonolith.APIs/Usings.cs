@@ -22,3 +22,6 @@ global using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 // Minimal APIs
 global using Microsoft.AspNetCore.Http.HttpResults;
+
+// Validation
+global using FluentValidation;

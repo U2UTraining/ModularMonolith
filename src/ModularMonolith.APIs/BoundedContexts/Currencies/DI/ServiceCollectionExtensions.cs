@@ -1,4 +1,6 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.Commands;
+﻿using Microsoft.Extensions.DependencyInjection;
+
+using ModularMonolith.APIs.BoundedContexts.Common.Commands;
 using ModularMonolith.APIs.BoundedContexts.Common.DomainEvents;
 using ModularMonolith.APIs.BoundedContexts.Common.Queries;
 
@@ -65,6 +67,7 @@ public static class ServiceCollectionExtensions
     .AddScoped<
       ICommandHandler<UpdateCurrencyValueInEuroCommand, Currency>
     , UpdateCurrencyValueInEuroCommandHandler>()
+    .AddSingleton<IValidator<UpdateCurrencyValueInEuroCommand>, UpdateCurrencyValueInEuroValidator>()
       ;
 
   public static IServiceCollection AddCurrenciesCore(

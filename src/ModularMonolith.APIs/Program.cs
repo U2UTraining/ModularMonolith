@@ -15,6 +15,11 @@ public partial class Program
 
     builder.AddServiceDefaults();
 
+    builder.Services.AddValidation(options =>
+    {
+      //options.
+    });
+
     // Add support for bounded contexts
     builder
       .AddCommon()

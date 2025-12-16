@@ -19,7 +19,6 @@
         <PropertyColumn Property="@(c => c.ValueInEuro)" Title="Value in Euro" />
         <TemplateColumn Title="Actions" Context="currency" Align="@Align.End">
           <FluentButton OnClick="async () => await EditCurrency(currency)"
-          Disabled="@(currency.CurrencyName == CurrencyName.EUR.ToString())"
           Title="Edit currency"
           IconEnd="@(new Size20.Edit())" />
         </TemplateColumn>

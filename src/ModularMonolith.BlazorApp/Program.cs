@@ -36,23 +36,29 @@ public partial class Program
     builder.Services.AddHttpClient<CurrencyClient>(client =>
     {
       client.BaseAddress = new("https+http://modular-monolith-apis/");
-    });
+    })
+      .AddStandardResilienceHandler();
+
     builder.Services.AddHttpClient<BoardGamesClient>(client =>
     {
       client.BaseAddress = new("https+http://modular-monolith-apis/games/");
-    });
+    })
+      .AddStandardResilienceHandler();
     builder.Services.AddHttpClient<PublishersClient>(client =>
     {
       client.BaseAddress = new("https+http://modular-monolith-apis/publishers/");
-    });
+    })
+      .AddStandardResilienceHandler();
     builder.Services.AddHttpClient<ShoppingBasketClient>(client =>
     {
       client.BaseAddress = new("https+http://modular-monolith-apis/shopping/");
-    });
+    })
+      .AddStandardResilienceHandler();
     builder.Services.AddHttpClient<UpdateClient>(client =>
     {
       client.BaseAddress = new("https+http://modular-monolith-apis/ui/");
-    });
+    })
+      .AddStandardResilienceHandler();
 
     var app = builder.Build();
 
