@@ -10,6 +10,7 @@
     <PackageVersion Include="Aspire.Hosting.Azure.Sql" Version="13.0.2" />
     <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="13.0.2" />
     <PackageVersion Include="FluentValidation" Version="12.1.1" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
     <PackageVersion Include="Scrutor" Version="7.0.0" />
   </ItemGroup>
   <ItemGroup>
@@ -39,6 +40,10 @@
     <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.14.0" />
   </ItemGroup>
   <ItemGroup>
+    <!-- Redis Cache Server -->
+    <PackageVersion Include="Aspire.Hosting.Redis" Version="13.1.0" />
+  </ItemGroup>
+  <ItemGroup>
     <!-- Blazor WebAssembly -->
     <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.0" PrivateAssets="all" />
@@ -61,5 +66,10 @@
   <ItemGroup>
     <PackageVersion Include="Microsoft.Build.Tasks.Core" Version="18.0.2" />
     <PackageVersion Include="Microsoft.Build.Utilities.Core" Version="18.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Benchmarks -->
+    <PackageVersion Include="BenchmarkDotNet" Version="0.15.8" />
+    <PackageVersion Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.15.8" />
   </ItemGroup>
 </Project>

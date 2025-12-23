@@ -3,6 +3,9 @@
     <File Path="architectureTests.md" />
     <File Path="migrations.md" />
   </Folder>
+  <Folder Name="/perf/">
+    <Project Path="perf/ModularMonolith.BoundedContexts.Common.Queries/ModularMonolith.BoundedContexts.Common.Queries.csproj" Id="0c841041-07db-45cd-b725-57a9412d7e85" />
+  </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
