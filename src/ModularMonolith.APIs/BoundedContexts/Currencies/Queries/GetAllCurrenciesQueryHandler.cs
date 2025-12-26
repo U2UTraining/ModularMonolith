@@ -58,6 +58,7 @@ internal sealed class GetAllCurrencies3QueryHandler
     // and must be disposed of by the application.
     await using CurrenciesDb db =
       await _dbFactory.CreateDbContextAsync(cancellationToken);
+
     return await db.Currencies.AsNoTracking().ToListAsync(cancellationToken);
   }
 }

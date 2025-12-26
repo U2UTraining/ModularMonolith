@@ -28,7 +28,7 @@ public static partial class EntityConfigurationExtensions
 
     // Uses a Query Filter to only list entities which have not been deleted.
 
-    _ = entity.HasQueryFilter(e => EF.Property<bool>(e, isDeleted));
+    _ = entity.HasQueryFilter(e => !EF.Property<bool>(e, isDeleted));
     return entity;
   }
 }

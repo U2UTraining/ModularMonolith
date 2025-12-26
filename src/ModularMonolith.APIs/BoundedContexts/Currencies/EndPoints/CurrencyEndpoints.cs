@@ -2,7 +2,7 @@
 
 public static class CurrencyEndpoints
 {
-  extension(RouteGroupBuilder group)
+  extension (RouteGroupBuilder group)
   {
 #pragma warning disable S2325 // Methods and properties that don't access instance data should be static
     public RouteGroupBuilder GetWithCurrencyEndpoints()

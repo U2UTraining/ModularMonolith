@@ -41,14 +41,14 @@ public static class ServiceCollectionExtensions
     this IServiceCollection services)
   => services
     //.AddScoped<
-    //  IQueryHandler<GetCurrenciesQuery, IQueryable<Currency>>,
+    //  IQueryHandler<GetCurrenciesQuery, List<Currency>>,
     //  GetAllCurrenciesQueryHandler>()
-    //.AddScoped<
-    //  IQueryHandler<GetCurrenciesQuery, IQueryable<Currency>>,
-    //  GetAllCurrenciesQueryHandler2>()
-    .AddScoped<
-      IQueryHandler<GetCurrenciesQuery, List<Currency>>,
-      GetAllCurrencies3QueryHandler>()
+      //.AddScoped<
+      //  IQueryHandler<GetCurrenciesQuery, List<Currency>>,
+      //  GetAllCurrenciesQueryHandler2>()
+      .AddScoped<
+        IQueryHandler<GetCurrenciesQuery, List<Currency>>,
+        GetAllCurrencies3QueryHandler>()
       ;
 
   public static IServiceCollection AddCurrenciesCommands(
