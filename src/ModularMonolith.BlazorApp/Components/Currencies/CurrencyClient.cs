@@ -9,26 +9,26 @@ public class CurrencyClient
     _httpClient = httpClient;
   }
 
-  public async Task<IEnumerable<CurrencyDTO>> GetCurrenciesAsync(
+  public async Task<IEnumerable<CurrencyDto>> GetCurrenciesAsync(
     CancellationToken cancellationToken = default)
   {
     HttpResponseMessage response = 
       await _httpClient.GetAsync("currencies", cancellationToken);
     response.EnsureSuccessStatusCode();
-    IEnumerable<CurrencyDTO>? currencies = 
-      await response.Content.ReadFromJsonAsync<IEnumerable<CurrencyDTO>>(cancellationToken);
+    IEnumerable<CurrencyDto>? currencies = 
+      await response.Content.ReadFromJsonAsync<IEnumerable<CurrencyDto>>(cancellationToken);
     return currencies ?? [];
   }
 
-  public async Task<CurrencyDTO> UpdateCurrencyValue(
-    CurrencyDTO currencyDTO
+  public async Task<CurrencyDto> UpdateCurrencyValue(
+    CurrencyDto currencyDTO
   , CancellationToken cancellationToken)
   {
     HttpResponseMessage response =
       await _httpClient.PutAsJsonAsync("currencies", currencyDTO, cancellationToken);
     response.EnsureSuccessStatusCode();
-    CurrencyDTO? updatedCurrency =
-      await response.Content.ReadFromJsonAsync<CurrencyDTO>();
+    CurrencyDto? updatedCurrency =
+      await response.Content.ReadFromJsonAsync<CurrencyDto>();
     return updatedCurrency ?? currencyDTO;
   }
 }

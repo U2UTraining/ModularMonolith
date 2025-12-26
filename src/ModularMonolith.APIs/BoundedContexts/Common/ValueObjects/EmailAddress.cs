@@ -16,10 +16,6 @@ public readonly record struct EmailAddress
   // (written by J. Klensin, the author of RFC 5321[6]) and the associated errata.
   public const int EmailMaxLength = 320;
 
-  //private static readonly Regex EmailRegEx =
-  //    new(pattern: EmailPattern,
-  //        options: RegexOptions.Compiled | RegexOptions.IgnoreCase);
-
   [DebuggerBrowsable(DebuggerBrowsableState.Never)]
   private readonly NonEmptyString _value;
 
@@ -46,7 +42,7 @@ public readonly record struct EmailAddress
   => fn.Value;
 }
 
-internal partial class EmailHelper
+internal static partial class EmailHelper
 {
   // https://www.regular-expressions.info/
   public const string EmailPattern = @"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$";

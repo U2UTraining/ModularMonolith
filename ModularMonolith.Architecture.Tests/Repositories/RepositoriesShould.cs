@@ -19,7 +19,7 @@ public class RepositoriesShould
       .NotBePublic()
       .GetResult();
 
-    if (result.IsSuccessful == false)
+    if (!result.IsSuccessful)
     {
       var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following Repositories are public: {failedTypes}");

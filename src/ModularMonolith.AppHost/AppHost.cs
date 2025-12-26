@@ -4,7 +4,9 @@ using Microsoft.Extensions.Hosting;
 
 using ModularMonolith.Smtp4Dev.Hosting;
 
-internal class Program
+namespace ModularMonolith.AppHost;
+
+internal static class Program
 {
   private static void Main(string[] args)
   {
@@ -15,11 +17,6 @@ internal class Program
       builder.AddAzureSqlServer("sql");
     if (builder.Environment.IsDevelopment())
     {
-      // Create a parameter resource for the SQL admin password and set its value.
-      //IResourceBuilder<ParameterResource> sqlPassword =
-      //  builder.AddParameter(name: "sql-admin-password")
-      //  ;
-
       _ = sql.RunAsContainer(sql =>
         sql.WithDataVolume("modularmonolith")
            .WithLifetime(ContainerLifetime.Persistent)
@@ -42,7 +39,7 @@ internal class Program
         .WithReference(gamesDb)
         .WaitFor(gamesDb)
         .WithReference(shoppingDb)
-        .WaitFor(shoppingDb);
+        .WaitFor(shoppingDb)
         ;
 
     IResourceBuilder<ProjectResource> apis =
@@ -59,9 +56,11 @@ internal class Program
         .WaitFor(apis)
         ;
 
+    _ = ui;
+
     if (builder.Environment.IsDevelopment())
     {
-      IResourceBuilder<Smtp4devResource> smtp4dev = 
+      IResourceBuilder<Smtp4DevResource> smtp4dev = 
         builder.AddSmtp4dev(name: "smtp4dev", httpPort: 5000, smtpPort: 5001);
       _ = apis.WithReference(smtp4dev);
     }

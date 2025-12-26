@@ -1,6 +1,10 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Common.DomainEvents;
 
-using Invoker = Func<object, object, CancellationToken, ValueTask>;
+using Invoker = Func<
+  object
+, object
+, CancellationToken
+, ValueTask>;
 
 public sealed class U2UDomainEventInvoker
 {
@@ -8,10 +12,10 @@ public sealed class U2UDomainEventInvoker
 
   public static U2UDomainEventInvoker Instance { get; } = new();
 
-  private Dictionary<Type, Invoker> _invokers 
+  private readonly Dictionary<Type, Invoker> _invokers 
     = new();
 
-  private Invoker CreateInvoker(
+  private static Invoker CreateInvoker(
     Type eventHandlerType)
   {
     // eventHandlerType is of type IDomainEventHandler<EventType>

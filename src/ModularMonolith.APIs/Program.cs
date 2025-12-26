@@ -7,7 +7,7 @@ using ModularMonolith.ServiceDefaults;
 
 namespace ModularMonolith.APIs;
 
-public partial class Program
+public static partial class Program
 {
   private static void Main(string[] args)
   {
@@ -39,25 +39,35 @@ public partial class Program
 
     app.UseHttpsRedirection();
 
-    RouteGroupBuilder x = app.MapGroup("/currencies")
-       .WithTags("Currencies")
-       .WithCurrencyEndpoints()
+    app
+      .MapGroup("/currencies")
+      .
+    GetWithCurrencyEndpoints()
+      .WithTags("Currencies")
+      ;
+
+    app
+      .MapGroup("/games")
+      .WithBoardGameEndpoints()
+      .WithTags("Games")
+      ;
+
+    app
+      .MapGroup("/publishers")
+      .WithPublisherEndpoints()
+      .WithTags("Publishers")
+      ;
+
+    app
+      .MapGroup("shopping")
+      .WithShoppingBasketEndpoints()
+      .WithTags("Shopping")
+      ;
+
+    app.MapGroup("ui")
+       .WithUIEndpoints()
+       .WithTags("UI")
        ;
-
-    RouteGroupBuilder shoppingEndpoints =
-      app.MapGroup("shopping")
-         .WithTags("Shopping")
-         .WithShoppingBasketEndpoints()
-         ;
-
-    RouteGroupBuilder uiEndpoints =
-      app.MapGroup("ui")
-         .WithTags("UI")
-         .WithUIEndpoints()
-         ;
-
-    app.AddGamesEndpoints();
-    app.AddPublishersEndpoints();
 
     app.Run();
   }

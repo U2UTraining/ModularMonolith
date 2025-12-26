@@ -20,8 +20,8 @@ public readonly record struct Money
     string currency = Currency.ToString();
     CultureInfo ci = CultureInfo
       .GetCultures(CultureTypes.SpecificCultures)
-      .Where(x => new RegionInfo(x.Name).ISOCurrencySymbol == currency)
-      .First();
+      .First(x => new RegionInfo(x.Name).ISOCurrencySymbol == currency)
+      ;
     return Amount.ToString("C", ci);
   }
 

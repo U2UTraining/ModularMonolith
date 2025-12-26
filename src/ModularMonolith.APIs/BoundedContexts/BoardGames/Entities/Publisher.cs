@@ -10,11 +10,6 @@ public sealed class Publisher
 , IHistory
 , ISoftDeletable
 {
-  //[SetsRequiredMembers]
-  //public Publisher()
-  //: this(new PK<int>(0), new PublisherName("Unknown"))
-  //{ }
-
   /// <summary>
   /// Ctor for use by EF Core
   /// </summary>
@@ -26,11 +21,6 @@ public sealed class Publisher
   {
     Name = name;
   }
-
-  //[SetsRequiredMembers]
-  //public Publisher(int id, PublisherName name)
-  //: this(id, name.Value)
-  //{ }
 
   /// <summary>
   /// Immutable name of the publisher.
@@ -73,7 +63,7 @@ public sealed class Publisher
     return newGame;
   }
 
-  private List<Contact> _contacts = [];
+  private readonly List<Contact> _contacts = [];
 
   public IEnumerable<Contact> Contacts => _contacts.AsEnumerable();
 

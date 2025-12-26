@@ -20,21 +20,21 @@ public sealed partial class Currencies
     get; init;
   }
 
-  private IQueryable<CurrencyDTO>? _currencies = null;
+  private IQueryable<CurrencyDto>? _currencies = null;
 
   protected override async Task OnInitializedAsync()
   {
     _currencies = await GetCurrenciesAsync();
   }
 
-  private async ValueTask<IQueryable<CurrencyDTO>> GetCurrenciesAsync()
+  private async ValueTask<IQueryable<CurrencyDto>> GetCurrenciesAsync()
   {
-    IEnumerable<CurrencyDTO> result =
+    IEnumerable<CurrencyDto> result =
       await CurrencyClient.GetCurrenciesAsync();
     return result.AsQueryable();
   }
 
-  private async ValueTask EditCurrency(CurrencyDTO currency)
+  private async ValueTask EditCurrency(CurrencyDto currency)
   {
     CurrencyEditViewModel tempCurrency = new(currency.CurrencyName, currency.ValueInEuro);
     DialogParameters parameters = new()
@@ -54,7 +54,7 @@ public sealed partial class Currencies
       {
         // Fail fast
         await CurrencyClient.UpdateCurrencyValue(
-          new CurrencyDTO(tempCurrency.Name, tempCurrency.ValueInEuro), default);
+          new CurrencyDto(tempCurrency.Name, tempCurrency.ValueInEuro), default);
         _currencies = await GetCurrenciesAsync();
         ToastService.ShowSuccess(
            title: $"Currency {tempCurrency.Name} updated to {tempCurrency.ValueInEuro}."

@@ -9,12 +9,12 @@ public static class ShoppingBasketEndpoints
     public RouteGroupBuilder WithShoppingBasketEndpoints()
     {
       //// Query DBContext directly
-      group.MapGet("/{id:int}", async Task<Results<Ok<ShoppingBasketDTO>, NotFound>> (
+      group.MapGet("/{id:int}", async Task<Results<Ok<ShoppingBasketDto>, NotFound>> (
         [FromRoute] int id
       , [FromServices] IQuerySender querySender
       , CancellationToken cancellationToken) =>
       {
-        ShoppingBasketDTO? dto = await querySender.AskAsync(
+        ShoppingBasketDto? dto = await querySender.AskAsync(
           new ShoppingBasketWithIdQuery(id, includeGames: true), cancellationToken);
         if (dto is null)
         {
@@ -76,7 +76,7 @@ public static class ShoppingBasketEndpoints
 
       group.MapPut("/",
         async Task<Results<Ok, NotFound>> (
-          [FromBody] AddBoardGameToShoppingBasketDTO dto
+          [FromBody] AddBoardGameToShoppingBasketDto dto
         , [FromServices] ShoppingDb db
         , [FromServices] IIntegrationEventPublisher eventPublisher
         , CancellationToken cancellationToken) =>
@@ -88,8 +88,11 @@ public static class ShoppingBasketEndpoints
           {
             sb.AddGame(dto.BoardGameId, new Money(dto.PriceInEuro));
             await db.SaveChangesAsync(cancellationToken);
-            BoardGameSelectedForShoppingBasketIntegrationEvent e =
-                  new(dto.BoardGameId, dto.ShoppingBasketId, dto.PriceInEuro);
+            BoardGameSelectedForShoppingBasketIntegrationEvent e = new(
+              ShoppingBasketId: dto.ShoppingBasketId
+            , BoardGameId: dto.BoardGameId
+            , PriceInEuro: dto.PriceInEuro
+            );
             await eventPublisher.PublishIntegrationEventAsync(e);
             return TypedResults.Ok();
           }

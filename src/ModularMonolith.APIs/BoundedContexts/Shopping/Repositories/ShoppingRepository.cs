@@ -64,7 +64,7 @@ internal static class ShoppingRepostory
     {
       return await db
         .Baskets
-        .Where(sb => EF.Property<bool>(sb, SoftDeleteable.IsDeleted) == true)
+        .Where(sb => EF.Property<bool>(sb, SoftDeleteable.IsDeleted))
         .ExecuteDeleteAsync(cancellationToken);
     }
   }

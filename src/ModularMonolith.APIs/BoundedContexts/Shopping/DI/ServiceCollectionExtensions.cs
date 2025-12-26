@@ -64,7 +64,7 @@ public static class ServiceCollectionExtensions
   public static IServiceCollection AddShoppingQueries(
     this IServiceCollection services)
   => services
-    .AddScoped<IQueryHandler<ShoppingBasketWithIdQuery, ShoppingBasketDTO?>, ShoppingBasketWithIdQueryHandler>()
+    .AddScoped<IQueryHandler<ShoppingBasketWithIdQuery, ShoppingBasketDto?>, ShoppingBasketWithIdQueryHandler>()
   ;
 
   public static IServiceCollection AddShoppingCommands(

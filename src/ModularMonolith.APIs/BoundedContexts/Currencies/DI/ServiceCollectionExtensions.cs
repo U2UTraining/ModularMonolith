@@ -37,16 +37,6 @@ public static class ServiceCollectionExtensions
     return builder;
   }
 
-  //public static IServiceCollection AddCurrencies(
-  //  this IServiceCollection services
-  //, string connectionString)
-  //=> services
-  //  .AddCurrenciesCore()
-  //  .AddCurrenciesQueries()
-  //  .AddCurrenciesCommands()
-  //  //.AddCurrenciesInfra(connectionString)
-  //  ;
-
   public static IServiceCollection AddCurrenciesQueries(
     this IServiceCollection services)
   => services

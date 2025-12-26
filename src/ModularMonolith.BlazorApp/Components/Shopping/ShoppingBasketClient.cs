@@ -10,15 +10,15 @@ public class ShoppingBasketClient
   public ShoppingBasketClient(HttpClient httpClient) 
   => _httpClient = httpClient;
 
-  public async Task<ShoppingBasketDTO?> GetShoppingBasket(
+  public async Task<ShoppingBasketDto?> GetShoppingBasket(
     int shoppingBasketId
   , CancellationToken cancellationToken = default)
   {
     HttpResponseMessage response =
     await _httpClient.GetAsync($"{shoppingBasketId}", cancellationToken);
     _ = response.EnsureSuccessStatusCode();
-    ShoppingBasketDTO? shoppingBasket =
-      await response.Content.ReadFromJsonAsync<ShoppingBasketDTO>(cancellationToken);
+    ShoppingBasketDto? shoppingBasket =
+      await response.Content.ReadFromJsonAsync<ShoppingBasketDto>(cancellationToken);
     return shoppingBasket;
   }
 
@@ -42,7 +42,7 @@ public class ShoppingBasketClient
   , decimal priceInEuro
   , CancellationToken cancellationToken = default)
   {
-    AddBoardGameToShoppingBasketDTO dto = new(
+    AddBoardGameToShoppingBasketDto dto = new(
       ShoppingBasketId: shoppingBasketId
     , BoardGameId: boardGameId
     , PriceInEuro: priceInEuro

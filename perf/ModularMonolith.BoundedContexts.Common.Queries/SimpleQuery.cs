@@ -10,6 +10,6 @@ public sealed class SimpleQueryHandler
 {
   public Task<int> HandleAsync(
     SimpleQuery query
-  , CancellationToken cancellationToken)
+  , CancellationToken cancellationToken = default)
     => Task.FromResult(42);
 }

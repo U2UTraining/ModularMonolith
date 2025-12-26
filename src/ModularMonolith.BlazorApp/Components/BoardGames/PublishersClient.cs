@@ -9,26 +9,26 @@ public class PublishersClient
     _httpClient = httpClient;
   }
 
-  public async Task<IEnumerable<PublisherDTO>> GetPublishersAsync(
+  public async Task<IEnumerable<PublisherDto>> GetPublishersAsync(
     CancellationToken cancellationToken = default)
   {
     HttpResponseMessage response =
       await _httpClient.GetAsync("", cancellationToken);
     response.EnsureSuccessStatusCode();
-    IEnumerable<PublisherDTO>? publishers =
-      await response.Content.ReadFromJsonAsync<IEnumerable<PublisherDTO>>(cancellationToken);
+    IEnumerable<PublisherDto>? publishers =
+      await response.Content.ReadFromJsonAsync<IEnumerable<PublisherDto>>(cancellationToken);
     return publishers ?? [];
   }
 
-  public async Task<PublisherWithGamesDTO?> GetPublisherWithGamesAsync(
+  public async Task<PublisherWithGamesDto?> GetPublisherWithGamesAsync(
     int publisherId
   , CancellationToken cancellationToken = default)
   {
     HttpResponseMessage response =
       await _httpClient.GetAsync($"{publisherId}", cancellationToken);
     response.EnsureSuccessStatusCode();
-    PublisherWithGamesDTO? publisher =
-      await response.Content.ReadFromJsonAsync<PublisherWithGamesDTO>(cancellationToken);
+    PublisherWithGamesDto? publisher =
+      await response.Content.ReadFromJsonAsync<PublisherWithGamesDto>(cancellationToken);
     return publisher;
   }
 }

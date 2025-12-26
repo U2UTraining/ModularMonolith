@@ -2,22 +2,28 @@
 
 public static class GamesEndpoints
 {
-  public static void AddGamesEndpoints(this WebApplication app)
+  extension(RouteGroupBuilder group)
   {
-    RouteGroupBuilder games = app.MapGroup("/games")
-      .WithTags("Games");
+#pragma warning disable S2325 // Methods and properties that don't access instance data should be static
+    public RouteGroupBuilder WithBoardGameEndpoints()
+#pragma warning restore S2325 // Methods and properties that don't access instance data should be static
+    {
+      group.MapGet("/", GamesEndpoints.GetAllGames)
+        .WithName(nameof(GetAllGames))
+        .Produces<List<GameDto>>(StatusCodes.Status200OK);
 
-    _ = games.MapGet("/",
-      async (
+      return group;
+    }
+
+    public static async Task<Results<Ok<List<GameDto>>, BadRequest>> GetAllGames(
         [FromServices] IQuerySender querySender
       , [FromServices] GamesDb db
-      , CancellationToken cancellationToken) =>
+      , CancellationToken cancellationToken)
     {
       IEnumerable<BoardGame> games =
-      //  await db.Games.ToListAsync(cancellationToken);
         await querySender.AskAsync(GetAllGamesQuery.WithPublisher, cancellationToken);
-      List<GameDTO> allGames = games
-        .Select(g => new GameDTO(
+      List<GameDto> allGames = games
+        .Select(g => new GameDto(
           Id: g.Id
         , GameName: g.Name.Value
         , Price: g.Price.Amount
@@ -25,8 +31,6 @@ public static class GamesEndpoints
         , PublisherName: g.PublisherName))
         .ToList();
       return TypedResults.Ok(allGames);
-    })
-    .WithName("GetAllGames")
-    .Produces<List<GameDTO>>(StatusCodes.Status200OK);
+    }
   }
 }

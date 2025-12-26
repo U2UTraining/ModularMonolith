@@ -1,6 +1,6 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.Loggers;
 
-public sealed partial class CurrencyLogger
+public static partial class CurrencyLogger
 {
   [LoggerMessage(
         EventId = 123

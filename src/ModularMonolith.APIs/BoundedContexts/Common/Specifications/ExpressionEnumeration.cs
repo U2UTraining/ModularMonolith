@@ -1,6 +1,6 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Common.Specifications;
 
-internal class ExpressionEnumeration
+internal sealed class ExpressionEnumeration
 : ExpressionVisitor
 , IEnumerable<Expression>
 {
@@ -9,14 +9,14 @@ internal class ExpressionEnumeration
   public ExpressionEnumeration(Expression expression) 
   => _ = Visit(expression);
 
-  public override Expression? Visit(Expression? expression)
+  public override Expression? Visit(Expression? node)
   {
-    if (expression == null)
+    if (node == null)
     {
-      return expression;
+      return node;
     }
-    expressions.Add(expression);
-    return base.Visit(expression);
+    expressions.Add(node);
+    return base.Visit(node);
   }
 
   public IEnumerator<Expression> GetEnumerator() 

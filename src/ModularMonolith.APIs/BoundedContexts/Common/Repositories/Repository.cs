@@ -73,14 +73,14 @@ where D
   /// <summary>
   /// Save all changes
   /// </summary>
-  /// <param name="cancellationToken"></param>
+  /// <param name="token"></param>
   /// <returns></returns>
   /// <remarks>Triggers all domain events as part of the same transaction</remarks>
   public virtual async ValueTask SaveChangesAsync(
-    CancellationToken cancellationToken)
+    CancellationToken token)
   {
-    await DispatchEvents(DbContext, cancellationToken);
-    await DbContext.SaveChangesAsync(cancellationToken);
+    await DispatchEvents(DbContext, token);
+    await DbContext.SaveChangesAsync(token);
   }
 }
 

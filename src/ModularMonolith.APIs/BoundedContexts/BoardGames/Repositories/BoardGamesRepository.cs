@@ -17,7 +17,7 @@ internal sealed class BoardGamesRepository
 
   public async ValueTask ApplyMegaDiscountAsync(
     decimal discount
-  , CancellationToken cancellationToken)
+  , CancellationToken cancellationToken = default)
   {
     //DbSet<BoardGame> games = DbContext.Games;
     //foreach (BoardGame game in games)

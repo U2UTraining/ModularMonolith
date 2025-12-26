@@ -8,7 +8,6 @@ public class U2UIntegrationEventHostedService
 {
   private readonly Channel<IIntegrationEvent> _channel;
   private readonly U2UIntegrationEventProcessor _eventProcessor;
-  private readonly IServiceProvider _serviceProvider;
 
   public U2UIntegrationEventHostedService(
     Channel<IIntegrationEvent> channel
@@ -18,17 +17,16 @@ public class U2UIntegrationEventHostedService
   {
     _channel = channel;
     _eventProcessor = eventProcessor;
-    _serviceProvider = serviceProvider;
   }
 
   protected override async Task ExecuteAsync(
-    CancellationToken cancellationToken)
+    CancellationToken stoppingToken)
   {
     await foreach (IIntegrationEvent @event 
-    in _channel.Reader.ReadAllAsync(cancellationToken))
+    in _channel.Reader.ReadAllAsync(stoppingToken))
     {
       // Process message
-      await _eventProcessor.ProcessIntegrationEventAsync(@event, cancellationToken);
+      await _eventProcessor.ProcessIntegrationEventAsync(@event, stoppingToken);
     }
   }
 }

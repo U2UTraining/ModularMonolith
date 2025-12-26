@@ -7,7 +7,9 @@
 /// <typeparam name="ROOT">
 /// This has to be an IAggregateRoot
 /// </typeparam>
+#pragma warning disable S2326 // Unused type parameters should be removed
 public interface IAggregate<ROOT>
+#pragma warning restore S2326 // Unused type parameters should be removed
 where ROOT 
 : IAggregateRoot
 { }

@@ -20,7 +20,7 @@ public sealed class IntegrationEventsShould
       .HaveNameEndingWith("IntegrationEvent")
       .GetResult();
 
-    if (result.IsSuccessful is false)
+    if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following classed do not follow conventions: {failedTypes}");
@@ -40,7 +40,7 @@ public sealed class IntegrationEventsShould
       .BeSealed()
       .GetResult();
 
-    if (result.IsSuccessful == false)
+    if (!result.IsSuccessful)
     {
       var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following Integration Events are not sealed: {failedTypes}");
@@ -59,7 +59,7 @@ public sealed class IntegrationEventsShould
       .BeSealed()
       .GetResult();
 
-    if (result.IsSuccessful == false)
+    if (!result.IsSuccessful)
     {
       var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following Integration Events are not public: {failedTypes}");

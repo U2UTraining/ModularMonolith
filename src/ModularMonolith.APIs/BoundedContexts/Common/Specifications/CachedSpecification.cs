@@ -4,7 +4,7 @@
 /// A Specification with extra caching information.
 /// </summary>
 /// <typeparam name="T">The entity class' type.</typeparam>
-public class CachedSpecification<T, K>
+public sealed class CachedSpecification<T, K>
 : Specification<T>
 , IEquatable<CachedSpecification<T, K>>
 where T : class, IAggregateRoot

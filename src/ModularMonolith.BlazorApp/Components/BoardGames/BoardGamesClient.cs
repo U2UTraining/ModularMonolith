@@ -9,14 +9,14 @@ public class BoardGamesClient
     _httpClient = httpClient;
   }
 
-  public async Task<IEnumerable<GameDTO>> GetGamesAsync(
+  public async Task<IEnumerable<GameDto>> GetGamesAsync(
     CancellationToken cancellationToken = default)
   {
     HttpResponseMessage response =
       await _httpClient.GetAsync("", cancellationToken);
     response.EnsureSuccessStatusCode();
-    IEnumerable<GameDTO>? games =
-      await response.Content.ReadFromJsonAsync<IEnumerable<GameDTO>>(cancellationToken);
+    IEnumerable<GameDto>? games =
+      await response.Content.ReadFromJsonAsync<IEnumerable<GameDto>>(cancellationToken);
     return games ?? [];
   }
 }

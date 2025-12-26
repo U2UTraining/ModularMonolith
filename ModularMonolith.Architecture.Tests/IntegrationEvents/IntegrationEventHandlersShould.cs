@@ -1,5 +1,4 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.Commands;
-using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
+﻿using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
 
 namespace ModularMonolith.Architecture.Tests.IntegrationEvents;
 
@@ -16,7 +15,7 @@ public sealed class IntegrationEventHandlersShould
       .HaveNameEndingWith("IntegrationEventHandler")
       .GetResult();
 
-    if (result.IsSuccessful is false)
+    if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following classed do not follow conventions: {failedTypes}");
@@ -36,7 +35,7 @@ public sealed class IntegrationEventHandlersShould
       .BeSealed()
       .GetResult();
 
-    if (result.IsSuccessful == false)
+    if (!result.IsSuccessful)
     {
       var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following Integration Events Handlers are not sealed: {failedTypes}");
@@ -55,7 +54,7 @@ public sealed class IntegrationEventHandlersShould
       .NotBePublic()
       .GetResult();
 
-    if (result.IsSuccessful == false)
+    if (!result.IsSuccessful)
     {
       var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following Integration Events Handlers are public: {failedTypes}");

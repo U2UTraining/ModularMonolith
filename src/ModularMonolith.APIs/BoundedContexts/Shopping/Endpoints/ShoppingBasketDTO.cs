@@ -1,19 +1,19 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.Endpoints;
 
-public record class ShoppingBasketDTO(
+public record class ShoppingBasketDto(
   int ShoppingBasketId
-, List<GameDTO> Games
+, List<GameDto> Games
 )
 {
-  public static ShoppingBasketDTO ToDTO(ShoppingBasket basket, IQueryable<BoardGame>? games)
+  public static ShoppingBasketDto ToDTO(ShoppingBasket basket, IQueryable<BoardGame>? games)
   {
 
-    ShoppingBasketDTO dto = new ShoppingBasketDTO(
+    ShoppingBasketDto dto = new ShoppingBasketDto(
       ShoppingBasketId: basket.Id.Key,
       Games: basket.Items.Select(item =>
       {
         BoardGame? game = games?.FirstOrDefault(g => g.Id == item.BoardGameId);
-        return new GameDTO(
+        return new GameDto(
           Id: item.BoardGameId.Key,
           GameName: game?.Name ?? string.Empty,
           Price: item.Price.Amount,

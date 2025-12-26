@@ -38,19 +38,10 @@
 @code
 {
   public DesignThemeModes Mode { get; set; }
+
   public OfficeColor? OfficeColor { get; set; }
 
-  void OnLoaded(LoadedEventArgs e)
-  {
-    Console.WriteLine($"Loaded: {(e.Mode == DesignThemeModes.System ? "System" : "")} {(e.IsDark ? "Dark" : "Light")}");
-  }
-
-  void OnLuminanceChanged(LuminanceChangedEventArgs e)
-  {
-    Console.WriteLine($"Changed: {(e.Mode == DesignThemeModes.System ? "System" : "")} {(e.IsDark ? "Dark" : "Light")}");
-  }
-
-  void PickRandomColor()
+  private void PickRandomColor()
   {
     OfficeColor = OfficeColorUtilities.GetRandom();
   }

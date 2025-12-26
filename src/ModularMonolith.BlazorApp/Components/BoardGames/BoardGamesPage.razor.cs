@@ -26,11 +26,11 @@ public sealed partial class BoardGamesPage
   }
 
   // Easy Access
-  private IQueryable<GameDTO>? Games => State.Games;
+  private IQueryable<GameDto>? Games => State.Games;
 
-  private async Task<IQueryable<GameDTO>> GetBoardGames()
+  private async Task<IQueryable<GameDto>> GetBoardGames()
   {
-    IEnumerable<GameDTO> result =
+    IEnumerable<GameDto> result =
       await BoardGamesClient.GetGamesAsync(default);
     //await Sender.AskAsync(GetAllGamesQuery.WithPublisher, default)
     //            .ConfigureAwait(true);
@@ -52,7 +52,7 @@ public sealed partial class BoardGamesPage
   private void OnPropertyChanged(object? sender, PropertyChangedEventArgs e)
   => this.InvokeAsync(StateHasChanged);
 
-  private async Task AddBoardGameToBasket(GameDTO game)
+  private async Task AddBoardGameToBasket(GameDto game)
   {
     if (State.ShoppingBasketId is null)
     {
@@ -82,7 +82,7 @@ public sealed partial class BoardGamesPage
   //  }
   //}
 
-  private string BoardGameImageURL(GameDTO game)
+  private string BoardGameImageURL(GameDto game)
   => game.ImageURL ?? "https://u2ublogimages.blob.core.windows.net/cleanarchitecture/GamesStore_BoardGame.jpg";
 
   private async Task GiveGlobalDiscount()

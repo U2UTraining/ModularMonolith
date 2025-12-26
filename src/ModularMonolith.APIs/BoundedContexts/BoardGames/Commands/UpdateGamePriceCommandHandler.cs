@@ -5,7 +5,7 @@ internal sealed class UpdateGamePriceCommandHandler
 {
   public async Task<bool> HandleAsync(
     UpdateGamePriceCommand request
-  , CancellationToken cancellationToken)
+  , CancellationToken cancellationToken = default)
   {
     request.Game.SetPrice(request.PriceInEuro);
     return await Task.FromResult(true).ConfigureAwait(false);

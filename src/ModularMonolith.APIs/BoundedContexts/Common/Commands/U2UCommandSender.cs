@@ -1,7 +1,4 @@
-﻿
-namespace ModularMonolith.APIs.BoundedContexts.Common.Commands;
-
-using Azure;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Common.Commands;
 
 using FluentValidation.Results;
 

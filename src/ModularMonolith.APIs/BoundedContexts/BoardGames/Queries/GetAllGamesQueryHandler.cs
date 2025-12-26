@@ -8,7 +8,9 @@ internal sealed class GetAllGamesQueryHandler
   public GetAllGamesQueryHandler(IReadonlyRepository<BoardGame> repo)
   => _repo = repo;
 
-  public async Task<IQueryable<BoardGame>> HandleAsync(GetAllGamesQuery request, CancellationToken cancellationToken)
+  public async Task<IQueryable<BoardGame>> HandleAsync(
+    GetAllGamesQuery request
+  , CancellationToken cancellationToken = default)
   {
     ISpecification<BoardGame> spec = Specification<BoardGame>.All();
     if (request.IncludePublisher)

@@ -29,7 +29,7 @@
 <h2>Publisher's Games</h2>
 
 <div class="games">
-  <FluentDataGrid Items="@Games" TGridItem="GameDTO" RowSize="DataGridRowSize.Medium">
+  <FluentDataGrid Items="@Games" TGridItem="GameDto" RowSize="DataGridRowSize.Medium">
     <PropertyColumn Property="@(bg => bg.GameName)" title="Name" Sortable="true" />
     <PropertyColumn Property="@(bg => bg.PublisherName)" Title="Publisher" Sortable="true" />
     <PropertyColumn Property="@(bg => bg.Price.ToString())" Title="Price" Sortable="true" />
@@ -39,7 +39,7 @@
 <h2>Publisher's Contacts</h2>
 
 <div class="games">
-  <FluentDataGrid Items="@Contacts" TGridItem="ContactDTO" RowSize="DataGridRowSize.Medium">
+  <FluentDataGrid Items="@Contacts" TGridItem="ContactDto" RowSize="DataGridRowSize.Medium">
     <PropertyColumn Property="@(c => c.FirstName)" title="First Name" Sortable="true" />
     <PropertyColumn Property="@(c => c.LastName)" Title="Last Name" Sortable="true" />
     <PropertyColumn Property="@(c => c.Email)" Title="Street" Sortable="true" />

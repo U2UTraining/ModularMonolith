@@ -1,19 +1,18 @@
 ﻿using FluentValidation.Results;
 
-namespace ModularMonolith.APIs.BoundedContexts.Common.Commands;
-
-using Invoker = Func<
+using Invoker = System.Func<
   object                      // CommandHandler
 , object                      // Command
-, CancellationToken
-, Task<object>>;
+, System.Threading.CancellationToken
+, System.Threading.Tasks.Task<object>>;
 
-using Validator = Func<
+using Validator = System.Func<
     object                    // IValidator<T>
   , object                    // command
-  , CancellationToken
-  , Task<ValidationResult>>;
+  , System.Threading.CancellationToken
+  , System.Threading.Tasks.Task<FluentValidation.Results.ValidationResult>>;
 
+namespace ModularMonolith.APIs.BoundedContexts.Common.Commands;
 /// <summary>
 /// Generate the Invoker for an ICommandHandler<TCommand, TResponse>
 /// and cache it.
@@ -27,16 +26,15 @@ public sealed class U2UCommandInvoker
 
   public static U2UCommandInvoker Instance { get; } = new();
 
-  private Dictionary<Type, Invoker> _invokers 
-    = new();
+  private readonly Dictionary<Type, Invoker> _invokers
+    = [];
 
-  private Invoker CreateInvoker(
+  private static Invoker CreateInvoker(
     Type commandHandlerType)
   {
     // eventHandlerType is of type ICommandHandler<CommandType, ResultType>
     Type commandType = commandHandlerType.GetGenericArguments()[0];
     Type resultType = commandHandlerType.GetGenericArguments()[1];
-    //Type valueTaskType = typeof(ValueTask<>).MakeGenericType(resultType);
 
     // (eventHandler, event, cancellationToken)
     // => eventHandler.HandleAsync(@event, cancellationToken)
@@ -54,22 +52,20 @@ public sealed class U2UCommandInvoker
       commandHandlerType.GetMethod("HandleAsync");
     MethodCallExpression method =
       Expression.Call(handlerCast, handleAsyncMethod!, cast, cancellationToken);
-    //Expression<Func<object, object, CancellationToken, Task<object>>> lambda =
-    //  Expression.Lambda<Func<object, object, CancellationToken, Task<object>>>(method, commandHandler, command, cancellationToken);
 
-    var lambdaType = typeof(Func<,,,>)
+    Type lambdaType = typeof(Func<,,,>)
       .MakeGenericType(
         typeof(object)
       , typeof(object)
       , typeof(CancellationToken)
       , typeof(Task<>).MakeGenericType(resultType));
-    var lambda = Expression.Lambda(lambdaType, method, commandHandler, command, cancellationToken);
-    var compiled = lambda.Compile();
+    LambdaExpression lambda = Expression.Lambda(lambdaType, method, commandHandler, command, cancellationToken);
+    Delegate compiled = lambda.Compile();
 
     // Wrap Task<TResult> as Task<object>
     return async (object handler, object cmd, CancellationToken ct) =>
     {
-      var task = (Task)compiled.DynamicInvoke(handler, cmd, ct)!;
+      Task task = (Task)compiled.DynamicInvoke(handler, cmd, ct)!;
       await task.ConfigureAwait(false);
       PropertyInfo? resultProperty = task.GetType().GetProperty("Result");
       return resultProperty?.GetValue(task)!;
@@ -83,12 +79,13 @@ public sealed class U2UCommandInvoker
     {
       return invoker;
     }
+
     invoker = CreateInvoker(invokerType);
     _invokers[invokerType] = invoker;
     return invoker;
   }
 
-  private Validator CreateValidator(
+  private static Validator CreateValidator(
     Type commandValidatorType)
   {
     Type commandType = commandValidatorType.GetGenericArguments()[0];
@@ -109,8 +106,6 @@ public sealed class U2UCommandInvoker
       commandValidatorType.GetMethod("ValidateAsync");
     MethodCallExpression method =
       Expression.Call(validatorCast, validateAsyncMethod!, commandCast, cancellationToken);
-    //Expression<Func<object, object, CancellationToken, Task<object>>> lambda =
-    //  Expression.Lambda<Func<object, object, CancellationToken, Task<object>>>(method, commandHandler, command, cancellationToken);
 
     Type lambdaType = typeof(Func<,,,>)
       .MakeGenericType(
@@ -119,15 +114,13 @@ public sealed class U2UCommandInvoker
       , typeof(CancellationToken)
       , typeof(Task<ValidationResult>)
       );
-    var lambda = Expression.Lambda(lambdaType, method, validator, command, cancellationToken);
-    Validator compiled = (Validator) lambda.Compile();
-
-    // Wrap Task<TResult> as Task<object>
+    LambdaExpression lambda = Expression.Lambda(lambdaType, method, validator, command, cancellationToken);
+    Validator compiled = (Validator)lambda.Compile();
     return compiled;
   }
 
-  private Dictionary<Type, Validator> _validators
-    = new();
+  private readonly Dictionary<Type, Validator> _validators
+    = [];
 
   public Validator GetValidator(
     Type validatorType)
@@ -136,6 +129,7 @@ public sealed class U2UCommandInvoker
     {
       return validator;
     }
+
     validator = CreateValidator(validatorType);
     _validators[validatorType] = validator;
     return validator;

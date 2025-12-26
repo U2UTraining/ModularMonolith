@@ -1,7 +1,7 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Common.Queries;
+﻿
+using Invoker = System.Func<object, object, System.Threading.CancellationToken, System.Threading.Tasks.Task<object>>;
 
-using Invoker = Func<object, object, CancellationToken, Task<object>>;
-
+namespace ModularMonolith.APIs.BoundedContexts.Common.Queries;
 /// <summary>
 /// Generate the Invoker for an IQueryHandler<TQuery, TResponse>
 /// and cache it.
@@ -11,14 +11,16 @@ using Invoker = Func<object, object, CancellationToken, Task<object>>;
 /// </Remarks>
 public sealed class U2UQueryInvoker
 {
-  private U2UQueryInvoker() { }
+  private U2UQueryInvoker()
+  {
+  }
 
   public static U2UQueryInvoker Instance { get; } = new();
 
-  private Dictionary<Type, Invoker> _invokers
-    = new();
+  private readonly Dictionary<Type, Invoker> _invokers
+    = [];
 
-  private Invoker CreateInvoker(
+  private static Invoker CreateInvoker(
     Type commandHandlerType)
   {
     // eventHandlerType is of type ICommandHandler<CommandType, ResultType>
@@ -54,14 +56,13 @@ public sealed class U2UQueryInvoker
     // Wrap Task<TResult> as Task<object>
     return (object handler, object cmd, CancellationToken ct) =>
     {
-      var task = (Task)compiled.DynamicInvoke(handler, cmd, ct)!;
+      Task task = (Task)compiled.DynamicInvoke(handler, cmd, ct)!;
       return task.ContinueWith(t =>
       {
         var resultProperty = task.GetType().GetProperty("Result");
         return resultProperty?.GetValue(task)!;
       }, ct);
     };
-    //return lambda.Compile();
   }
 
   public Invoker GetInvoker(
@@ -71,6 +72,7 @@ public sealed class U2UQueryInvoker
     {
       return invoker;
     }
+
     invoker = CreateInvoker(invokerType);
     _invokers[invokerType] = invoker;
     return invoker;

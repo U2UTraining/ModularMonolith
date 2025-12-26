@@ -10,7 +10,7 @@ internal sealed class ApplyMegaDiscountCommandHandler
 
   public async Task<bool> HandleAsync(
     ApplyMegaDiscountCommand request
-  , CancellationToken cancellationToken)
+  , CancellationToken cancellationToken = default)
   {
     decimal discount = 
       request.GiveDiscount 

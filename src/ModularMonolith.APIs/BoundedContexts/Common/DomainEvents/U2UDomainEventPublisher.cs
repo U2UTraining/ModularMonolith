@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Common.DomainEvents;
+﻿using System.Linq;
+
+namespace ModularMonolith.APIs.BoundedContexts.Common.DomainEvents;
 
 using Invoker = Func<object, object, CancellationToken, ValueTask>;
 
@@ -28,12 +30,11 @@ public class U2UDomainEventPublisher
     {
       Invoker invoker =
         U2UDomainEventInvoker.Instance.GetInvoker(serviceType);
-      foreach (IDomainEventHandler? handler in domainEventHandlers)
+      foreach (var handler in from IDomainEventHandler? handler in domainEventHandlers
+                              where handler is not null
+                              select handler)
       {
-        if (handler is not null)
-        {
-          await invoker(handler, @event, cancellationToken);
-        }
+        await invoker(handler, @event, cancellationToken);
       }
     }
   }

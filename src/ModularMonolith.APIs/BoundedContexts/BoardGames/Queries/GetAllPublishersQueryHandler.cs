@@ -10,7 +10,7 @@ internal sealed class GetAllPublishersQueryHandler
 
   public async Task<IQueryable<Publisher>> HandleAsync(
     GetAllPublishersQuery request
-  , CancellationToken cancellationToken)
+  , CancellationToken cancellationToken = default)
   {
     // Query Splitting?
     ISpecification<Publisher> spec = Specification<Publisher>

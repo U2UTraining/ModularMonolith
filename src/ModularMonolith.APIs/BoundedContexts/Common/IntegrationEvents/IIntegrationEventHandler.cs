@@ -3,7 +3,7 @@
 public interface IIntegrationEventHandler
 { }
 
-public interface IIntegrationEventHandler<TIntegrationEvent>
+public interface IIntegrationEventHandler<in TIntegrationEvent>
 where TIntegrationEvent
 : IIntegrationEvent
 {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ModularMonolith.Architecture.Tests.BoundedContexts;
+﻿namespace ModularMonolith.Architecture.Tests.BoundedContexts;
 
 public class CurrencyBoundedContextShould
 {
@@ -17,7 +13,7 @@ public class CurrencyBoundedContextShould
      .BePublic()
      .GetResult();
 
-    if (result.IsSuccessful is false)
+    if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following classed do not follow conventions: {failedTypes}");
@@ -43,7 +39,7 @@ public class CurrencyBoundedContextShould
      .NotBePublic()
      .GetResult();
 
-    if (result.IsSuccessful is false)
+    if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following classed do not follow conventions: {failedTypes}");

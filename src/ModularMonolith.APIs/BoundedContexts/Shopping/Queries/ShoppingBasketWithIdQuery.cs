@@ -5,4 +5,4 @@ public sealed record class ShoppingBasketWithIdQuery(
 , bool includeGames = false
 , bool includeCustomer = false
 )
-  : IQuery<ShoppingBasketDTO?>;
+  : IQuery<ShoppingBasketDto?>;

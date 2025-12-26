@@ -1,7 +1,7 @@
 ﻿using Aspire.Hosting.ApplicationModel;
 namespace ModularMonolith.Smtp4Dev.Hosting;
 
-public sealed class Smtp4devResource(string name)
+public sealed class Smtp4DevResource(string name)
 : ContainerResource(name)
 , IResourceWithConnectionString
 {

@@ -1,12 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+﻿using ModularMonolith.ServiceDefaults;
 
-using ModularMonolith.MigrationService;
-using ModularMonolith.ServiceDefaults;
-using ModularMonolith.APIs.BoundedContexts.Currencies.Infra;
-using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
+namespace ModularMonolith.MigrationService;
 
-internal class Program
+internal static class Program
 {
   private static void Main(string[] args)
   {

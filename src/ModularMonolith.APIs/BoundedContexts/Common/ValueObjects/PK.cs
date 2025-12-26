@@ -8,7 +8,7 @@
 /// For performance, declare structs as readonly to avoid unnecessary copying
 /// Also, use default to create a new PK
 /// </remarks>
-[DebuggerDisplay("PK {Value}")]
+[DebuggerDisplay("PK {Key}")]
 public readonly record struct PK<T>
 {
   public PK(T key) 

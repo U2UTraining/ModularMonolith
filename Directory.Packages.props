@@ -67,7 +67,11 @@
     <PackageVersion Include="Microsoft.Build.Tasks.Core" Version="18.0.2" />
     <PackageVersion Include="Microsoft.Build.Utilities.Core" Version="18.0.2" />
   </ItemGroup>
+  <!-- Code Quality -->
   <ItemGroup>
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.17.0.131074" />
+  </ItemGroup>
+    <ItemGroup>
     <!-- Benchmarks -->
     <PackageVersion Include="BenchmarkDotNet" Version="0.15.8" />
     <PackageVersion Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.15.8" />

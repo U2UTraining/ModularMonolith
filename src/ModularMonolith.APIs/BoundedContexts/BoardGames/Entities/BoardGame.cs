@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
+﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.DomainEvents;
+
+namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
 
 /// <summary>
 /// Entity representing a board game.
@@ -11,10 +13,6 @@ public sealed class BoardGame
 , ISoftDeletable
 {
   private static Money DefaultGamePrice { get; } = new(50M, CurrencyName.EUR);
-
-  //public BoardGame()
-  //: this(new PK<int>(0), new BoardGameName("Unknown"))
-  //{ }
 
   /// <summary>
   /// Ctor for use by EF Core
@@ -40,7 +38,7 @@ public sealed class BoardGame
     Publisher.AddGame(this);
   }
 
-  public BoardGameName Name { get; private set; } = default!;
+  public BoardGameName Name { get; private set; } 
 
   public Publisher Publisher { get; private set; } = default!;
 
@@ -61,7 +59,7 @@ public sealed class BoardGame
   public void SetPrice(in Money price)
   {
     Price = price;
-    //this.RegisterDomainEvent(new GamePriceHasChanged(this));
+    this.RegisterDomainEvent(new GamePriceHasChangedDomainEvent(this));
   }
 
   public void SetImage(Uri ImageURL)

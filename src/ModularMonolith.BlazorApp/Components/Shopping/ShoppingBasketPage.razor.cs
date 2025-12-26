@@ -19,12 +19,12 @@ public sealed partial class ShoppingBasketPage
   //[Inject]
   //public required IIntegrationEventPublisher integrationEventPublisher { get; set; }
 
-  private ShoppingBasketDTO? ShoppingBasket
+  private ShoppingBasketDto? ShoppingBasket
   {
     get; set;
   }
 
-  private IQueryable<GameDTO> _games = default!;
+  private IQueryable<GameDto> _games = default!;
 
   protected override async Task OnInitializedAsync()
   {
@@ -42,12 +42,12 @@ public sealed partial class ShoppingBasketPage
     }
   }
 
-  private async Task RemoveGameFromBasket(GameDTO game)
+  private async Task RemoveGameFromBasket(GameDto game)
   {
     await Task.CompletedTask;
   }
 
-  private string BoardGameImageURL(GameDTO game)
+  private static string BoardGameImageURL(GameDto game)
 => game.ImageURL ?? "https://u2ublogimages.blob.core.windows.net/cleanarchitecture/GamesStore_BoardGame.jpg";
 
   //private async Task CheckOut() 

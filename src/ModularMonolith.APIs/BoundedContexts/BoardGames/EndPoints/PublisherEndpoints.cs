@@ -2,66 +2,65 @@
 
 public static class PublisherEndpoints
 {
-  public static void AddPublishersEndpoints(this WebApplication app)
+  extension(RouteGroupBuilder group)
   {
-    RouteGroupBuilder publishers = app.MapGroup("/publishers")
-      .WithTags("Publishers");
+#pragma warning disable S2325 // Methods and properties that don't access instance data should be static
+    public RouteGroupBuilder WithPublisherEndpoints()
+#pragma warning restore S2325 // Methods and properties that don't access instance data should be static
+    {
+      group
+        .MapGet("/", PublisherEndpoints.GetAllPublishers)
+        .WithName(nameof(GetAllPublishers))
+        ;
+      group
+        .MapGet("/{id:int}", GetPublisherById)
+        .WithName(nameof(GetPublisherById))
+        ;
+      return group;
+    }
 
-    _ = publishers.MapGet("/",
-          async (
-            [FromServices] IQuerySender querySender
-          , [FromServices] GamesDb db
-          , CancellationToken cancellationToken) =>
-          {
-            IEnumerable<Publisher> publishers =
-                    //  await db.Games.ToListAsync(cancellationToken);
-                    await querySender.AskAsync(GetAllPublishersQuery.Default, cancellationToken);
-            List<PublisherDTO> allPublishers = publishers
-                    .Select(p => new PublisherDTO(
-                      Id: p.Id
-                    , PublisherName: p.Name))
-                    .ToList();
-            return TypedResults.Ok(allPublishers);
-          })
-          .WithName("GetAllPublishers")
-          .Produces<List<PublisherDTO>>(StatusCodes.Status200OK);
+    public static async Task<Results<Ok<List<PublisherDto>>, BadRequest>> GetAllPublishers(
+      [FromServices] IQuerySender querySender
+    , [FromServices] GamesDb db
+    , CancellationToken cancellationToken)
+    {
+      IEnumerable<Publisher> publishers =
+          await querySender.AskAsync(GetAllPublishersQuery.Default, cancellationToken);
+      List<PublisherDto> allPublishers = publishers
+              .Select(p => new PublisherDto(
+                Id: p.Id
+              , PublisherName: p.Name))
+              .ToList();
+      return TypedResults.Ok(allPublishers);
+    }
 
-    _ = publishers.MapGet("/{id:int}",
-          async Task<Results<Ok<PublisherWithGamesDTO>, NotFound>> (
-            [FromServices] IQuerySender querySender
-          , [FromRoute] int id
-          , CancellationToken cancellationToken) =>
-          {
-          GetPublisherWithGamesQuery query = new(id);
-          Publisher? publisher = await querySender.AskAsync(query, cancellationToken);
-          if (publisher is not null)
-          {
-            PublisherWithGamesDTO publisherDto = new(
-              Id: publisher.Id
-            , PublisherName: publisher.Name
-            , Games: publisher.Games.Select(g => new GameDTO(
-                Id: g.Id
-              , GameName: g.Name
-              , Price: g.Price.Amount
-              , ImageURL: g.ImageURL
-              , PublisherName: publisher.Name)
-              ).ToList()
-            , Contacts: publisher.Contacts.Select(c => new ContactDTO
-                {
-                  FirstName= c.FirstName
-                , LastName= c.LastName
-                  , Email= c.Email
-                }).ToList()
-              );
-              return TypedResults.Ok(publisherDto);
-            }
-            else
-            {
-              return TypedResults.NotFound();
-            }
-          })
-          .WithName("GetPublisherById")
-          .Produces<PublisherWithGamesDTO>(StatusCodes.Status200OK)
-          .Produces(StatusCodes.Status404NotFound);
+    public static async Task<Results<Ok<PublisherWithGamesDto>, NotFound>> GetPublisherById(
+      [FromServices] IQuerySender querySender
+    , [FromRoute] int id
+    , CancellationToken cancellationToken)
+    {
+      GetPublisherWithGamesQuery query = new(id);
+      Publisher? publisher = await querySender.AskAsync(query, cancellationToken);
+      if (publisher is not null)
+      {
+        PublisherWithGamesDto publisherDto = new(
+          Id: publisher.Id
+        , PublisherName: publisher.Name
+        , Games: publisher.Games.Select(g => new GameDto(
+            Id: g.Id
+          , GameName: g.Name
+          , Price: g.Price.Amount
+          , ImageURL: g.ImageURL
+          , PublisherName: publisher.Name)
+          ).ToList()
+        , Contacts: publisher.Contacts.Select(c => new ContactDto(c.FirstName, c.LastName, c.Email)).ToList()
+          );
+        return TypedResults.Ok(publisherDto);
+      }
+      else
+      {
+        return TypedResults.NotFound();
+      }
+    }
   }
 }

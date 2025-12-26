@@ -1,6 +1,6 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.EndPoints;
 
-public sealed record class GameDTO(
+public sealed record class GameDto(
   int Id
 , string GameName
 , decimal Price

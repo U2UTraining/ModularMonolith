@@ -14,7 +14,7 @@ public interface IDomainEventHandler
 /// A domain event handler should be registered in DI.
 /// There can be multiple handlers for the same domain event.
 /// </remarks>
-public interface IDomainEventHandler<TDomainEvent>
+public interface IDomainEventHandler<in TDomainEvent>
 : IDomainEventHandler
 where TDomainEvent
 : IDomainEvent

@@ -7,5 +7,7 @@
 /// <typeparam name="TResponse">
 /// The response for the command
 /// </typeparam>
+#pragma warning disable S2326 // Unused type parameters should be removed
 public interface ICommand<TResponse>
+#pragma warning restore S2326 // Unused type parameters should be removed
 { }

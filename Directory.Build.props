@@ -7,9 +7,22 @@
         <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     </PropertyGroup>
 
-    <!-- Required for auto version generation -->
+    <!-- Aspire -->
     <PropertyGroup>
+        <AspireVersion>13.1.0</AspireVersion>
+    </PropertyGroup>
+
+    <!-- Global Packages -->
+    <ItemGroup>
+        <PackageReference Include="SonarAnalyzer.CSharp">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <!-- Required for auto version generation -->
+    <!--<PropertyGroup>
         <Deterministic>false</Deterministic>
         <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
-    </PropertyGroup>
+    </PropertyGroup>-->
 </Project>

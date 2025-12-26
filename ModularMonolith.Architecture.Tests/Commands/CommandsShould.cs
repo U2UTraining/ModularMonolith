@@ -15,7 +15,7 @@ public sealed class CommandsShould
       .HaveNameEndingWith("Command")
       .GetResult();
 
-    if (result.IsSuccessful is false)
+    if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following classed do not follow conventions: {failedTypes}");
@@ -35,7 +35,7 @@ public sealed class CommandsShould
       .BeSealed()
       .GetResult();
 
-    if (result.IsSuccessful == false)
+    if (!result.IsSuccessful)
     {
       var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following Commands are not sealed: {failedTypes}");
@@ -54,7 +54,7 @@ public sealed class CommandsShould
       .BeSealed()
       .GetResult();
 
-    if (result.IsSuccessful == false)
+    if (!result.IsSuccessful)
     {
       var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following Commands are not public: {failedTypes}");

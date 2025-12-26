@@ -29,7 +29,7 @@ public readonly record struct PositiveDecimal
   public decimal Value 
   => ThrowIfNonPositiveDecimal(_value);
 
-  private decimal ThrowIfNonPositiveDecimal(decimal value)
+  private static decimal ThrowIfNonPositiveDecimal(decimal value)
   {
     if (value <= 0M)
     {

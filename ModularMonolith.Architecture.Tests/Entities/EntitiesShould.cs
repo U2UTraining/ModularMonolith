@@ -20,7 +20,7 @@ public class EntitiesShould
       .BeSealed()
       .GetResult();
 
-    if (result.IsSuccessful is false)
+    if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following classed are not sealed: {failedTypes}");
@@ -41,7 +41,7 @@ public class EntitiesShould
       .Inherit(typeof(EntityBase<>))
       .GetResult();
 
-    if (result.IsSuccessful is false)
+    if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following entity classed do not inherit from EntityBase: {failedTypes}");
@@ -62,7 +62,7 @@ public class EntitiesShould
     .ImplementInterface(typeof(IHistory))
     .GetResult();
 
-    if (result.IsSuccessful is false)
+    if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following entity classed do not implement IHistory: {failedTypes}");
@@ -83,7 +83,7 @@ public class EntitiesShould
     .ImplementInterface(typeof(ISoftDeletable))
     .GetResult();
 
-    if (result.IsSuccessful is false)
+    if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following entity classed do not implement ISoftDeletable: {failedTypes}");

@@ -34,7 +34,7 @@ public readonly record struct NonEmptyString
   public override string ToString()
   => Value;
 
-  private string ThrowIfNonEmptyString(string? value)
+  private static string ThrowIfNonEmptyString(string? value)
   {
     ArgumentException.ThrowIfNullOrEmpty(value);
     return value;

@@ -3,7 +3,7 @@ using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
 
 namespace ModularMonolith.APIs.BoundedContexts.Currencies.Entities;
 
-[DebuggerDisplay("Currency {Name,nq} = {ValueInEuro}EUR")]
+[DebuggerDisplay("Currency {Id,nq} = {ValueInEuro}EUR")]
 public sealed class Currency
 : EntityBase<PK<CurrencyName>>
 , IAggregateRoot
@@ -40,8 +40,8 @@ public sealed class Currency
   {
     CultureInfo ci = CultureInfo
       .GetCultures(CultureTypes.SpecificCultures)
-      .Where(x => new RegionInfo(x.Name).ISOCurrencySymbol == Id.Key.ToString())
-      .First();
+      .First(x => new RegionInfo(x.Name).ISOCurrencySymbol == Id.Key.ToString())
+      ;
     return ValueInEuro.Value.ToString("C4", ci);
   }
 

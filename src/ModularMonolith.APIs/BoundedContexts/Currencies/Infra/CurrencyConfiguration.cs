@@ -23,6 +23,7 @@ public sealed class CurrencyConfiguration
       //.HasConversion<string>()
       .ValueGeneratedNever();
 
+#pragma warning disable S125 // Sections of code should not be commented out
     _ = currency
       .Property(cur => cur.ValueInEuro)
       .HasColumnOrder(2)
@@ -33,6 +34,7 @@ public sealed class CurrencyConfiguration
       //)
       //.HasConversion<PositiveDecimalValueConverter>();
     ;
+#pragma warning restore S125 // Sections of code should not be commented out
 
     _ = currency
       .HasHistory()

@@ -12,7 +12,7 @@ public partial class Worker(
   public const string ActivitySourceName = "Migrations";
   private static readonly ActivitySource s_activitySource = new(ActivitySourceName);
 
-  protected override async Task ExecuteAsync(CancellationToken cancellationToken)
+  protected override async Task ExecuteAsync(CancellationToken stoppingToken)
   {
     using Activity? activity = 
       s_activitySource.StartActivity("Migrating databases", ActivityKind.Client);
@@ -23,22 +23,22 @@ public partial class Worker(
       CurrenciesDb currencyContext =
         scope.ServiceProvider.GetRequiredService<CurrenciesDb>();
 
-      await EnsureCurrencyDatabaseAsync(currencyContext, cancellationToken);
-      await RunCurrencyMigrationAsync(currencyContext, cancellationToken);
-      await SeedCurrenciesAsync(currencyContext, cancellationToken);
+      await EnsureCurrencyDatabaseAsync(currencyContext, stoppingToken);
+      await RunCurrencyMigrationAsync(currencyContext, stoppingToken);
+      await SeedCurrenciesAsync(currencyContext, stoppingToken);
 
       GamesDb gamesContext =
         scope.ServiceProvider.GetRequiredService<GamesDb>();
 
-      await EnsureGamesDatabaseAsync(gamesContext, cancellationToken);
-      await RunGamesMigrationAsync(gamesContext, cancellationToken);
-      await SeedGamesAsync(gamesContext, cancellationToken);
+      await EnsureGamesDatabaseAsync(gamesContext, stoppingToken);
+      await RunGamesMigrationAsync(gamesContext, stoppingToken);
+      await SeedGamesAsync(gamesContext, stoppingToken);
 
       ShoppingDb shoppingContext =
         scope.ServiceProvider.GetRequiredService<ShoppingDb>();
 
-      await EnsureShoppingDatabaseAsync(shoppingContext, cancellationToken);
-      await RunShoppingMigrationAsync(shoppingContext, cancellationToken);
+      await EnsureShoppingDatabaseAsync(shoppingContext, stoppingToken);
+      await RunShoppingMigrationAsync(shoppingContext, stoppingToken);
     }
     catch (Exception ex)
     {

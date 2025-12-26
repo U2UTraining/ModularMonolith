@@ -138,7 +138,7 @@ public static class SpecificationExtensions
   /// with the parameter of the left expression. This way we can combine both
   /// expressions in a single expression tree.
   /// </summary>
-  private class SwapVisitor 
+  private sealed class SwapVisitor 
   : ExpressionVisitor
   {
     private readonly Expression from, to;

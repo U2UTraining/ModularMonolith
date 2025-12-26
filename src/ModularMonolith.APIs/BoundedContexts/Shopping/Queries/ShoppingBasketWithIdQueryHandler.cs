@@ -1,7 +1,7 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.Queries;
 
 internal sealed class ShoppingBasketWithIdQueryHandler
-  : IQueryHandler<ShoppingBasketWithIdQuery, ShoppingBasketDTO?>
+  : IQueryHandler<ShoppingBasketWithIdQuery, ShoppingBasketDto?>
 {
   private readonly ShoppingDb _db;
   private readonly IQuerySender _querySender;
@@ -14,7 +14,7 @@ internal sealed class ShoppingBasketWithIdQueryHandler
     _querySender = querySender;
   }
 
-  public async Task<ShoppingBasketDTO?> HandleAsync(
+  public async Task<ShoppingBasketDto?> HandleAsync(
     ShoppingBasketWithIdQuery query
   , CancellationToken cancellationToken = default)
   {
@@ -34,11 +34,11 @@ internal sealed class ShoppingBasketWithIdQueryHandler
     {
       PK<int>[] games = basket.Items.Select(item => item.BoardGameId).ToArray();
       IQueryable<BoardGame> gameItems = await _querySender.AskAsync(new GetGamesFromListQuery(games), cancellationToken);
-      ShoppingBasketDTO dto = ShoppingBasketDTO.ToDTO(basket, gameItems);
+      ShoppingBasketDto dto = ShoppingBasketDto.ToDTO(basket, gameItems);
       return dto;
     } else
     {
-      ShoppingBasketDTO dto = ShoppingBasketDTO.ToDTO(basket, null);
+      ShoppingBasketDto dto = ShoppingBasketDto.ToDTO(basket, null);
       return dto;
     }
   }

@@ -63,7 +63,6 @@ public static class Extensions
                      .AddHttpClientInstrumentation()
                      .AddRuntimeInstrumentation()
                      .AddMeter(IntegrationEventsMetrics.IntegrationEventsMetricsName);
-          ;
         })
         .WithTracing(tracing =>
         {
@@ -92,14 +91,6 @@ public static class Extensions
     {
       _ = builder.Services.AddOpenTelemetry().UseOtlpExporter();
     }
-
-    // Uncomment the following lines to enable the Azure Monitor exporter (requires the Azure.Monitor.OpenTelemetry.AspNetCore package)
-    //if (!string.IsNullOrEmpty(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]))
-    //{
-    //    builder.Services.AddOpenTelemetry()
-    //       .UseAzureMonitor();
-    //}
-
     return builder;
   }
 
@@ -108,7 +99,6 @@ public static class Extensions
     _ = builder.Services.AddHealthChecks()
         // Add a default liveness check to ensure app is responsive
         .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"]);
-
     return builder;
   }
 

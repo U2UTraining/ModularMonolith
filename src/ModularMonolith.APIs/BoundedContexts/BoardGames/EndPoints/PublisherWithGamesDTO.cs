@@ -1,8 +1,8 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.EndPoints;
 
-public record class PublisherWithGamesDTO(
+public record class PublisherWithGamesDto(
   int Id
 , string PublisherName
-, List<ContactDTO> Contacts
-, List<GameDTO> Games
+, List<ContactDto> Contacts
+, List<GameDto> Games
 );

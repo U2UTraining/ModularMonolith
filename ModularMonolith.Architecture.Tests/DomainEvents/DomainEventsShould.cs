@@ -16,7 +16,7 @@ public sealed class DomainEventsShould
       .HaveNameEndingWith("DomainEvent")
       .GetResult();
 
-    if (result.IsSuccessful is false)
+    if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following classed do not follow conventions: {failedTypes}");
@@ -36,7 +36,7 @@ public sealed class DomainEventsShould
       .BeSealed()
       .GetResult();
 
-    if (result.IsSuccessful == false)
+    if (!result.IsSuccessful)
     {
       var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following Domain Events are not sealed: {failedTypes}");
@@ -55,7 +55,7 @@ public sealed class DomainEventsShould
       .BeSealed()
       .GetResult();
 
-    if (result.IsSuccessful == false)
+    if (!result.IsSuccessful)
     {
       var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following Domain Events are not public: {failedTypes}");

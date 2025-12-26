@@ -22,11 +22,11 @@ public sealed partial class PublishersPage
     get; set;
   }
 
-  private IQueryable<PublisherDTO>? _publishers;
+  private IQueryable<PublisherDto>? _publishers;
 
-  private async Task<IQueryable<PublisherDTO>> GetPublishersAsync()
+  private async Task<IQueryable<PublisherDto>> GetPublishersAsync()
   {
-    IEnumerable<PublisherDTO> publishers =
+    IEnumerable<PublisherDto> publishers =
       await PublishersClient.GetPublishersAsync();
     return publishers.AsQueryable();
   }
@@ -37,37 +37,37 @@ public sealed partial class PublishersPage
                       .ConfigureAwait(false);
   }
 
-  public PublisherDTO? SelectedPublisher
+  public PublisherDto? SelectedPublisher
   {
     get; set;
   } = default;
 
-  public IEnumerable<PublisherDTO> SelectedItems
+  public IEnumerable<PublisherDto> SelectedItems
   {
     get; set
     {
       field = value;
       if (field.Any())
       {
-        OnSelectedPublisherChanged(value.First());
+        _ = OnSelectedPublisherChanged(value.First());
       }
     }
   } = [];
 
-  public IQueryable<GameDTO>? Games
+  public IQueryable<GameDto>? Games
   {
     get; set;
   } = default;
 
-  public async Task OnSelectedPublisherChanged(PublisherDTO selectedPublisher)
+  public async Task OnSelectedPublisherChanged(PublisherDto selectedPublisher)
   {
-    PublisherWithGamesDTO? pub = await PublishersClient.GetPublisherWithGamesAsync(selectedPublisher.Id);
+    PublisherWithGamesDto? pub = await PublishersClient.GetPublisherWithGamesAsync(selectedPublisher.Id);
     Games = pub?.Games.AsQueryable();
     Contacts = pub?.Contacts.AsQueryable();
     await this.InvokeAsync(() => StateHasChanged());
   }
 
-  public IQueryable<ContactDTO>? Contacts
+  public IQueryable<ContactDto>? Contacts
   {
     get; set;
   } = default!;

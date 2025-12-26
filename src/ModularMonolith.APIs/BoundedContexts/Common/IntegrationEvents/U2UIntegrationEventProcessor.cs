@@ -1,5 +1,7 @@
 ﻿using OpenTelemetryDemo.ServiceDefaults.Meters;
 
+using System.Linq;
+
 namespace ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
 
 /// <summary>
@@ -32,19 +34,18 @@ public class U2UIntegrationEventProcessor
     {
       Func<object, object, CancellationToken, ValueTask> invoker =
         U2UDomainEventInvoker.Instance.GetInvoker(serviceType);
-      foreach (IIntegrationEventHandler? handler in integrationEventHandlers)
+      foreach (var handler in from IIntegrationEventHandler? handler in integrationEventHandlers
+                              where handler is not null
+                              select handler)
       {
-        if (handler is not null)
+        try
         {
-          try
-          {
-            await invoker(handler, @event, cancellationToken);
-            _metrics.IncreaseIntegrationEventsCounter();
-          }
-          catch
-          {
-            _metrics.IncreaseIntegrationEventsErrorCounter();
-          }
+          await invoker(handler, @event, cancellationToken);
+          _metrics.IncreaseIntegrationEventsCounter();
+        }
+        catch
+        {
+          _metrics.IncreaseIntegrationEventsErrorCounter();
         }
       }
     }

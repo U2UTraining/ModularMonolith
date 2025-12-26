@@ -15,20 +15,15 @@ public sealed partial class GamesDb
   public DbSet<BoardGame> Games => Set<BoardGame>();
   public DbSet<Publisher> Publishers => Set<Publisher>();
 
-  private void ApplyGamesConfiguration(ModelBuilder modelBuilder)
-  {
-    _ = modelBuilder.ApplyConfiguration(new BoardGameConfiguration())
-                    .ApplyConfiguration(new GameImageConfiguration())
-                    .ApplyConfiguration(new PublisherConfiguration())
-                    .ApplyConfiguration(new ContactConfiguration())
-    ;
-  }
-
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
     base.OnModelCreating(modelBuilder);
     modelBuilder.HasDefaultSchema(GamesDb.SchemaName);
-    ApplyGamesConfiguration(modelBuilder);
+    modelBuilder.ApplyConfiguration(new BoardGameConfiguration())
+                .ApplyConfiguration(new GameImageConfiguration())
+                .ApplyConfiguration(new PublisherConfiguration())
+                .ApplyConfiguration(new ContactConfiguration())
+                ;
   }
 
   protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)

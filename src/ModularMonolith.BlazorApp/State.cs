@@ -48,7 +48,7 @@ public sealed record class State
     //}
   }
 
-  public IQueryable<GameDTO>? Games
+  public IQueryable<GameDto>? Games
   {
     get; set;
   }

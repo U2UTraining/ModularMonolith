@@ -20,7 +20,7 @@ public sealed class QueryHandlersShould
       .HaveNameEndingWith("QueryHandler")
       .GetResult();
 
-    if (result.IsSuccessful is false)
+    if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following Query Handlers do not follow conventions: {failedTypes}");
@@ -40,7 +40,7 @@ public sealed class QueryHandlersShould
       .NotBePublic()
       .GetResult();
 
-    if (result.IsSuccessful == false)
+    if (!result.IsSuccessful)
     {
       var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following Query Handlers are public: {failedTypes}");
@@ -59,7 +59,7 @@ public sealed class QueryHandlersShould
       .BeSealed()
       .GetResult();
 
-    if (result.IsSuccessful == false)
+    if (!result.IsSuccessful)
     {
       var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following Query Handlers are not public: {failedTypes}");

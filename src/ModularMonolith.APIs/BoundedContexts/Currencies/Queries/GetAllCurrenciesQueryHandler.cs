@@ -1,5 +1,8 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.Queries;
 
+/// <summary>
+/// Get all currencies query handler using repository
+/// </summary>
 internal sealed class GetAllCurrenciesQueryHandler
 : IQueryHandler<GetCurrenciesQuery, List<Currency>>
 {
@@ -18,6 +21,9 @@ internal sealed class GetAllCurrenciesQueryHandler
   }
 }
 
+/// <summary>
+/// Get all currencies query handler using DbContext directly
+/// </summary>
 internal sealed class GetAllCurrencies2QueryHandler
 : IQueryHandler<GetCurrenciesQuery, List<Currency>>
 {
@@ -32,7 +38,9 @@ internal sealed class GetAllCurrencies2QueryHandler
     => await _db.Currencies.AsNoTracking().ToListAsync(cancellationToken);
 }
 
-
+/// <summary>
+/// Get all currencies query handler using DbContextFactory
+/// </summary>
 internal sealed class GetAllCurrencies3QueryHandler
 : IQueryHandler<GetCurrenciesQuery, List<Currency>>
 {

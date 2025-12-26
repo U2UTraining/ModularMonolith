@@ -1,6 +1,4 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
-
-namespace ModularMonolith.APIs.BoundedContexts.Shopping.Infra;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.Infra;
 
 public sealed partial class ShoppingDb : DbContext
 {
@@ -15,18 +13,14 @@ public sealed partial class ShoppingDb : DbContext
 
   public DbSet<ShoppingBasket> Baskets => Set<ShoppingBasket>();
 
-  private void ApplyShoppingConfiguration(ModelBuilder modelBuilder)
-  {
-    _ = modelBuilder.ApplyConfiguration(new CustomerConfiguration())
-                    .ApplyConfiguration(new ShoppingBasketConfiguration())
-                    .ApplyConfiguration(new BasketItemConfiguration())
-    ;
-  }
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
     base.OnModelCreating(modelBuilder);
     modelBuilder.HasDefaultSchema(ShoppingDb.SchemaName);
-    ApplyShoppingConfiguration(modelBuilder);
+    modelBuilder.ApplyConfiguration(new CustomerConfiguration())
+                .ApplyConfiguration(new ShoppingBasketConfiguration())
+                .ApplyConfiguration(new BasketItemConfiguration())
+                ;
   }
 
   protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)

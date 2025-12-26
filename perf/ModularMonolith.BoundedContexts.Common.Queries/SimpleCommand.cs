@@ -14,6 +14,6 @@ public sealed class SimpleCommandHandler
 {
   public Task<int> HandleAsync(
     SimpleCommand command
-  , CancellationToken cancellationToken)
+  , CancellationToken cancellationToken = default)
     => Task.FromResult(42);
 }

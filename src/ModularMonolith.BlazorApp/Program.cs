@@ -7,7 +7,7 @@ using ModularMonolith.ServiceDefaults;
 
 namespace ModularMonolith.BlazorApp;
 
-public partial class Program
+public static partial class Program
 {
   private static async Task Main(string[] args)
   {

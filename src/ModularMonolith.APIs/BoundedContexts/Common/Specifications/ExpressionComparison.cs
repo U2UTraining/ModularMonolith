@@ -1,6 +1,6 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Common.Specifications;
 
-internal class ExpressionComparison
+internal sealed class ExpressionComparison
 : ExpressionVisitor
 {
   private readonly Queue<Expression> candidates;
@@ -43,88 +43,91 @@ internal class ExpressionComparison
   }
 
   // Change the type of candidate to match original
-  private T? MakeCandidateMatch<T>([NotNull] T original) where T : Expression
+#pragma warning disable S1172 // Unused method parameters should be removed
+  private T? MakeCandidateMatch<T>(T _)
+#pragma warning restore S1172 // Unused method parameters should be removed
+    where T : Expression
   {
     return (T?)candidate;
   }
 
-  public override Expression? Visit(Expression? expression)
+  public override Expression? Visit(Expression? node)
   {
-    if (expression == null || !AreEqual)
+    if (node == null || !AreEqual)
     {
-      return expression;
+      return node;
     }
 
     candidate = PeekCandidate();
-    if (!CheckNotNull(candidate) || !CheckAreOfSameType(candidate!, expression))
+    if (!CheckNotNull(candidate) || !CheckAreOfSameType(candidate!, node))
     {
-      return expression;
+      return node;
     }
 
     _ = PopCandidate();
 
-    return base.Visit(expression);
+    return base.Visit(node);
   }
 
-  protected override Expression VisitConstant(ConstantExpression constant)
+  protected override Expression VisitConstant(ConstantExpression node)
   {
-    ConstantExpression? candidate = MakeCandidateMatch(constant);
-    _ = CheckEqual(constant.Value, candidate?.Value);
-    return base.VisitConstant(constant);
+    ConstantExpression? ce = MakeCandidateMatch(node);
+    _ = CheckEqual(node.Value, ce?.Value);
+    return base.VisitConstant(node);
   }
 
-  protected override Expression VisitMember(MemberExpression member)
+  protected override Expression VisitMember(MemberExpression node)
   {
-    MemberExpression? candidate = MakeCandidateMatch(member);
-    _ = CheckEqual(member.Member, candidate?.Member);
-    return base.VisitMember(member);
+    MemberExpression? me = MakeCandidateMatch(node);
+    _ = CheckEqual(node.Member, me?.Member);
+    return base.VisitMember(node);
   }
 
-  protected override Expression VisitMethodCall(MethodCallExpression methodCall)
+  protected override Expression VisitMethodCall(MethodCallExpression node)
   {
-    MethodCallExpression? candidate = MakeCandidateMatch(methodCall);
-    _ = CheckEqual(methodCall.Method, candidate?.Method);
-    return base.VisitMethodCall(methodCall);
+    MethodCallExpression? mc = MakeCandidateMatch(node);
+    _ = CheckEqual(node.Method, mc?.Method);
+    return base.VisitMethodCall(node);
   }
 
-  protected override Expression VisitParameter(ParameterExpression parameter)
+  protected override Expression VisitParameter(ParameterExpression node)
   {
-    ParameterExpression? candidate = MakeCandidateMatch(parameter);
-    _ = CheckEqual(parameter.Name, candidate?.Name);
-    return base.VisitParameter(parameter);
+    ParameterExpression? pe = MakeCandidateMatch(node);
+    _ = CheckEqual(node.Name, pe?.Name);
+    return base.VisitParameter(node);
   }
 
-  protected override Expression VisitTypeBinary(TypeBinaryExpression type)
+  protected override Expression VisitTypeBinary(TypeBinaryExpression node)
   {
-    TypeBinaryExpression? candidate = MakeCandidateMatch(type);
-    _ = CheckEqual(type.TypeOperand, candidate!.TypeOperand);
-    return base.VisitTypeBinary(type);
+    TypeBinaryExpression? be = MakeCandidateMatch(node);
+    _ = CheckEqual(node.TypeOperand, be!.TypeOperand);
+    return base.VisitTypeBinary(node);
   }
 
-  protected override Expression VisitBinary(BinaryExpression binary)
+  protected override Expression VisitBinary(BinaryExpression node)
   {
-    BinaryExpression? candidate = MakeCandidateMatch(binary);
-    _ = CheckEqual(binary.Method, candidate!.Method);
-    _ = CheckEqual(binary.IsLifted, candidate!.IsLifted);
-    _ = CheckEqual(binary.IsLiftedToNull, candidate!.IsLiftedToNull);
-    return base.VisitBinary(binary);
+    BinaryExpression? be = MakeCandidateMatch(node);
+    _ = CheckEqual(node.Method, be!.Method);
+    _ = CheckEqual(node.IsLifted, be!.IsLifted);
+    _ = CheckEqual(node.IsLiftedToNull, be!.IsLiftedToNull);
+    return base.VisitBinary(node);
   }
 
-  protected override Expression VisitUnary(UnaryExpression unary)
+  protected override Expression VisitUnary(UnaryExpression node)
   {
-    UnaryExpression? candidate = MakeCandidateMatch(unary);
-    _ = CheckEqual(unary.Method, candidate!.Method);
-    _ = CheckEqual(unary.IsLifted, candidate.IsLifted);
-    _ = CheckEqual(unary.IsLiftedToNull, candidate.IsLiftedToNull);
-    return base.VisitUnary(unary);
+    UnaryExpression? ue = MakeCandidateMatch(node);
+    _ = CheckEqual(node.Method, ue!.Method);
+    _ = CheckEqual(node.IsLifted, ue.IsLifted);
+    _ = CheckEqual(node.IsLiftedToNull, ue.IsLiftedToNull);
+    return base.VisitUnary(node);
   }
 
-  protected override Expression VisitNew(NewExpression nex)
+  protected override Expression VisitNew(NewExpression node)
   {
-    NewExpression? candidate = MakeCandidateMatch(nex);
-    _ = CheckEqual(nex.Constructor, candidate!.Constructor);
-    CompareList(nex.Members, candidate.Members);
-    return base.VisitNew(nex);
+    NewExpression? ne = MakeCandidateMatch(node);
+    _ = CheckEqual(node.Constructor, ne!.Constructor);
+    CompareList(node.Members, ne.Members);
+    return base.VisitNew(node);
   }
 
   private void CompareList<T>(ReadOnlyCollection<T>? collection, ReadOnlyCollection<T>? candidates)

@@ -15,7 +15,7 @@ public sealed class CommandHandlersShould
       .HaveNameEndingWith("CommandHandler")
       .GetResult();
 
-    if (result.IsSuccessful is false)
+    if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following classed do not follow conventions: {failedTypes}");
@@ -35,7 +35,7 @@ public sealed class CommandHandlersShould
       .BeSealed()
       .GetResult();
 
-    if( result.IsSuccessful == false)
+    if (!result.IsSuccessful)
     {
       var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following Command Handlers are not sealed: {failedTypes}");
@@ -54,7 +54,7 @@ public sealed class CommandHandlersShould
       .NotBePublic()
       .GetResult();
 
-    if (result.IsSuccessful == false)
+    if (!result.IsSuccessful)
     {
       var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
       throw new Xunit.Sdk.XunitException($"The following Command Handlers are public: {failedTypes}");

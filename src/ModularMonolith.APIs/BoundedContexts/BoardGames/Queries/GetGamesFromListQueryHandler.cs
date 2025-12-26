@@ -10,7 +10,7 @@ internal sealed class GetGamesFromListQueryHandler
 
   public async Task<IQueryable<BoardGame>> HandleAsync(
     GetGamesFromListQuery request
-  , CancellationToken cancellationToken)
+  , CancellationToken cancellationToken = default)
   => await _repo.GetBoardGamesFromList(
     request.GameIds
   , cancellationToken);

@@ -7,7 +7,7 @@
 /// Allows for smaller and bigger percentages, like 120%
 /// </remarks>
 
-[DebuggerDisplay("{Value}%")]
+[DebuggerDisplay("{Percentage}%")]
 public readonly record struct Percent
 : IEquatable<Percent>
 {

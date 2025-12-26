@@ -16,18 +16,13 @@ public sealed partial class CurrenciesDb
   : base(options) 
   { }
 
+  public DbSet<Currency> Currencies
+  => Set<Currency>();
+
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
     base.OnModelCreating(modelBuilder);
     modelBuilder.HasDefaultSchema(CurrenciesDb.SchemaName);
-    ApplyCurrencyConfiguration(modelBuilder);
-  }
-
-  public DbSet<Currency> Currencies
-  => Set<Currency>();
-
-  private void ApplyCurrencyConfiguration(ModelBuilder modelBuilder)
-  {
     modelBuilder.ApplyConfiguration(new CurrencyConfiguration());
   }
 

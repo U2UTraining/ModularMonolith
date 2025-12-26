@@ -5,7 +5,7 @@
 /// </summary>
 public abstract class EntityBase
 {
-  public ICollection<IDomainEvent>? _domainEvents;
+  private ICollection<IDomainEvent>? _domainEvents;
 
   public void RegisterDomainEvent(IDomainEvent @event)
   {
@@ -46,7 +46,7 @@ public abstract class EntityBase
 public abstract class EntityBase<PK>
 : EntityBase
 {
-  public EntityBase(PK id)
+  protected EntityBase(PK id)
   => Id = id;
 
   public PK Id { get; }

@@ -144,7 +144,7 @@ csharp_style_prefer_unbound_generic_type_in_nameof = true:suggestion
 csharp_style_prefer_utf8_string_literals = true:suggestion
 csharp_style_throw_expression = true:suggestion
 csharp_style_unused_value_assignment_preference = discard_variable:silent
-csharp_style_unused_value_expression_statement_preference = discard_variable:silent
+csharp_style_unused_value_expression_statement_preference = unused_local_variable:silent
 
 # 'using' directive preferences
 csharp_using_directive_placement = outside_namespace:silent
@@ -257,6 +257,7 @@ dotnet_naming_style.underscoredcamel.required_prefix = _
 dotnet_naming_style.underscoredcamel.required_suffix = 
 dotnet_naming_style.underscoredcamel.word_separator = 
 dotnet_naming_style.underscoredcamel.capitalization = camel_case
+csharp_style_prefer_simple_property_accessors = true:suggestion
 
 [*.{cs,vb}]
 dotnet_style_operator_placement_when_wrapping = beginning_of_line
