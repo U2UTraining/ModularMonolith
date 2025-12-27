@@ -1,18 +1,19 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Queries;
 
-internal sealed class GetAllGamesQueryHandler
-: IQueryHandler<GetAllGamesQuery, IQueryable<BoardGame>>
+internal sealed class GetGamesQueryHandler
+: IQueryHandler<GetGamesQuery, IQueryable<BoardGame>>
 {
   private readonly IReadonlyRepository<BoardGame> _repo;
 
-  public GetAllGamesQueryHandler(IReadonlyRepository<BoardGame> repo)
+  public GetGamesQueryHandler(IReadonlyRepository<BoardGame> repo)
   => _repo = repo;
 
   public async Task<IQueryable<BoardGame>> HandleAsync(
-    GetAllGamesQuery request
+    GetGamesQuery request
   , CancellationToken cancellationToken = default)
   {
-    ISpecification<BoardGame> spec = Specification<BoardGame>.All();
+    ISpecification<BoardGame> spec = 
+      BoardGameSpecification.WithPriceBetween(request.MinAmount, request.MaxAmount);
     if (request.IncludePublisher)
     {
       spec = spec.Include(g => g.Publisher);

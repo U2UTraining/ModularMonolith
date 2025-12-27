@@ -20,6 +20,7 @@
         <TemplateColumn Title="Actions" Context="currency" Align="@Align.End">
           <FluentButton OnClick="async () => await EditCurrency(currency)"
           Title="Edit currency"
+          Disabled="@(currency.CurrencyName == CurrencyName.EUR.ToString())"
           IconEnd="@(new Size20.Edit())" />
         </TemplateColumn>
       </ChildContent>

@@ -25,7 +25,7 @@ internal sealed class BoardGameConfiguration
       _ = complexProperty.IsRequired();
       _ = complexProperty.Property(m => m.Amount)
             .HasColumnOrder(2)
-            .HasColumnType("decimal(4,2)")
+            .HasColumnType("decimal(8,2)")
             .IsRequired()
             ;
       _ = complexProperty.Property(m => m.Currency)

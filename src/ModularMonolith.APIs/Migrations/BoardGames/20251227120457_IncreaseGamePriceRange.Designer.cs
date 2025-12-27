@@ -4,17 +4,20 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
 
 #nullable disable
 
-namespace ModularMonolithMigrations.BoardGames
+namespace ModularMonolith.APIs.Migrations.BoardGames
 {
     [DbContext(typeof(GamesDb))]
-    partial class GamesDbModelSnapshot : ModelSnapshot
+    [Migration("20251227120457_IncreaseGamePriceRange")]
+    partial class IncreaseGamePriceRange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -43,8 +43,8 @@ public static class ServiceCollectionExtensions
     this IServiceCollection services)
   => services
      .AddScoped<
-      IQueryHandler<GetAllGamesQuery, IQueryable<BoardGame>>
-     , GetAllGamesQueryHandler>()
+      IQueryHandler<GetGamesQuery, IQueryable<BoardGame>>
+     , GetGamesQueryHandler>()
      .AddScoped<
        IQueryHandler<GetAllPublishersQuery, IQueryable<Publisher>>
      , GetAllPublishersQueryHandler>()

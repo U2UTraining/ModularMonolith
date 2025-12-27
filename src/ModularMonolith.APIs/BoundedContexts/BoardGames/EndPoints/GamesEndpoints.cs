@@ -8,20 +8,22 @@ public static class GamesEndpoints
     public RouteGroupBuilder WithBoardGameEndpoints()
 #pragma warning restore S2325 // Methods and properties that don't access instance data should be static
     {
-      group.MapGet("/", GamesEndpoints.GetAllGames)
-        .WithName(nameof(GetAllGames))
+      group.MapPost(pattern: "/"
+        , GamesEndpoints.GetGames)
+        .WithName(nameof(GetGames))
         .Produces<List<GameDto>>(StatusCodes.Status200OK);
 
       return group;
     }
 
-    public static async Task<Results<Ok<List<GameDto>>, BadRequest>> GetAllGames(
-        [FromServices] IQuerySender querySender
+    public static async Task<Results<Ok<List<GameDto>>, BadRequest>> GetGames(
+        [FromBody] GetGamesQuery query
+      , [FromServices] IQuerySender querySender
       , [FromServices] GamesDb db
       , CancellationToken cancellationToken)
     {
       IEnumerable<BoardGame> games =
-        await querySender.AskAsync(GetAllGamesQuery.WithPublisher, cancellationToken);
+        await querySender.AskAsync(query, cancellationToken);
       List<GameDto> allGames = games
         .Select(g => new GameDto(
           Id: g.Id

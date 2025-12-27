@@ -47,3 +47,14 @@ GET {{ModularMonolith.APIs_HostAddress}}/publishers/1
 GET {{ModularMonolith.APIs_HostAddress}}/currencies
 
 ###
+
+POST {{ModularMonolith.APIs_HostAddress}}/games
+Content-Type: application/json
+
+{
+  "minAmount": 0,
+  "maxAmount": 100,
+  "includePublisher": false
+}
+
+###

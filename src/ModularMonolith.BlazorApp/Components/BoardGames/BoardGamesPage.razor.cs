@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 
+using ModularMonolith.APIs.BoundedContexts.BoardGames.Queries;
 using ModularMonolith.BlazorApp.Components.Shopping;
 
 namespace ModularMonolith.BlazorApp.Components.BoardGames;
@@ -28,18 +29,16 @@ public sealed partial class BoardGamesPage
   // Easy Access
   private IQueryable<GameDto>? Games => State.Games;
 
-  private async Task<IQueryable<GameDto>> GetBoardGames()
+  private async Task<IQueryable<GameDto>> GetBoardGames(GetGamesQuery query)
   {
     IEnumerable<GameDto> result =
-      await BoardGamesClient.GetGamesAsync(default);
-    //await Sender.AskAsync(GetAllGamesQuery.WithPublisher, default)
-    //            .ConfigureAwait(true);
+      await BoardGamesClient.GetGamesAsync(query);
     return result.AsQueryable();
   }
 
   protected override async Task OnInitializedAsync()
   {
-    State.Games = await GetBoardGames().ConfigureAwait(true);
+    State.Games = await GetBoardGames(new GetGamesQuery(decimal.Zero, 1000M, false)).ConfigureAwait(true);
 
     State.PropertyChanged += OnPropertyChanged;
   }
@@ -95,12 +94,7 @@ public sealed partial class BoardGamesPage
 
   private async Task Filter()
   {
-    //Money minPrice = new Money(10);
-    //Money maxPrice = new Money(30);
-    //IQueryable<BoardGame> filteredGames = 
-    //  await Sender.AskAsync(BoardGameSpecification.WithPriceBetween(10, 30)).ConfigureAwait(true);
-    ////IQueryable<BoardGame> filteredGames = await Sender.Ask(GameSpecification.WithPriceHigherThan(30));
-    //Console.WriteLine(filteredGames.Count());
-    await Task.CompletedTask;
+    State.Games =
+      await GetBoardGames(new GetGamesQuery(10M, 30M, false));
   }
 }

@@ -1,5 +1,7 @@
 ﻿@using Microsoft.FluentUI.AspNetCore.Components
 @using Size24 = Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size24
+@using Size16 = Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size16
+@using Color = Microsoft.FluentUI.AspNetCore.Components.Color
 
 @* Header *@
 <FluentDialogHeader ShowDismiss="true">
@@ -13,11 +15,20 @@
 
 @* Footer *@
 <FluentDialogFooter>
-  <FluentButton Appearance="Appearance.Accent" OnClick="@SaveAsync">Save</FluentButton>
+  <FluentButton 
+    Appearance="Appearance.Accent" 
+    OnClick="@SaveAsync"
+    Disabled="@(Content.ValueInEuro <= 0M)">Save</FluentButton>
   <FluentButton Appearance="Appearance.Neutral" OnClick="@CancelAsync">Cancel</FluentButton>
 </FluentDialogFooter>
 
 @* Body *@
 <FluentDialogBody>
-  <FluentNumberField @bind-Value="@Content.ValueInEuro">Value in Euro:</FluentNumberField>
+  <FluentNumberField 
+    @bind-Value="@Content.ValueInEuro"
+    Min="0.0001"
+    >
+    <FluentIcon Icon="Size16.CoinMultiple" Color="Color.Neutral" Slot="start" />
+    Value in Euro:
+  </FluentNumberField>
 </FluentDialogBody>
