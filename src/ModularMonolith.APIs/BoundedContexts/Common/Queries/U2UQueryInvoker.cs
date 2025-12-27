@@ -1,5 +1,4 @@
-﻿
-using Invoker = System.Func<object, object, System.Threading.CancellationToken, System.Threading.Tasks.Task<object>>;
+﻿using Invoker = System.Func<object, object, System.Threading.CancellationToken, System.Threading.Tasks.Task<object>>;
 
 namespace ModularMonolith.APIs.BoundedContexts.Common.Queries;
 /// <summary>
@@ -11,14 +10,11 @@ namespace ModularMonolith.APIs.BoundedContexts.Common.Queries;
 /// </Remarks>
 public sealed class U2UQueryInvoker
 {
-  private U2UQueryInvoker()
-  {
-  }
+  private U2UQueryInvoker() { }
 
   public static U2UQueryInvoker Instance { get; } = new();
 
-  private readonly Dictionary<Type, Invoker> _invokers
-    = [];
+  private readonly Dictionary<Type, Invoker> _invokers = [];
 
   private static Invoker CreateInvoker(
     Type commandHandlerType)
