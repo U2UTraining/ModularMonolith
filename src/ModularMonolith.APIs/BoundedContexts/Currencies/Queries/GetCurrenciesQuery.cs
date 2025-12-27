@@ -6,10 +6,10 @@
 /// <remarks>
 /// This is a perfect example for a Flyweight  
 /// </remarks>
-public record class GetCurrenciesQuery
+public record class GetAllCurrenciesQuery
 : IQuery<List<Currency>> 
 {
-  private GetCurrenciesQuery() { }
+  private GetAllCurrenciesQuery() { }
 
-  public static GetCurrenciesQuery All { get; } = new();
+  public static GetAllCurrenciesQuery All { get; } = new();
 }

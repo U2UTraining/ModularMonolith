@@ -2,46 +2,105 @@
 
 public static class CurrencyEndpoints
 {
-  extension (RouteGroupBuilder group)
+  extension(RouteGroupBuilder group)
   {
 #pragma warning disable S2325 // Methods and properties that don't access instance data should be static
     public RouteGroupBuilder GetWithCurrencyEndpoints()
 #pragma warning restore S2325 // Methods and properties that don't access instance data should be static
     {
-      group.MapGet("/", CurrencyEndpoints.GetAllCurrencies)
-        .WithName(nameof(GetAllCurrencies))
+      group.MapGet("/", CurrencyEndpoints.GetAllCurrencies1)
+        .WithName(nameof(GetAllCurrencies1))
         .Produces<List<CurrencyDto>>(StatusCodes.Status200OK);
 
       group.MapPut("/", CurrencyEndpoints.UpdateCurrencyValue)
         .WithName(nameof(UpdateCurrencyValue))
         .Produces<CurrencyDto>(StatusCodes.Status200OK);
-
+ 
       return group;
     }
 
-    public static async Task<Results<Ok<List<CurrencyDto>>, BadRequest>> GetAllCurrencies(
+    /// <summary>
+    /// Execute simple query to retrieve all currencies
+    /// </summary>
+    /// <param name="querySender"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    /// <remarks>
+    /// Uses the Query Sender to ask for all currencies
+    /// </remarks>
+    public static async Task<Results<Ok<List<CurrencyDto>>, BadRequest>> GetAllCurrencies1(
       [FromServices] IQuerySender querySender
     , CancellationToken cancellationToken = default)
     {
       List<Currency> currencies =
-         await querySender.AskAsync(GetCurrenciesQuery.All, cancellationToken);
+         await querySender.AskAsync(GetAllCurrenciesQuery.All, cancellationToken);
       List<CurrencyDto> allCurrencies =
         currencies.Select(c => new CurrencyDto(c.Id.ToString(), c.ValueInEuro)).ToList();
+      return TypedResults.Ok(allCurrencies);
+    }
+
+    /// <summary>
+    /// Execute simple query to retrieve all currencies
+    /// </summary>
+    /// <param name="querySender"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    /// <remarks>
+    /// Uses the Query Handler to ask for all currencies
+    /// </remarks>
+    public static async Task<Results<Ok<List<CurrencyDto>>, BadRequest>> GetAllCurrencies2(
+      [FromServices] IQueryHandler<GetAllCurrenciesQuery, List<Currency>> queryHandler
+    , CancellationToken cancellationToken = default)
+    {
+      List<Currency> currencies =
+         await queryHandler.HandleAsync(GetAllCurrenciesQuery.All, cancellationToken);
+      List<CurrencyDto> allCurrencies =
+        currencies.Select(c => new CurrencyDto(c.Id.ToString(), c.ValueInEuro)).ToList();
+      return TypedResults.Ok(allCurrencies);
+    }
+
+    /// <summary>
+    /// Execute simple query to retrieve all currencies
+    /// </summary>
+    /// <param name="querySender"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    /// <remarks>
+    /// Uses the DbContext to ask for all currencies
+    /// </remarks>
+    public static async Task<Results<Ok<List<CurrencyDto>>, BadRequest>> GetAllCurrencies3(
+      [FromServices] CurrenciesDb db
+    , CancellationToken cancellationToken = default)
+    {
+      List<CurrencyDto> allCurrencies =
+        await db.Currencies
+          .AsNoTracking()
+          .Select(c => new CurrencyDto(c.Id.ToString(), c.ValueInEuro))
+          .ToListAsync();
       return TypedResults.Ok(allCurrencies);
     }
 
     public static async Task<Results<Ok<CurrencyDto>, BadRequest<string>>> UpdateCurrencyValue(
       [FromBody] CurrencyDto dto
     , [FromServices] ICommandSender commandSender
+    //, [FromServices] ILogger logger
     , CancellationToken cancellationToken)
     {
-      if (!Enum.TryParse(dto.CurrencyName, out CurrencyName currencyName))
+      try
       {
-        return TypedResults.BadRequest(error: $"Currency '{dto.CurrencyName}' is not valid.");
+        if (!Enum.TryParse(dto.CurrencyName, out CurrencyName currencyName))
+        {
+          return TypedResults.BadRequest(error: $"Currency '{dto.CurrencyName}' is not valid.");
+        }
+        _ = await commandSender.ExecuteAsync(
+          new UpdateCurrencyValueInEuroCommand(currencyName, dto.ValueInEuro), cancellationToken);
+        //logger.LogInformation("Currency {Currency} exchange rate updated to {ExchangeRate}", currencyName, dto.ValueInEuro);
+        return TypedResults.Ok(dto);
       }
-      _ = await commandSender.ExecuteAsync(
-        new UpdateCurrencyValueInEuroCommand(currencyName, dto.ValueInEuro), cancellationToken);
-      return TypedResults.Ok(dto);
+      catch (Exception ex)
+      {
+        return TypedResults.BadRequest(error: ex.Message);
+      }
     }
   }
 }

@@ -11,6 +11,15 @@ internal sealed class CurrencyValueInEuroHasChangedEmailDomainEventHandler
     _commandSender = commandSender;
   }
 
+  /// <summary>
+  /// Handles the specified domain event by sending a notification email about the currency value change.
+  /// </summary>
+  /// <param name="event">
+  /// The domain event containing information about the updated currency and its new value in euros. 
+  /// Cannot be null.
+  /// </param>
+  /// <param name="cancellationToken">A cancellation token that can be used to cancel the asynchronous operation.</param>
+  /// <returns>A task that represents the asynchronous operation.</returns>
   public async ValueTask HandleAsync(
     CurrencyValueInEuroHasChangedDomainEvent @event
   , CancellationToken cancellationToken)

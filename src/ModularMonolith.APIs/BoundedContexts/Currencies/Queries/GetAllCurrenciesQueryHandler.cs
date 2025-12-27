@@ -4,7 +4,7 @@
 /// Get all currencies query handler using repository
 /// </summary>
 internal sealed class GetAllCurrenciesQueryHandler
-: IQueryHandler<GetCurrenciesQuery, List<Currency>>
+: IQueryHandler<GetAllCurrenciesQuery, List<Currency>>
 {
   private readonly ICurrencyRepository _repo;
 
@@ -12,7 +12,7 @@ internal sealed class GetAllCurrenciesQueryHandler
   => _repo = repo;
 
   public async Task<List<Currency>> HandleAsync(
-    GetCurrenciesQuery request
+    GetAllCurrenciesQuery request
   , CancellationToken cancellationToken = default)
   {
     List<Currency> result =
@@ -25,7 +25,7 @@ internal sealed class GetAllCurrenciesQueryHandler
 /// Get all currencies query handler using DbContext directly
 /// </summary>
 internal sealed class GetAllCurrencies2QueryHandler
-: IQueryHandler<GetCurrenciesQuery, List<Currency>>
+: IQueryHandler<GetAllCurrenciesQuery, List<Currency>>
 {
   private readonly CurrenciesDb _db;
 
@@ -33,7 +33,7 @@ internal sealed class GetAllCurrencies2QueryHandler
   => _db = db;
 
   public async Task<List<Currency>> HandleAsync(
-    GetCurrenciesQuery request
+    GetAllCurrenciesQuery request
   , CancellationToken cancellationToken = default)
     => await _db.Currencies.AsNoTracking().ToListAsync(cancellationToken);
 }
@@ -42,7 +42,7 @@ internal sealed class GetAllCurrencies2QueryHandler
 /// Get all currencies query handler using DbContextFactory
 /// </summary>
 internal sealed class GetAllCurrencies3QueryHandler
-: IQueryHandler<GetCurrenciesQuery, List<Currency>>
+: IQueryHandler<GetAllCurrenciesQuery, List<Currency>>
 {
   private readonly IDbContextFactory<CurrenciesDb> _dbFactory;
 
@@ -50,7 +50,7 @@ internal sealed class GetAllCurrencies3QueryHandler
   => _dbFactory = dbFactory;
 
   public async Task<List<Currency>> HandleAsync(
-    GetCurrenciesQuery request
+    GetAllCurrenciesQuery request
   , CancellationToken cancellationToken = default)
   {
     // When using IDbContextFactory, it is important to manage the lifetime of the DbContext instances

@@ -14,7 +14,7 @@ public record struct UpdateCurrencyValueInEuroCommand
     if (name.Key == CurrencyName.EUR)
     {
       throw new ArgumentException(
-        message: $"Currency EUR cannot be modified"
+        message: $"EUR exchange rate cannot be modified"
       , paramName: nameof(name)
       );
     }

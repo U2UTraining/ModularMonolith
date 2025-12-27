@@ -1,7 +1,4 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.DomainEvents;
-using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
-
-namespace ModularMonolith.APIs.BoundedContexts.Currencies.DomainEvents;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.DomainEvents;
 
 /// <summary>
 /// Domain event triggered when a currency has its valueInEuro changed

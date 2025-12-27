@@ -15,6 +15,8 @@ public static partial class Program
 
     builder.AddServiceDefaults();
 
+    builder.Services.AddLogging();
+
     builder.Services.AddValidation(options =>
     {
       //options.

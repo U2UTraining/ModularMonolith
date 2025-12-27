@@ -1,10 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-using ModularMonolith.APIs.BoundedContexts.Common.Commands;
-using ModularMonolith.APIs.BoundedContexts.Common.DomainEvents;
-using ModularMonolith.APIs.BoundedContexts.Common.Queries;
-
-namespace ModularMonolith.APIs.BoundedContexts.Currencies.DI;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.DI;
 
 public static class ServiceCollectionExtensions
 {
@@ -16,19 +10,20 @@ public static class ServiceCollectionExtensions
       .AddCurrenciesQueries()
       .AddCurrenciesCommands();
 
-
     builder.AddSqlServerDbContext<CurrenciesDb>(CurrenciesDb.DatabaseName
-    , sqlServerOptions => {
+    , sqlServerOptions =>
+    {
     }
-    , optionsBuilder => {
+    , optionsBuilder =>
+    {
       optionsBuilder.AddInterceptors(
           new SoftDeleteInterceptor(),
           new HistoryInterceptor()
         );
       optionsBuilder.EnableDetailedErrors(true);
-    #if DEBUG
+#if DEBUG
       optionsBuilder.EnableSensitiveDataLogging(true);
-    #endif
+#endif
     });
     _ = builder.Services.AddScoped<ICurrencyRepository, CurrencyRepository>();
 
@@ -41,26 +36,28 @@ public static class ServiceCollectionExtensions
     this IServiceCollection services)
   => services
     //.AddScoped<
-    //  IQueryHandler<GetCurrenciesQuery, List<Currency>>,
-    //  GetAllCurrenciesQueryHandler>()
-      //.AddScoped<
-      //  IQueryHandler<GetCurrenciesQuery, List<Currency>>,
-      //  GetAllCurrenciesQueryHandler2>()
-      .AddScoped<
-        IQueryHandler<GetCurrenciesQuery, List<Currency>>,
-        GetAllCurrencies3QueryHandler>()
-      ;
+    //  IQueryHandler<GetAllCurrenciesQuery, List<Currency>>
+    //, GetAllCurrenciesQueryHandler>()
+    //.AddScoped<
+    //  IQueryHandler<GetAllCurrenciesQuery, List<Currency>>
+    //, GetAllCurrencies2QueryHandler>()
+    .AddScoped<
+      IQueryHandler<GetAllCurrenciesQuery, List<Currency>>
+    , GetAllCurrencies3QueryHandler>()
+    ;
 
   public static IServiceCollection AddCurrenciesCommands(
-  this IServiceCollection services)
+    this IServiceCollection services)
   => services
     .AddScoped<
       ICommandHandler<UpdateCurrencyValueInEuroCommand, Currency>
     , UpdateCurrencyValueInEuroCommandHandler>()
-    .AddSingleton<IValidator<UpdateCurrencyValueInEuroCommand>, UpdateCurrencyValueInEuroValidator>()
-      ;
+    .AddSingleton<
+      IValidator<UpdateCurrencyValueInEuroCommand>
+    , UpdateCurrencyValueInEuroValidator>()
+    ;
 
-  public static IServiceCollection AddCurrenciesCore(
+  public static IServiceCollection AddCurrenciesCore( 
     this IServiceCollection services
   )
   => services
