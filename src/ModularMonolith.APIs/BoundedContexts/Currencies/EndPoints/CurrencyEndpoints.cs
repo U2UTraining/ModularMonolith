@@ -8,7 +8,7 @@ public static class CurrencyEndpoints
     public RouteGroupBuilder GetWithCurrencyEndpoints()
 #pragma warning restore S2325 // Methods and properties that don't access instance data should be static
     {
-      group.MapGet("/", CurrencyEndpoints.GetAllCurrencies1)
+      group.MapGet("/", CurrencyEndpoints.GetAllCurrencies4)
         .WithName(nameof(GetAllCurrencies1))
         .Produces<List<CurrencyDto>>(StatusCodes.Status200OK);
 
@@ -80,10 +80,26 @@ public static class CurrencyEndpoints
       return TypedResults.Ok(allCurrencies);
     }
 
+    /// <summary>
+    /// Execute simple query to retrieve all currencies
+    /// </summary>
+    /// <param name="querySender"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    /// <remarks>
+    /// Uses the DbContext with repository extension method
+    /// </remarks>
+    public static async Task<Results<Ok<List<CurrencyDto>>, BadRequest>> GetAllCurrencies4(
+      [FromServices] CurrenciesDb db
+    , CancellationToken cancellationToken = default)
+    {
+      List<CurrencyDto> allCurrencies = await db.GetAllCurrenciesAsync();
+      return TypedResults.Ok(allCurrencies);
+    }
+
     public static async Task<Results<Ok<CurrencyDto>, BadRequest<string>>> UpdateCurrencyValue(
       [FromBody] CurrencyDto dto
     , [FromServices] ICommandSender commandSender
-    //, [FromServices] ILogger logger
     , CancellationToken cancellationToken)
     {
       try
@@ -94,7 +110,6 @@ public static class CurrencyEndpoints
         }
         _ = await commandSender.ExecuteAsync(
           new UpdateCurrencyValueInEuroCommand(currencyName, dto.ValueInEuro), cancellationToken);
-        //logger.LogInformation("Currency {Currency} exchange rate updated to {ExchangeRate}", currencyName, dto.ValueInEuro);
         return TypedResults.Ok(dto);
       }
       catch (Exception ex)
