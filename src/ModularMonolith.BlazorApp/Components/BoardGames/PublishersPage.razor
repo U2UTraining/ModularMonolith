@@ -13,11 +13,12 @@
                   @bind-SelectedItems="@SelectedItems"
                   />
     <PropertyColumn Property="@(pub => pub.PublisherName)" title="Name" Sortable="true" />
-    @* <TemplateColumn Title="Actions" Context="currency" Align="@Align.End"> *@
-      @* <FluentButton OnClick="async () => await AddBoardGame(currency)"
-                    Title="Edit currency"
-                    IconEnd="@(new Size20.BookAdd())" /> *@
-    @* </TemplateColumn> *@
+    <TemplateColumn Title="Actions" Context="publisher" Align="@Align.End">
+      <FluentButton 
+        OnClick="async () => await AddBoardGame(publisher)"
+        Title="Add game"
+        IconEnd="@(new Size20.BookAdd())" />
+    </TemplateColumn>
   </FluentDataGrid>
 </div>
 
@@ -33,6 +34,12 @@
     <PropertyColumn Property="@(bg => bg.GameName)" title="Name" Sortable="true" />
     <PropertyColumn Property="@(bg => bg.PublisherName)" Title="Publisher" Sortable="true" />
     <PropertyColumn Property="@(bg => bg.Price.ToString())" Title="Price" Sortable="true" />
+    <TemplateColumn Title="Actions" Context="game" Align="@Align.End">
+      <FluentButton OnClick="async () => await EditBoardGame(game)"
+                    Title="Edit game"
+                    IconEnd="@(new Size20.Edit())" />
+    </TemplateColumn>
+
   </FluentDataGrid>
 </div>
 

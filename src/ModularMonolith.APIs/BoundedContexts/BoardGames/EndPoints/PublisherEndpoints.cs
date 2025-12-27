@@ -13,9 +13,11 @@ public static class PublisherEndpoints
         .WithName(nameof(GetAllPublishers))
         ;
       group
-        .MapGet("/{id:int}", GetPublisherById)
+        .MapGet("/{id:int}", PublisherEndpoints.GetPublisherById)
         .WithName(nameof(GetPublisherById))
         ;
+      group
+        .MapPut("/game/{id:int}", PublisherEndpoints.UpdateGame);
       return group;
     }
 
@@ -60,6 +62,35 @@ public static class PublisherEndpoints
       else
       {
         return TypedResults.NotFound();
+      }
+    }
+
+    public static async Task<Results<Ok<GameDto>, NotFound, BadRequest>> UpdateGame(
+      [FromRoute] int id
+    , [FromBody] GameDto gameDto
+    , [FromServices] GamesDb db
+    , CancellationToken cancellationToken)
+    {
+      if (gameDto.Id == id)
+      {
+        BoardGame? game = await db.Games
+          .Include(g => g.Publisher)
+          .FirstOrDefaultAsync(g => g.Id == id, cancellationToken);
+        if (game is null)
+          return TypedResults.NotFound();
+        game.Rename(new BoardGameName(gameDto.GameName));
+        game.SetPrice(new Money(gameDto.Price));
+        await db.SaveChangesAsync(cancellationToken);
+        return TypedResults.Ok(new GameDto(
+          Id: game.Id
+        , GameName: game.Name
+        , Price: game.Price.Amount
+        , ImageURL: game.ImageURL
+        , PublisherName: game.Publisher.Name));
+      }
+      else
+      {
+        return TypedResults.BadRequest();
       }
     }
   }

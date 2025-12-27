@@ -29,6 +29,8 @@ public sealed partial class BoardGamesPage
   // Easy Access
   private IQueryable<GameDto>? Games => State.Games;
 
+  private GetGamesQuery filter = new(decimal.Zero, 1000M, false);
+
   private async Task<IQueryable<GameDto>> GetBoardGames(GetGamesQuery query)
   {
     IEnumerable<GameDto> result =
@@ -38,7 +40,7 @@ public sealed partial class BoardGamesPage
 
   protected override async Task OnInitializedAsync()
   {
-    State.Games = await GetBoardGames(new GetGamesQuery(decimal.Zero, 1000M, false)).ConfigureAwait(true);
+    State.Games = await GetBoardGames(filter).ConfigureAwait(true);
 
     State.PropertyChanged += OnPropertyChanged;
   }
@@ -81,20 +83,18 @@ public sealed partial class BoardGamesPage
   //  }
   //}
 
-  private string BoardGameImageURL(GameDto game)
+  private static string BoardGameImageURL(GameDto game)
   => game.ImageURL ?? "https://u2ublogimages.blob.core.windows.net/cleanarchitecture/GamesStore_BoardGame.jpg";
 
   private async Task GiveGlobalDiscount()
   {
-    //await Commander.ExecuteAsync(
-    //  new Commands.ApplyMegaDiscountCommand(true, new Percent(10M))
-    //).ConfigureAwait(true);
-    await Task.CompletedTask;
+    await BoardGamesClient.ApplyMegaDiscountAsync();
+    State.Games = await GetBoardGames(filter).ConfigureAwait(true);
   }
 
   private async Task Filter()
   {
-    State.Games =
-      await GetBoardGames(new GetGamesQuery(10M, 30M, false));
+    filter = new GetGamesQuery(10M, 30M, false);
+    State.Games = await GetBoardGames(filter).ConfigureAwait(true);
   }
 }

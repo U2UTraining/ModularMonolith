@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.BlazorApp.Components.BoardGames;
+﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
+
+namespace ModularMonolith.BlazorApp.Components.BoardGames;
 
 public class PublishersClient
 {
@@ -30,5 +32,15 @@ public class PublishersClient
     PublisherWithGamesDto? publisher =
       await response.Content.ReadFromJsonAsync<PublisherWithGamesDto>(cancellationToken);
     return publisher;
+  }
+
+  public async Task<GameDto> UpdateGameAsync(
+    GameDto game
+  , CancellationToken cancellationToken = default)
+  {
+    HttpResponseMessage response =
+      await _httpClient.PutAsync($"game/{game.Id}", JsonContent.Create(game), cancellationToken);
+    response.EnsureSuccessStatusCode();
+    return game;
   }
 }

@@ -32,4 +32,12 @@ public class BoardGamesClient
       await response.Content.ReadFromJsonAsync<IEnumerable<GameDto>>(cancellationToken);
     return games ?? [];
   }
+
+  public async Task ApplyMegaDiscountAsync(
+    CancellationToken cancellationToken = default)
+  {
+    HttpResponseMessage response =
+      await _httpClient.PutAsync("apply-discount", null, cancellationToken);
+    response.EnsureSuccessStatusCode();
+  }
 }
