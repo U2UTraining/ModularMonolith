@@ -5,8 +5,7 @@
 /// </summary>
 /// <param name="GameIds"></param>
 public sealed record class GetGamesFromListQuery(
-  PK<int>[] GameIds
+  int[] GameIds
 )
 : IQuery<IQueryable<BoardGame>>
-{
-}
+;

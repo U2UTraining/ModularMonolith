@@ -5,4 +5,5 @@ public sealed record class BoardGameSelectedForShoppingBasketIntegrationEvent(
 , int BoardGameId
 , decimal PriceInEuro
 )
-: IIntegrationEvent;
+: IIntegrationEvent
+;

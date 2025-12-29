@@ -13,5 +13,5 @@ internal sealed class BoardGameSpecificationQueryHandler(
     Specification<BoardGame> request,
     CancellationToken cancellationToken = default)
    => await boardGameRepository.ListAsync(request, cancellationToken)
-                                .ConfigureAwait(false);
+                               .ConfigureAwait(false);
 }

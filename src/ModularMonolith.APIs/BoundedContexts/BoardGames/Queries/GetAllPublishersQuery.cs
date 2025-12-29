@@ -3,28 +3,7 @@
 /// <summary>
 /// Query to retrieve all publishers.
 /// </summary>
-public sealed class GetAllPublishersQuery
+public sealed record class GetAllPublishersQuery(
+  bool IncludeGames)
 : IQuery<IQueryable<Publisher>>
-{
-  private GetAllPublishersQuery()
-  {
-  }
-
-  public required bool IncludeGames { get; init; } = false;
-
-  public static GetAllPublishersQuery Default
-  {
-    get;
-  } = new()
-  {
-    IncludeGames = false
-  };
-
-  public static GetAllPublishersQuery WithGames
-  {
-    get;
-  } = new()
-  {
-    IncludeGames = true
-  };
-}
+;

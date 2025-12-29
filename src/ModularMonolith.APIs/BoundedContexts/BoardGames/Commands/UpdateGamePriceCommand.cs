@@ -9,4 +9,4 @@ public sealed record UpdateGamePriceCommand(
   BoardGame Game
 , Money PriceInEuro) 
 : ICommand<bool>
-{ }
+;

@@ -52,6 +52,8 @@ internal sealed class BoardGameConfiguration
 
     _ = boardGame
       .HasHistory()
-      .HasSoftDelete();
+      .HasSoftDelete()
+      .HasRowVersion()
+      ;
   }
 }

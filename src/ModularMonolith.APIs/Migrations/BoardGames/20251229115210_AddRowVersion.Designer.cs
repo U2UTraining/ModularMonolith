@@ -4,27 +4,30 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ModularMonolith.APIs.BoundedContexts.Shopping.Infra;
+using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
 
 #nullable disable
 
-namespace ModularMonolith.APIs.Migrations.Shopping
+namespace ModularMonolith.APIs.Migrations.BoardGames
 {
-    [DbContext(typeof(ShoppingDb))]
-    partial class ShoppingDbModelSnapshot : ModelSnapshot
+    [DbContext(typeof(GamesDb))]
+    [Migration("20251229115210_AddRowVersion")]
+    partial class AddRowVersion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("shopping")
+                .HasDefaultSchema("games")
                 .HasAnnotation("ProductVersion", "10.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ModularMonolith.APIs.BoundedContexts.Shopping.Entities.BasketItem", b =>
+            modelBuilder.Entity("ModularMonolith.APIs.BoundedContexts.BoardGames.Entities.BoardGame", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -33,23 +36,25 @@ namespace ModularMonolith.APIs.Migrations.Shopping
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BoardGameId")
-                        .HasColumnType("int")
-                        .HasColumnOrder(1);
-
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false)
                         .HasColumnOrder(2147483647);
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)")
+                        .HasColumnOrder(1);
+
+                    b.Property<int>("PublisherId")
+                        .HasColumnType("int");
+
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
-
-                    b.Property<int?>("ShoppingBasketId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("UtcCreated")
                         .ValueGeneratedOnAdd()
@@ -69,12 +74,12 @@ namespace ModularMonolith.APIs.Migrations.Shopping
                         .HasColumnOrder(2147483644)
                         .HasDefaultValueSql("GETUTCDATE()");
 
-                    b.ComplexProperty(typeof(Dictionary<string, object>), "Price", "ModularMonolith.APIs.BoundedContexts.Shopping.Entities.BasketItem.Price#Money", b1 =>
+                    b.ComplexProperty(typeof(Dictionary<string, object>), "Price", "ModularMonolith.APIs.BoundedContexts.BoardGames.Entities.BoardGame.Price#Money", b1 =>
                         {
                             b1.IsRequired();
 
                             b1.Property<decimal>("Amount")
-                                .HasColumnType("decimal(4,2)")
+                                .HasColumnType("decimal(8,2)")
                                 .HasColumnOrder(2);
 
                             b1.Property<string>("Currency")
@@ -86,18 +91,28 @@ namespace ModularMonolith.APIs.Migrations.Shopping
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ShoppingBasketId");
+                    b.HasIndex("Name")
+                        .IsUnique();
 
-                    b.ToTable("BasketItems", "shopping");
+                    b.HasIndex("PublisherId");
+
+                    b.ToTable("Games", "games");
                 });
 
-            modelBuilder.Entity("ModularMonolith.APIs.BoundedContexts.Shopping.Entities.Customer", b =>
+            modelBuilder.Entity("ModularMonolith.APIs.BoundedContexts.BoardGames.Entities.Contact", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnOrder(0)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
+                        .HasColumnOrder(0);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(320)
+                        .HasColumnType("nvarchar(320)")
+                        .HasColumnOrder(3);
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -117,6 +132,9 @@ namespace ModularMonolith.APIs.Migrations.Shopping
                         .HasColumnType("nvarchar(128)")
                         .HasColumnOrder(2);
 
+                    b.Property<int?>("PublisherId")
+                        .HasColumnType("int");
+
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate()
@@ -140,36 +158,26 @@ namespace ModularMonolith.APIs.Migrations.Shopping
                         .HasColumnOrder(2147483644)
                         .HasDefaultValueSql("GETUTCDATE()");
 
-                    b.ComplexProperty(typeof(Dictionary<string, object>), "Address", "ModularMonolith.APIs.BoundedContexts.Shopping.Entities.Customer.Address#Address", b1 =>
-                        {
-                            b1.IsRequired();
-
-                            b1.Property<string>("City")
-                                .IsRequired()
-                                .HasMaxLength(128)
-                                .HasColumnType("nvarchar(128)")
-                                .HasColumnOrder(4);
-
-                            b1.Property<string>("Street")
-                                .IsRequired()
-                                .HasMaxLength(100)
-                                .HasColumnType("nvarchar(100)")
-                                .HasColumnOrder(3);
-                        });
-
                     b.HasKey("Id");
 
-                    b.ToTable("Customers", "shopping");
+                    b.HasIndex("PublisherId");
+
+                    b.ToTable("Contact", "games");
                 });
 
-            modelBuilder.Entity("ModularMonolith.APIs.BoundedContexts.Shopping.Entities.ShoppingBasket", b =>
+            modelBuilder.Entity("ModularMonolith.APIs.BoundedContexts.BoardGames.Entities.GameImage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnOrder(0);
+                        .HasColumnOrder(0)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("ImageLocation")
+                        .IsRequired()
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)")
+                        .HasColumnOrder(1);
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -202,28 +210,98 @@ namespace ModularMonolith.APIs.Migrations.Shopping
 
                     b.HasKey("Id");
 
-                    b.ToTable("ShoppingBaskets", "shopping");
+                    b.ToTable("GameImage", "games");
                 });
 
-            modelBuilder.Entity("ModularMonolith.APIs.BoundedContexts.Shopping.Entities.BasketItem", b =>
+            modelBuilder.Entity("ModularMonolith.APIs.BoundedContexts.BoardGames.Entities.Publisher", b =>
                 {
-                    b.HasOne("ModularMonolith.APIs.BoundedContexts.Shopping.Entities.ShoppingBasket", null)
-                        .WithMany("Items")
-                        .HasForeignKey("ShoppingBasketId");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnOrder(0);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false)
+                        .HasColumnOrder(2147483647);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)")
+                        .HasColumnOrder(1);
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<DateTime>("UtcCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasColumnOrder(2147483645)
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.Property<DateTime?>("UtcDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasColumnOrder(2147483646)
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.Property<DateTime>("UtcModified")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasColumnOrder(2147483644)
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.HasKey("Id");
+
+                    b.HasAlternateKey("Name");
+
+                    b.ToTable("Publishers", "games");
                 });
 
-            modelBuilder.Entity("ModularMonolith.APIs.BoundedContexts.Shopping.Entities.Customer", b =>
+            modelBuilder.Entity("ModularMonolith.APIs.BoundedContexts.BoardGames.Entities.BoardGame", b =>
                 {
-                    b.HasOne("ModularMonolith.APIs.BoundedContexts.Shopping.Entities.ShoppingBasket", null)
-                        .WithOne("Customer")
-                        .HasForeignKey("ModularMonolith.APIs.BoundedContexts.Shopping.Entities.Customer", "Id");
+                    b.HasOne("ModularMonolith.APIs.BoundedContexts.BoardGames.Entities.Publisher", "Publisher")
+                        .WithMany("Games")
+                        .HasForeignKey("PublisherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Publisher");
                 });
 
-            modelBuilder.Entity("ModularMonolith.APIs.BoundedContexts.Shopping.Entities.ShoppingBasket", b =>
+            modelBuilder.Entity("ModularMonolith.APIs.BoundedContexts.BoardGames.Entities.Contact", b =>
                 {
-                    b.Navigation("Customer");
+                    b.HasOne("ModularMonolith.APIs.BoundedContexts.BoardGames.Entities.Publisher", null)
+                        .WithMany("Contacts")
+                        .HasForeignKey("PublisherId");
+                });
 
-                    b.Navigation("Items");
+            modelBuilder.Entity("ModularMonolith.APIs.BoundedContexts.BoardGames.Entities.GameImage", b =>
+                {
+                    b.HasOne("ModularMonolith.APIs.BoundedContexts.BoardGames.Entities.BoardGame", null)
+                        .WithOne("Image")
+                        .HasForeignKey("ModularMonolith.APIs.BoundedContexts.BoardGames.Entities.GameImage", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ModularMonolith.APIs.BoundedContexts.BoardGames.Entities.BoardGame", b =>
+                {
+                    b.Navigation("Image")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ModularMonolith.APIs.BoundedContexts.BoardGames.Entities.Publisher", b =>
+                {
+                    b.Navigation("Contacts");
+
+                    b.Navigation("Games");
                 });
 #pragma warning restore 612, 618
         }

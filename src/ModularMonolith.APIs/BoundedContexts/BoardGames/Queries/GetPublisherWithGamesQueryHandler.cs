@@ -16,7 +16,9 @@ internal sealed class GetPublisherWithGamesQueryHandler
   {
     ISpecification<Publisher> spec =
       PublisherSpecification.WithId(query.PublisherId)
-                           .Include(pub => pub.Games);
+                           .Include(pub => pub.Games)
+                           .AsNoTracking()
+                           ;
     Publisher? pub = await _repo.SingleAsync(spec);
     return pub;
   }

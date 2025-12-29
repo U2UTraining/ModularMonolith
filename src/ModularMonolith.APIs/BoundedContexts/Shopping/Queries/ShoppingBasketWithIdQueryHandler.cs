@@ -32,7 +32,7 @@ internal sealed class ShoppingBasketWithIdQueryHandler
 
     if (query.includeGames)
     {
-      PK<int>[] games = basket.Items.Select(item => item.BoardGameId).ToArray();
+      int[] games = basket.Items.Select(item => item.BoardGameId.Key).ToArray();
       IQueryable<BoardGame> gameItems = await _querySender.AskAsync(new GetGamesFromListQuery(games), cancellationToken);
       ShoppingBasketDto dto = ShoppingBasketDto.ToDTO(basket, gameItems);
       return dto;

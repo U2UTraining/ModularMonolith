@@ -72,11 +72,14 @@ public static class CurrencyEndpoints
       [FromServices] CurrenciesDb db
     , CancellationToken cancellationToken = default)
     {
+      // ✅ Keep EF close to the query
       List<CurrencyDto> allCurrencies =
         await db.Currencies
+      // ✅ Dont' track entities for read-only queries
           .AsNoTracking()
           .Select(c => new CurrencyDto(c.Id.ToString(), c.ValueInEuro))
           .ToListAsync();
+      // ✅ Materialize in Infrastructure; return DTOs or domain objects
       return TypedResults.Ok(allCurrencies);
     }
 
@@ -93,6 +96,7 @@ public static class CurrencyEndpoints
       [FromServices] CurrenciesDb db
     , CancellationToken cancellationToken = default)
     {
+      // ✅ Keep EF close to the query
       List<CurrencyDto> allCurrencies = await db.GetAllCurrenciesAsync();
       return TypedResults.Ok(allCurrencies);
     }

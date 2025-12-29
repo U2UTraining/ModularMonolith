@@ -40,7 +40,11 @@ internal sealed class BasketItemConfiguration
             ;
     });
 
-    _ = gameInBasket.HasHistory().HasSoftDelete();
+    _ = gameInBasket
+      .HasHistory()
+      .HasSoftDelete()
+      .HasRowVersion()
+      ;
 
   }
 }

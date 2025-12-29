@@ -23,6 +23,8 @@ internal sealed class GameImageConfiguration
 
     _ = gameImage
       .HasHistory()
-      .HasSoftDelete();
+      .HasSoftDelete()
+      .HasRowVersion()
+      ;
   }
 }

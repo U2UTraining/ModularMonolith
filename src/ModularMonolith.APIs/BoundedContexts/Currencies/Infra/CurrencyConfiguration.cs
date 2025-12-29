@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.Infra;
+﻿using ModularMonolithEFCore.RowVersion;
+
+namespace ModularMonolith.APIs.BoundedContexts.Currencies.Infra;
 
 public sealed class CurrencyConfiguration
 : IEntityTypeConfiguration<Currency>
@@ -38,7 +40,9 @@ public sealed class CurrencyConfiguration
 
     _ = currency
       .HasHistory()
-      .HasSoftDelete();
+      .HasSoftDelete()
+      .HasRowVersion()
+      ;
 
     // Add a constraint to keep this number positive
     _ = currency.ToTable(t =>

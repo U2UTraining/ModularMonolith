@@ -46,6 +46,8 @@ internal sealed class ContactConfiguration
       ;
     _ = contact
       .HasHistory()
-      .HasSoftDelete();
+      .HasSoftDelete()
+      .HasRowVersion()
+      ;
   }
 }

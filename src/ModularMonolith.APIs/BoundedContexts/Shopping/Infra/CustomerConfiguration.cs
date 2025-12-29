@@ -62,6 +62,10 @@ internal sealed class CustomerConfiguration
 
     });
 
-    _ = customer.HasHistory().HasSoftDelete();
+    _ = customer
+      .HasHistory()
+      .HasSoftDelete()
+      .HasRowVersion()
+      ;
   }
 }

@@ -27,7 +27,7 @@ public static class PublisherEndpoints
     , CancellationToken cancellationToken)
     {
       IEnumerable<Publisher> publishers =
-          await querySender.AskAsync(GetAllPublishersQuery.Default, cancellationToken);
+          await querySender.AskAsync(new GetAllPublishersQuery(false), cancellationToken);
       List<PublisherDto> allPublishers = publishers
               .Select(p => new PublisherDto(
                 Id: p.Id

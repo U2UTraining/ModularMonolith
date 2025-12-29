@@ -26,8 +26,7 @@ internal sealed class BoardGamesRepository
     //}
     //await SaveChangesAsync(cancellationToken);
 
-    // Or use bulk update
-
+    // ✅ Use Set-based update (no materialization)
     await DbContext.Games.ExecuteUpdateAsync(s =>
       s.SetProperty(bg => bg.Price.Amount,
                     bg => bg.Price.Amount * discount)
@@ -42,9 +41,9 @@ internal sealed class BoardGamesRepository
   }
 
   public ValueTask<IQueryable<BoardGame>> GetBoardGamesFromList(
-    PK<int>[] gameIds
+    int[] gameIds
   , CancellationToken cancellationToken)
-  => ValueTask.FromResult(Includes(DbContext.Games).Where(game => gameIds.Contains(game.Id)));
+  => ValueTask.FromResult(Includes(DbContext.Games).Where(game => gameIds.Contains(game.Id.Key)));
 
   protected override IQueryable<BoardGame> Includes(IQueryable<BoardGame> q)
   {

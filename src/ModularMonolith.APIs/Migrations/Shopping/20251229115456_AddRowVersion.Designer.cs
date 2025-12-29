@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ModularMonolith.APIs.BoundedContexts.Shopping.Infra;
 
@@ -12,9 +13,11 @@ using ModularMonolith.APIs.BoundedContexts.Shopping.Infra;
 namespace ModularMonolith.APIs.Migrations.Shopping
 {
     [DbContext(typeof(ShoppingDb))]
-    partial class ShoppingDbModelSnapshot : ModelSnapshot
+    [Migration("20251229115456_AddRowVersion")]
+    partial class AddRowVersion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

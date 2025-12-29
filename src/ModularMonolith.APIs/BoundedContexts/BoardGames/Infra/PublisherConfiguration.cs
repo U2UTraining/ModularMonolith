@@ -46,6 +46,10 @@ internal sealed class PublisherConfiguration
     publisher.Metadata.FindNavigation(nameof(Publisher.Contacts));
     contactsNav!.SetPropertyAccessMode(PropertyAccessMode.Field);
 
-    _ = publisher.HasHistory().HasSoftDelete();
+    _ = publisher
+      .HasHistory()
+      .HasSoftDelete()
+      .HasRowVersion()
+      ;
   }
 }

@@ -9,4 +9,4 @@ public sealed record class ApplyMegaDiscountCommand(
   bool GiveDiscount
 , Percent Discount)
 : ICommand<bool>
-{ }
+;

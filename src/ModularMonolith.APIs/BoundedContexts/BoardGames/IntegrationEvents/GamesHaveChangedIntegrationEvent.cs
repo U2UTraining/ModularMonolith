@@ -5,4 +5,4 @@
 /// </summary>
 public sealed record class GamesHaveChangedIntegrationEvent()
 : IIntegrationEvent
-{ }
+;

@@ -12,4 +12,4 @@ public sealed record class NewBoardGameCreatedIntegrationEvent(
 , decimal PriceInEuro
 )
 : IIntegrationEvent
-{ }
+;

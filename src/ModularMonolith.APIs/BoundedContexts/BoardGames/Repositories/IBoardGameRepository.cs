@@ -9,5 +9,5 @@ public interface IBoardGameRepository
   );
 
   ValueTask<IQueryable<BoardGame>> GetBoardGamesFromList
-  (PK<int>[] gameIds, CancellationToken cancellationToken);
+  (int[] gameIds, CancellationToken cancellationToken);
 }

@@ -48,6 +48,11 @@ namespace ModularMonolithMigrations.BoardGames
                     b.Property<int>("PublisherId")
                         .HasColumnType("int");
 
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
                     b.Property<DateTime>("UtcCreated")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
@@ -127,6 +132,11 @@ namespace ModularMonolithMigrations.BoardGames
                     b.Property<int?>("PublisherId")
                         .HasColumnType("int");
 
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
                     b.Property<DateTime>("UtcCreated")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
@@ -172,6 +182,11 @@ namespace ModularMonolithMigrations.BoardGames
                         .HasDefaultValue(false)
                         .HasColumnOrder(2147483647);
 
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
                     b.Property<DateTime>("UtcCreated")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
@@ -215,6 +230,11 @@ namespace ModularMonolithMigrations.BoardGames
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)")
                         .HasColumnOrder(1);
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<DateTime>("UtcCreated")
                         .ValueGeneratedOnAdd()

@@ -13,7 +13,7 @@ public class CurrencyClient
     CancellationToken cancellationToken = default)
   {
     HttpResponseMessage response = 
-      await _httpClient.GetAsync("currencies", cancellationToken);
+      await _httpClient.GetAsync("", cancellationToken);
     response.EnsureSuccessStatusCode();
     IEnumerable<CurrencyDto>? currencies = 
       await response.Content.ReadFromJsonAsync<IEnumerable<CurrencyDto>>(cancellationToken);
@@ -25,7 +25,7 @@ public class CurrencyClient
   , CancellationToken cancellationToken)
   {
     HttpResponseMessage response =
-      await _httpClient.PutAsJsonAsync("currencies", currencyDTO, cancellationToken);
+      await _httpClient.PutAsJsonAsync("", currencyDTO, cancellationToken);
     response.EnsureSuccessStatusCode();
     CurrencyDto? updatedCurrency =
       await response.Content.ReadFromJsonAsync<CurrencyDto>();

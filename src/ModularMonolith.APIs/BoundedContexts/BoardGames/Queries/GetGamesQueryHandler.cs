@@ -13,13 +13,15 @@ internal sealed class GetGamesQueryHandler
   , CancellationToken cancellationToken = default)
   {
     ISpecification<BoardGame> spec = 
-      BoardGameSpecification.WithPriceBetween(request.MinAmount, request.MaxAmount);
+      BoardGameSpecification.WithPriceBetween(request.MinAmount, request.MaxAmount)
+        .AsNoTracking();
     if (request.IncludePublisher)
     {
       spec = spec.Include(g => g.Publisher);
     }
     IQueryable<BoardGame> games = 
-      await _repo.ListAsync(spec, cancellationToken).ConfigureAwait(false);
+      await _repo.ListAsync(spec, cancellationToken)
+        .ConfigureAwait(false);
     return games;
   }
 }

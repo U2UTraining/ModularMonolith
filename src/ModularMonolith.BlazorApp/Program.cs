@@ -35,7 +35,7 @@ public static partial class Program
     // API Services -- DO NOT FORGET TRAILING SLASH! --
     builder.Services.AddHttpClient<CurrencyClient>(client =>
     {
-      client.BaseAddress = new("https+http://modular-monolith-apis/");
+      client.BaseAddress = new("https+http://modular-monolith-apis/currencies/");
     })
       .AddStandardResilienceHandler();
 

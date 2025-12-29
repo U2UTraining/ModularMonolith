@@ -38,6 +38,10 @@ internal sealed class ShoppingBasketConfiguration
     gamesInBasketNav!.SetPropertyAccessMode(PropertyAccessMode.Field);
     gamesInBasketNav!.SetField("gamesInBasket");
 
-    _ = shoppingBasket.HasHistory().HasSoftDelete();
+    _ = shoppingBasket
+      .HasHistory()
+      .HasSoftDelete()
+      .HasRowVersion()
+      ;
   }
 }

@@ -11,4 +11,4 @@ public sealed record class AddBoardGameToPublisherCommand(
 , BoardGameName Name
 , Money PriceInEuro)
 : ICommand<Publisher>
-{ }
+;
