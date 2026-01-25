@@ -10,7 +10,8 @@ public static class PublisherSpecification
 
 // Specification pattern with extensions methods
 
-//public static class PublisherSpecification {
+//public static class PublisherSpecification
+//{
 
 //  extension(GamesDb db)
 //  {

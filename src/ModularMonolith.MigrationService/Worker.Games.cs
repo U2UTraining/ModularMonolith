@@ -4,7 +4,7 @@ namespace ModularMonolith.MigrationService;
 
 public partial class Worker
 {
-  private static async Task EnsureGamesDatabaseAsync(
+  public static async Task EnsureGamesDatabaseAsync(
     GamesDb dbContext
   , CancellationToken cancellationToken)
   {
@@ -38,7 +38,7 @@ public partial class Worker
     });
   }
 
-  private static async Task SeedGamesAsync(GamesDb dbContext, CancellationToken cancellationToken)
+  public static async Task SeedGamesAsync(GamesDb dbContext, CancellationToken cancellationToken)
   {
     if (await dbContext.Publishers.AnyAsync(cancellationToken))
     {

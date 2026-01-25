@@ -8,6 +8,7 @@ public static class ServiceCollectionExtensions
     builder.Services
              .AddBoardGamesQueries()
              .AddBoardGamesCommands()
+             .AddBoardGamesEndpoints()
              .AddBoardGamesIntegrationEventHandlers()
              ;
     builder.AddSqlServerDbContext<GamesDb>(GamesDb.DatabaseName,
@@ -72,6 +73,11 @@ public static class ServiceCollectionExtensions
     ICommandHandler<AddBoardGameToPublisherCommand, Publisher>
   , AddBoardGameToPublisherCommandHandler>()
   ;
+
+  private static IServiceCollection AddBoardGamesEndpoints(
+        this IServiceCollection services)
+  => services.AddScoped<GetGames>();
+
 
   private static IServiceCollection AddBoardGamesIntegrationEventHandlers(
     this IServiceCollection services)

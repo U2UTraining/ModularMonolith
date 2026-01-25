@@ -8,9 +8,18 @@ public static class GamesEndpoints
     public RouteGroupBuilder WithBoardGameEndpoints()
 #pragma warning restore S2325 // Methods and properties that don't access instance data should be static
     {
-      group.MapPost(pattern: "/"
-        , GamesEndpoints.GetGamesDirect)
-        .WithName(nameof(GetGamesDirect))
+      //group.MapPost(pattern: "/"
+      //  , GamesEndpoints.GetGamesDirect)
+      //  .WithName(nameof(GetGamesDirect))
+      //  .Produces<List<GameDto>>(StatusCodes.Status200OK)
+      //  .Produces(StatusCodes.Status400BadRequest)
+      //  ;
+
+      group.MapPost(pattern: "/", (
+        GetGamesQuery query
+      , GetGames handler
+      , CancellationToken cancellationToken) => handler.ExecuteAsync(query, cancellationToken))
+        .WithName(nameof(GetGames))
         .Produces<List<GameDto>>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status400BadRequest)
         ;

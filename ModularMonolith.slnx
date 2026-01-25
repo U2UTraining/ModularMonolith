@@ -23,6 +23,7 @@
     <Project Path="src/ModularMonolith.Smtp4Dev.Hosting/ModularMonolith.Smtp4Dev.Hosting.csproj" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="BoardGames.Tests/BoardGames.Tests.csproj" Id="83b35844-8523-45c5-a4f3-87b361732d87" />
     <Project Path="ModularMonolith.Architecture.Tests/ModularMonolith.Architecture.Tests.csproj" Id="e92113b3-4fe2-408f-b859-19c6988d9205" />
     <Project Path="test/Common.Specifications.Tests/Common.Specifications.Tests.csproj" Id="3cfbaf2c-2114-44d7-9268-b643856eefa4" />
   </Folder>
