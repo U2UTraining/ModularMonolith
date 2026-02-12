@@ -9,7 +9,6 @@ internal static class Program
     var builder = Host.CreateApplicationBuilder(args);
 
     builder.AddServiceDefaults();
-    builder.Services.AddHostedService<Worker>();
     builder.Services.AddOpenTelemetry()
         .WithTracing(tracing => tracing.AddSource(Worker.ActivitySourceName));
 
@@ -17,6 +16,7 @@ internal static class Program
     builder.AddSqlServerDbContext<GamesDb>(GamesDb.DatabaseName);
     builder.AddSqlServerDbContext<ShoppingDb>(ShoppingDb.DatabaseName);
 
+    builder.Services.AddHostedService<Worker>();
     var host = builder.Build();
     host.Run();
   }
