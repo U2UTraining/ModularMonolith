@@ -1,5 +1,9 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Queries;
 
+[Register(
+  interfaceType: typeof(IQueryHandler<GetGamesFromListQuery, IQueryable<BoardGame>>)
+, lifetime: ServiceLifetime.Scoped
+, methodNameHint: "AddBoardGames")]
 internal sealed class GetGamesFromListQueryHandler
 : IQueryHandler<GetGamesFromListQuery, IQueryable<BoardGame>>
 {

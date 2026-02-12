@@ -1,5 +1,10 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Commands;
 
+[Register(
+  interfaceType: typeof(ICommandHandler<AddBoardGameToPublisherCommand, Publisher>)
+, lifetime: ServiceLifetime.Scoped
+, methodNameHint: "AddBoardGames")]
+
 internal sealed class AddBoardGameToPublisherCommandHandler
 : ICommandHandler<AddBoardGameToPublisherCommand, Publisher>
 {

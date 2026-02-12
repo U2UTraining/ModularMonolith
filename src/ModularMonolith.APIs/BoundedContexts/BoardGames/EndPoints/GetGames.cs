@@ -4,6 +4,10 @@
 /// Handler for GetGamesQuery
 /// </summary>
 /// <param name="db"></param>
+[Register(
+  lifetime: ServiceLifetime.Scoped
+, methodNameHint: "AddBoardGames")]
+
 public sealed class GetGames(GamesDb db)
 {
   public async Task<Results<Ok<List<GameDto>>, BadRequest>> ExecuteAsync(GetGamesQuery query, CancellationToken cancellationToken)

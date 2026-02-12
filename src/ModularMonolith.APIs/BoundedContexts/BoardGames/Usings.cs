@@ -7,5 +7,10 @@ global using ModularMonolith.APIs.BoundedContexts.BoardGames.Repositories;
 global using ModularMonolith.APIs.BoundedContexts.BoardGames.Specifications;
 global using ModularMonolith.APIs.BoundedContexts.BoardGames.ValueObjects;
 
+// MintPlayer Source Generator
+global using MintPlayer.SourceGenerators.Attributes;
+//global using MintInject = MintPlayer.SourceGenerators.Attributes.InjectAttribute;
+
+
 
 

@@ -5,16 +5,12 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- Aspire -->
-    <PackageVersion Include="Aspire.Hosting" Version="13.1.0" />
-    <PackageVersion Include="Aspire.Hosting.AppHost" Version="13.1.0" />
-    <PackageVersion Include="Aspire.Hosting.Azure.Sql" Version="13.1.0" />
-    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="13.1.0" />
+    <PackageVersion Include="Aspire.Hosting" Version="13.1.1" />
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="13.1.1" />
+    <PackageVersion Include="Aspire.Hosting.Azure.Sql" Version="13.1.1" />
+    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="13.1.1" />
     <PackageVersion Include="FluentValidation" Version="12.1.1" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="10.0.2" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.2" />
-    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="10.0.2" />
-    <PackageVersion Include="Scrutor" Version="7.0.0" />
-    <PackageVersion Include="TUnit" Version="1.12.53" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="10.0.3" />
   </ItemGroup>
   <ItemGroup>
     <!-- Mailing -->
@@ -22,17 +18,19 @@
   </ItemGroup>
   <ItemGroup>
     <!-- Open API -->
-    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.2" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.3" />
   </ItemGroup>
   <ItemGroup>
     <!-- EF Core -->
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.2" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.2" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.3" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.3" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="10.0.3" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.3" />
   </ItemGroup>
   <ItemGroup>
     <!-- HTTPClient -->
-    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.2.0" />
-    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.2.0" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.3.0" />
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.3.0" />
   </ItemGroup>
   <ItemGroup>
     <!-- Open Telemetry -->
@@ -44,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <!-- Redis Cache Server -->
-    <PackageVersion Include="Aspire.Hosting.Redis" Version="13.1.0" />
+    <PackageVersion Include="Aspire.Hosting.Redis" Version="13.1.1" />
   </ItemGroup>
   <ItemGroup>
     <!-- Blazor WebAssembly -->
@@ -61,6 +59,7 @@
     <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.5" />
     <PackageVersion Include="NSubstitute" Version="5.3.0" />
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
+    <PackageVersion Include="TUnit" Version="1.13.51" />
   </ItemGroup>
   <ItemGroup>
     <!-- Architecture Testing -->
@@ -72,11 +71,37 @@
   </ItemGroup>
   <!-- Code Quality -->
   <ItemGroup>
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.18.0.131500" />
+    <!--<PackageVersion Include="SonarAnalyzer.CSharp" Version="10.19.0.132793" />-->
   </ItemGroup>
   <ItemGroup>
     <!-- Benchmarks -->
     <PackageVersion Include="BenchmarkDotNet" Version="0.15.8" />
     <PackageVersion Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.15.8" />
   </ItemGroup>
+  <ItemGroup>
+    <!-- Dependency Injection -->
+    <PackageVersion Include="Microsoft.CodeAnalysis" Version="5.0.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.Common" Version="5.0.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="5.0.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.VisualBasic" Version="5.0.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="5.0.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="5.0.0" />
+
+    <PackageVersion Include="MintPlayer.SourceGenerators" Version="10.16.1" />
+    <PackageVersion Include="MintPlayer.SourceGenerators.Attributes" Version="10.16.1" />
+    <PackageVersion Include="Scrutor" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--<GlobalPackageReference Include="MintPlayer.SourceGenerators" Version="10.16.1" >
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </GlobalPackageReference>-->
+
+    <!--<GlobalPackageReference Include="MintPlayer.SourceGenerators.Attributes" Version="10.16.1" >
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>compile</IncludeAssets>
+    </GlobalPackageReference>-->
+  </ItemGroup>
+  
 </Project>

@@ -1,5 +1,10 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Queries;
 
+[Register(
+  interfaceType: typeof(IQueryHandler<GetPublisherWithGamesQuery, Publisher?>)
+, lifetime: ServiceLifetime.Scoped
+, methodNameHint: "AddBoardGames")]
+
 internal sealed class GetPublisherWithGamesQueryHandler
   : IQueryHandler<GetPublisherWithGamesQuery, Publisher?>
 {

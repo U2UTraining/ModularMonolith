@@ -16,4 +16,15 @@
     <ProjectReference Include="..\ModularMonolith.ServiceDefaults\ModularMonolith.ServiceDefaults.csproj" />
   </ItemGroup>
 
+  <!--<ItemGroup>
+    <PackageReference Include="MintPlayer.SourceGenerators">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="MintPlayer.SourceGenerators.Attributes" >
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>build; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>-->
+
 </Project>

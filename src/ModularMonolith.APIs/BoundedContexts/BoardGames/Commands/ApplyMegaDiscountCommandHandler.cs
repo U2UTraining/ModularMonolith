@@ -1,5 +1,10 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Commands;
 
+[Register(
+  interfaceType: typeof(ICommandHandler<ApplyMegaDiscountCommand, bool>)
+, lifetime: ServiceLifetime.Scoped
+, methodNameHint: "AddBoardGames")]
+
 internal sealed class ApplyMegaDiscountCommandHandler
 : ICommandHandler<ApplyMegaDiscountCommand, bool>
 {

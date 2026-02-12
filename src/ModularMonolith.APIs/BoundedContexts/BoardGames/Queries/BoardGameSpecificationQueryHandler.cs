@@ -4,6 +4,11 @@
 /// Query handler for retrieving board games based on a specification.
 /// </summary>
 /// <param name="boardGameRepository"></param>
+[Register(
+  interfaceType: typeof(IQueryHandler<Specification<BoardGame>, IQueryable<BoardGame>>)
+, lifetime: ServiceLifetime.Scoped
+, methodNameHint: "AddBoardGames")]
+
 internal sealed class BoardGameSpecificationQueryHandler(
   IBoardGameRepository boardGameRepository)
 : IQueryHandler<Specification<BoardGame>, IQueryable<BoardGame>>
