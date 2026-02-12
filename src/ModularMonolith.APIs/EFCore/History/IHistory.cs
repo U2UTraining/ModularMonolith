@@ -5,5 +5,4 @@
 /// - UtcCreated
 /// - UtcModified
 /// </summary>
-public interface IHistory 
-{ }
+public interface IHistory;
