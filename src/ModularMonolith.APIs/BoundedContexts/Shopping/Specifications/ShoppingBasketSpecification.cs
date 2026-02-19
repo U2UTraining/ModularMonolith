@@ -1,11 +1,7 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.Specifications;
-using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
-
-namespace ModularMonolith.APIs.BoundedContexts.Shopping.Specifications;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.Specifications;
 
 public static class ShoppingBasketSpecification
 {
   public static ISpecification<ShoppingBasket> WithId(PK<int> id)
-=> new Specification<ShoppingBasket>(g => g.Id == id);
-
+  => new Specification<ShoppingBasket>(g => g.Id == id);
 }

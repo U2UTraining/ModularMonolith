@@ -3,7 +3,7 @@
 [Register(
   interfaceType: typeof(ICommandHandler<UpdateGamePriceCommand, bool>)
 , lifetime: ServiceLifetime.Scoped
-, methodNameHint: "AddBoardGames")]
+, methodNameHint: "AddBoardGameServices")]
 internal sealed class UpdateGamePriceCommandHandler 
 : ICommandHandler<UpdateGamePriceCommand, bool>
 {

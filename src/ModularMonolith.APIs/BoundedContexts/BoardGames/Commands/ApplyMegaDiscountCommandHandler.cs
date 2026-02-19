@@ -3,7 +3,7 @@
 [Register(
   interfaceType: typeof(ICommandHandler<ApplyMegaDiscountCommand, bool>)
 , lifetime: ServiceLifetime.Scoped
-, methodNameHint: "AddBoardGames")]
+, methodNameHint: "AddBoardGameServices")]
 
 internal sealed class ApplyMegaDiscountCommandHandler
 : ICommandHandler<ApplyMegaDiscountCommand, bool>

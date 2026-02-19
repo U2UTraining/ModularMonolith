@@ -2,7 +2,7 @@
 
 public sealed record class ShoppingBasketWithIdQuery(
   int ShoppingBasketId
-, bool includeGames = false
-, bool includeCustomer = false
+, bool IncludeGames = false
+, bool IncludeCustomer = false
 )
-  : IQuery<ShoppingBasketDto?>;
+: IQuery<ShoppingBasketDto?>;

@@ -7,7 +7,7 @@
 [Register(
   interfaceType: typeof(IQueryHandler<Specification<BoardGame>, IQueryable<BoardGame>>)
 , lifetime: ServiceLifetime.Scoped
-, methodNameHint: "AddBoardGames")]
+, methodNameHint: "AddBoardGameServices")]
 
 internal sealed class BoardGameSpecificationQueryHandler(
   IBoardGameRepository boardGameRepository)

@@ -1,5 +1,9 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.Queries;
 
+[Register(
+  interfaceType: typeof(IQueryHandler<ShoppingBasketWithIdQuery, ShoppingBasketDto?>)
+, lifetime: ServiceLifetime.Scoped
+, methodNameHint: "AddShoppingServices")]
 internal sealed class ShoppingBasketWithIdQueryHandler
   : IQueryHandler<ShoppingBasketWithIdQuery, ShoppingBasketDto?>
 {
@@ -20,8 +24,8 @@ internal sealed class ShoppingBasketWithIdQueryHandler
   {
     ShoppingBasket? basket = await _db.GetShoppingBasketAsync(
       query.ShoppingBasketId
-    , includeGames: query.includeGames
-    , includeCustomer: query.includeCustomer
+    , includeGames: query.IncludeGames
+    , includeCustomer: query.IncludeCustomer
     , cancellationToken
       );
 
@@ -30,7 +34,7 @@ internal sealed class ShoppingBasketWithIdQueryHandler
       return null;
     }
 
-    if (query.includeGames)
+    if (query.IncludeGames)
     {
       int[] games = basket.Items.Select(item => item.BoardGameId.Key).ToArray();
       IQueryable<BoardGame> gameItems = await _querySender.AskAsync(new GetGamesFromListQuery(games), cancellationToken);

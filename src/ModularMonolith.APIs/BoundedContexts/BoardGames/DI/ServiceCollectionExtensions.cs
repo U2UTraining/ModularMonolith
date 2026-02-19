@@ -6,10 +6,11 @@ public static class ServiceCollectionExtensions
     this IHostApplicationBuilder builder)
   {
     builder.Services
-             .AddBoardGamesQueries()
-             .AddBoardGamesCommands()
-             .AddBoardGamesEndpoints()
-             .AddBoardGamesIntegrationEventHandlers()
+      .AddBoardGameServices()
+             //.AddBoardGamesQueries()
+             //.AddBoardGamesCommands()
+             //.AddBoardGamesEndpoints()
+             //.AddBoardGamesIntegrationEventHandlers()
              ;
     builder.AddSqlServerDbContext<GamesDb>(GamesDb.DatabaseName,
     sqlServerOptions => {
@@ -40,52 +41,52 @@ public static class ServiceCollectionExtensions
     return builder;
   }
 
-  private static IServiceCollection AddBoardGamesQueries(
-    this IServiceCollection services)
-  => services
-     .AddScoped<
-      IQueryHandler<GetGamesQuery, IQueryable<BoardGame>>
-     , GetGamesQueryHandler>()
-     .AddScoped<
-       IQueryHandler<GetAllPublishersQuery, IQueryable<Publisher>>
-     , GetAllPublishersQueryHandler>()
-     .AddScoped<
-       IQueryHandler<GetPublisherWithGamesQuery, Publisher?>
-     , GetPublisherWithGamesQueryHandler>()
-     .AddScoped<
-       IQueryHandler<GetGamesFromListQuery, IQueryable<BoardGame>>
-     , GetGamesFromListQueryHandler>()
-     .AddScoped<
-       IQueryHandler<Specification<BoardGame>, IQueryable<BoardGame>>
-     , BoardGameSpecificationQueryHandler>()
-     ;
+  //private static IServiceCollection AddBoardGamesQueries(
+  //  this IServiceCollection services)
+  //=> services
+  //   .AddScoped<
+  //    IQueryHandler<GetGamesQuery, IQueryable<BoardGame>>
+  //   , GetGamesQueryHandler>()
+  //   .AddScoped<
+  //     IQueryHandler<GetAllPublishersQuery, IQueryable<Publisher>>
+  //   , GetAllPublishersQueryHandler>()
+  //   .AddScoped<
+  //     IQueryHandler<GetPublisherWithGamesQuery, Publisher?>
+  //   , GetPublisherWithGamesQueryHandler>()
+  //   .AddScoped<
+  //     IQueryHandler<GetGamesFromListQuery, IQueryable<BoardGame>>
+  //   , GetGamesFromListQueryHandler>()
+  //   .AddScoped<
+  //     IQueryHandler<Specification<BoardGame>, IQueryable<BoardGame>>
+  //   , BoardGameSpecificationQueryHandler>()
+  //   ;
 
-  private static IServiceCollection AddBoardGamesCommands(
-    this IServiceCollection services)
-  => services
-  .AddScoped<
-    ICommandHandler<ApplyMegaDiscountCommand, bool>
-  , ApplyMegaDiscountCommandHandler>()
-  .AddScoped<
-    ICommandHandler<UpdateGamePriceCommand, bool>
-  , UpdateGamePriceCommandHandler>()
-  .AddScoped<
-    ICommandHandler<AddBoardGameToPublisherCommand, Publisher>
-  , AddBoardGameToPublisherCommandHandler>()
-  ;
+  //private static IServiceCollection AddBoardGamesCommands(
+  //  this IServiceCollection services)
+  //=> services
+  //.AddScoped<
+  //  ICommandHandler<ApplyMegaDiscountCommand, bool>
+  //, ApplyMegaDiscountCommandHandler>()
+  //.AddScoped<
+  //  ICommandHandler<UpdateGamePriceCommand, bool>
+  //, UpdateGamePriceCommandHandler>()
+  //.AddScoped<
+  //  ICommandHandler<AddBoardGameToPublisherCommand, Publisher>
+  //, AddBoardGameToPublisherCommandHandler>()
+  //;
 
-  private static IServiceCollection AddBoardGamesEndpoints(
-        this IServiceCollection services)
-  => services.AddScoped<GetGames>();
+  //private static IServiceCollection AddBoardGamesEndpoints(
+  //      this IServiceCollection services)
+  //=> services.AddScoped<GetGames>();
 
 
-  private static IServiceCollection AddBoardGamesIntegrationEventHandlers(
-    this IServiceCollection services)
-  => services
-  //.AddTransient<
-  //  IIntegrationEventHandler<GamesHaveChanged>,
-  //  GamesHaveChangedHandler>()
-  ;
+  //private static IServiceCollection AddBoardGamesIntegrationEventHandlers(
+  //  this IServiceCollection services)
+  //=> services
+  ////.AddTransient<
+  ////  IIntegrationEventHandler<GamesHaveChanged>,
+  ////  GamesHaveChangedHandler>()
+  //;
 
   //private static IServiceCollection AddBoardGamesInfra(
   //  this IServiceCollection services

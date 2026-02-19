@@ -17,6 +17,7 @@ public record class ShoppingBasketDto(
           Id: item.BoardGameId.Key,
           GameName: game?.Name ?? string.Empty,
           Price: item.Price.Amount,
+          Currency: item.Price.Currency,
           ImageURL: game?.ImageURL ?? string.Empty
         , PublisherName: game?.Publisher?.Name ?? string.Empty
         );

@@ -131,6 +131,7 @@ public sealed partial class PublishersPage
           Id: game.Id
         , GameName: tempGame.Name
         , Price: tempGame.Price
+        , Currency: CurrencyName.EUR
         , ImageURL: game.ImageURL
         , PublisherName: string.Empty
         );

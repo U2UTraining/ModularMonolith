@@ -3,7 +3,7 @@
 [Register(
   interfaceType: typeof(IQueryHandler<GetPublisherWithGamesQuery, Publisher?>)
 , lifetime: ServiceLifetime.Scoped
-, methodNameHint: "AddBoardGames")]
+, methodNameHint: "AddBoardGameServices")]
 
 internal sealed class GetPublisherWithGamesQueryHandler
   : IQueryHandler<GetPublisherWithGamesQuery, Publisher?>

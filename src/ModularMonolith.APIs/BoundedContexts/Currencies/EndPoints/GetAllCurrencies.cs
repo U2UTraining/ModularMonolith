@@ -50,37 +50,10 @@
 // =====================================================================================
 
 // =====================================================================================
-///// <summary>
-///// Version that skips the query handler and the query sender indirection, 
-///// and uses the DbContext directly in the endpoint.
-///// 😊 Good for speed
-///// </summary>
-///// <param name="db"></param>
-//[Register(
-//  lifetime: ServiceLifetime.Scoped
-//, methodNameHint: "AddCurrencyServices")]
-//internal sealed class GetAllCurrencies(CurrenciesDb db)
-//{
-//  public async Task<Results<Ok<List<CurrencyDto>>, BadRequest>> ExecuteAsync(
-//    CancellationToken cancellationToken = default)
-//  {
-//    // ✅ Keep EF close to the query
-//    List<CurrencyDto> allCurrencies =
-//      await db.Currencies
-//        // ✅ Dont' track entities for read-only queries
-//        .AsNoTracking()
-//        .Select(c => new CurrencyDto(c.Id.ToString(), c.ValueInEuro))
-//        .ToListAsync();
-//    // ✅ Materialize in Infrastructure; return DTOs or domain objects
-//    return TypedResults.Ok(allCurrencies);
-//  }
-//}
-// =====================================================================================
-
-// =====================================================================================
 /// <summary>
-/// Here the "repository" is implemented as an extension method
-/// See BoundedContexts\Currencies\Repositories\CurrencyRepository.cs
+/// Version that skips the query handler and the query sender indirection, 
+/// and uses the DbContext directly in the endpoint.
+/// 😊 Good for speed
 /// </summary>
 /// <param name="db"></param>
 [Register(
@@ -92,8 +65,36 @@ internal sealed class GetAllCurrencies(CurrenciesDb db)
     CancellationToken cancellationToken = default)
   {
     // ✅ Keep EF close to the query
-    List<CurrencyDto> allCurrencies = await db.GetAllCurrenciesAsync();
+    List<CurrencyDto> allCurrencies =
+      await db.Currencies
+        // ✅ Dont' track entities for read-only queries
+        .AsNoTracking()
+        .Select(c => new CurrencyDto(c.Id.ToString(), c.ValueInEuro))
+        .ToListAsync();
+    // ✅ Materialize in Infrastructure; return DTOs or domain objects
     return TypedResults.Ok(allCurrencies);
   }
 }
+// =====================================================================================
+
+// =====================================================================================
+///// <summary>
+///// Here the "repository" is implemented as an extension method
+///// See BoundedContexts\Currencies\Repositories\CurrencyRepository.cs
+///// </summary>
+///// <param name="db"></param>
+//[Register(
+//  lifetime: ServiceLifetime.Scoped
+//, methodNameHint: "AddCurrencyServices")]
+//internal sealed class GetAllCurrencies(CurrenciesDb db)
+//{
+//  public async Task<Results<Ok<List<CurrencyDto>>, BadRequest>> ExecuteAsync(
+//    CancellationToken cancellationToken = default)
+//  {
+//    // ✅ Keep EF close to the query
+//    List<CurrencyDto> allCurrencies = await db.GetAllCurrenciesAsync();
+//    return TypedResults.Ok(allCurrencies);
+//  }
+//}
+// =====================================================================================
 

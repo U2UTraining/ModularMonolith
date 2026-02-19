@@ -52,6 +52,7 @@ public static class PublisherEndpoints
             Id: g.Id
           , GameName: g.Name
           , Price: g.Price.Amount
+          , Currency: g.Price.Currency
           , ImageURL: g.ImageURL
           , PublisherName: publisher.Name)
           ).ToList()
@@ -85,6 +86,7 @@ public static class PublisherEndpoints
           Id: game.Id
         , GameName: game.Name
         , Price: game.Price.Amount
+        , Currency: game.Price.Currency
         , ImageURL: game.ImageURL
         , PublisherName: game.Publisher.Name));
       }

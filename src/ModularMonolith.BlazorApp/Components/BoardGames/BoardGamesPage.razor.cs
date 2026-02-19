@@ -29,7 +29,7 @@ public sealed partial class BoardGamesPage
   // Easy Access
   private IQueryable<GameDto>? Games => State.Games;
 
-  private GetGamesQuery filter = new(decimal.Zero, 1000M, false);
+  private GetGamesQuery filter = new(decimal.Zero, 1000M, false, CurrencyName.EUR);
 
   private async Task<IQueryable<GameDto>> GetBoardGames(GetGamesQuery query)
   {

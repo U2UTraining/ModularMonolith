@@ -6,8 +6,9 @@ public static class ServiceCollectionExtensions
     this IHostApplicationBuilder builder)
   {
     builder.Services
-    .AddShoppingCommands()
-    .AddShoppingQueries();
+      .AddShoppingServices()
+    //.AddShoppingCommands()
+    //.AddShoppingQueries();
     //.AddShoppingInfra(ShoppingDb.DatabaseName);
     builder.AddSqlServerDbContext<ShoppingDb>(ShoppingDb.DatabaseName,
       sqlServerOptions => {
@@ -61,14 +62,14 @@ public static class ServiceCollectionExtensions
 //    return services;
 //  }
 
-  public static IServiceCollection AddShoppingQueries(
-    this IServiceCollection services)
-  => services
-    .AddScoped<IQueryHandler<ShoppingBasketWithIdQuery, ShoppingBasketDto?>, ShoppingBasketWithIdQueryHandler>()
-  ;
+  //public static IServiceCollection AddShoppingQueries(
+  //  this IServiceCollection services)
+  //=> services
+  //  .AddScoped<IQueryHandler<ShoppingBasketWithIdQuery, ShoppingBasketDto?>, ShoppingBasketWithIdQueryHandler>()
+  //;
 
-  public static IServiceCollection AddShoppingCommands(
-    this IServiceCollection services)
-  => services
-  ;
+  //public static IServiceCollection AddShoppingCommands(
+  //  this IServiceCollection services)
+  //=> services
+  //;
 }

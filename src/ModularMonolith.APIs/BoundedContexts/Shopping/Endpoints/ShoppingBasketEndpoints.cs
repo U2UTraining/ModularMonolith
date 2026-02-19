@@ -15,7 +15,7 @@ public static class ShoppingBasketEndpoints
       , CancellationToken cancellationToken) =>
       {
         ShoppingBasketDto? dto = await querySender.AskAsync(
-          new ShoppingBasketWithIdQuery(id, includeGames: true), cancellationToken);
+          new ShoppingBasketWithIdQuery(id, IncludeGames: true), cancellationToken);
         if (dto is null)
         {
 

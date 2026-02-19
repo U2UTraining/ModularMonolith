@@ -14,11 +14,26 @@ Content-Type: application/json
   "valueInEuro": 0.85
 }
 
+### ==================================================================== ###
+
 ### Get all games
 
-GET {{ModularMonolith.APIs_HostAddress}}/games/
-Accept: application/json
+POST {{ModularMonolith.APIs_HostAddress}}/games/
+Content-Type: application/json
 
+{
+  "minAmount":0,
+  "maxAmount":200,
+  "includePublisher":false
+}
+
+###
+
+PUT  {{ModularMonolith.APIs_HostAddress}}/games/apply-discount
+
+###
+
+PUT  {{ModularMonolith.APIs_HostAddress}}/games/undo-discount
 
 ###
 
