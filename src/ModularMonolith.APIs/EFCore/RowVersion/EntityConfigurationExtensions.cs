@@ -16,4 +16,21 @@ public static class EntityConfigurationExtensions
       ;
     return entity;
   }
+
+  // ✅ Add rowversion to aggregates; handle 409s (Conflict).
+  public static OwnedNavigationBuilder<RootEntity, OwnedEntity> HasRowVersion<RootEntity, OwnedEntity>(
+    this OwnedNavigationBuilder<RootEntity, OwnedEntity> entity
+  , string columnName = RowVersion.Column
+  )
+    where RootEntity
+  : class
+    where OwnedEntity
+  : class
+  {
+    entity
+      .Property<byte[]>(columnName)
+      .IsRowVersion()
+      ;
+    return entity;
+  }
 }

@@ -1,4 +1,6 @@
-﻿namespace ModularMonolithEFCore.SoftDelete;
+﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+
+namespace ModularMonolithEFCore.SoftDelete;
 
 public static partial class EntityConfigurationExtensions
 {
@@ -29,6 +31,33 @@ public static partial class EntityConfigurationExtensions
     // Uses a Query Filter to only list entities which have not been deleted.
 
     _ = entity.HasQueryFilter(e => !EF.Property<bool>(e, isDeleted));
+    return entity;
+  }
+
+  public static OwnedNavigationBuilder<RootEntity, OwnedEntity> HasSoftDelete<RootEntity, OwnedEntity>(
+  this OwnedNavigationBuilder<RootEntity, OwnedEntity> entity
+  , string isDeleted = SoftDeleteable.IsDeleted
+  , string utcDeleted = SoftDeleteable.UtcDeleted
+  )
+    where RootEntity
+  : class
+    where OwnedEntity 
+  : class
+  , ISoftDeletable
+  {
+    _ = entity
+      .Property<DateTime?>(utcDeleted)
+      .HasDefaultValueSql("GETUTCDATE()")
+      .HasColumnOrder(int.MaxValue - 1);
+
+    _ = entity
+      .Property<bool>(isDeleted)
+      .HasDefaultValue(false)
+      .HasColumnOrder(int.MaxValue);
+
+    // Owned entities are retrieved through the aggregate root, so we can use the
+    // aggregate root query filter to also filter out owned entities which are marked as deleted.
+
     return entity;
   }
 }

@@ -1,7 +1,9 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.IntegrationEventHandlers;
 
-namespace ModularMonolith.APIs.BoundedContexts.Shopping.IntegrationEventHandlers;
-
+[Register(
+  interfaceType: typeof(IIntegrationEventHandler<CurrencyHasChangedIntegrationEvent>)
+, lifetime: ServiceLifetime.Scoped
+, methodNameHint: "AddShopping")]
 public sealed class CurrencyHasChangedIntegrationEventHandler
 : IIntegrationEventHandler<CurrencyHasChangedIntegrationEvent>
 {

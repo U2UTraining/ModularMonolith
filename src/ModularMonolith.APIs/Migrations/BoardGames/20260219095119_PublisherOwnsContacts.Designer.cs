@@ -4,17 +4,20 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
 
 #nullable disable
 
-namespace ModularMonolithMigrations.BoardGames
+namespace ModularMonolith.APIs.Migrations.BoardGames
 {
     [DbContext(typeof(GamesDb))]
-    partial class GamesDbModelSnapshot : ModelSnapshot
+    [Migration("20260219095119_PublisherOwnsContacts")]
+    partial class PublisherOwnsContacts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -237,12 +240,6 @@ namespace ModularMonolithMigrations.BoardGames
                                 .HasColumnType("nvarchar(128)")
                                 .HasColumnOrder(1);
 
-                            b1.Property<bool>("IsDeleted")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("bit")
-                                .HasDefaultValue(false)
-                                .HasColumnOrder(2147483647);
-
                             b1.Property<string>("LastName")
                                 .IsRequired()
                                 .HasMaxLength(128)
@@ -251,29 +248,6 @@ namespace ModularMonolithMigrations.BoardGames
 
                             b1.Property<int>("PublisherId")
                                 .HasColumnType("int");
-
-                            b1.Property<byte[]>("RowVersion")
-                                .IsConcurrencyToken()
-                                .ValueGeneratedOnAddOrUpdate()
-                                .HasColumnType("rowversion");
-
-                            b1.Property<DateTime>("UtcCreated")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("datetime2")
-                                .HasColumnOrder(2147483645)
-                                .HasDefaultValueSql("GETUTCDATE()");
-
-                            b1.Property<DateTime?>("UtcDeleted")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("datetime2")
-                                .HasColumnOrder(2147483646)
-                                .HasDefaultValueSql("GETUTCDATE()");
-
-                            b1.Property<DateTime>("UtcModified")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("datetime2")
-                                .HasColumnOrder(2147483644)
-                                .HasDefaultValueSql("GETUTCDATE()");
 
                             b1.HasKey("Id");
 

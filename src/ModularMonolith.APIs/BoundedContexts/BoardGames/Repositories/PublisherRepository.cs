@@ -9,6 +9,6 @@ public sealed class PublisherRepository
   : base(dbContext, domainEventPublisher)
   { }
 
-  protected override IQueryable<Publisher> Includes(IQueryable<Publisher> q)
-  => q.Include(pub => pub.Contacts);
+  //protected override IQueryable<Publisher> Includes(IQueryable<Publisher> q)
+  //=> q.Include(pub => pub.Contacts);
 }

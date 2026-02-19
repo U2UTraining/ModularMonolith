@@ -37,14 +37,45 @@ internal sealed class PublisherConfiguration
     publisher.Metadata.FindNavigation(nameof(Publisher.Games));
     gamesNav!.SetPropertyAccessMode(PropertyAccessMode.Field);
 
-    publisher
-      .HasMany(p => p.Contacts)
-      .WithOne()
-      .IsRequired(false);
 
-    IMutableNavigation? contactsNav =
-    publisher.Metadata.FindNavigation(nameof(Publisher.Contacts));
-    contactsNav!.SetPropertyAccessMode(PropertyAccessMode.Field);
+    // Contact is part of the publisher aggregate,
+    // so we use OwnsMany.
+
+    publisher
+      .OwnsMany(p => p.Contacts, c =>
+      {
+        c.WithOwner().HasForeignKey("PublisherId");
+        c.HasKey("Id");
+        c.Property<PK<int>>("Id").ValueGeneratedOnAdd();
+        c.Property(c => c.FirstName)
+       .HasColumnOrder(1)
+       .HasMaxLength(PublisherName.PublisherNameMaxLength)
+       .IsRequired()
+       ;
+
+        c.Property(c => c.LastName)
+        .HasColumnOrder(2)
+        .HasMaxLength(PublisherName.PublisherNameMaxLength)
+        .IsRequired()
+        ;
+
+        c.Property(c => c.Email)
+        .HasColumnOrder(3)
+        .IsRequired();
+
+        c.HasHistory()
+        .HasSoftDelete()
+        .HasRowVersion()
+          ;
+      })
+      .UsePropertyAccessMode(PropertyAccessMode.Field);
+      ;
+      //.WithOne()
+      //.IsRequired(false);
+
+    //IMutableNavigation? contactsNav =
+    //publisher.Metadata.FindNavigation(nameof(Publisher.Contacts));
+    //contactsNav!.SetPropertyAccessMode(PropertyAccessMode.Field);
 
     _ = publisher
       .HasHistory()
