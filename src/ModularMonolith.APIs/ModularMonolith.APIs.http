@@ -73,3 +73,7 @@ Content-Type: application/json
 }
 
 ###
+
+
+GET {{ModularMonolith.APIs_HostAddress}}/integration-events
+

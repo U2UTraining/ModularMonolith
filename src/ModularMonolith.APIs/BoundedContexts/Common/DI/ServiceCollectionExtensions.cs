@@ -1,4 +1,6 @@
-﻿using OpenTelemetryDemo.ServiceDefaults.Meters;
+﻿using ModularMonolith.APIs.BoundedContexts.Common.Endpoints;
+
+using OpenTelemetryDemo.ServiceDefaults.Meters;
 
 namespace ModularMonolith.APIs.BoundedContexts.Common.DI;
 
@@ -165,6 +167,7 @@ public static class ServiceCollectionExtensions
     .AddCommands()
     .AddDomainEvents()
     .AddIntegrationEvents()
+    .AddCommonServices()
     ;
     return builder;
   }
@@ -191,7 +194,10 @@ public static class ServiceCollectionExtensions
   )
   => services
     .AddSingleton(Channel.CreateUnbounded<IIntegrationEvent>())
+    .AddSingleton<ChannelMultiplexer<IIntegrationEvent>>()
     .AddHostedService<U2UIntegrationEventHostedService>()
+    .AddHostedService<ChannelMultiplexerHostedService>()
+    .AddScoped<SubcribeToIntegrationEvents>()
     .AddSingleton<IIntegrationEventPublisher, U2UIntegrationEventPublisher>()
     .AddSingleton<U2UIntegrationEventProcessor>()
     .AddSingleton<IntegrationEventsMetrics>()

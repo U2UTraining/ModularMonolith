@@ -11,7 +11,7 @@ public sealed class UpdateClient
 
   public async Task<HttpResponseMessage> GetTokens(CancellationToken cancellationToken)
   {
-    HttpRequestMessage httpRequestMessage = new(HttpMethod.Get, "/ui_updates");
+    HttpRequestMessage httpRequestMessage = new(HttpMethod.Get, "");
     //httpRequestMessage.SetBrowserResponseStreamingEnabled(true); // Blazor WASM
 
     // This requests server-sent-events

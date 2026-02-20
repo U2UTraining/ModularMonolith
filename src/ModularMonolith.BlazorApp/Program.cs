@@ -1,6 +1,9 @@
+using BlazorSseClient.Server;
+
 using ModularMonolith.BlazorApp.Components;
 using ModularMonolith.BlazorApp.Components.BoardGames;
 using ModularMonolith.BlazorApp.Components.Currencies;
+using ModularMonolith.BlazorApp.Components.IntegrationEvents;
 using ModularMonolith.BlazorApp.Components.Shopping;
 using ModularMonolith.BlazorApp.UIUpdates;
 using ModularMonolith.ServiceDefaults;
@@ -56,9 +59,26 @@ public static partial class Program
       .AddStandardResilienceHandler();
     builder.Services.AddHttpClient<UpdateClient>(client =>
     {
-      client.BaseAddress = new("https+http://modular-monolith-apis/ui/");
+      client.BaseAddress = new("https+http://integration-events");
     })
       .AddStandardResilienceHandler();
+
+    builder.Services.AddServerSseClient(options =>
+    {
+      //options.BaseAddress = new("https+http://integration-events");
+    });
+
+    //builder.Services.AddHttpClient<SseClient>(client =>
+    //{
+    //  client.BaseAddress = new("https+http://integration-events");
+    //});
+
+    //builder.Services.AddHttpClient("IntegrationEvents", client =>
+    //{
+    //  client.BaseAddress = new("https+http://integration-events");
+    //});
+
+    //builder.Services.AddHostedService<UpdateHostedService>();
 
     var app = builder.Build();
 

@@ -1,8 +1,3 @@
----
-description: 'Guidelines for building C# applications'
-applyTo: '**/*.cs'
----
-
 # C# Development
 
 ## C# Instructions
@@ -94,3 +89,7 @@ applyTo: '**/*.cs'
 - Demonstrate deployment to Azure App Service, Azure Container Apps, or other hosting options.
 - Show how to implement health checks and readiness probes.
 - Explain environment-specific configurations for different deployment stages.
+
+## CancellationToken
+- Always include `CancellationToken` parameters in asynchronous methods to allow for cooperative cancellation
+- The parameter name should always be `cancellationToken`.

@@ -1,5 +1,6 @@
 using ModularMonolith.APIs.BoundedContexts.BoardGames.DI;
 using ModularMonolith.APIs.BoundedContexts.BoardGames.EndPoints;
+using ModularMonolith.APIs.BoundedContexts.Common.Endpoints;
 using ModularMonolith.APIs.BoundedContexts.Currencies.EndPoints;
 using ModularMonolith.APIs.BoundedContexts.Shopping.Endpoints;
 using ModularMonolith.APIs.BoundedContexts.UI.EndPoints;
@@ -31,6 +32,18 @@ public static partial class Program
       .AddShopping()
       ;
 
+    builder.Services.AddCors(options =>
+    {
+      options.AddPolicy("AllowFrontend", policy =>
+      {
+        policy
+         //.WithOrigins("*")
+               .AllowAnyOrigin()
+         .AllowAnyHeader()
+         .AllowAnyMethod();
+      });
+    });
+
     WebApplication app = builder.Build();
 
     // Configure the HTTP request pipeline.
@@ -38,6 +51,8 @@ public static partial class Program
     {
       app.MapOpenApi();
     }
+
+    app.UseCors("AllowFrontend");
 
     app.UseHttpsRedirection();
 
@@ -70,6 +85,9 @@ public static partial class Program
        .WithUIEndpoints()
        .WithTags("UI")
        ;
+
+    app.MapIntegrationEventEndpoints()
+      ;
 
     app.Run();
   }

@@ -1,29 +1,29 @@
-﻿<!DOCTYPE html>
+﻿@using ModularMonolith.BlazorApp.Components.IntegrationEvents
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <base href="/" />
-    <ResourcePreloader />
-    <link rel="stylesheet" href="@Assets["app.css"]" />
-    <link rel="stylesheet" href="@Assets["ModularMonolith.BlazorApp.styles.css"]" />
-    <ImportMap />
-    <HeadOutlet />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="/" />
+  <ResourcePreloader />
+  <link rel="stylesheet" href="@Assets["app.css"]" />
+  <link rel="stylesheet" href="@Assets["ModularMonolith.BlazorApp.styles.css"]" />
+  <ImportMap />
+  <HeadOutlet />
 </head>
 
 <body>
-    <FluentDesignTheme StorageName="theme" />
-    <Routes @rendermode="renderMode" />
-    <ReconnectModal />
-    <script src="@Assets["_framework/blazor.web.js"]"></script>
-    <script src="_content/Microsoft.FluentUI.AspNetCore.Components/js/loading-theme.js" type="text/javascript"></script>
-    <loading-theme storage-name="theme"></loading-theme>
+  <FluentDesignTheme StorageName="theme" />
+  <Routes @rendermode="renderMode" />
+  <ReconnectModal />
+  <script src="@Assets["_framework/blazor.web.js"]"></script>
+  <script src="_content/Microsoft.FluentUI.AspNetCore.Components/js/loading-theme.js" type="text/javascript"></script>
+  <loading-theme storage-name="theme"></loading-theme>
 </body>
-
 </html>
 
 @code {
-    readonly IComponentRenderMode renderMode =
-          new InteractiveServerRenderMode(prerender: false);
+  readonly IComponentRenderMode renderMode =
+        new InteractiveServerRenderMode(prerender: false);
 }

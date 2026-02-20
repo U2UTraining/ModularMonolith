@@ -35,3 +35,36 @@
     <FluentProgressRing></FluentProgressRing> Loading
   </FluentStack>
 }
+
+
+<script>
+
+  window.registerForSse = (caller) =>
+  {
+    console.log('registering');
+    const source = new EventSource('https://localhost:7248/integration-events');
+    source.addEventListener('integrationEvent', function (event) {
+
+      let data = JSON.parse(event.data);
+  console.log(data);
+  console.log(data.data);
+  console.log(data.eventType);
+      caller.invokeMethodAsync('ProcessEvent', data.data, data.eventType);
+    //   const data = JSON.parse(event.data);
+    // console.log('Received Integration Event:', data);
+    // You can add code here to update the UI or perform other actions based on the event data
+    });
+    return source;
+  }
+
+  window.unregisterForSse = (source) =>
+  {
+    console.log('unregistering');
+    source.close();
+  }
+
+  // source.removeEventListener('integrationEvent', function (event) {
+  //   This is just an example of how to remove the event listener if needed
+  // });
+
+</script>

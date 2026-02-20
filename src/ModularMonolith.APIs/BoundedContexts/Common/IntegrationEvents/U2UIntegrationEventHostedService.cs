@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
+﻿using System.Net.ServerSentEvents;
+
+namespace ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
 
 /// <summary>
 /// Hosted service to process integration events from a channel.
@@ -6,27 +8,54 @@
 public class U2UIntegrationEventHostedService
 : BackgroundService
 {
-  private readonly Channel<IIntegrationEvent> _channel;
+  private readonly ChannelMultiplexer<IIntegrationEvent> _channelMultiplexer;
   private readonly U2UIntegrationEventProcessor _eventProcessor;
 
   public U2UIntegrationEventHostedService(
-    Channel<IIntegrationEvent> channel
+    ChannelMultiplexer<IIntegrationEvent> channelMultiplexer
   , U2UIntegrationEventProcessor eventProcessor
-  , IServiceProvider serviceProvider
   )
   {
-    _channel = channel;
+    _channelMultiplexer = channelMultiplexer;
     _eventProcessor = eventProcessor;
   }
 
   protected override async Task ExecuteAsync(
-    CancellationToken stoppingToken)
+    CancellationToken cancellationToken)
   {
-    await foreach (IIntegrationEvent @event 
-    in _channel.Reader.ReadAllAsync(stoppingToken))
+    Channel<IIntegrationEvent> channel =
+      await _channelMultiplexer.SubscribeAsync(cancellationToken);
+    await foreach (IIntegrationEvent @event in channel.Reader.ReadAllAsync() )
     {
       // Process message
-      await _eventProcessor.ProcessIntegrationEventAsync(@event, stoppingToken);
+      await _eventProcessor.ProcessIntegrationEventAsync(@event, cancellationToken);
     }
   }
 }
+
+//public class U2UIntegrationEventHostedService
+//: BackgroundService
+//{
+//  private readonly Channel<IIntegrationEvent> _channel;
+//  private readonly U2UIntegrationEventProcessor _eventProcessor;
+
+//  public U2UIntegrationEventHostedService(
+//    Channel<IIntegrationEvent> channel
+//  , U2UIntegrationEventProcessor eventProcessor
+//  )
+//  {
+//    _channel = channel;
+//    _eventProcessor = eventProcessor;
+//  }
+
+//  protected override async Task ExecuteAsync(
+//    CancellationToken stoppingToken)
+//  {
+//    await foreach (IIntegrationEvent @event
+//    in _channel.Reader.ReadAllAsync(stoppingToken))
+//    {
+//      // Process message
+//      await _eventProcessor.ProcessIntegrationEventAsync(@event, stoppingToken);
+//    }
+//  }
+//}

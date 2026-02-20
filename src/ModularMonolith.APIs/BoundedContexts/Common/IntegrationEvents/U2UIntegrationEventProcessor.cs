@@ -1,7 +1,5 @@
 ﻿using OpenTelemetryDemo.ServiceDefaults.Meters;
 
-using System.Linq;
-
 namespace ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
 
 /// <summary>

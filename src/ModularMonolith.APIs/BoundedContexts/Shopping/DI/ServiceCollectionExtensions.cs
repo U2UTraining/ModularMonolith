@@ -9,7 +9,8 @@ public static class ServiceCollectionExtensions
       .AddShoppingServices()
     //.AddShoppingCommands()
     //.AddShoppingQueries();
-    //.AddShoppingInfra(ShoppingDb.DatabaseName);
+    //.AddShoppingInfra(ShoppingDb.DatabaseName)
+    ;
     builder.AddSqlServerDbContext<ShoppingDb>(ShoppingDb.DatabaseName,
       sqlServerOptions => {
       },
