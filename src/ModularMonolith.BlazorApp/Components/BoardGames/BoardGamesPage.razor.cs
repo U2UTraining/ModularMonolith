@@ -9,12 +9,6 @@ public sealed partial class BoardGamesPage
 : IDisposable
 {
   [Inject]
-  public required State State
-  {
-    get; init;
-  }
-
-  [Inject]
   public required BoardGamesClient BoardGamesClient
   {
     get; init;
@@ -40,6 +34,7 @@ public sealed partial class BoardGamesPage
 
   protected override async Task OnInitializedAsync()
   {
+    await base.OnInitializedAsync();
     State.Games = await GetBoardGames(filter).ConfigureAwait(true);
 
     State.PropertyChanged += OnPropertyChanged;

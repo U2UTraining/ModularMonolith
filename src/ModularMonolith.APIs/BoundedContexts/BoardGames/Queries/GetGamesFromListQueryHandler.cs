@@ -1,21 +1,18 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Queries;
 
 [Register(
-  interfaceType: typeof(IQueryHandler<GetGamesFromListQuery, IQueryable<BoardGame>>)
+  interfaceType: typeof(IQueryHandler<GetGamesFromListQuery, List<BoardGame>>)
 , lifetime: ServiceLifetime.Scoped
 , methodNameHint: "AddBoardGameServices")]
-internal sealed class GetGamesFromListQueryHandler
-: IQueryHandler<GetGamesFromListQuery, IQueryable<BoardGame>>
+internal sealed class GetGamesFromListQueryHandler(GamesDb db)
+: IQueryHandler<GetGamesFromListQuery, List<BoardGame>>
 {
-  private readonly IBoardGameRepository _repo;
-
-  public GetGamesFromListQueryHandler(IBoardGameRepository repo) 
-  => _repo = repo;
-
-  public async Task<IQueryable<BoardGame>> HandleAsync(
+  public async Task<List<BoardGame>> HandleAsync(
     GetGamesFromListQuery request
   , CancellationToken cancellationToken = default)
-  => await _repo.GetBoardGamesFromList(
-    request.GameIds
-  , cancellationToken);
+  => await db.Games
+    .Include(game => game.Image)
+    .Include(game => game.Publisher)
+    .Where(game => request.GameIds.Contains(game.Id))
+    .ToListAsync(cancellationToken);
 }

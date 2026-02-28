@@ -49,7 +49,7 @@ public sealed class QueryHandlersShould
   }
 
   [Fact]
-  public void BePublic()
+  public void BeSealed()
   {
     NetArchTest.Rules.TestResult result = Types
       .InAssembly(AssembliesUnderTest.ApiAssembly)
@@ -62,7 +62,7 @@ public sealed class QueryHandlersShould
     if (!result.IsSuccessful)
     {
       var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following Query Handlers are not public: {failedTypes}");
+      throw new Xunit.Sdk.XunitException($"The following Query Handlers are not sealed: {failedTypes}");
     }
     Assert.True(result.IsSuccessful);
   }

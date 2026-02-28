@@ -9,7 +9,7 @@
 [Register(
   lifetime: ServiceLifetime.Scoped
 , methodNameHint: "AddCurrencyServices")]
-internal sealed class UpdateCurrencyValue(ICommandSender commandSender)
+public sealed class UpdateCurrencyValue(ICommandSender commandSender)
 {
   public async Task<Results<Ok<CurrencyDto>, BadRequest<string>>> ExecuteAsync(
     CurrencyDto dto

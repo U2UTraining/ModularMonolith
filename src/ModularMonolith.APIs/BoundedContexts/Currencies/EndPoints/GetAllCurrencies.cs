@@ -59,7 +59,7 @@
 [Register(
   lifetime: ServiceLifetime.Scoped
 , methodNameHint: "AddCurrencyServices")]
-internal sealed class GetAllCurrencies(CurrenciesDb db)
+public sealed class GetAllCurrencies(CurrenciesDb db)
 {
   public async Task<Results<Ok<List<CurrencyDto>>, BadRequest>> ExecuteAsync(
     CancellationToken cancellationToken = default)

@@ -5,12 +5,6 @@ namespace ModularMonolith.BlazorApp.Components.Shopping;
 public sealed partial class ShoppingBasketPage
 {
   [Inject]
-  public required State State
-  {
-    get; set;
-  }
-
-  [Inject]
   public required ShoppingBasketClient ShoppingBasketClient
   {
     get; set;

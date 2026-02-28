@@ -4,7 +4,7 @@
   interfaceType: typeof(IQueryHandler<GetValueForCurrencyQuery, PositiveDecimal[]>)
 , lifetime: ServiceLifetime.Scoped
 , methodNameHint: "AddCurrencyServices")]
-public class GetValueForCurrencyQueryHandler(CurrenciesDb db)
+internal sealed class GetValueForCurrencyQueryHandler(CurrenciesDb db)
   : IQueryHandler<GetValueForCurrencyQuery, PositiveDecimal[]>
 {
   public async Task<PositiveDecimal[]> HandleAsync(

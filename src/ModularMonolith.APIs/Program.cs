@@ -1,9 +1,5 @@
 using ModularMonolith.APIs.BoundedContexts.BoardGames.DI;
-using ModularMonolith.APIs.BoundedContexts.BoardGames.EndPoints;
 using ModularMonolith.APIs.BoundedContexts.Common.Endpoints;
-using ModularMonolith.APIs.BoundedContexts.Currencies.EndPoints;
-using ModularMonolith.APIs.BoundedContexts.Shopping.Endpoints;
-using ModularMonolith.APIs.BoundedContexts.UI.EndPoints;
 using ModularMonolith.ServiceDefaults;
 
 namespace ModularMonolith.APIs;
@@ -80,10 +76,10 @@ public static partial class Program
       .WithTags("Shopping")
       ;
 
-    app.MapGroup("ui")
-       .WithUIEndpoints()
-       .WithTags("UI")
-       ;
+    //app.MapGroup("ui")
+    //   .WithUIEndpoints()
+    //   .WithTags("UI")
+    //   ;
 
     app.MapIntegrationEventEndpoints()
       ;

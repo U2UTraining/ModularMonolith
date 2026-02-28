@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using Microsoft.EntityFrameworkCore.InMemory; 
-
-
-using Microsoft.EntityFrameworkCore;
-
+﻿using Microsoft.EntityFrameworkCore;
 using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
 using ModularMonolith.MigrationService;
 using ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
@@ -20,9 +12,10 @@ public class GetGamesShould
   {
     DbContextOptions<GamesDb> options =
       new DbContextOptionsBuilder<GamesDb>()
-      .UseSqlite(Guid.NewGuid().ToString())
+      .UseSqlite($"Data Source={Guid.NewGuid()}.db")
       .Options;
     GamesDb db = new GamesDb(options);
+    //await db.Database.EnsureCreatedAsync();
     await db.Database.MigrateAsync();
     await Worker.SeedGamesAsync(db, CancellationToken.None);
 

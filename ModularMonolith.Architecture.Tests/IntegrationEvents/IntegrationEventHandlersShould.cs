@@ -11,6 +11,8 @@ public sealed class IntegrationEventHandlersShould
       .InAssembly(AssembliesUnderTest.ApiAssembly)
       .That()
       .ImplementInterface(typeof(IIntegrationEventHandler))
+      .And()
+      .AreNotInterfaces()
       .Should()
       .HaveNameEndingWith("IntegrationEventHandler")
       .GetResult();
@@ -31,6 +33,8 @@ public sealed class IntegrationEventHandlersShould
       .InAssembly(AssembliesUnderTest.ApiAssembly)
       .That()
       .ImplementInterface(typeof(IIntegrationEventHandler))
+      .And()
+      .AreNotInterfaces()
       .Should()
       .BeSealed()
       .GetResult();
@@ -50,6 +54,8 @@ public sealed class IntegrationEventHandlersShould
       .InAssembly(AssembliesUnderTest.ApiAssembly)
       .That()
       .ImplementInterface(typeof(IIntegrationEventHandler))
+      .And()
+      .AreNotInterfaces()
       .Should()
       .NotBePublic()
       .GetResult();

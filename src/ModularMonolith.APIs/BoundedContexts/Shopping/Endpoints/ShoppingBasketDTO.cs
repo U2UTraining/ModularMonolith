@@ -5,9 +5,8 @@ public record class ShoppingBasketDto(
 , List<GameDto> Games
 )
 {
-  public static ShoppingBasketDto ToDTO(ShoppingBasket basket, IQueryable<BoardGame>? games)
+  public static ShoppingBasketDto ToDTO(ShoppingBasket basket, List<BoardGame>? games)
   {
-
     ShoppingBasketDto dto = new ShoppingBasketDto(
       ShoppingBasketId: basket.Id.Key,
       Games: basket.Items.Select(item =>

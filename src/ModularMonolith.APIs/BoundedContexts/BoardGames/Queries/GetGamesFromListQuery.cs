@@ -7,5 +7,5 @@
 public sealed record class GetGamesFromListQuery(
   int[] GameIds
 )
-: IQuery<IQueryable<BoardGame>>
+: IQuery<List<BoardGame>>
 ;

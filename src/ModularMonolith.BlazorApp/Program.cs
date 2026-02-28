@@ -1,5 +1,6 @@
 using BlazorSseClient.Server;
 
+using ModularMonolith.APIs.BoundedContexts.BoardGames.IntegrationEvents;
 using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
 using ModularMonolith.APIs.BoundedContexts.Currencies.IntegrationEvents;
 using ModularMonolith.BlazorApp.Components;
@@ -40,6 +41,7 @@ public static partial class Program
     builder.Services.AddScoped<U2UBlazorIntegrationEventProcessor>();
     builder.Services.AddScoped<IIntegrationEventHandler<CurrencyHasChangedIntegrationEvent>, ClientCurrencyHasChangedIntegrationEventHandler>();
     builder.Services.AddSingleton<IntegrationEventsMetrics>();
+    builder.Services.AddScoped< IIntegrationEventHandler<BoardGameSelectedForShoppingBasketIntegrationEvent>, BoardGameSelectedForShoppingBasketIntegrationEventHandler>();
 
     // API Services -- DO NOT FORGET TRAILING SLASH! --
     builder.Services.AddHttpClient<CurrencyClient>(client =>

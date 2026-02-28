@@ -4,7 +4,7 @@
   interfaceType: typeof(IIntegrationEventHandler<CurrencyHasChangedIntegrationEvent>)
 , lifetime: ServiceLifetime.Scoped
 , methodNameHint: "AddShoppingServices")]
-public sealed class CurrencyHasChangedIntegrationEventHandler
+internal sealed class CurrencyHasChangedIntegrationEventHandler
 : IIntegrationEventHandler<CurrencyHasChangedIntegrationEvent>
 {
   private readonly ILogger<CurrencyHasChangedIntegrationEventHandler> _logger;

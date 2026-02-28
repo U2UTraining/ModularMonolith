@@ -5,7 +5,7 @@ using ModularMonolith.APIs.BoundedContexts.Currencies.IntegrationEvents;
 
 namespace ModularMonolith.BlazorApp.Components.Currencies;
 
-public sealed class ClientCurrencyHasChangedIntegrationEventHandler
+internal sealed class ClientCurrencyHasChangedIntegrationEventHandler
 : IIntegrationEventHandler<CurrencyHasChangedIntegrationEvent>
 {
   private readonly State _state;

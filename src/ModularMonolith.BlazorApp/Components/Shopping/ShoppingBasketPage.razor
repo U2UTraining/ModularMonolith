@@ -1,11 +1,13 @@
-﻿@page "/basket"
+﻿
+@inherits ComponentWithState
+@page "/basket"
 
 @using Size20 = Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20
 @using Size48 = Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size48
 
 <h3>@(new Size20.ShoppingBag().ToMarkup()) Shopping Basket</h3>
 
- <div>Shopping Basket Id @(State.ShoppingBasketId ?? -1)</div>
+<div>Shopping Basket Id @(State.ShoppingBasketId ?? -1)</div>
 
 
 @if (this._games is not null)
@@ -54,7 +56,14 @@ else
                Class="empty-basket">
     @* <FluentIcon Value="@(new Size48.Alert())" Color="@Color.Accent" /> *@
     <div>There is nothing in your basket yet</div>
+    <br/>
+    <div>
+      <img src="/images/EmptyBasket.png" style="width: 10em; display: block; margin: 0 auto;" />
+    </div>
 
   </FluentStack>
 }
+
+<UsesIntegrationEvents />
+
 
