@@ -2,8 +2,7 @@
 
 namespace ModularMonolith.APIs.BoundedContexts.Common.Endpoints;
 
-//[Register(ServiceLifetime.Scoped, methodNameHint: "AddCommonEndpoints")]
-public sealed class SubcribeToIntegrationEvents(
+public sealed class SubscribeToIntegrationEvents(
   IntegrationEventService integrationEventService)
 {
   public ServerSentEventsResult<SseItem<string>> ExecuteAsync(

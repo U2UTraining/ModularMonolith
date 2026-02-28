@@ -58,8 +58,7 @@ public static partial class Program
 
     app
       .MapGroup("/currencies")
-      .
-    GetWithCurrencyEndpoints()
+      .GetWithCurrencyEndpoints()
       .WithTags("Currencies")
       ;
 

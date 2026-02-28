@@ -13,19 +13,20 @@ public class IntegrationEventService(
   {
     Channel<IIntegrationEvent> channel =
       await integrationEventMultiplexer.SubscribeAsync(cancellationToken);
-    //try
-    //{
-    await foreach (IIntegrationEvent ev in channel.Reader
-      .ReadAllAsync(cancellationToken))
+    
+    try
     {
-      string data = JsonSerializer.Serialize(ev, ev.GetType());
-      string eventType = $"{ev.GetType().FullName}, {ev.GetType().Assembly.GetName().Name}";
-      yield return new SseItem<string>(data, eventType);
+      await foreach (IIntegrationEvent ev in channel.Reader
+        .ReadAllAsync(cancellationToken))
+      {
+        string data = JsonSerializer.Serialize(ev, ev.GetType());
+        string eventType = $"{ev.GetType().FullName}, {ev.GetType().Assembly.GetName().Name}";
+        yield return new SseItem<string>(data, eventType);
+      }
     }
-    //}
-    //catch
-    //{
-    //  await integrationEventMultiplexer.UnsubscribeAsync(channel);
-    //}
+    finally
+    {
+      await integrationEventMultiplexer.UnsubscribeAsync(channel);
+    }
   }
 }

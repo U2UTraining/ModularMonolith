@@ -1,12 +1,15 @@
 using BlazorSseClient.Server;
 
+using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
+using ModularMonolith.APIs.BoundedContexts.Currencies.IntegrationEvents;
 using ModularMonolith.BlazorApp.Components;
 using ModularMonolith.BlazorApp.Components.BoardGames;
 using ModularMonolith.BlazorApp.Components.Currencies;
 using ModularMonolith.BlazorApp.Components.IntegrationEvents;
 using ModularMonolith.BlazorApp.Components.Shopping;
-using ModularMonolith.BlazorApp.UIUpdates;
 using ModularMonolith.ServiceDefaults;
+
+using OpenTelemetryDemo.ServiceDefaults.Meters;
 
 namespace ModularMonolith.BlazorApp;
 
@@ -34,51 +37,34 @@ public static partial class Program
     // State
     builder.Services.AddHttpContextAccessor(); // Singleton
     builder.Services.AddScoped<State>();
+    builder.Services.AddScoped<U2UBlazorIntegrationEventProcessor>();
+    builder.Services.AddScoped<IIntegrationEventHandler<CurrencyHasChangedIntegrationEvent>, ClientCurrencyHasChangedIntegrationEventHandler>();
+    builder.Services.AddSingleton<IntegrationEventsMetrics>();
 
     // API Services -- DO NOT FORGET TRAILING SLASH! --
     builder.Services.AddHttpClient<CurrencyClient>(client =>
     {
       client.BaseAddress = new("https+http://modular-monolith-apis/currencies/");
     })
-      .AddStandardResilienceHandler();
+    .AddStandardResilienceHandler();
 
     builder.Services.AddHttpClient<BoardGamesClient>(client =>
     {
       client.BaseAddress = new("https+http://modular-monolith-apis/games/");
     })
-      .AddStandardResilienceHandler();
+    .AddStandardResilienceHandler();
+
     builder.Services.AddHttpClient<PublishersClient>(client =>
     {
       client.BaseAddress = new("https+http://modular-monolith-apis/publishers/");
     })
-      .AddStandardResilienceHandler();
+    .AddStandardResilienceHandler();
+
     builder.Services.AddHttpClient<ShoppingBasketClient>(client =>
     {
       client.BaseAddress = new("https+http://modular-monolith-apis/shopping/");
     })
-      .AddStandardResilienceHandler();
-    builder.Services.AddHttpClient<UpdateClient>(client =>
-    {
-      client.BaseAddress = new("https+http://integration-events");
-    })
-      .AddStandardResilienceHandler();
-
-    builder.Services.AddServerSseClient(options =>
-    {
-      //options.BaseAddress = new("https+http://integration-events");
-    });
-
-    //builder.Services.AddHttpClient<SseClient>(client =>
-    //{
-    //  client.BaseAddress = new("https+http://integration-events");
-    //});
-
-    //builder.Services.AddHttpClient("IntegrationEvents", client =>
-    //{
-    //  client.BaseAddress = new("https+http://integration-events");
-    //});
-
-    //builder.Services.AddHostedService<UpdateHostedService>();
+    .AddStandardResilienceHandler();
 
     var app = builder.Build();
 

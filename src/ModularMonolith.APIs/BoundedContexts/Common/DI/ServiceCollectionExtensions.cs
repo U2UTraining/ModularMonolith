@@ -197,7 +197,7 @@ public static class ServiceCollectionExtensions
     .AddSingleton<ChannelMultiplexer<IIntegrationEvent>>()
     .AddHostedService<U2UIntegrationEventHostedService>()
     .AddHostedService<ChannelMultiplexerHostedService>()
-    .AddScoped<SubcribeToIntegrationEvents>()
+    .AddScoped<SubscribeToIntegrationEvents>()
     .AddSingleton<IIntegrationEventPublisher, U2UIntegrationEventPublisher>()
     .AddSingleton<U2UIntegrationEventProcessor>()
     .AddSingleton<IntegrationEventsMetrics>()

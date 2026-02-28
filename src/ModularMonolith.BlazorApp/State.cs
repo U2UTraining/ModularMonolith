@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
 
+using ModularMonolith.BlazorApp.Components;
+
 namespace ModularMonolith.BlazorApp;
 
 /// <summary>
@@ -9,8 +11,11 @@ public sealed record class State
 : INotifyPropertyChanged
 {
   private const string ShoppingBasketIdSessionKey = "SBK";
+  private ComponentWithState? _currentPage;
 
-  public State(IHttpContextAccessor contextAccessor)
+  public State(
+    IHttpContextAccessor contextAccessor
+  )
   {
     _contextAccessor = contextAccessor;
   }
@@ -53,6 +58,19 @@ public sealed record class State
     get; set;
   }
 
+  /// <summary>
+  /// The current page path being shown in the UI.
+  /// </summary>
+  public ComponentWithState CurrentPage
+  {
+    get => _currentPage;
+  }
+
+  //public Dispatcher Dispatcher
+  //{
+  //  get;
+  //}
+
   //public PK<int> ShoppingBasketId { get; set; } = default;
 
   //public PK<int> ShipmentId
@@ -69,6 +87,15 @@ public sealed record class State
   /// </summary>
   private readonly PropertyChangedEventArgs _placeholder = new(string.Empty);
   private readonly IHttpContextAccessor _contextAccessor;
+
+  /// <summary>
+  /// Sets the current page and notifies subscribers when it changes.
+  /// </summary>
+  /// <param name="currentPage">The current route path.</param>
+  public void SetCurrentPage(ComponentWithState? currentPage)
+  {
+    _currentPage = currentPage;
+  }
 
   public void StateHasChanged()
   => PropertyChanged?.Invoke(this, _placeholder);

@@ -1,17 +1,11 @@
 ﻿using System.Text.Json;
-
-using BlazorSseClient;
-
-using Microsoft.AspNetCore.Mvc.Razor.Internal;
 using Microsoft.JSInterop;
-
 using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
-using ModularMonolith.APIs.BoundedContexts.Currencies.IntegrationEvents;
+using ModularMonolith.BlazorApp.Components.IntegrationEvents;
 
 namespace ModularMonolith.BlazorApp.Components.Currencies;
 
 public sealed partial class Currencies
-  : IAsyncDisposable
 {
   [Inject]
   public required IToastService ToastService
@@ -31,41 +25,25 @@ public sealed partial class Currencies
     get; init;
   }
 
-  //[Inject]
-  //public required BlazorSseClient.ISseClient SseClient
-  //{
-  //  get; init;
-  //}
-
   private IQueryable<CurrencyDto>? _currencies = null;
 
   private IJSObjectReference? _source;
 
   protected override async Task OnInitializedAsync()
   {
+    await base.OnInitializedAsync();
     _currencies = await GetCurrenciesAsync();
-
     _source = await JSRuntime.InvokeAsync<IJSObjectReference>(
       "registerForSse"
     , DotNetObjectReference.Create(this));
-
-    //SseClient.Subscribe("integrationEvent", async (message) =>
-    //{
-    //  // Process message
-    //  ToastService.ShowInfo(
-    //    title: $"Currency update received: {message}"
-    //  );
-    //  StateHasChanged();
-    //});
-
-    //await SseClient.StartAsync(" https://localhost:7248/integration-events");
   }
 
 
-  private async ValueTask<IQueryable<CurrencyDto>> GetCurrenciesAsync()
+  internal async ValueTask<IQueryable<CurrencyDto>> GetCurrenciesAsync()
   {
     IEnumerable<CurrencyDto> result =
       await CurrencyClient.GetCurrenciesAsync();
+    this.StateHasChanged();
     return result.AsQueryable();
   }
 
@@ -90,10 +68,10 @@ public sealed partial class Currencies
         // Fail fast
         await CurrencyClient.UpdateCurrencyValue(
           new CurrencyDto(tempCurrency.Name, tempCurrency.ValueInEuro), default);
-        _currencies = await GetCurrenciesAsync();
-        ToastService.ShowSuccess(
-           title: $"Currency {tempCurrency.Name} updated to {tempCurrency.ValueInEuro}."
-        );
+        //_currencies = await GetCurrenciesAsync();
+        //ToastService.ShowSuccess(
+        //   title: $"Currency {tempCurrency.Name} updated to {tempCurrency.ValueInEuro}."
+        //);
       }
     }
     catch (Exception ex)
@@ -104,41 +82,32 @@ public sealed partial class Currencies
     }
   }
 
-
   [Inject]
   public required IJSRuntime JSRuntime
   {
-    get; set;
+    get; init;
+  }
+
+  [Inject]
+  public required U2UBlazorIntegrationEventProcessor IntegrationEventProcessor
+  {
+    get;init;
   }
 
   [JSInvokable]
   public async Task ProcessEvent(string @event, string eventType)
   {
-
-    string text = typeof(CurrencyHasChangedIntegrationEvent).FullName ?? string.Empty;
-    bool x = ReferenceEquals(eventType, text);
-
     Type? type = Type.GetType(eventType, throwOnError:false);
     if (type is not null)
     {
-      //CurrencyHasChangedIntegrationEvent x = new();
-
-      IIntegrationEvent? integrationEvent = JsonSerializer.Deserialize(@event, type) as IIntegrationEvent;
-      if (integrationEvent is not null)
+      await this.InvokeAsync(async () =>
       {
-        ToastService.ShowInfo(
-          title: $"Currency update received: {integrationEvent}"
-        );
-        _currencies = await GetCurrenciesAsync();
-        StateHasChanged();
-      }
+        IIntegrationEvent? integrationEvent = JsonSerializer.Deserialize(@event, type) as IIntegrationEvent;
+        if (integrationEvent is not null)
+        {
+          await IntegrationEventProcessor.ProcessIntegrationEventAsync(integrationEvent);
+        }
+      });
     }
-
-    //Console.WriteLine(@event);
-  }
-
-  public  async ValueTask DisposeAsync()
-  {
-    await JSRuntime.InvokeVoidAsync("unregisterForSse", _source);
   }
 }

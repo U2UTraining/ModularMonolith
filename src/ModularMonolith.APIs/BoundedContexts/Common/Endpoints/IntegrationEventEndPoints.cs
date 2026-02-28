@@ -6,7 +6,7 @@ public static class IntegrationEventEndPoints
       this IEndpointRouteBuilder endpoints)
   {
     var unused = endpoints.MapGet("/integration-events",
-      ([FromServices] SubcribeToIntegrationEvents handler
+      ([FromServices] SubscribeToIntegrationEvents handler
     , CancellationToken cancellationToken)
       => handler.ExecuteAsync(cancellationToken));
     return endpoints;
