@@ -2,6 +2,7 @@
 @page "/currencies"
 
 @using Microsoft.FluentUI.AspNetCore.Components
+@using ModularMonolith.BlazorApp.Components.IntegrationEvents
 @using Size20 = Microsoft.FluentUI.AspNetCore.Components.Icons.Regular.Size20
 
 <h3>@(new Size20.CurrencyDollarEuro().ToMarkup()) Currencies</h3>
@@ -37,20 +38,4 @@
   </FluentStack>
 }
 
-<script>
-  window.registerForSse = (caller) =>
-  {
-    const source = new EventSource('https://localhost:7248/integration-events');
-    source.addEventListener('integrationEvent', function (event) {
-      let data = JSON.parse(event.data);
-      caller.invokeMethodAsync('ProcessEvent', data.data, data.eventType);
-    });
-    return source;
-  }
-
-  window.unregisterForSse = (source) =>
-  {
-    console.log('unregistering');
-    source.close();
-  }
-</script>
+<UsesIntegrationEvents />

@@ -35,7 +35,8 @@ public sealed class ClientCurrencyHasChangedIntegrationEventHandler
       title: $"Currency {notification.CurrencyName} updated to {notification.NewValueInEuro}.");
       //});
 
-      await currencies.GetCurrenciesAsync();
+      await currencies.RefreshCurrenciesAsync();
+      //await currencies.InvokeStateHasChangedAsync();
     }
   }
 }

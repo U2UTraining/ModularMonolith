@@ -27,25 +27,30 @@ public sealed partial class Currencies
 
   private IQueryable<CurrencyDto>? _currencies = null;
 
-  private IJSObjectReference? _source;
 
   protected override async Task OnInitializedAsync()
   {
     await base.OnInitializedAsync();
-    _currencies = await GetCurrenciesAsync();
-    _source = await JSRuntime.InvokeAsync<IJSObjectReference>(
-      "registerForSse"
-    , DotNetObjectReference.Create(this));
+    await RefreshCurrenciesAsync();
   }
 
+  internal async Task RefreshCurrenciesAsync()
+  {
+    _currencies = await GetCurrenciesAsync();
+    this.StateHasChanged();
+  }
 
   internal async ValueTask<IQueryable<CurrencyDto>> GetCurrenciesAsync()
   {
     IEnumerable<CurrencyDto> result =
       await CurrencyClient.GetCurrenciesAsync();
-    this.StateHasChanged();
     return result.AsQueryable();
   }
+
+  //internal async Task InvokeStateHasChangedAsync()
+  //{
+  //  await this.InvokeAsync(() => this.StateHasChanged());
+  //}
 
   private async ValueTask EditCurrency(CurrencyDto currency)
   {
@@ -82,32 +87,5 @@ public sealed partial class Currencies
     }
   }
 
-  [Inject]
-  public required IJSRuntime JSRuntime
-  {
-    get; init;
-  }
 
-  [Inject]
-  public required U2UBlazorIntegrationEventProcessor IntegrationEventProcessor
-  {
-    get;init;
-  }
-
-  [JSInvokable]
-  public async Task ProcessEvent(string @event, string eventType)
-  {
-    Type? type = Type.GetType(eventType, throwOnError:false);
-    if (type is not null)
-    {
-      await this.InvokeAsync(async () =>
-      {
-        IIntegrationEvent? integrationEvent = JsonSerializer.Deserialize(@event, type) as IIntegrationEvent;
-        if (integrationEvent is not null)
-        {
-          await IntegrationEventProcessor.ProcessIntegrationEventAsync(integrationEvent);
-        }
-      });
-    }
-  }
 }

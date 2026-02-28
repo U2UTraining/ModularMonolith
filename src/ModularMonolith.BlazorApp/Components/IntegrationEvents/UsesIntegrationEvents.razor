@@ -1,0 +1,45 @@
+﻿@using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents
+@using System.Text.Json
+
+
+@code {
+  [Inject]
+  public required IJSRuntime JSRuntime
+  {
+    get; init;
+  }
+
+  [Inject]
+  public required U2UBlazorIntegrationEventProcessor IntegrationEventProcessor
+  {
+    get; init;
+  }
+
+  private IJSObjectReference? _source;
+
+
+  protected override async Task OnInitializedAsync()
+  {
+    _source = await JSRuntime
+      .InvokeAsync<IJSObjectReference>("registerForSse"
+      , DotNetObjectReference.Create(this));
+    await base.OnInitializedAsync();
+  }
+
+  [JSInvokable]
+  public async Task ProcessEvent(string @event, string eventType)
+  {
+    Type? type = Type.GetType(eventType, throwOnError: false);
+    if (type is not null)
+    {
+      await this.InvokeAsync(async () =>
+      {
+        IIntegrationEvent? integrationEvent = JsonSerializer.Deserialize(@event, type) as IIntegrationEvent;
+        if (integrationEvent is not null)
+        {
+          await IntegrationEventProcessor.ProcessIntegrationEventAsync(integrationEvent);
+        }
+      });
+    }
+  }
+}
