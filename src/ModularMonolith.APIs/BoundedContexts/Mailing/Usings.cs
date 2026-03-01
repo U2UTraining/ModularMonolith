@@ -1,5 +1,4 @@
-﻿
-global using System.Configuration;
+﻿global using System.Configuration;
 
 global using MailKit.Net.Smtp;
 

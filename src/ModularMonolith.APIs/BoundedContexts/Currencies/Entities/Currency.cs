@@ -1,5 +1,10 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.Entities;
 
+/// <summary>
+/// Represents a currency with its value in euros. The value of the euro 
+/// itself is fixed at 1.0000 EUR, while the values of other currencies 
+/// can be updated.
+/// </summary>
 [DebuggerDisplay("Currency {Id,nq} = {ValueInEuro}EUR")]
 public sealed class Currency
 : EntityBase<PK<CurrencyName>>

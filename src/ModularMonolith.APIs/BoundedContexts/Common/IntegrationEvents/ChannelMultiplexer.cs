@@ -4,7 +4,8 @@
 /// Allows multiple subscribers to receive the same items from a single source channel.
 /// </summary>
 /// <typeparam name="T">The type of items in the channel.</typeparam>
-public class ChannelMultiplexer<T> : IAsyncDisposable
+public class ChannelMultiplexer<T> 
+: IAsyncDisposable
 {
   private readonly Channel<T> _inner;
   // Using SemaphoreSlim for async locking

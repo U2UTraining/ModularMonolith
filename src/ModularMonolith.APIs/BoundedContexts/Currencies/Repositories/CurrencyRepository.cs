@@ -1,5 +1,4 @@
-﻿
-namespace ModularMonolith.APIs.BoundedContexts.Currencies.Repositories;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.Repositories;
 
 public static class CurrencyRepositoryExtensions
 {

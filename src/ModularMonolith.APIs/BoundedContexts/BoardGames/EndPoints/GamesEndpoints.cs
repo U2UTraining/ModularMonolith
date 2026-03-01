@@ -98,16 +98,16 @@ public static class GamesEndpoints
   //    return TypedResults.Ok(allGames);
   //  }
 
-    /// <summary>
-    /// Apply Mega Discount Command
-    /// </summary>
-    public static async Task<Results<Ok, BadRequest>> ApplyMegaDiscount(
-      [FromServices] ICommandHandler<ApplyMegaDiscountCommand, bool> commandHandler
-    , CancellationToken cancellationToken)
-    {
-      ApplyMegaDiscountCommand command = new(GiveDiscount: true, Discount: new Percent(20));
-      bool success = await commandHandler.HandleAsync(command, cancellationToken);
-      return success ? TypedResults.Ok() : TypedResults.BadRequest();
-    }
+    ///// <summary>
+    ///// Apply Mega Discount Command
+    ///// </summary>
+    //public static async Task<Results<Ok, BadRequest>> ApplyMegaDiscount(
+    //  [FromServices] ICommandHandler<ApplyMegaDiscountCommand, bool> commandHandler
+    //, CancellationToken cancellationToken)
+    //{
+    //  ApplyMegaDiscountCommand command = new(GiveDiscount: true, Discount: new Percent(20));
+    //  bool success = await commandHandler.HandleAsync(command, cancellationToken);
+    //  return success ? TypedResults.Ok() : TypedResults.BadRequest();
+    //}
   }
 }

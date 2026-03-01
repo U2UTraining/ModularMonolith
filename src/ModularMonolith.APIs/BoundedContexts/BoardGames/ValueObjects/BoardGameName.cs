@@ -3,6 +3,7 @@
 /// <summary>
 /// A board game name should be a non-empty string with a maximum length of 128.
 /// </summary>
+[DebuggerDisplay("Board Game {Value,nq}")]
 public readonly record struct BoardGameName 
 {
   public const int BoardGameNameMaxLength = 128;
@@ -24,5 +25,4 @@ public readonly record struct BoardGameName
 
   public static implicit operator string(BoardGameName nes)
   => nes.Value;
-
 }

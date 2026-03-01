@@ -25,6 +25,8 @@ internal sealed class GetAllCurrenciesQueryHandler
   }
 }
 
+// =====================================================================================
+
 ///// <summary>
 ///// Get all currencies query handler using DbContext directly
 ///// </summary>
@@ -45,6 +47,8 @@ internal sealed class GetAllCurrenciesQueryHandler
 //  , CancellationToken cancellationToken = default)
 //    => await _db.Currencies.AsNoTracking().ToListAsync(cancellationToken);
 //}
+
+// =====================================================================================
 
 ///// <summary>
 ///// Get all currencies query handler using DbContextFactory
@@ -74,3 +78,6 @@ internal sealed class GetAllCurrenciesQueryHandler
 //    return await db.Currencies.AsNoTracking().ToListAsync(cancellationToken);
 //  }
 //}
+
+// =====================================================================================
+

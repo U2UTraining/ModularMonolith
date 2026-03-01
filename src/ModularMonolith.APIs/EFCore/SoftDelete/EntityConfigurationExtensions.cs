@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
-
-namespace ModularMonolithEFCore.SoftDelete;
+﻿namespace ModularMonolithEFCore.SoftDelete;
 
 public static partial class EntityConfigurationExtensions
 {

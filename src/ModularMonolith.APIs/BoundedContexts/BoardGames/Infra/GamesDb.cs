@@ -23,7 +23,6 @@ public sealed partial class GamesDb
     modelBuilder.ApplyConfiguration(new BoardGameConfiguration())
                 .ApplyConfiguration(new GameImageConfiguration())
                 .ApplyConfiguration(new PublisherConfiguration())
-                //.ApplyConfiguration(new ContactConfiguration())
                 ;
   }
 

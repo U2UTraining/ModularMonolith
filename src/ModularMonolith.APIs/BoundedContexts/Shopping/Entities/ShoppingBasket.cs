@@ -9,7 +9,7 @@ public sealed class ShoppingBasket
   public ShoppingBasket(PK<int> id) 
   : base(id) 
   {
-    this.RegisterDomainEvent(new ShoppingBasketHasBeenCreatedDomainEvent(this));
+    RegisterDomainEvent(new ShoppingBasketHasBeenCreatedDomainEvent(this));
   }
 
   public Customer? Customer { get; private set; } = default!;

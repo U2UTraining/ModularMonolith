@@ -1,6 +1,4 @@
-﻿using ModularMonolithEFCore.RowVersion;
-
-namespace ModularMonolith.APIs.BoundedContexts.Currencies.Infra;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.Infra;
 
 public sealed class CurrencyConfiguration
 : IEntityTypeConfiguration<Currency>

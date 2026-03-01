@@ -4,7 +4,6 @@
   interfaceType: typeof(ICommandHandler<AddBoardGameToPublisherCommand, Publisher>)
 , lifetime: ServiceLifetime.Scoped
 , methodNameHint: "AddBoardGameServices")]
-
 internal sealed class AddBoardGameToPublisherCommandHandler
 : ICommandHandler<AddBoardGameToPublisherCommand, Publisher>
 {

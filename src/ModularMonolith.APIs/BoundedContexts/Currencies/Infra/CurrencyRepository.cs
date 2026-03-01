@@ -25,28 +25,6 @@ internal sealed class CurrencyRepository
   ) 
   => await DbContext.Currencies.AsNoTracking().ToListAsync(cancellationToken);
 
-  /// <summary>
-  /// Get Currency by name
-  /// </summary>
-  /// <param name="name">name</param>
-  /// <param name="cancellationToken"></param>
-  /// <returns>Untracked Currency</returns>
-  /// <remarks>This method uses SQL for performance</remarks>
-  //public async ValueTask<Currency?> GetCurrencyWithNameAsync(
-  //  CurrencyName name
-  //, CancellationToken cancellationToken = default)
-  //{
-  //  Currency? result = await DbContext.Currencies.FromSqlInterpolated<Currency>(
-  //    $$"""
-  //    SELECT Name, ValueInEuro
-  //    FROM [currencies].[Currencies] 
-  //    WHERE Name = '{{name}}'
-  //    """)
-  //  .AsNoTracking()
-  //  .SingleOrDefaultAsync(cancellationToken);
-  //  return result;
-  //}
-
   public async ValueTask<Currency?> GetCurrencyWithNameAsync(
     PK<CurrencyName> name
   , CancellationToken cancellationToken = default)
@@ -72,13 +50,6 @@ internal sealed class CurrencyRepository
     {
       currency.UpdateValueInEuro(value);
       await SaveChangesAsync(cancellationToken);
-      // Only trigger integration event after successful change
-      //await _publisher.PublishIntegrationEventAsync(
-      //  new CurrencyHasChangedIntegrationEvent(
-      //    currency.Id.Key.ToString()
-      //  , currency.ValueInEuro.Value
-      //  , currency.ToEuroString())
-      //, cancellationToken);
       return currency;
     }
     throw new ArgumentException(

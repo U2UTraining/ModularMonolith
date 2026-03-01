@@ -1,7 +1,5 @@
 using Aspire.Hosting.Azure;
-
 using Microsoft.Extensions.Hosting;
-
 using ModularMonolith.Smtp4Dev.Hosting;
 
 namespace ModularMonolith.AppHost;
@@ -55,8 +53,6 @@ internal static class Program
         .WithReference(apis)
         .WaitFor(apis)
         ;
-
-    _ = ui;
 
     if (builder.Environment.IsDevelopment())
     {

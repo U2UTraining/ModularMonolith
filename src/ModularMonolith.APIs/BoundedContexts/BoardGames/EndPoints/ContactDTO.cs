@@ -1,6 +1,6 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.EndPoints;
 
-public record ContactDto(
+public record class ContactDto(
   string FirstName
 , string LastName
 , string Email

@@ -3,6 +3,7 @@
 /// <summary>
 /// PublisherName ensures that the Publisher name contraints are met
 /// </summary>
+[DebuggerDisplay("Publisher Game {Value,nq}")]
 public readonly record struct PublisherName
 {
   public const int PublisherNameMaxLength = 128;
@@ -25,5 +26,4 @@ public readonly record struct PublisherName
 
   public static implicit operator string(PublisherName nes)
   => nes.Value;
-
 }

@@ -37,10 +37,8 @@ internal sealed class PublisherConfiguration
     publisher.Metadata.FindNavigation(nameof(Publisher.Games));
     gamesNav!.SetPropertyAccessMode(PropertyAccessMode.Field);
 
-
     // Contact is part of the publisher aggregate,
     // so we use OwnsMany.
-
     publisher
       .OwnsMany(p => p.Contacts, c =>
       {

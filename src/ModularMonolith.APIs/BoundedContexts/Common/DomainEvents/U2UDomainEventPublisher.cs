@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace ModularMonolith.APIs.BoundedContexts.Common.DomainEvents;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Common.DomainEvents;
 
 using Invoker = Func<object, object, CancellationToken, ValueTask>;
 

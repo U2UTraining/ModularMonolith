@@ -1,6 +1,4 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
-
-namespace ModularMonolith.APIs.BoundedContexts.Shopping.ValueObjects;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.ValueObjects;
 
 public readonly record struct LastName
 {
@@ -23,5 +21,4 @@ public readonly record struct LastName
   }
 
   public static implicit operator string(LastName fn) => fn.Value;
-
 }

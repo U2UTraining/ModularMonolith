@@ -1,6 +1,4 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
-
-namespace ModularMonolith.APIs.BoundedContexts.Shopping.ValueObjects;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.ValueObjects;
 
 public readonly record struct CityName
 {
