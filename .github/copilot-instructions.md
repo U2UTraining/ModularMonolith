@@ -64,6 +64,8 @@
 
 ## Testing
 
+- Use xUnit for unit testing and integration testing.
+- Use NHibernate to create fake data for testing purposes.
 - Always include test cases for critical paths of the application.
 - Guide users through creating unit tests.
 - Do not emit "Act", "Arrange" or "Assert" comments.

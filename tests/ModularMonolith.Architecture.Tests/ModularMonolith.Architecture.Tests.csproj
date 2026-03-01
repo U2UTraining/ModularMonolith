@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\ModularMonolith.APIs\ModularMonolith.APIs.csproj" />
-    <ProjectReference Include="..\src\ModularMonolith.BlazorApp\ModularMonolith.BlazorApp.csproj" />
+    <ProjectReference Include="..\..\src\ModularMonolith.APIs\ModularMonolith.APIs.csproj" />
+    <ProjectReference Include="..\..\src\ModularMonolith.BlazorApp\ModularMonolith.BlazorApp.csproj" />
   </ItemGroup>
 
   <ItemGroup>
