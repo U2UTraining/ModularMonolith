@@ -1,18 +1,18 @@
-﻿namespace ModularMonolithEFCore.History;
+﻿namespace ModularMonolithEFCore.Auditability;
 
 /// <summary>
 /// EF Core Interceptor taking care of using maintenance columns
 /// Entities will see their created column set when inserted, and update column when inserted/updated
 /// </summary>
-public sealed class HistoryInterceptor 
+public sealed class AuditabilityInterceptor 
 : SaveChangesInterceptor
 {
   private readonly string _utcCreated;
   private readonly string _utcModified;
 
-  public HistoryInterceptor(
-    string utcCreated = History.UtcCreated
-  , string utcModified = History.UtcModified)
+  public AuditabilityInterceptor(
+    string utcCreated = Auditability.UtcCreated
+  , string utcModified = Auditability.UtcModified)
   {
     _utcCreated = utcCreated;
     _utcModified = utcModified;
@@ -27,7 +27,7 @@ public sealed class HistoryInterceptor
     {
       DateTime utcNow = DateTime.UtcNow;
 
-      foreach (EntityEntry<IHistory> upsertable 
+      foreach (EntityEntry<IAuditability> upsertable 
       in EntriesToUpsert(eventData.Context))
       {
         if (upsertable.State is EntityState.Added)
@@ -39,11 +39,11 @@ public sealed class HistoryInterceptor
     }
     return base.SavingChangesAsync(eventData, result, cancellationToken);
 
-    IEnumerable<EntityEntry<IHistory>> EntriesToUpsert(DbContext context)
+    IEnumerable<EntityEntry<IAuditability>> EntriesToUpsert(DbContext context)
     {
       return context
         .ChangeTracker
-        .Entries<IHistory>()
+        .Entries<IAuditability>()
         .Where(e => e.State is EntityState.Added or EntityState.Modified);
     }
   }

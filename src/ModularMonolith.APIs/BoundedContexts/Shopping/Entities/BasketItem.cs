@@ -3,7 +3,7 @@
 public sealed class BasketItem
 : EntityBase<PK<int>>
 , IAggregate<ShoppingBasket>
-, IHistory
+, IAuditability
 , ISoftDeletable
 {
   public BasketItem(PK<int> id)

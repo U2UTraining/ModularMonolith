@@ -61,7 +61,7 @@ internal sealed class PublisherConfiguration
         .HasColumnOrder(3)
         .IsRequired();
 
-        c.HasHistory()
+        c.HasAuditability()
         .HasSoftDelete()
         .HasRowVersion()
           ;
@@ -76,7 +76,7 @@ internal sealed class PublisherConfiguration
     //contactsNav!.SetPropertyAccessMode(PropertyAccessMode.Field);
 
     _ = publisher
-      .HasHistory()
+      .HasAuditability()
       .HasSoftDelete()
       .HasRowVersion()
       ;

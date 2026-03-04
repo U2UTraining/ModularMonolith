@@ -51,7 +51,7 @@ internal sealed class BoardGameConfiguration
     //  .IsRequired();
 
     _ = boardGame
-      .HasHistory()
+      .HasAuditability()
       .HasSoftDelete()
       .HasRowVersion()
       ;

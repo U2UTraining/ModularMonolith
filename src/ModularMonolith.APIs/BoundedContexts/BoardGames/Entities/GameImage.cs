@@ -10,7 +10,7 @@
 public sealed class GameImage
 : EntityBase<PK<int>>
 , IAggregate<BoardGame>
-, IHistory
+, IAuditability
 , ISoftDeletable
 {
   internal GameImage(PK<int> id, Uri imageLocation)

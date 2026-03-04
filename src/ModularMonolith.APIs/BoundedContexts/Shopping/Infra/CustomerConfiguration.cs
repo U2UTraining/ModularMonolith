@@ -63,7 +63,7 @@ internal sealed class CustomerConfiguration
     });
 
     _ = customer
-      .HasHistory()
+      .HasAuditability()
       .HasSoftDelete()
       .HasRowVersion()
       ;

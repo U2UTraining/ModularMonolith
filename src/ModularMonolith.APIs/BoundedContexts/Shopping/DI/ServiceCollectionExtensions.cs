@@ -18,7 +18,7 @@ public static class ServiceCollectionExtensions
       {
         optionsBuilder.AddInterceptors(
           new SoftDeleteInterceptor(),
-          new HistoryInterceptor()
+          new AuditabilityInterceptor()
         );
         optionsBuilder.EnableDetailedErrors(true);
 #if DEBUG
@@ -46,13 +46,13 @@ public static class ServiceCollectionExtensions
 //        sqlServerOptions.UseCompatibilityLevel(160);
 //        sqlServerOptions.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
 //        // Migrations
-//        sqlServerOptions.MigrationsHistoryTable(
-//          tableName: HistoryRepository.DefaultTableName
+//        sqlServerOptions.MigrationsAuditabilityTable(
+//          tableName: AuditabilityRepository.DefaultTableName
 //        , schema: ShoppingDb.SchemaName);
 //      })
 //      .AddInterceptors(
 //        serviceProvider.GetRequiredService<SoftDeleteInterceptor>(),
-//        serviceProvider.GetRequiredService<HistoryInterceptor>()
+//        serviceProvider.GetRequiredService<AuditabilityInterceptor>()
 //      );
 //      optionsBuilder.EnableDetailedErrors(true);
 //#if DEBUG

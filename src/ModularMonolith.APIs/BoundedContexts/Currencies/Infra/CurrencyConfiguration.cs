@@ -37,7 +37,7 @@ public sealed class CurrencyConfiguration
 #pragma warning restore S125 // Sections of code should not be commented out
 
     _ = currency
-      .HasHistory()
+      .HasAuditability()
       .HasSoftDelete()
       .HasRowVersion()
       ;

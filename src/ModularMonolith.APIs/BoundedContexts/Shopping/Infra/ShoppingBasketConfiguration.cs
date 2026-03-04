@@ -39,7 +39,7 @@ internal sealed class ShoppingBasketConfiguration
     gamesInBasketNav!.SetField("gamesInBasket");
 
     _ = shoppingBasket
-      .HasHistory()
+      .HasAuditability()
       .HasSoftDelete()
       .HasRowVersion()
       ;

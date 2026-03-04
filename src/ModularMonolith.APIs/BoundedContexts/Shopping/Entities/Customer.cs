@@ -3,7 +3,7 @@
 public sealed class Customer 
 : EntityBase<PK<int>>
 , IAggregate<ShoppingBasket>
-, IHistory
+, IAuditability
 , ISoftDeletable
 {
   [SetsRequiredMembers]

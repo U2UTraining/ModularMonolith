@@ -9,7 +9,7 @@
 public sealed class Currency
 : EntityBase<PK<CurrencyName>>
 , IAggregateRoot
-, IHistory
+, IAuditability
 , ISoftDeletable
 {
   public Currency(

@@ -9,7 +9,7 @@ namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
 public sealed class BoardGame
 : EntityBase<PK<int>>
 , IAggregateRoot
-, IHistory
+, IAuditability
 , ISoftDeletable
 {
   private static Money DefaultGamePrice { get; } = new(50M, CurrencyName.EUR);

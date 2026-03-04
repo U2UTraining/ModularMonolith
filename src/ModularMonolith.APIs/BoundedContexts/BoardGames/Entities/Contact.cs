@@ -6,7 +6,7 @@
 public sealed class Contact
 : EntityBase<PK<int>>
 , IAggregate<Publisher>
-, IHistory
+, IAuditability
 , ISoftDeletable
 {
   // Contacts can only be created through publisher

@@ -7,7 +7,7 @@
 public sealed class Publisher 
 : EntityBase<PK<int>>
 , IAggregateRoot
-, IHistory
+, IAuditability
 , ISoftDeletable
 {
   /// <summary>

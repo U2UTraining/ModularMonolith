@@ -1,6 +1,6 @@
 ﻿using ModularMonolith.APIs.BoundedContexts.Common.Entities;
 
-using ModularMonolithEFCore.History;
+using ModularMonolithEFCore.Auditability;
 using ModularMonolithEFCore.SoftDelete;
 
 namespace ModularMonolith.Architecture.Tests.Entities;
@@ -50,7 +50,7 @@ public class EntitiesShould
   }
 
   [Fact]
-  public void ImplementIHistory()
+  public void ImplementIAuditability()
   {
     NetArchTest.Rules.TestResult result = Types
     .InAssembly(AssembliesUnderTest.ApiAssembly)
@@ -59,13 +59,13 @@ public class EntitiesShould
     .Or()
     .ImplementInterface(typeof(IAggregate<>))
     .Should()
-    .ImplementInterface(typeof(IHistory))
+    .ImplementInterface(typeof(IAuditability))
     .GetResult();
 
     if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following entity classed do not implement IHistory: {failedTypes}");
+      throw new Xunit.Sdk.XunitException($"The following entity classed do not implement IAuditability : {failedTypes}");
     }
     Assert.True(result.IsSuccessful);
   }

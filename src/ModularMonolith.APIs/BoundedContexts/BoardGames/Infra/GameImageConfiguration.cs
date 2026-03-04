@@ -22,7 +22,7 @@ internal sealed class GameImageConfiguration
       );
 
     _ = gameImage
-      .HasHistory()
+      .HasAuditability()
       .HasSoftDelete()
       .HasRowVersion()
       ;

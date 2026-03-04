@@ -38,7 +38,7 @@ internal sealed class BasketItemConfiguration
     });
 
     _ = gameInBasket
-      .HasHistory()
+      .HasAuditability()
       .HasSoftDelete()
       .HasRowVersion()
       ;

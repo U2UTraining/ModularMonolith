@@ -222,6 +222,6 @@ public static class ServiceCollectionExtensions
   )
   => services
     .AddSingleton(new SoftDeleteInterceptor())
-    .AddSingleton(new HistoryInterceptor())
+    .AddSingleton(new AuditabilityInterceptor())
     ;
 }
