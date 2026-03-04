@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.Repositories;
+﻿using ModularMonolith.APIs.EFCore.SoftDelete;
+
+namespace ModularMonolith.APIs.BoundedContexts.Shopping.Repositories;
 
 /// <summary>
 /// Shopping repository using extension method style.

@@ -1,8 +1,9 @@
-﻿namespace ModularMonolithEFCore.Auditability;
+﻿namespace ModularMonolith.APIs.EFCore.Auditability;
 
 public static partial class EntityConfigurationExtensions
 {
-  extension<T>(EntityTypeBuilder<T> entity) where T : class, IAuditability
+  extension<T>(EntityTypeBuilder<T> entity) 
+    where T : class, IAuditability
   {
     /// <summary>
     /// Adds two columns to the entity to keep track of changes
@@ -13,7 +14,7 @@ public static partial class EntityConfigurationExtensions
     /// <param name="modified">Name of the column to hold the modified timestamp</param>
     /// <returns></returns>
     public EntityTypeBuilder<T> HasAuditability(
-  string created = Auditability.UtcCreated
+      string created = Auditability.UtcCreated
     , string modified = Auditability.UtcModified)
     {
       entity
@@ -70,5 +71,4 @@ public static partial class EntityConfigurationExtensions
 
     return ownedEntity;
   }
-
 }

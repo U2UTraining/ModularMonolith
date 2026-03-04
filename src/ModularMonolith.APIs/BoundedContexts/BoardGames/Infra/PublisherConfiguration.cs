@@ -1,4 +1,8 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
+﻿using ModularMonolith.APIs.EFCore.Auditability;
+using ModularMonolith.APIs.EFCore.RowVersion;
+using ModularMonolith.APIs.EFCore.SoftDelete;
+
+namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
 
 internal sealed class PublisherConfiguration
 : IEntityTypeConfiguration<Publisher>

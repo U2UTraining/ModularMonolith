@@ -1,4 +1,7 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.Entities;
+﻿using ModularMonolith.APIs.EFCore.Auditability;
+using ModularMonolith.APIs.EFCore.SoftDelete;
+
+namespace ModularMonolith.APIs.BoundedContexts.Currencies.Entities;
 
 /// <summary>
 /// Represents a currency with its value in euros. The value of the euro 

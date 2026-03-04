@@ -1,8 +1,9 @@
-﻿namespace ModularMonolithEFCore.Auditability;
+﻿namespace ModularMonolith.APIs.EFCore.Auditability;
 
 /// <summary>
-/// EF Core Interceptor taking care of using maintenance columns
-/// Entities will see their created column set when inserted, and update column when inserted/updated
+/// EF Core Interceptor taking care of using auditability columns
+/// Entities will see their created column set when inserted, 
+/// and update column when inserted/updated
 /// </summary>
 public sealed class AuditabilityInterceptor 
 : SaveChangesInterceptor

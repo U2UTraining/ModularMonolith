@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithEFCore.SoftDelete;
+﻿namespace ModularMonolith.APIs.EFCore.SoftDelete;
 
 /// <summary>
 /// Soft delete default column names

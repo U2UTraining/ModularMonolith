@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithEFCore.SoftDelete;
+﻿namespace ModularMonolith.APIs.EFCore.SoftDelete;
 
 /// <summary>
 /// Marker interface to indicate this entity uses soft delete

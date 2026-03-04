@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithEFCore.RowVersion;
+﻿namespace ModularMonolith.APIs.EFCore.RowVersion;
 
 public static class EntityConfigurationExtensions
 {

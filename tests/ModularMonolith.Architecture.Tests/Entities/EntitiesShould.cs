@@ -1,7 +1,6 @@
 ﻿using ModularMonolith.APIs.BoundedContexts.Common.Entities;
-
-using ModularMonolithEFCore.Auditability;
-using ModularMonolithEFCore.SoftDelete;
+using ModularMonolith.APIs.EFCore.Auditability;
+using ModularMonolith.APIs.EFCore.SoftDelete;
 
 namespace ModularMonolith.Architecture.Tests.Entities;
 

@@ -1,4 +1,6 @@
 ﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.DomainEvents;
+using ModularMonolith.APIs.EFCore.Auditability;
+using ModularMonolith.APIs.EFCore.SoftDelete;
 
 namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
 

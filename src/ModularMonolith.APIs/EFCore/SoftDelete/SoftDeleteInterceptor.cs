@@ -1,4 +1,4 @@
-﻿namespace ModularMonolithEFCore.SoftDelete;
+﻿namespace ModularMonolith.APIs.EFCore.SoftDelete;
 
 /// <summary>
 /// EF Core Interceptor taking care of using soft delete

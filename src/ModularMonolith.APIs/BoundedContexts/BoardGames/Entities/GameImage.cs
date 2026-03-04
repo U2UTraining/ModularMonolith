@@ -1,4 +1,7 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
+﻿using ModularMonolith.APIs.EFCore.Auditability;
+using ModularMonolith.APIs.EFCore.SoftDelete;
+
+namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
 
 /// <summary>
 /// Entity representing an image of a board game.

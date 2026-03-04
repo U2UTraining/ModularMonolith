@@ -1,4 +1,7 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.Entities;
+﻿using ModularMonolith.APIs.EFCore.Auditability;
+using ModularMonolith.APIs.EFCore.SoftDelete;
+
+namespace ModularMonolith.APIs.BoundedContexts.Shopping.Entities;
 
 public sealed class Customer 
 : EntityBase<PK<int>>
