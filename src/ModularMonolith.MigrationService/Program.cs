@@ -13,7 +13,7 @@ internal static class Program
         .WithTracing(tracing => tracing.AddSource(Worker.ActivitySourceName));
 
     builder.AddSqlServerDbContext<CurrenciesDb>(CurrenciesDb.DatabaseName);
-    builder.AddSqlServerDbContext<GamesDb>(GamesDb.DatabaseName);
+    builder.AddSqlServerDbContext<BoardGamesDb>(BoardGamesDb.DatabaseName);
     builder.AddSqlServerDbContext<ShoppingDb>(ShoppingDb.DatabaseName);
 
     builder.Services.AddHostedService<Worker>();

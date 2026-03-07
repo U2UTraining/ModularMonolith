@@ -15,7 +15,7 @@ dotnet ef migrations add NAME -c DBCONTEXT -o Migrations/FOLDER
 For example:
 
 ```
-dotnet ef migrations add BoardGamesInit -c GamesDb  -o Migrations/BoardGames
+dotnet ef migrations add BoardGamesInit -c BoardGamesDb  -o Migrations/BoardGames
 ```
 
 To update the database

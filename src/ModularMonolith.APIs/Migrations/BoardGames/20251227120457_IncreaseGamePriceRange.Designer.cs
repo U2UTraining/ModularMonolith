@@ -12,7 +12,7 @@ using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
 
 namespace ModularMonolith.APIs.Migrations.BoardGames
 {
-    [DbContext(typeof(GamesDb))]
+    [DbContext(typeof(BoardGamesDb))]
     [Migration("20251227120457_IncreaseGamePriceRange")]
     partial class IncreaseGamePriceRange
     {

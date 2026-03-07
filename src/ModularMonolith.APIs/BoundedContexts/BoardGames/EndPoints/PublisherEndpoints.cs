@@ -23,7 +23,7 @@ public static class PublisherEndpoints
 
     public static async Task<Results<Ok<List<PublisherDto>>, BadRequest>> GetAllPublishers(
       [FromServices] IQuerySender querySender
-    , [FromServices] GamesDb db
+    , [FromServices] BoardGamesDb db
     , CancellationToken cancellationToken)
     {
       IEnumerable<Publisher> publishers =
@@ -69,12 +69,12 @@ public static class PublisherEndpoints
     public static async Task<Results<Ok<GameDto>, NotFound, BadRequest>> UpdateGame(
       [FromRoute] int id
     , [FromBody] GameDto gameDto
-    , [FromServices] GamesDb db
+    , [FromServices] BoardGamesDb db
     , CancellationToken cancellationToken)
     {
       if (gameDto.Id == id)
       {
-        BoardGame? game = await db.Games
+        BoardGame? game = await db.BoardGames
           .Include(g => g.Publisher)
           .FirstOrDefaultAsync(g => g.Id == id, cancellationToken);
         if (game is null)

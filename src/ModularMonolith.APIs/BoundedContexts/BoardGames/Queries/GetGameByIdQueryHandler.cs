@@ -4,13 +4,13 @@
   interfaceType: typeof(IQueryHandler<GetGameByIdQuery, BoardGame?>)
 , lifetime: ServiceLifetime.Scoped
 , methodNameHint: "AddBoardGameServices")]
-internal sealed class GetGameByIdQueryHandler(GamesDb db)
+internal sealed class GetGameByIdQueryHandler(BoardGamesDb db)
   : IQueryHandler<GetGameByIdQuery, BoardGame?>
 {
   public async Task<BoardGame?> HandleAsync(
     GetGameByIdQuery query
   , CancellationToken cancellationToken = default)
   {
-    return await db.Games.FindAsync([ new PK<int>(query.GameId) ], cancellationToken);
+    return await db.BoardGames.FindAsync([ new PK<int>(query.GameId) ], cancellationToken);
   }
 }

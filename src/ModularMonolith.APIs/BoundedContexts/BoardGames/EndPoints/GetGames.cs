@@ -6,14 +6,14 @@
 [Register(
   lifetime: ServiceLifetime.Scoped
 , methodNameHint: "AddBoardGameServices")]
-public sealed class GetGames(GamesDb db, IQuerySender querySender)
+public sealed class GetGames(BoardGamesDb db, IQuerySender querySender)
 {
   public async Task<Results<Ok<List<GameDto>>, BadRequest>> ExecuteAsync(
     GetGamesQuery query
   , CancellationToken cancellationToken)
   {
     IQueryable<BoardGame> gamesQuery =
-      db.Games
+      db.BoardGames
         .AsNoTracking()
         .Include(g => g.Image);
     if (query.MinAmount > 0)

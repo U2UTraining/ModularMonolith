@@ -5,7 +5,7 @@ namespace ModularMonolith.MigrationService;
 public partial class Worker
 {
   public static async Task EnsureGamesDatabaseAsync(
-    GamesDb dbContext
+    BoardGamesDb dbContext
   , CancellationToken cancellationToken)
   {
     IRelationalDatabaseCreator dbCreator =
@@ -24,7 +24,7 @@ public partial class Worker
   }
 
   private static async Task RunGamesMigrationAsync(
-    GamesDb dbContext
+    BoardGamesDb dbContext
   , CancellationToken cancellationToken)
   {
     IExecutionStrategy strategy = dbContext.Database.CreateExecutionStrategy();
@@ -38,7 +38,7 @@ public partial class Worker
     });
   }
 
-  public static async Task SeedGamesAsync(GamesDb dbContext, CancellationToken cancellationToken)
+  public static async Task SeedGamesAsync(BoardGamesDb dbContext, CancellationToken cancellationToken)
   {
     if (await dbContext.Publishers.AnyAsync(cancellationToken))
     {

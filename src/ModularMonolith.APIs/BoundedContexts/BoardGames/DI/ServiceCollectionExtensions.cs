@@ -12,7 +12,7 @@ public static class ServiceCollectionExtensions
              //.AddBoardGamesEndpoints()
              //.AddBoardGamesIntegrationEventHandlers()
              ;
-    builder.AddSqlServerDbContext<GamesDb>(GamesDb.DatabaseName,
+    builder.AddSqlServerDbContext<BoardGamesDb>(BoardGamesDb.DatabaseName,
     sqlServerOptions => {
     },
     optionsBuilder =>
@@ -36,7 +36,7 @@ public static class ServiceCollectionExtensions
         , IReadonlyRepository<Publisher>
         , IRepository<Publisher>>();
 
-    builder.Services.AddDbContextFactory<GamesDb>();
+    builder.Services.AddDbContextFactory<BoardGamesDb>();
 
     return builder;
   }

@@ -1,13 +1,13 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Repositories;
 
 internal sealed class BoardGamesRepository
-: Repository<BoardGame, GamesDb>
+: Repository<BoardGame, BoardGamesDb>
 , IBoardGameRepository
 {
   private readonly IIntegrationEventPublisher _integrationEventPubslisher;
 
   public BoardGamesRepository(
-    GamesDb db
+    BoardGamesDb db
   , IDomainEventPublisher domainEventPublisher
   , IIntegrationEventPublisher integrationEventPubslisher
   ) : base(db, domainEventPublisher)
@@ -27,7 +27,7 @@ internal sealed class BoardGamesRepository
     //await SaveChangesAsync(cancellationToken);
 
     // ✅ Use Set-based update (no materialization)
-    await DbContext.Games.ExecuteUpdateAsync(s =>
+    await DbContext.BoardGames.ExecuteUpdateAsync(s =>
       s.SetProperty(bg => bg.Price.Amount,
                     bg => bg.Price.Amount * discount)
     , cancellationToken
@@ -43,7 +43,7 @@ internal sealed class BoardGamesRepository
   public ValueTask<IQueryable<BoardGame>> GetBoardGamesFromList(
     int[] gameIds
   , CancellationToken cancellationToken)
-  => ValueTask.FromResult(Includes(DbContext.Games).Where(game => gameIds.Contains(game.Id.Key)));
+  => ValueTask.FromResult(Includes(DbContext.BoardGames).Where(game => gameIds.Contains(game.Id.Key)));
 
   protected override IQueryable<BoardGame> Includes(IQueryable<BoardGame> q)
   {

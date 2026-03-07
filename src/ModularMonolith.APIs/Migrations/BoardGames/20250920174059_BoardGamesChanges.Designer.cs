@@ -15,7 +15,7 @@ using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
 
 namespace ModularMonolith.APIs.Migrations.BoardGames
 {
-    [DbContext(typeof(GamesDb))]
+    [DbContext(typeof(BoardGamesDb))]
     [Migration("20250920174059_BoardGamesChanges")]
     partial class BoardGamesChanges
     {

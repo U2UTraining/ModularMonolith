@@ -61,7 +61,7 @@ public sealed record class State
   /// <summary>
   /// The current page path being shown in the UI.
   /// </summary>
-  public ComponentWithState CurrentPage
+  public ComponentWithState? CurrentPage
   {
     get => _currentPage;
   }

@@ -27,8 +27,8 @@ public partial class Worker(
       await RunCurrencyMigrationAsync(currencyContext, stoppingToken);
       await SeedCurrenciesAsync(currencyContext, stoppingToken);
 
-      GamesDb gamesContext =
-        scope.ServiceProvider.GetRequiredService<GamesDb>();
+      BoardGamesDb gamesContext =
+        scope.ServiceProvider.GetRequiredService<BoardGamesDb>();
 
       await EnsureGamesDatabaseAsync(gamesContext, stoppingToken);
       await RunGamesMigrationAsync(gamesContext, stoppingToken);

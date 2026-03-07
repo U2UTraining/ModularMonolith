@@ -12,7 +12,7 @@ using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
 
 namespace ModularMonolith.APIs.Migrations.BoardGames
 {
-    [DbContext(typeof(GamesDb))]
+    [DbContext(typeof(BoardGamesDb))]
     [Migration("20251229115210_AddRowVersion")]
     partial class AddRowVersion
     {

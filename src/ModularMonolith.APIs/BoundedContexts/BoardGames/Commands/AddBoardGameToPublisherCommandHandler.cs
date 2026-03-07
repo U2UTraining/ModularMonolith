@@ -11,7 +11,7 @@ internal sealed class AddBoardGameToPublisherCommandHandler
   private readonly IIntegrationEventPublisher _publisher;
 
   public AddBoardGameToPublisherCommandHandler(
-    GamesDb db
+    BoardGamesDb db
   , IRepository<Publisher> repo
   , IIntegrationEventPublisher publisher)
   {

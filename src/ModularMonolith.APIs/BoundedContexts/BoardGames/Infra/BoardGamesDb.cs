@@ -1,6 +1,6 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
 
-public sealed partial class GamesDb 
+public sealed partial class BoardGamesDb 
 : DbContext
 {
   public const string SchemaName = "games";
@@ -13,13 +13,13 @@ public sealed partial class GamesDb
   //    : base(options) { }
 
   // Only aggregate root entities are registered in the DbSet properties.
-  public DbSet<BoardGame> Games => Set<BoardGame>();
+  public DbSet<BoardGame> BoardGames => Set<BoardGame>();
   public DbSet<Publisher> Publishers => Set<Publisher>();
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
     base.OnModelCreating(modelBuilder);
-    modelBuilder.HasDefaultSchema(GamesDb.SchemaName);
+    modelBuilder.HasDefaultSchema(BoardGamesDb.SchemaName);
     modelBuilder.ApplyConfiguration(new BoardGameConfiguration())
                 .ApplyConfiguration(new GameImageConfiguration())
                 .ApplyConfiguration(new PublisherConfiguration())

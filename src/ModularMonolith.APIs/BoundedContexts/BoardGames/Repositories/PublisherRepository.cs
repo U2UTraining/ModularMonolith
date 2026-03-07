@@ -1,10 +1,10 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Repositories;
 
 public sealed class PublisherRepository
-: Repository<Publisher, GamesDb>
+: Repository<Publisher, BoardGamesDb>
 {
   public PublisherRepository(
-    GamesDb dbContext
+    BoardGamesDb dbContext
   , IDomainEventPublisher domainEventPublisher) 
   : base(dbContext, domainEventPublisher)
   { }

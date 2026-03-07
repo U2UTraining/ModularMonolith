@@ -4,7 +4,7 @@
   lifetime: ServiceLifetime.Scoped
 , methodNameHint: "AddBoardGameServices")]
 public sealed class ApplyMegaDiscount(
-  GamesDb db
+  BoardGamesDb db
 , IIntegrationEventPublisher integrationEventPublisher)
 {
   public async Task<Results<Ok, BadRequest>> ExecuteAsync(
@@ -20,7 +20,7 @@ public sealed class ApplyMegaDiscount(
     //await SaveChangesAsync(cancellationToken);
 
     // ✅ Use Set-based update (no materialization)
-    await db.Games.ExecuteUpdateAsync(s =>
+    await db.BoardGames.ExecuteUpdateAsync(s =>
       s.SetProperty(bg => bg.Price.Amount,
                     bg => bg.Price.Amount * factor)
     , cancellationToken
