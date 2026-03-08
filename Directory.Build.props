@@ -4,7 +4,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
-        <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+        <!-- <TreatWarningsAsErrors>false</TreatWarningsAsErrors> -->
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     </PropertyGroup>
 
     <!-- Aspire -->
