@@ -1,6 +1,7 @@
 ﻿@using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents
 @using System.Text.Json
 
+@implements IAsyncDisposable
 
 @code {
   [Inject]
@@ -24,6 +25,15 @@
       .InvokeAsync<IJSObjectReference>("registerForSse"
       , DotNetObjectReference.Create(this));
     await base.OnInitializedAsync();
+  }
+
+  public async ValueTask DisposeAsync()
+  {
+    if (_source is not null)
+    {
+      await JSRuntime
+      .InvokeAsync<IJSObjectReference>("unregisterForSse", _source);
+    }
   }
 
   [JSInvokable]
