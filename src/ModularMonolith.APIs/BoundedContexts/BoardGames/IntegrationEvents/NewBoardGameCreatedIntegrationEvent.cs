@@ -7,7 +7,8 @@
 /// <param name="BoardGameName">Name</param>
 /// <param name="PriceInEuro">Price</param>
 public sealed record class NewBoardGameCreatedIntegrationEvent(
-  int GameId
+  Guid EventId
+, int GameId
 , string BoardGameName
 , decimal PriceInEuro
 )

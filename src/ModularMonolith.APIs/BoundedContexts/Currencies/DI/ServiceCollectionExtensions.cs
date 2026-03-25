@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.DI;
+﻿using ModularMonolith.APIs.EFCore.OutboxPattern;
+
+namespace ModularMonolith.APIs.BoundedContexts.Currencies.DI;
 
 public static class ServiceCollectionExtensions
 {
@@ -8,9 +10,14 @@ public static class ServiceCollectionExtensions
     builder.Services
       .AddCurrencyServices()
       ;
-      //.AddCurrenciesCore()
-      //.AddCurrenciesQueries()
-      //.AddCurrenciesCommands();
+    //.AddCurrenciesCore()
+    //.AddCurrenciesQueries()
+    //.AddCurrenciesCommands();
+
+    builder.Services
+      .AddSingleton<IOutboxSignal, OutboxSignal>()
+      .AddHostedService<OutboxHostedService<CurrenciesDb>>()
+      ;
 
     builder.AddSqlServerDbContext<CurrenciesDb>(CurrenciesDb.DatabaseName
     , sqlServerOptions =>

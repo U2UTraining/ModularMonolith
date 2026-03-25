@@ -49,6 +49,7 @@ internal sealed class CurrencyRepository
     if (currency is not null)
     {
       currency.UpdateValueInEuro(value);
+
       await SaveChangesAsync(cancellationToken);
       return currency;
     }
