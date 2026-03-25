@@ -32,9 +32,10 @@ internal sealed class AddBoardGameToPublisherCommandHandler
       await _repo.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
       await _publisher.PublishIntegrationEventAsync(
         new NewBoardGameCreatedIntegrationEvent(
-           GameId: game.Id.Key,
-           BoardGameName: game.Name.Value,
-           PriceInEuro: game.Price.Amount
+          EventId: Guid.NewGuid()
+        , GameId: game.Id.Key
+        , BoardGameName: game.Name.Value
+        , PriceInEuro: game.Price.Amount
       ), cancellationToken).ConfigureAwait(false);
       return publisher;
     }

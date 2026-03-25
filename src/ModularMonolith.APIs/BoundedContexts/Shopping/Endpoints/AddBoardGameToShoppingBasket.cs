@@ -23,7 +23,8 @@ public sealed class AddBoardGameToShoppingBasket(
         sb.AddGame(dto.BoardGameId, new Money(dto.PriceInEuro));
         await db.SaveChangesAsync(cancellationToken);
         BoardGameSelectedForShoppingBasketIntegrationEvent e = new(
-          ShoppingBasketId: dto.ShoppingBasketId
+          EventId: Guid.NewGuid()
+        , ShoppingBasketId: dto.ShoppingBasketId
         , BoardGameId: dto.BoardGameId
         , BoardGameName: game.Name.Value
         , PriceInEuro: dto.PriceInEuro

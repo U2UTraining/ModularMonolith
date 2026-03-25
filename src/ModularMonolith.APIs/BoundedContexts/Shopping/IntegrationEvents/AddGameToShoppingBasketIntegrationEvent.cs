@@ -1,9 +1,11 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.IntegrationEvents;
 
 public sealed record class ShoppingBasketHasNewGameIntegrationEvent(
-  int GameId
+  Guid EventId
+, int GameId
 , string GameName
 , decimal PriceInEuro
 )
 : IIntegrationEvent
-{ }
+{
+}

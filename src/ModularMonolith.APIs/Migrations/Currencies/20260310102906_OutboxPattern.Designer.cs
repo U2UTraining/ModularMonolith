@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ModularMonolith.APIs.BoundedContexts.Currencies.Infra;
 
 #nullable disable
 
-namespace ModularMonolithMigrations.Currencies
+namespace ModularMonolith.APIs.Migrations.Currencies
 {
     [DbContext(typeof(CurrenciesDb))]
-    partial class CurrenciesDbModelSnapshot : ModelSnapshot
+    [Migration("20260310102906_OutboxPattern")]
+    partial class OutboxPattern
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,8 +84,8 @@ namespace ModularMonolithMigrations.Currencies
 
                     b.Property<string>("EventType")
                         .IsRequired()
-                        .HasMaxLength(1024)
-                        .HasColumnType("nvarchar(1024)");
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
 
                     b.Property<string>("Payload")
                         .IsRequired()
@@ -107,8 +110,6 @@ namespace ModularMonolithMigrations.Currencies
                     b.HasKey("Id");
 
                     SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"));
-
-                    b.HasIndex("UtcProcessed");
 
                     b.ToTable("Outbox", "currencies");
                 });

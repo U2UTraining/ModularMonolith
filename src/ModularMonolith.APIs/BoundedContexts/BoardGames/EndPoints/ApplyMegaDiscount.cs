@@ -29,7 +29,9 @@ public sealed class ApplyMegaDiscount(
     // Now we need to update the entities that are in memory
     // We can do this using an Integration Event
     await integrationEventPublisher.PublishIntegrationEventAsync(
-      new GamesHaveChangedIntegrationEvent(), cancellationToken
+      new GamesHaveChangedIntegrationEvent(
+        EventId: Guid.NewGuid()
+      ), cancellationToken
     ).ConfigureAwait(false);
 
     return TypedResults.Ok();

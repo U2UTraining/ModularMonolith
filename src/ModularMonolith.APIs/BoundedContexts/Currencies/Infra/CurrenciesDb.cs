@@ -14,11 +14,15 @@ public sealed partial class CurrenciesDb
   public DbSet<Currency> Currencies
   => Set<Currency>();
 
+  public DbSet<OutboxMessage> OutboxMessages
+  => Set<OutboxMessage>();
+
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
     base.OnModelCreating(modelBuilder);
     modelBuilder.HasDefaultSchema(CurrenciesDb.SchemaName);
     modelBuilder.ApplyConfiguration(new CurrencyConfiguration());
+    modelBuilder.ApplyConfiguration(new OutboxConfiguration());
   }
 
   protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)

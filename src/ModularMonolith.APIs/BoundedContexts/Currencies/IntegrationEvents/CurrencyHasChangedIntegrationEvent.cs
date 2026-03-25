@@ -1,7 +1,8 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.IntegrationEvents;
 
 public sealed record CurrencyHasChangedIntegrationEvent(
-  string CurrencyName
+  Guid EventId
+, string CurrencyName
 , decimal OldValueInEuro
 , decimal NewValueInEuro
 , string CurrencyString
