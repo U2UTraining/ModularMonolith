@@ -6,7 +6,7 @@
 /// <para>
 /// Rather than busy-polling the database on a fixed timer, the service blocks on
 /// an <see cref="IOutboxSignal"/> that is fired by
-/// <see cref="OutboxExtensions.SendIntegrationEvent"/> the moment a message is
+/// <see cref="OutboxExtensions.SaveChangesAsync"/> the moment a message is
 /// staged. This keeps end-to-end latency close to zero under normal load while
 /// completely eliminating unnecessary database queries when the table is empty.
 /// A fallback timeout (<see cref="FallbackPollInterval"/>) ensures the service
@@ -40,7 +40,7 @@ where
   public OutboxHostedService(
     IServiceScopeFactory scopeFactory
   , IIntegrationEventPublisher integrationEventPublisher
-  , IOutboxSignal outboxSignal
+  , [FromKeyedServices(nameof(CurrenciesDb))] IOutboxSignal outboxSignal
   , ILogger<OutboxHostedService<DB>> logger)
   {
     _scopeFactory = scopeFactory;

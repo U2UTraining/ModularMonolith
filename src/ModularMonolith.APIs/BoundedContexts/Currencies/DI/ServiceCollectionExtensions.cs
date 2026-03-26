@@ -15,7 +15,7 @@ public static class ServiceCollectionExtensions
     //.AddCurrenciesCommands();
 
     builder.Services
-      .AddSingleton<IOutboxSignal, OutboxSignal>()
+      .AddKeyedSingleton<IOutboxSignal, OutboxSignal>(nameof(CurrenciesDb))
       .AddHostedService<OutboxHostedService<CurrenciesDb>>()
       ;
 
@@ -40,84 +40,4 @@ public static class ServiceCollectionExtensions
 
     return builder;
   }
-
-  //public static IServiceCollection AddCurrenciesQueries(
-  //  this IServiceCollection services)
-  //=> services
-  //  //.AddScoped<
-  //  //  IQueryHandler<GetAllCurrenciesQuery, List<Currency>>
-  //  //, GetAllCurrenciesQueryHandler>()
-  //  //.AddScoped<
-  //  //  IQueryHandler<GetAllCurrenciesQuery, List<Currency>>
-  //  //, GetAllCurrencies2QueryHandler>()
-  //  .AddScoped<
-  //    IQueryHandler<GetAllCurrenciesQuery, List<Currency>>
-  //  , GetAllCurrencies3QueryHandler>()
-  //  ;
-
-  //public static IServiceCollection AddCurrenciesCommands(
-  //  this IServiceCollection services)
-  //=> services
-  //  .AddScoped<
-  //    ICommandHandler<UpdateCurrencyValueInEuroCommand, Currency>
-  //  , UpdateCurrencyValueInEuroCommandHandler>()
-  //  .AddSingleton<
-  //    IValidator<UpdateCurrencyValueInEuroCommand>
-  //  , UpdateCurrencyValueInEuroValidator>()
-  //  ;
-
-  //public static IServiceCollection AddCurrenciesCore( 
-  //  this IServiceCollection services
-  //)
-  //=> services
-  //  .AddScoped<
-  //    IDomainEventHandler<CurrencyValueInEuroHasChangedDomainEvent>
-  //  , CurrencyValueInEuroHasChangedLoggingDomainEventHandler>()
-  //  .AddScoped<
-  //    IDomainEventHandler<CurrencyValueInEuroHasChangedDomainEvent>
-  //  , CurrencyValueInEuroHasChangedDomainEventHandler>()
-  //  .AddScoped<
-  //    IDomainEventHandler<CurrencyValueInEuroHasChangedDomainEvent>
-  //  , CurrencyValueInEuroHasChangedEmailDomainEventHandler>()
-  //  // TEMP: MOve
-  //  //.AddScoped<
-  //  //  IIntegrationEventHandler<CurrencyHasChangedIntegrationEvent>
-  //  //, CurrencyHasChangedIntegrationEventHandler>()
-  //  ;
-
-  //  public static IServiceCollection AddCurrenciesInfra(
-  //    this IServiceCollection services
-  //  , string connectionString
-  //  )
-  //  {
-  //    _ = services.AddDbContext<CurrenciesDb>((serviceProvider, optionsBuilder) =>
-  //    {
-  //      optionsBuilder.UseSqlServer(connectionString, sqlServerOptions =>
-  //      {
-  //        sqlServerOptions.EnableRetryOnFailure(3);
-  //        sqlServerOptions.UseCompatibilityLevel(160);
-  //        sqlServerOptions.UseQuerySplittingBehavior(QuerySplittingBehavior.SingleQuery);
-  //        // Migrations
-  //        sqlServerOptions.MigrationsAuditabilityTable(
-  //          tableName: AuditabilityRepository.DefaultTableName
-  //        , schema: CurrenciesDb.SchemaName);
-  //      })
-  //      .AddInterceptors(
-  //        serviceProvider.GetRequiredService<SoftDeleteInterceptor>(),
-  //        serviceProvider.GetRequiredService<AuditabilityInterceptor>()
-  //      );
-  //      optionsBuilder.EnableDetailedErrors(true);
-  //#if DEBUG
-  //      optionsBuilder.EnableSensitiveDataLogging(true);
-  //#endif
-  //    }
-  //    //This is weirdly important!Using Singleton scoping
-  //    //of the options allows Wolverine to significantly
-  //    //optimize the runtime pipeline of the handlers that
-  //    //use this DbContext type
-  //    , optionsLifetime: ServiceLifetime.Singleton
-  //    );
-  //    _ = services.AddScoped<ICurrencyRepository, CurrencyRepository>();
-  //    return services;
-  //  }
 }
