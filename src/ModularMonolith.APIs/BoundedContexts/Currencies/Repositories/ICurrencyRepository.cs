@@ -1,20 +1,20 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.Repositories;
+﻿//namespace ModularMonolith.APIs.BoundedContexts.Currencies.Repositories;
 
-public interface ICurrencyRepository 
-: IRepository<Currency>
-{
-  ValueTask<List<Currency>> GetAllCurrenciesAsync(
-    CancellationToken cancellationToken = default
-  );
+//public interface ICurrencyRepository 
+//: IRepository<Currency>
+//{
+//  ValueTask<List<Currency>> GetAllCurrenciesAsync(
+//    CancellationToken cancellationToken = default
+//  );
 
-  ValueTask<Currency?> GetCurrencyWithNameAsync(
-    PK<CurrencyName> name
-  , CancellationToken cancellationToken = default
-  );
+//  ValueTask<Currency?> GetCurrencyWithNameAsync(
+//    PK<CurrencyName> name
+//  , CancellationToken cancellationToken = default
+//  );
 
-  ValueTask<Currency> UpdateCurrencyValue(
-    PK<CurrencyName> currencyName
-  , PositiveDecimal value
-  , CancellationToken cancellationToken = default
-  );
-}
+//  ValueTask<Currency> UpdateCurrencyValue(
+//    PK<CurrencyName> currencyName
+//  , PositiveDecimal value
+//  , CancellationToken cancellationToken = default
+//  );
+//}

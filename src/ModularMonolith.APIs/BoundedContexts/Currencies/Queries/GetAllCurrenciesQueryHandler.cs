@@ -1,52 +1,52 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.Queries;
 
-/// <summary>
-/// Get all currencies query handler using repository
-/// </summary>
-[Register(
-  interfaceType: typeof(IQueryHandler<GetAllCurrenciesQuery, List<Currency>>)
-, lifetime: ServiceLifetime.Scoped
-, methodNameHint: "AddCurrencyServices")]
-internal sealed class GetAllCurrenciesQueryHandler
-: IQueryHandler<GetAllCurrenciesQuery, List<Currency>>
-{
-  private readonly ICurrencyRepository _repo;
-
-  public GetAllCurrenciesQueryHandler(ICurrencyRepository repo)
-  => _repo = repo;
-
-  public async Task<List<Currency>> HandleAsync(
-    GetAllCurrenciesQuery request
-  , CancellationToken cancellationToken = default)
-  {
-    List<Currency> result =
-      await _repo.GetAllCurrenciesAsync(cancellationToken);
-    return result;
-  }
-}
-
-// =====================================================================================
-
 ///// <summary>
-///// Get all currencies query handler using DbContext directly
+///// Get all currencies query handler using repository
 ///// </summary>
 //[Register(
 //  interfaceType: typeof(IQueryHandler<GetAllCurrenciesQuery, List<Currency>>)
 //, lifetime: ServiceLifetime.Scoped
 //, methodNameHint: "AddCurrencyServices")]
-//internal sealed class GetAllCurrencies2QueryHandler
+//internal sealed class GetAllCurrenciesQueryHandler
 //: IQueryHandler<GetAllCurrenciesQuery, List<Currency>>
 //{
-//  private readonly CurrenciesDb _db;
+//  private readonly ICurrencyRepository _repo;
 
-//  public GetAllCurrencies2QueryHandler(CurrenciesDb db) 
-//  => _db = db;
+//  public GetAllCurrenciesQueryHandler(ICurrencyRepository repo)
+//  => _repo = repo;
 
 //  public async Task<List<Currency>> HandleAsync(
 //    GetAllCurrenciesQuery request
 //  , CancellationToken cancellationToken = default)
-//    => await _db.Currencies.AsNoTracking().ToListAsync(cancellationToken);
+//  {
+//    List<Currency> result =
+//      await _repo.GetAllCurrenciesAsync(cancellationToken);
+//    return result;
+//  }
 //}
+
+// =====================================================================================
+
+/// <summary>
+/// Get all currencies query handler using DbContext directly
+/// </summary>
+[Register(
+  interfaceType: typeof(IQueryHandler<GetAllCurrenciesQuery, List<Currency>>)
+, lifetime: ServiceLifetime.Scoped
+, methodNameHint: "AddCurrencyServices")]
+internal sealed class GetAllCurrencies2QueryHandler
+: IQueryHandler<GetAllCurrenciesQuery, List<Currency>>
+{
+  private readonly CurrenciesDb _db;
+
+  public GetAllCurrencies2QueryHandler(CurrenciesDb db)
+  => _db = db;
+
+  public async Task<List<Currency>> HandleAsync(
+    GetAllCurrenciesQuery request
+  , CancellationToken cancellationToken = default)
+    => await _db.Currencies.AsNoTracking().ToListAsync(cancellationToken);
+}
 
 // =====================================================================================
 
