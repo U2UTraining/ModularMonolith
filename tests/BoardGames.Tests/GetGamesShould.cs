@@ -9,7 +9,9 @@ namespace BoardGames.Tests;
 
 public class GetGamesShould : IAsyncDisposable
 {
-  private readonly MsSqlContainer _sqlContainer = new MsSqlBuilder("mcr.microsoft.com/mssql/server:2022-latest").Build();
+  private readonly MsSqlContainer _sqlContainer = 
+    new MsSqlBuilder("mcr.microsoft.com/mssql/server:2022-latest")
+    .Build();
 
   [Before(Test)]
   public async Task Setup()

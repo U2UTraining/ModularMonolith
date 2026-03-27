@@ -1,6 +1,4 @@
-﻿using ModularMonolith.APIs.EFCore.OutboxPattern;
-
-namespace ModularMonolith.APIs.BoundedContexts.Currencies.DI;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.DI;
 
 public static class ServiceCollectionExtensions
 {
