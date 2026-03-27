@@ -11,6 +11,7 @@
     <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="13.1.2" />
     <PackageVersion Include="BlazorSseClient" Version="0.13.0" />
     <PackageVersion Include="FluentValidation" Version="12.1.1" />
+    <PackageVersion Include="NSubstitute.Analyzers.CSharp" Version="1.0.17" />
   </ItemGroup>
   <ItemGroup>
     <!-- Mailing -->
@@ -56,6 +57,7 @@
     <!-- Testing -->
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.3.0" />
     <PackageVersion Include="xunit.v3" Version="3.2.2" />
+    <PackageVersion Include="xunit.v3.mtp-v2" Version="3.2.2" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.5" />
     <PackageVersion Include="NSubstitute" Version="5.3.0" />
     <PackageVersion Include="coverlet.collector" Version="8.0.0" />
