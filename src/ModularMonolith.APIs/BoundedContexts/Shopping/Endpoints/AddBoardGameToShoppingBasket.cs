@@ -6,7 +6,8 @@
 public sealed class AddBoardGameToShoppingBasket(
   ShoppingDb db
 , IQuerySender querySender
-, IIntegrationEventPublisher eventPublisher)
+, [FromKeyedServices(nameof(BoardGamesDb))] IOutboxSignal outboxSignal
+)
 {
   public async Task<Results<Ok, NotFound>> ExecuteAsync(
     AddBoardGameToShoppingBasketDto dto
@@ -21,7 +22,6 @@ public sealed class AddBoardGameToShoppingBasket(
       if (game is not null)
       {
         sb.AddGame(dto.BoardGameId, new Money(dto.PriceInEuro));
-        await db.SaveChangesAsync(cancellationToken);
         BoardGameSelectedForShoppingBasketIntegrationEvent e = new(
           EventId: Guid.NewGuid()
         , ShoppingBasketId: dto.ShoppingBasketId
@@ -29,7 +29,7 @@ public sealed class AddBoardGameToShoppingBasket(
         , BoardGameName: game.Name.Value
         , PriceInEuro: dto.PriceInEuro
         );
-        await eventPublisher.PublishIntegrationEventAsync(e);
+        await db.SaveChangesAsync(e, outboxSignal, cancellationToken);
         return TypedResults.Ok();
       }
     }

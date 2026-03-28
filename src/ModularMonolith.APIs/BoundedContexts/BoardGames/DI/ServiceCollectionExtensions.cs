@@ -12,6 +12,12 @@ public static class ServiceCollectionExtensions
              //.AddBoardGamesEndpoints()
              //.AddBoardGamesIntegrationEventHandlers()
              ;
+
+    builder.Services
+      .AddKeyedSingleton<IOutboxSignal, OutboxSignal>(nameof(BoardGamesDb))
+      .AddHostedService<OutboxHostedService<BoardGamesDb>>()
+      ;
+
     builder.AddSqlServerDbContext<BoardGamesDb>(BoardGamesDb.DatabaseName,
     sqlServerOptions => {
     },

@@ -14,6 +14,8 @@ public sealed partial class ShoppingDb : DbContext
 
   public DbSet<ShoppingBasket> Baskets => Set<ShoppingBasket>();
 
+  public DbSet<OutboxMessage> OutboxMessages => Set<OutboxMessage>();
+
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
     base.OnModelCreating(modelBuilder);
@@ -21,7 +23,8 @@ public sealed partial class ShoppingDb : DbContext
     modelBuilder.ApplyConfiguration(new CustomerConfiguration())
                 .ApplyConfiguration(new ShoppingBasketConfiguration())
                 .ApplyConfiguration(new BasketItemConfiguration())
-                ;
+                .ApplyConfiguration(new OutboxConfiguration());
+    ;
   }
 
   protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)

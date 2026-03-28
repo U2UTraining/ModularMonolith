@@ -30,7 +30,7 @@ where
   /// This guards against messages that were committed to the database before the
   /// service started, or in the unlikely event that a signal was dropped.
   /// </summary>
-  private static readonly TimeSpan FallbackPollInterval = TimeSpan.FromSeconds(30);
+  private static readonly TimeSpan FallbackPollInterval = TimeSpan.FromSeconds(1);
 
   private readonly IServiceScopeFactory _scopeFactory;
   private readonly IIntegrationEventPublisher _integrationEventPublisher;

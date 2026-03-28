@@ -11,6 +11,12 @@ public static class ServiceCollectionExtensions
     //.AddShoppingQueries();
     //.AddShoppingInfra(ShoppingDb.DatabaseName)
     ;
+
+    builder.Services
+      .AddKeyedSingleton<IOutboxSignal, OutboxSignal>(nameof(ShoppingDb))
+      .AddHostedService<OutboxHostedService<ShoppingDb>>()
+      ;
+
     builder.AddSqlServerDbContext<ShoppingDb>(ShoppingDb.DatabaseName,
       sqlServerOptions => {
       },

@@ -15,6 +15,7 @@ public sealed partial class BoardGamesDb
   // Only aggregate root entities are registered in the DbSet properties.
   public DbSet<BoardGame> BoardGames => Set<BoardGame>();
   public DbSet<Publisher> Publishers => Set<Publisher>();
+  public DbSet<OutboxMessage> OutboxMessages => Set<OutboxMessage>();
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
@@ -23,7 +24,8 @@ public sealed partial class BoardGamesDb
     modelBuilder.ApplyConfiguration(new BoardGameConfiguration())
                 .ApplyConfiguration(new GameImageConfiguration())
                 .ApplyConfiguration(new PublisherConfiguration())
-                ;
+                .ApplyConfiguration(new OutboxConfiguration())
+    ;
   }
 
   protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)

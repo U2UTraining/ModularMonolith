@@ -33,6 +33,7 @@
     {
       await JSRuntime
       .InvokeAsync<IJSObjectReference>("unregisterForSse", _source);
+      _source = null;
     }
   }
 

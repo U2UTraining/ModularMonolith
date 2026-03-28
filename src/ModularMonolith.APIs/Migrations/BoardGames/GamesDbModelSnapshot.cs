@@ -195,6 +195,48 @@ namespace ModularMonolithMigrations.BoardGames
                     b.ToTable("Publishers", "games");
                 });
 
+            modelBuilder.Entity("ModularMonolith.APIs.EFCore.OutboxPattern.OutboxMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("EventType")
+                        .IsRequired()
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)");
+
+                    b.Property<string>("Payload")
+                        .IsRequired()
+                        .HasMaxLength(4096)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UtcCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasColumnOrder(2147483645)
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.Property<DateTime>("UtcModified")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasColumnOrder(2147483644)
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.Property<DateTime?>("UtcProcessed")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"));
+
+                    b.HasIndex("UtcProcessed");
+
+                    b.ToTable("Outbox", "games");
+                });
+
             modelBuilder.Entity("ModularMonolith.APIs.BoundedContexts.BoardGames.Entities.BoardGame", b =>
                 {
                     b.HasOne("ModularMonolith.APIs.BoundedContexts.BoardGames.Entities.Publisher", "Publisher")
