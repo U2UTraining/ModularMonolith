@@ -19,6 +19,7 @@ public class BoardGameSelectedForShoppingBasketIntegrationEventHandler(
         toastService.ShowWarning(
           title: $"Game {@event.BoardGameName} was added to basket.");
       }
+      await boardGamesPage.RefreshBoardGamesAsync();
     }
   }
 }

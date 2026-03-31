@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 
 using ModularMonolith.APIs.BoundedContexts.BoardGames.Queries;
+using ModularMonolith.BlazorApp.Components.Currencies;
 using ModularMonolith.BlazorApp.Components.Shopping;
 
 namespace ModularMonolith.BlazorApp.Components.BoardGames;
@@ -24,6 +25,12 @@ public sealed partial class BoardGamesPage
   private IQueryable<GameDto>? Games => State.Games;
 
   private GetGamesQuery filter = new(decimal.Zero, 1000M, false, CurrencyName.EUR);
+
+  internal async Task RefreshBoardGamesAsync()
+  {
+    State.Games = await GetBoardGames(filter).ConfigureAwait(true);
+    this.StateHasChanged();
+  }
 
   private async Task<IQueryable<GameDto>> GetBoardGames(GetGamesQuery query)
   {
