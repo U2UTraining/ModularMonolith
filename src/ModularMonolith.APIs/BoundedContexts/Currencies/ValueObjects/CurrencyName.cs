@@ -9,6 +9,5 @@ public enum CurrencyName
   EUR = 0,  // Default
   USD = 1,
   JPY = 2,
-  BTC = 3
   // Place for more
 }

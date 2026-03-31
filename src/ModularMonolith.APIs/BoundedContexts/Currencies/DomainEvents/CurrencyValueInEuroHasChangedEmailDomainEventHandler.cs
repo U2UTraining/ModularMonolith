@@ -8,11 +8,14 @@ internal sealed class CurrencyValueInEuroHasChangedEmailDomainEventHandler
 : IDomainEventHandler<CurrencyValueInEuroHasChangedDomainEvent>
 {
   private readonly ICommandSender _commandSender;
+  private readonly CurrencyNotificationOptions _options;
 
   public CurrencyValueInEuroHasChangedEmailDomainEventHandler(
-    ICommandSender commandSender)
+    ICommandSender commandSender
+  , IOptions<CurrencyNotificationOptions> options)
   {
     _commandSender = commandSender;
+    _options = options.Value;
   }
 
   /// <summary>
@@ -29,8 +32,8 @@ internal sealed class CurrencyValueInEuroHasChangedEmailDomainEventHandler
   , CancellationToken cancellationToken)
   {
     SendEmailCommand cmd = new(
-      From: "peter@u2u.be",
-      To: ["peter@u2u.be"],
+      From: _options.From,
+      To: [.. _options.To],
       CC: [],
       Subject: $"Currency {@event.CurrencyName} has been updated",
       Body: $"Currency {@event.CurrencyName} has been updated to {@event.NewValueInEuro}"

@@ -7,6 +7,8 @@ public static class ServiceCollectionExtensions
   {
     builder.Services
       .AddCurrencyServices()
+      .Configure<CurrencyNotificationOptions>(
+        builder.Configuration.GetSection(CurrencyNotificationOptions.SectionName))
       ;
     //.AddCurrenciesCore()
     //.AddCurrenciesQueries()

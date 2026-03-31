@@ -70,7 +70,7 @@ public sealed class GetAllCurrencies(CurrenciesDb db)
         // ✅ Dont' track entities for read-only queries
         .AsNoTracking()
         .Select(c => new CurrencyDto(c.Id.ToString(), c.ValueInEuro))
-        .ToListAsync();
+        .ToListAsync(cancellationToken);
     // ✅ Materialize in Infrastructure; return DTOs or domain objects
     return TypedResults.Ok(allCurrencies);
   }

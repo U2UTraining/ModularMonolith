@@ -6,9 +6,11 @@ public static class CurrencyEndpoints
   {
     public RouteGroupBuilder GetWithCurrencyEndpoints()
     {
-      group.MapGet("/", async (GetAllCurrencies handler)
-        => await handler.ExecuteAsync())
+      group.MapGet("/", async (GetAllCurrencies handler, CancellationToken cancellationToken)
+        => await handler.ExecuteAsync(cancellationToken))
         .WithName(nameof(GetAllCurrencies))
+        .WithSummary("Get all currencies")
+        .WithDescription("Returns all supported currencies with their current value in EUR.")
         .Produces<List<CurrencyDto>>(StatusCodes.Status200OK);
 
       group.MapPut("/", async (UpdateCurrencyValue handler
@@ -16,7 +18,10 @@ public static class CurrencyEndpoints
         , CancellationToken cancellationToken)
         => await handler.ExecuteAsync(dto, cancellationToken))
         .WithName(nameof(UpdateCurrencyValue))
-        .Produces<CurrencyDto>(StatusCodes.Status200OK);
+        .WithSummary("Update a currency value")
+        .WithDescription("Updates the EUR exchange rate for the specified currency. The EUR rate itself cannot be modified.")
+        .Produces<CurrencyDto>(StatusCodes.Status200OK)
+        .Produces<string>(StatusCodes.Status400BadRequest);
  
       return group;
     }

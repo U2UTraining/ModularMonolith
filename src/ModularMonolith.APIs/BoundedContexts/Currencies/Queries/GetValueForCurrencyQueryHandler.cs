@@ -15,19 +15,22 @@ internal sealed class GetValueForCurrencyQueryHandler(CurrenciesDb db)
     {
       return query.Amounts;
     }
-    decimal fromValueInEur = await ValueForCurrency(query.FromCurrency, cancellationToken);
-    decimal toValueInEur = await ValueForCurrency(query.ToCurrency, cancellationToken);
+
+    // Fetch both exchange rates in a single database round-trip
+    List<Currency> currencies = await db.Currencies
+      .Where(c => c.Id.Key == query.FromCurrency || c.Id.Key == query.ToCurrency)
+      .ToListAsync(cancellationToken);
+
+    decimal fromValueInEur = currencies
+      .First(c => c.Id.Key == query.FromCurrency)
+      .ValueInEuro.Value;
+
+    decimal toValueInEur = currencies
+      .First(c => c.Id.Key == query.ToCurrency)
+      .ValueInEuro.Value;
+
     return query.Amounts
       .Select(amount => new PositiveDecimal((amount.Value * fromValueInEur) / toValueInEur ))
       .ToArray();
-  }
-
-  private async Task<decimal> ValueForCurrency(CurrencyName currencyName, CancellationToken cancellationToken)
-  {
-    decimal currency = await db.Currencies
-      .Where(c => c.Id.Key == currencyName)
-      .Select(c => c.ValueInEuro.Value)
-      .FirstOrDefaultAsync(cancellationToken);
-    return currency;
   }
 }

@@ -1,4 +1,5 @@
-﻿global using ModularMonolith.APIs.BoundedContexts.Currencies.Commands;
+﻿global using Microsoft.Extensions.Options;
+global using ModularMonolith.APIs.BoundedContexts.Currencies.Commands;
 global using ModularMonolith.APIs.BoundedContexts.Currencies.DI;
 global using ModularMonolith.APIs.BoundedContexts.Currencies.DomainEvents;
 global using ModularMonolith.APIs.BoundedContexts.Currencies.EndPoints;
