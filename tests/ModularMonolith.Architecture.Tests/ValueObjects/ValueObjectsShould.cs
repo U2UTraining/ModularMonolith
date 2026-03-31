@@ -1,8 +1,8 @@
-﻿namespace ModularMonolith.Architecture.Tests.ValueObjects;
+namespace ModularMonolith.Architecture.Tests.ValueObjects;
 
 public sealed class ValueObjectsShould
 {
-  [Fact]
+  [Test]
   public void BeSealed()
   {
     NetArchTest.Rules.TestResult result = Types
@@ -18,9 +18,7 @@ public sealed class ValueObjectsShould
     if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following classed should be sealed: {failedTypes}");
+      Assert.Fail($"The following classes should be sealed: {failedTypes}");
     }
-
-    Assert.True(result.IsSuccessful);
   }
 }

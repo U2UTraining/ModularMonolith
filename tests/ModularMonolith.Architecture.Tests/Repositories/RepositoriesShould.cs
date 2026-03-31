@@ -1,10 +1,10 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.Repositories;
+using ModularMonolith.APIs.BoundedContexts.Common.Repositories;
 
 namespace ModularMonolith.Architecture.Tests.Repositories;
 
 public class RepositoriesShould
 {
-  [Fact]
+  [Test]
   public void NotBePublic()
   {
     NetArchTest.Rules.TestResult result = Types
@@ -21,9 +21,8 @@ public class RepositoriesShould
 
     if (!result.IsSuccessful)
     {
-      var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following Repositories are public: {failedTypes}");
+      string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
+      Assert.Fail($"The following Repositories are public: {failedTypes}");
     }
-    Assert.True(result.IsSuccessful);
   }
 }

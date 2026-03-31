@@ -1,10 +1,10 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
+using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
 
 namespace ModularMonolith.Architecture.Tests.IntegrationEvents;
 
 public sealed class IntegrationEventHandlersShould
 {
-  [Fact]
+  [Test]
   public void UseIntegrationEventHandlerSuffix()
   {
     NetArchTest.Rules.TestResult result = Types
@@ -20,13 +20,11 @@ public sealed class IntegrationEventHandlersShould
     if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following classed do not follow conventions: {failedTypes}");
+      Assert.Fail($"The following classes do not follow conventions: {failedTypes}");
     }
-
-    Assert.True(result.IsSuccessful);
   }
 
-  [Fact]
+  [Test]
   public void BeSealed()
   {
     NetArchTest.Rules.TestResult result = Types
@@ -41,13 +39,12 @@ public sealed class IntegrationEventHandlersShould
 
     if (!result.IsSuccessful)
     {
-      var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following Integration Events Handlers are not sealed: {failedTypes}");
+      string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
+      Assert.Fail($"The following Integration Event Handlers are not sealed: {failedTypes}");
     }
-    Assert.True(result.IsSuccessful);
   }
 
-  [Fact]
+  [Test]
   public void BeNotBePublic()
   {
     NetArchTest.Rules.TestResult result = Types
@@ -62,9 +59,8 @@ public sealed class IntegrationEventHandlersShould
 
     if (!result.IsSuccessful)
     {
-      var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following Integration Events Handlers are public: {failedTypes}");
+      string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
+      Assert.Fail($"The following Integration Event Handlers are public: {failedTypes}");
     }
-    Assert.True(result.IsSuccessful);
   }
 }

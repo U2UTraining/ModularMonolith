@@ -1,8 +1,8 @@
-﻿namespace ModularMonolith.Architecture.Tests.BoundedContexts;
+namespace ModularMonolith.Architecture.Tests.BoundedContexts;
 
 public class CurrencyBoundedContextShould
 {
-  [Fact]
+  [Test]
   public void HavePublicEndpoints()
   {
     NetArchTest.Rules.TestResult result = Types
@@ -16,13 +16,11 @@ public class CurrencyBoundedContextShould
     if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following classed do not follow conventions: {failedTypes}");
+      Assert.Fail($"The following classes do not follow conventions: {failedTypes}");
     }
-
-    Assert.True(result.IsSuccessful);
   }
 
-  [Fact]
+  [Test]
   public void HaveNonPublicHandlers()
   {
     NetArchTest.Rules.TestResult result = Types
@@ -42,10 +40,7 @@ public class CurrencyBoundedContextShould
     if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following classed do not follow conventions: {failedTypes}");
+      Assert.Fail($"The following classes do not follow conventions: {failedTypes}");
     }
-
-
-    Assert.True(result.IsSuccessful);
   }
 }

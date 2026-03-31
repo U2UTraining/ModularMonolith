@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using ModularMonolith.APIs.BoundedContexts.Common.Queries;
 
 namespace ModularMonolith.Architecture.Tests.Queries;
 
 public sealed class QueriesShould
 {
-  [Fact]
+  [Test]
   public void UseQuerySuffix()
   {
     NetArchTest.Rules.TestResult result = Types
@@ -23,9 +20,7 @@ public sealed class QueriesShould
     if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following classed do not follow conventions: {failedTypes}");
+      Assert.Fail($"The following classes do not follow conventions: {failedTypes}");
     }
-
-    Assert.True(result.IsSuccessful);
   }
 }

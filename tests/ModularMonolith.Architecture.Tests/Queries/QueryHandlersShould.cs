@@ -1,7 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
 using ModularMonolith.APIs.BoundedContexts.Common.Commands;
 using ModularMonolith.APIs.BoundedContexts.Common.Queries;
 
@@ -9,10 +5,10 @@ namespace ModularMonolith.Architecture.Tests.Queries;
 
 public sealed class QueryHandlersShould
 {
-  [Fact]
+  [Test]
   public void UseQueryHandlerSuffix()
   {
-      NetArchTest.Rules.TestResult result = Types
+    NetArchTest.Rules.TestResult result = Types
       .InAssembly(AssembliesUnderTest.ApiAssembly)
       .That()
       .ImplementInterface(typeof(IQueryHandler<,>))
@@ -23,13 +19,11 @@ public sealed class QueryHandlersShould
     if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following Query Handlers do not follow conventions: {failedTypes}");
+      Assert.Fail($"The following Query Handlers do not follow conventions: {failedTypes}");
     }
-
-    Assert.True(result.IsSuccessful);
   }
 
-  [Fact]
+  [Test]
   public void BeNotBePublic()
   {
     NetArchTest.Rules.TestResult result = Types
@@ -42,13 +36,12 @@ public sealed class QueryHandlersShould
 
     if (!result.IsSuccessful)
     {
-      var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following Query Handlers are public: {failedTypes}");
+      string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
+      Assert.Fail($"The following Query Handlers are public: {failedTypes}");
     }
-    Assert.True(result.IsSuccessful);
   }
 
-  [Fact]
+  [Test]
   public void BeSealed()
   {
     NetArchTest.Rules.TestResult result = Types
@@ -61,9 +54,8 @@ public sealed class QueryHandlersShould
 
     if (!result.IsSuccessful)
     {
-      var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following Query Handlers are not sealed: {failedTypes}");
+      string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
+      Assert.Fail($"The following Query Handlers are not sealed: {failedTypes}");
     }
-    Assert.True(result.IsSuccessful);
   }
 }

@@ -1,10 +1,10 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.Commands;
+using ModularMonolith.APIs.BoundedContexts.Common.Commands;
 
 namespace ModularMonolith.Architecture.Tests.Commands;
 
 public sealed class CommandsShould
 {
-  [Fact]
+  [Test]
   public void UseCommandSuffix()
   {
     NetArchTest.Rules.TestResult result = Types
@@ -18,13 +18,11 @@ public sealed class CommandsShould
     if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following classed do not follow conventions: {failedTypes}");
+      Assert.Fail($"The following classes do not follow conventions: {failedTypes}");
     }
-
-    Assert.True(result.IsSuccessful);
   }
 
-  [Fact]
+  [Test]
   public void BeSealed()
   {
     NetArchTest.Rules.TestResult result = Types
@@ -37,13 +35,12 @@ public sealed class CommandsShould
 
     if (!result.IsSuccessful)
     {
-      var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following Commands are not sealed: {failedTypes}");
+      string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
+      Assert.Fail($"The following Commands are not sealed: {failedTypes}");
     }
-    Assert.True(result.IsSuccessful);
   }
 
-  [Fact]
+  [Test]
   public void BePublic()
   {
     NetArchTest.Rules.TestResult result = Types
@@ -56,9 +53,8 @@ public sealed class CommandsShould
 
     if (!result.IsSuccessful)
     {
-      var failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following Commands are not public: {failedTypes}");
+      string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
+      Assert.Fail($"The following Commands are not public: {failedTypes}");
     }
-    Assert.True(result.IsSuccessful);
   }
 }

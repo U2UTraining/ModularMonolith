@@ -1,4 +1,4 @@
-﻿using ModularMonolith.APIs.BoundedContexts.Common.Entities;
+using ModularMonolith.APIs.BoundedContexts.Common.Entities;
 using ModularMonolith.APIs.EFCore.Auditability;
 using ModularMonolith.APIs.EFCore.SoftDelete;
 
@@ -6,7 +6,7 @@ namespace ModularMonolith.Architecture.Tests.Entities;
 
 public class EntitiesShould
 {
-  [Fact]
+  [Test]
   public void BeSealed()
   {
     NetArchTest.Rules.TestResult result = Types
@@ -22,12 +22,11 @@ public class EntitiesShould
     if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following classed are not sealed: {failedTypes}");
+      Assert.Fail($"The following classes are not sealed: {failedTypes}");
     }
-    Assert.True(result.IsSuccessful);
   }
 
-  [Fact]
+  [Test]
   public void InheritFromEntityBase()
   {
     NetArchTest.Rules.TestResult result = Types
@@ -43,12 +42,11 @@ public class EntitiesShould
     if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following entity classed do not inherit from EntityBase: {failedTypes}");
+      Assert.Fail($"The following entity classes do not inherit from EntityBase: {failedTypes}");
     }
-    Assert.True(result.IsSuccessful);
   }
 
-  [Fact]
+  [Test]
   public void ImplementIAuditability()
   {
     NetArchTest.Rules.TestResult result = Types
@@ -64,12 +62,11 @@ public class EntitiesShould
     if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following entity classed do not implement IAuditability : {failedTypes}");
+      Assert.Fail($"The following entity classes do not implement IAuditability: {failedTypes}");
     }
-    Assert.True(result.IsSuccessful);
   }
 
-  [Fact]
+  [Test]
   public void ImplementSoftDelete()
   {
     NetArchTest.Rules.TestResult result = Types
@@ -85,8 +82,7 @@ public class EntitiesShould
     if (!result.IsSuccessful)
     {
       string failedTypes = string.Join(", ", result.FailingTypes.Select(t => t.FullName));
-      throw new Xunit.Sdk.XunitException($"The following entity classed do not implement ISoftDeletable: {failedTypes}");
+      Assert.Fail($"The following entity classes do not implement ISoftDeletable: {failedTypes}");
     }
-    Assert.True(result.IsSuccessful);
   }
 }
