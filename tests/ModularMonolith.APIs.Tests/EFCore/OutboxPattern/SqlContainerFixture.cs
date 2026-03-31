@@ -1,22 +1,26 @@
-﻿using Xunit;
+using TUnit.Core.Interfaces;
 
 namespace ModularMonolith.APIs.Tests.EFCore.OutboxPattern;
 
-public class SqlServerContainerFixture 
-: IAsyncLifetime
+/// <summary>
+/// Shared fixture that starts a SQL Server container once for all tests in the collection.
+/// Implements IAsyncInitializer so TUnit calls InitializeAsync before the first test runs,
+/// and IAsyncDisposable so the container is cleaned up afterwards.
+/// </summary>
+public class SqlServerContainerFixture : IAsyncInitializer, IAsyncDisposable
 {
   public SqlServerContainerFixture()
   {
-    _sqlContainer = 
+    _sqlContainer =
       new MsSqlBuilder("mcr.microsoft.com/mssql/server:2022-latest")
       .Build();
   }
 
   private readonly MsSqlContainer _sqlContainer;
-  public string ConnectionString 
+  public string ConnectionString
     => _sqlContainer.GetConnectionString();
 
-  public async ValueTask InitializeAsync()
+  public async Task InitializeAsync()
   {
     await _sqlContainer.StartAsync();
     DbContextOptions<CurrenciesDb> options =
@@ -29,8 +33,8 @@ public class SqlServerContainerFixture
     await db.Database.EnsureCreatedAsync();
   }
 
-  public async ValueTask DisposeAsync() 
-  => await _sqlContainer.DisposeAsync();
+  public async ValueTask DisposeAsync()
+    => await _sqlContainer.DisposeAsync();
 
   public CurrenciesDb CreateCurrenciesDb()
   {
@@ -43,9 +47,3 @@ public class SqlServerContainerFixture
     return new CurrenciesDb(options);
   }
 }
-
-[CollectionDefinition("SqlServer")]
-public class SqlServerCollection : ICollectionFixture<SqlServerContainerFixture>
-{
-}
-

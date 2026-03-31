@@ -23,28 +23,28 @@ public class RepositoryShould
   internal static IRepository<Student> CreateRepository()
     => new Repository<Student, StudentDbContext>(CreateDbContext(), default!);
 
-  [Fact]
-  public void SupportSpecificationForSingleRow()
+  [Test]
+  public async Task SupportSpecificationForSingleRow()
   {
     ISpecification<Student> spec =
       new Specification<Student>(s => s.FirstName == "C");
 
     IQueryable<Student> students = Students.AsQueryable();
     List<Student> result = spec.BuildQueryable(students).ToList();
-    _ = Assert.Single(result);
+    await Assert.That(result.Count).IsEqualTo(1);
   }
 
-  [Fact]
-  public void SupportSpecificationForMultipleRows()
+  [Test]
+  public async Task SupportSpecificationForMultipleRows()
   {
     ISpecification<Student> spec =
       new Specification<Student>(s => s.Age >= 10);
     IQueryable<Student> students = Students.AsQueryable();
     List<Student> result = spec.BuildQueryable(students).ToList();
-    Assert.Equal(3, result.Count);
+    await Assert.That(result.Count).IsEqualTo(3);
 
     spec = spec.And(new Specification<Student>(s => s.Age <= 45));
     result = spec.BuildQueryable(students).ToList();
-    Assert.Equal(2, result.Count);
+    await Assert.That(result.Count).IsEqualTo(2);
   }
 }
