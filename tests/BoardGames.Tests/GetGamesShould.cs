@@ -1,9 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
+﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
 using ModularMonolith.MigrationService;
 using ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Testcontainers.MsSql;
 
 namespace BoardGames.Tests;
 

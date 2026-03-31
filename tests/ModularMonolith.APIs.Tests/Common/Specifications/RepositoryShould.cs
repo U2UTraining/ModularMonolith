@@ -1,7 +1,8 @@
 ﻿using ModularMonolith.APIs.BoundedContexts.Common.Repositories;
 using ModularMonolith.APIs.BoundedContexts.Common.Specifications;
+using ModularMonolith.APIs.Tests.Common;
 
-namespace Common.Specifications.Tests;
+namespace ModularMonolith.APIs.Tests.Common.Specifications;
 
 public class RepositoryShould
 {

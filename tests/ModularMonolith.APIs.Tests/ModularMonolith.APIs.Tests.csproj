@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ModularMonolith.APIs.Tests</RootNamespace>
+    <TargetFramework>net10.0</TargetFramework>
+    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ModularMonolith.APIs\ModularMonolith.APIs.csproj" />
+    <ProjectReference Include="..\..\src\ModularMonolith.MigrationService\ModularMonolith.MigrationService.csproj" />
+  </ItemGroup>
+  
+  <!-- Testing Frameworks -->
+  <ItemGroup>
+    <PackageReference Include="xunit.v3.mtp-v2" />
+    <!--<PackageReference Include="TUnit" />-->
+  </ItemGroup>
+  
+  <!-- Stubbing and Mocking -->
+  <ItemGroup>
+    <PackageReference Include="NSubstitute" />
+    <PackageReference Include="NSubstitute.Analyzers.CSharp">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  
+  <!-- Test Containers -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+    <PackageReference Include="Testcontainers.MsSql" />
+    <PackageReference Include="Testcontainers.XunitV3" />
+  </ItemGroup>
+
+  <!-- Global Using Directives -->
+  <ItemGroup>
+    <Using Include="Xunit" />
+    <Using Include="NSubstitute" />
+    <Using Include="Testcontainers.MsSql" />
+    <Using Include="Microsoft.EntityFrameworkCore" />
+  </ItemGroup>
+
+</Project>

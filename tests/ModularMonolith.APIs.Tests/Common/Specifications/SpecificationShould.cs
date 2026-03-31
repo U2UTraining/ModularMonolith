@@ -1,6 +1,6 @@
 ﻿using ModularMonolith.APIs.BoundedContexts.Common.Specifications;
 
-namespace Common.Specifications.Tests;
+namespace ModularMonolith.APIs.Tests.Common.Specifications;
 
 public class SpecificationShould
 {

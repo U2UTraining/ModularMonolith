@@ -1,9 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using ModularMonolith.APIs.BoundedContexts.Currencies.Infra;
-using Testcontainers.MsSql;
+﻿using Xunit;
 
-namespace EFCore.Tests;
+namespace ModularMonolith.APIs.Tests.EFCore.OutboxPattern;
 
 public class SqlServerContainerFixture 
 : IAsyncLifetime

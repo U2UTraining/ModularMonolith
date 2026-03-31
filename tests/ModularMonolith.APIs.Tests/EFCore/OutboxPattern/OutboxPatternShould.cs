@@ -1,18 +1,6 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
+using Xunit;
 
-using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
-using ModularMonolith.APIs.BoundedContexts.Currencies.Infra;
-using ModularMonolith.APIs.EFCore.OutboxPattern;
-
-using NSubstitute;
-
-using Testcontainers.MsSql;
-
-namespace EFCore.Tests;
+namespace ModularMonolith.APIs.Tests.EFCore.OutboxPattern;
 
 [Collection("SqlServer")]
 public class OutboxPatternShould
@@ -57,7 +45,7 @@ public class OutboxPatternShould
         .OfType<OutboxHostedService<CurrenciesDb>>()
         .First();
 
-    Task runner = Task.Run(() => hostedService.StartAsync(TestContext.Current.CancellationToken), TestContext.Current.CancellationToken);
+    Task runner = Task.Run(() => hostedService.StartAsync(Xunit.TestContext.Current.CancellationToken), Xunit.TestContext.Current.CancellationToken);
 
     IOutboxSignal signal = serviceProvider
       .GetRequiredKeyedService<IOutboxSignal>(nameof(CurrenciesDb));
@@ -70,7 +58,7 @@ public class OutboxPatternShould
     await db.SaveChangesAsync(@event, signal, CancellationToken.None);
 
     // Block until the background service publishes the event — no arbitrary timeout.
-    await published.Task.WaitAsync(TestContext.Current.CancellationToken);
+    await published.Task.WaitAsync(Xunit.TestContext.Current.CancellationToken);
 
     await pub.Received(requiredNumberOfCalls: 1)
       .PublishIntegrationEventAsync(
