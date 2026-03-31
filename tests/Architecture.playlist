@@ -1,0 +1,272 @@
+<Playlist Version="2.0">
+  <Rule Name="Includes" Match="Any">
+    <Rule Match="All">
+      <Property Name="Solution" />
+      <Rule Match="Any">
+        <Rule Match="All">
+          <Property Name="Project" Value="ModularMonolith.Architecture.Tests" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="ModularMonolith.Architecture.Tests.DomainEvents" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="DomainEventsShould" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="BePublic" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.DomainEvents.DomainEventsShould.BePublic" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="BeSealed" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.DomainEvents.DomainEventsShould.BeSealed" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="UseDomainEventSuffix" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.DomainEvents.DomainEventsShould.UseDomainEventSuffix" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="DomainEventHandlersShould" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="BeSealed" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.DomainEvents.DomainEventHandlersShould.BeSealed" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="NotBePublic" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.DomainEvents.DomainEventHandlersShould.NotBePublic" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="UseDomainEventHandlerSuffix" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.DomainEvents.DomainEventHandlersShould.UseDomainEventHandlerSuffix" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+            <Rule Match="All">
+              <Property Name="Namespace" Value="ModularMonolith.Architecture.Tests.Entities" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="EntitiesShould" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="BeSealed" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.Entities.EntitiesShould.BeSealed" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="ImplementIAuditability" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.Entities.EntitiesShould.ImplementIAuditability" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="ImplementSoftDelete" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.Entities.EntitiesShould.ImplementSoftDelete" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="InheritFromEntityBase" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.Entities.EntitiesShould.InheritFromEntityBase" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+            <Rule Match="All">
+              <Property Name="Namespace" Value="ModularMonolith.Architecture.Tests.Queries" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="QueryHandlersShould" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="BeNotBePublic" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.Queries.QueryHandlersShould.BeNotBePublic" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="BeSealed" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.Queries.QueryHandlersShould.BeSealed" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="UseQueryHandlerSuffix" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.Queries.QueryHandlersShould.UseQueryHandlerSuffix" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="QueriesShould" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="UseQuerySuffix" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.Queries.QueriesShould.UseQuerySuffix" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+            <Rule Match="All">
+              <Property Name="Namespace" Value="ModularMonolith.Architecture.Tests.IntegrationEvents" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="IntegrationEventsShould" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="BePublic" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.IntegrationEvents.IntegrationEventsShould.BePublic" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="BeSealed" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.IntegrationEvents.IntegrationEventsShould.BeSealed" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="UseIntegrationEventSuffix" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.IntegrationEvents.IntegrationEventsShould.UseIntegrationEventSuffix" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="IntegrationEventHandlersShould" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="BeNotBePublic" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.IntegrationEvents.IntegrationEventHandlersShould.BeNotBePublic" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="BeSealed" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.IntegrationEvents.IntegrationEventHandlersShould.BeSealed" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="UseIntegrationEventHandlerSuffix" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.IntegrationEvents.IntegrationEventHandlersShould.UseIntegrationEventHandlerSuffix" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+            <Rule Match="All">
+              <Property Name="Namespace" Value="ModularMonolith.Architecture.Tests.Commands" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="CommandsShould" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="BePublic" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.Commands.CommandsShould.BePublic" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="BeSealed" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.Commands.CommandsShould.BeSealed" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="UseCommandSuffix" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.Commands.CommandsShould.UseCommandSuffix" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="CommandHandlersShould" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="BeNotBePublic" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.Commands.CommandHandlersShould.BeNotBePublic" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="BeSealed" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.Commands.CommandHandlersShould.BeSealed" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="UseCommandHandlerSuffix" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.Commands.CommandHandlersShould.UseCommandHandlerSuffix" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+            <Rule Match="All">
+              <Property Name="Namespace" Value="ModularMonolith.Architecture.Tests.Repositories" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="RepositoriesShould" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="NotBePublic" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.Repositories.RepositoriesShould.NotBePublic" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+            <Rule Match="All">
+              <Property Name="Namespace" Value="ModularMonolith.Architecture.Tests.ValueObjects" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="ValueObjectsShould" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="BeSealed" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.Architecture.Tests.ValueObjects.ValueObjectsShould.BeSealed" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+      </Rule>
+    </Rule>
+  </Rule>
+</Playlist>

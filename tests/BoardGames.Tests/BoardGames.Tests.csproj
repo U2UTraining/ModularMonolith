@@ -18,4 +18,11 @@
     <ProjectReference Include="..\..\src\ModularMonolith.MigrationService\ModularMonolith.MigrationService.csproj" />
   </ItemGroup>
 
+  <!-- Global Using Directives -->
+  <ItemGroup>
+    <Using Include="TUnit" />
+    <Using Include="Testcontainers.MsSql" />
+    <Using Include="Microsoft.EntityFrameworkCore" />
+  </ItemGroup>
+
 </Project>

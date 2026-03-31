@@ -1,4 +1,4 @@
-﻿namespace Common.Specifications.Tests;
+﻿namespace ModularMonolith.APIs.Tests.Common;
 
 public class FakeDbContextBuilder<TDB>
 where TDB : DbContext

@@ -1,6 +1,6 @@
 ﻿using ModularMonolith.APIs.BoundedContexts.Common.Specifications;
 
-namespace Common.Specifications.Tests;
+namespace ModularMonolith.APIs.Tests.Common.Specifications;
 
 public class SpecificationShould
 {
@@ -11,55 +11,55 @@ public class SpecificationShould
   private Student CreateStudent()
   => new(FirstName, LastName, Age);
 
-  [Fact]
-  public void MatchProperty()
+  [Test]
+  public async Task MatchProperty()
   {
     Specification<Student> spec = new(s => s.FirstName == FirstName);
-    Assert.True(spec.Test(CreateStudent()));
+    await Assert.That(spec.Test(CreateStudent())).IsTrue();
   }
 
-  [Fact]
-  public void SupportAnd()
+  [Test]
+  public async Task SupportAnd()
   {
     Specification<Student> leftTrue = new(s => s.FirstName == FirstName);
     Specification<Student> leftFalse = new(s => s.FirstName == string.Empty);
     Specification<Student> rightTrue = new(s => s.Age == Age);
     Specification<Student> rightFalse = new(s => s.Age == -1);
     ISpecification<Student> andSpec = leftTrue.And(rightTrue);
-    Assert.True(andSpec.Test(CreateStudent()));
+    await Assert.That(andSpec.Test(CreateStudent())).IsTrue();
     andSpec = leftFalse.And(rightTrue);
-    Assert.False(andSpec.Test(CreateStudent()));
+    await Assert.That(andSpec.Test(CreateStudent())).IsFalse();
     andSpec = leftTrue.And(rightFalse);
-    Assert.False(andSpec.Test(CreateStudent()));
+    await Assert.That(andSpec.Test(CreateStudent())).IsFalse();
     andSpec = leftFalse.And(rightFalse);
-    Assert.False(andSpec.Test(CreateStudent()));
+    await Assert.That(andSpec.Test(CreateStudent())).IsFalse();
   }
 
-  [Fact]
-  public void SupportOr()
+  [Test]
+  public async Task SupportOr()
   {
     Specification<Student> leftTrue = new(s => s.FirstName == FirstName);
     Specification<Student> leftFalse = new(s => s.FirstName == string.Empty);
     Specification<Student> rightTrue = new(s => s.Age == Age);
     Specification<Student> rightFalse = new(s => s.Age == -1);
     ISpecification<Student> orSpec = leftTrue.Or(rightTrue);
-    Assert.True(orSpec.Test(CreateStudent()));
+    await Assert.That(orSpec.Test(CreateStudent())).IsTrue();
     orSpec = leftFalse.Or(rightTrue);
-    Assert.True(orSpec.Test(CreateStudent()));
+    await Assert.That(orSpec.Test(CreateStudent())).IsTrue();
     orSpec = leftTrue.Or(rightFalse);
-    Assert.True(orSpec.Test(CreateStudent()));
+    await Assert.That(orSpec.Test(CreateStudent())).IsTrue();
     orSpec = leftFalse.Or(rightFalse);
-    Assert.False(orSpec.Test(CreateStudent()));
+    await Assert.That(orSpec.Test(CreateStudent())).IsFalse();
   }
 
-  [Fact]
-  public void SupportNot()
+  [Test]
+  public async Task SupportNot()
   {
     Specification<Student> trueSpec = new(s => s.FirstName == FirstName);
     Specification<Student> falseSpec = new(s => s.FirstName == string.Empty);
     ISpecification<Student> notSpec = trueSpec.Not();
-    Assert.False(notSpec.Test(CreateStudent()));
+    await Assert.That(notSpec.Test(CreateStudent())).IsFalse();
     notSpec = falseSpec.Not();
-    Assert.True(notSpec.Test(CreateStudent()));
+    await Assert.That(notSpec.Test(CreateStudent())).IsTrue();
   }
 }

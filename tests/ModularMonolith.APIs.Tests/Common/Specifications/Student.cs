@@ -1,6 +1,6 @@
 ﻿using ModularMonolith.APIs.BoundedContexts.Common.Entities;
 
-namespace Common.Specifications.Tests;
+namespace ModularMonolith.APIs.Tests.Common.Specifications;
 
 public record class Student(
   string FirstName

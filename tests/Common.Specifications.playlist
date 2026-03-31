@@ -1,0 +1,65 @@
+<Playlist Version="2.0">
+  <Rule Name="Includes" Match="Any">
+    <Rule Match="All">
+      <Property Name="Solution" />
+      <Rule Match="Any">
+        <Rule Match="All">
+          <Property Name="Project" Value="ModularMonolith.APIs.Tests" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="ModularMonolith.APIs.Tests.Common.Specifications" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="SpecificationShould" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="MatchProperty" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.APIs.Tests.Common.Specifications.SpecificationShould.MatchProperty" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SupportAnd" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.APIs.Tests.Common.Specifications.SpecificationShould.SupportAnd" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SupportNot" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.APIs.Tests.Common.Specifications.SpecificationShould.SupportNot" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SupportOr" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.APIs.Tests.Common.Specifications.SpecificationShould.SupportOr" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="RepositoryShould" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SupportSpecificationForMultipleRows" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.APIs.Tests.Common.Specifications.RepositoryShould.SupportSpecificationForMultipleRows" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="SupportSpecificationForSingleRow" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ModularMonolith.APIs.Tests.Common.Specifications.RepositoryShould.SupportSpecificationForSingleRow" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+      </Rule>
+    </Rule>
+  </Rule>
+</Playlist>

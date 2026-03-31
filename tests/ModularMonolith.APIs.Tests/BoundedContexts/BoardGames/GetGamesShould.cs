@@ -1,13 +1,10 @@
-﻿using ModularMonolith.APIs.BoundedContexts.BoardGames.Infra;
 using ModularMonolith.MigrationService;
-using ModularMonolith.APIs.BoundedContexts.BoardGames.Entities;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 
-namespace BoardGames.Tests;
+namespace ModularMonolith.APIs.Tests.BoundedContexts.BoardGames;
 
 public class GetGamesShould : IAsyncDisposable
 {
-  private readonly MsSqlContainer _sqlContainer = 
+  private readonly MsSqlContainer _sqlContainer =
     new MsSqlBuilder("mcr.microsoft.com/mssql/server:2022-latest")
     .Build();
 
@@ -34,8 +31,8 @@ public class GetGamesShould : IAsyncDisposable
     DbContextOptions<BoardGamesDb> options =
       new DbContextOptionsBuilder<BoardGamesDb>()
       .UseSqlServer(_sqlContainer.GetConnectionString())
-      .ConfigureWarnings(w 
-      => w.Ignore(RelationalEventId.PendingModelChangesWarning))
+      .ConfigureWarnings(w
+        => w.Ignore(RelationalEventId.PendingModelChangesWarning))
       .Options;
     BoardGamesDb db = new BoardGamesDb(options);
     await db.Database.EnsureCreatedAsync();
@@ -43,6 +40,6 @@ public class GetGamesShould : IAsyncDisposable
 
     List<BoardGame> games = db.BoardGames.ToList();
 
-    Assert.Equals(games.Count, 3);
+    await Assert.That(games.Count).IsEqualTo(3);
   }
 }

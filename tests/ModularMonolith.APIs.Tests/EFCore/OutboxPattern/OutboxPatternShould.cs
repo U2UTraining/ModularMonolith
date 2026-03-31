@@ -1,31 +1,16 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
+using TUnit.Core;
 
-using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
-using ModularMonolith.APIs.BoundedContexts.Currencies.Infra;
-using ModularMonolith.APIs.EFCore.OutboxPattern;
+namespace ModularMonolith.APIs.Tests.EFCore.OutboxPattern;
 
-using NSubstitute;
-
-using Testcontainers.MsSql;
-
-namespace EFCore.Tests;
-
-[Collection("SqlServer")]
-public class OutboxPatternShould
+/// <summary>
+/// Uses a globally-shared SqlServerContainerFixture so the container is started once
+/// for all tests in this class, matching the previous xUnit [Collection] behaviour.
+/// </summary>
+[ClassDataSource<SqlServerContainerFixture>(Shared = SharedType.PerTestSession)]
+public class OutboxPatternShould(SqlServerContainerFixture fixture)
 {
-  public OutboxPatternShould(SqlServerContainerFixture fixture)
-  {
-    _fixture = fixture;
-  }
-
-  private readonly SqlServerContainerFixture _fixture;
-
-  [Fact]
-  public async Task PublishMessagesInsertedInOutboxTable()
+  [Test]
+  public async Task PublishMessagesInsertedInOutboxTable(CancellationToken cancellationToken)
   {
     // TCS is signalled by the mock publisher as soon as the event is delivered,
     // replacing the arbitrary Task.Delay(1000) with a deterministic wait.
@@ -38,7 +23,7 @@ public class OutboxPatternShould
     IServiceCollection services = new ServiceCollection();
     services.AddDbContext<CurrenciesDb>(options =>
     {
-      options.UseSqlServer(_fixture.ConnectionString);
+      options.UseSqlServer(fixture.ConnectionString);
     });
     services.AddSingleton<IIntegrationEventPublisher>(pub);
     services.AddSingleton<ILogger<OutboxHostedService<CurrenciesDb>>>(
@@ -57,7 +42,7 @@ public class OutboxPatternShould
         .OfType<OutboxHostedService<CurrenciesDb>>()
         .First();
 
-    Task runner = Task.Run(() => hostedService.StartAsync(TestContext.Current.CancellationToken), TestContext.Current.CancellationToken);
+    Task runner = Task.Run(() => hostedService.StartAsync(cancellationToken), cancellationToken);
 
     IOutboxSignal signal = serviceProvider
       .GetRequiredKeyedService<IOutboxSignal>(nameof(CurrenciesDb));
@@ -70,7 +55,7 @@ public class OutboxPatternShould
     await db.SaveChangesAsync(@event, signal, CancellationToken.None);
 
     // Block until the background service publishes the event — no arbitrary timeout.
-    await published.Task.WaitAsync(TestContext.Current.CancellationToken);
+    await published.Task.WaitAsync(cancellationToken);
 
     await pub.Received(requiredNumberOfCalls: 1)
       .PublishIntegrationEventAsync(
