@@ -8,7 +8,7 @@
     <PackageVersion Include="Aspire.Hosting" Version="13.1.2" />
     <PackageVersion Include="Aspire.Hosting.AppHost" Version="13.1.2" />
     <PackageVersion Include="Aspire.Hosting.Azure.Sql" Version="13.1.2" />
-    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="13.1.2" />
+    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="13.2.2" />
     <PackageVersion Include="BlazorSseClient" Version="0.13.0" />
     <PackageVersion Include="FluentValidation" Version="12.1.1" />
     <PackageVersion Include="NSubstitute.Analyzers.CSharp" Version="1.0.17" />
@@ -19,25 +19,25 @@
   </ItemGroup>
   <ItemGroup>
     <!-- Open API -->
-    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.3" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.6" />
   </ItemGroup>
   <ItemGroup>
     <!-- EF Core -->
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.3" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.3" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="10.0.3" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.3" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.6" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.6" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="10.0.6" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.6" />
   </ItemGroup>
   <ItemGroup>
     <!-- HTTPClient -->
-    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.3.0" />
-    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.3.0" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.5.0" />
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.5.0" />
   </ItemGroup>
   <ItemGroup>
     <!-- Open Telemetry -->
-    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.15.0" />
-    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.15.0" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.15.0" />
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.15.2" />
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.15.2" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.15.1" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.15.0" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.15.0" />
   </ItemGroup>
@@ -75,10 +75,10 @@
     <!-- Architecture Testing -->
     <PackageVersion Include="NetArchTest.Rules" Version="1.3.2" />
   </ItemGroup>
-  <ItemGroup>
+  <!--<ItemGroup>
     <PackageVersion Include="Microsoft.Build.Tasks.Core" Version="18.3.3" />
     <PackageVersion Include="Microsoft.Build.Utilities.Core" Version="18.3.3" />
-  </ItemGroup>
+  </ItemGroup>-->
   <!-- Code Quality -->
   <ItemGroup>
     <!--<PackageVersion Include="SonarAnalyzer.CSharp" Version="10.19.0.132793" />-->
@@ -90,7 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <!-- Dependency Injection -->
-    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="10.0.3" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="10.0.6" />
     <PackageVersion Include="Microsoft.CodeAnalysis" Version="5.0.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Common" Version="5.0.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="5.0.0" />
