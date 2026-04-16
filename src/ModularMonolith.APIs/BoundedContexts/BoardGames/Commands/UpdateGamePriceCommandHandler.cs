@@ -1,7 +1,7 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Commands;
 
 [Register(
-  interfaceType: typeof(ICommandHandler<UpdateGamePriceCommand, bool>)
+  serviceType: typeof(ICommandHandler<UpdateGamePriceCommand, bool>)
 , lifetime: ServiceLifetime.Scoped
 , methodNameHint: "AddBoardGameServices")]
 internal sealed class UpdateGamePriceCommandHandler 

@@ -1,7 +1,7 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.Queries;
 
 [Register(
-  interfaceType: typeof(IQueryHandler<ShoppingBasketWithIdQuery, ShoppingBasketDto?>)
+  serviceType: typeof(IQueryHandler<ShoppingBasketWithIdQuery, ShoppingBasketDto?>)
 , lifetime: ServiceLifetime.Scoped
 , methodNameHint: "AddShoppingServices")]
 internal sealed class ShoppingBasketWithIdQueryHandler

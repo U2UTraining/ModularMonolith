@@ -1,7 +1,7 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.Queries;
 
 [Register(
-  interfaceType: typeof(IQueryHandler<GetValueForCurrencyQuery, PositiveDecimal[]>)
+  serviceType: typeof(IQueryHandler<GetValueForCurrencyQuery, PositiveDecimal[]>)
 , lifetime: ServiceLifetime.Scoped
 , methodNameHint: "AddCurrencyServices")]
 internal sealed class GetValueForCurrencyQueryHandler(CurrenciesDb db)

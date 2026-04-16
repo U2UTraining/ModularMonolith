@@ -1,7 +1,7 @@
 ﻿//namespace ModularMonolith.APIs.BoundedContexts.Currencies.Infra;
 
 //[Register(
-//  interfaceType: typeof(ICurrencyRepository)
+//  serviceType: typeof(ICurrencyRepository)
 //, lifetime: ServiceLifetime.Scoped
 //, methodNameHint: "AddCurrencyServices")]
 //internal sealed class CurrencyRepository

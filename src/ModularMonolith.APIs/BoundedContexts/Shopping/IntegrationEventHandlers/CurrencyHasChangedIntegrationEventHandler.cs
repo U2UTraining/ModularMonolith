@@ -1,7 +1,7 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.IntegrationEventHandlers;
 
 [Register(
-  interfaceType: typeof(IIntegrationEventHandler<CurrencyHasChangedIntegrationEvent>)
+  serviceType: typeof(IIntegrationEventHandler<CurrencyHasChangedIntegrationEvent>)
 , lifetime: ServiceLifetime.Scoped
 , methodNameHint: "AddShoppingServices")]
 internal sealed class CurrencyHasChangedIntegrationEventHandler

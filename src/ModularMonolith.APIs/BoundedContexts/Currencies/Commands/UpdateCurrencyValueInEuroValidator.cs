@@ -1,7 +1,7 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.Commands;
 
 [Register(
-  interfaceType: typeof(IValidator<UpdateCurrencyValueInEuroCommand>)
+  serviceType: typeof(IValidator<UpdateCurrencyValueInEuroCommand>)
 , lifetime: ServiceLifetime.Singleton
 , methodNameHint: "AddCurrencyServices")]
 public class UpdateCurrencyValueInEuroValidator 

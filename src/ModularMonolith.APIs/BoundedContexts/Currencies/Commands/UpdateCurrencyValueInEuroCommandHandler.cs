@@ -1,7 +1,7 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.Commands;
 
 [Register(
-  interfaceType: typeof(ICommandHandler<UpdateCurrencyValueInEuroCommand, Currency>)
+  serviceType: typeof(ICommandHandler<UpdateCurrencyValueInEuroCommand, Currency>)
 , lifetime: ServiceLifetime.Scoped
 , methodNameHint: "AddCurrencyServices")]
 [Register(

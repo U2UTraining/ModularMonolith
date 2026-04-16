@@ -4,7 +4,7 @@
 ///// Get all currencies query handler using repository
 ///// </summary>
 //[Register(
-//  interfaceType: typeof(IQueryHandler<GetAllCurrenciesQuery, List<Currency>>)
+//  serviceType: typeof(IQueryHandler<GetAllCurrenciesQuery, List<Currency>>)
 //, lifetime: ServiceLifetime.Scoped
 //, methodNameHint: "AddCurrencyServices")]
 //internal sealed class GetAllCurrenciesQueryHandler
@@ -31,7 +31,7 @@
 /// Get all currencies query handler using DbContext directly
 /// </summary>
 [Register(
-  interfaceType: typeof(IQueryHandler<GetAllCurrenciesQuery, List<Currency>>)
+  serviceType: typeof(IQueryHandler<GetAllCurrenciesQuery, List<Currency>>)
 , lifetime: ServiceLifetime.Scoped
 , methodNameHint: "AddCurrencyServices")]
 internal sealed class GetAllCurrencies2QueryHandler
@@ -54,7 +54,7 @@ internal sealed class GetAllCurrencies2QueryHandler
 ///// Get all currencies query handler using DbContextFactory
 ///// </summary>
 //[Register(
-//  interfaceType: typeof(IQueryHandler<GetAllCurrenciesQuery, List<Currency>>)
+//  serviceType: typeof(IQueryHandler<GetAllCurrenciesQuery, List<Currency>>)
 //, lifetime: ServiceLifetime.Scoped
 //, methodNameHint: "AddCurrencyServices")]
 //internal sealed class GetAllCurrencies3QueryHandler

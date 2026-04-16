@@ -5,7 +5,7 @@
 /// </summary>
 /// <param name="boardGameRepository"></param>
 [Register(
-  interfaceType: typeof(IQueryHandler<Specification<BoardGame>, IQueryable<BoardGame>>)
+  serviceType: typeof(IQueryHandler<Specification<BoardGame>, IQueryable<BoardGame>>)
 , lifetime: ServiceLifetime.Scoped
 , methodNameHint: "AddBoardGameServices")]
 

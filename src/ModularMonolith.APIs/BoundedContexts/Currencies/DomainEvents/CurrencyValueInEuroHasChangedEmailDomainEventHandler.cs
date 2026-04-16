@@ -1,7 +1,7 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.DomainEvents;
 
 [Register(
-  interfaceType: typeof(IDomainEventHandler<CurrencyValueInEuroHasChangedDomainEvent>)
+  serviceType: typeof(IDomainEventHandler<CurrencyValueInEuroHasChangedDomainEvent>)
 , lifetime: ServiceLifetime.Scoped
 , methodNameHint: "AddCurrencyServices")]
 internal sealed class CurrencyValueInEuroHasChangedEmailDomainEventHandler
