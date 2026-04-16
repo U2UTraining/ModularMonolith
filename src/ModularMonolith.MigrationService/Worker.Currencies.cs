@@ -36,7 +36,7 @@ public partial class Worker
     });
   }
 
-  private static async Task SeedCurrenciesAsync(
+  public static async Task SeedCurrenciesAsync(
     CurrenciesDb dbContext
   , CancellationToken cancellationToken)
   {

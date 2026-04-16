@@ -7,9 +7,12 @@
     <UserSecretsId>d19cfab5-75be-4edb-acff-24ccf6d93168</UserSecretsId>
   
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-
   </PropertyGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="ModularMonolith.APIs.Tests" />
+  </ItemGroup>
+  
   <ItemGroup>
     <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" />
     <PackageReference Include="FluentValidation" />
@@ -19,8 +22,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
-    <PackageReference Include="Microsoft.Build.Tasks.Core" />
-    <PackageReference Include="Microsoft.Build.Utilities.Core" />
+    <!--<PackageReference Include="Microsoft.Build.Tasks.Core" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" />-->
     <PackageReference Include="MailKit" />
   </ItemGroup>
 

@@ -11,7 +11,7 @@ public static class WebApplicationBuilderExtensions
             .Get<EmailConfig>();
       if (emailConfig is null)
       {
-        throw new ConfigurationErrorsException(message: "Missing EmailConfig");
+        throw new InvalidOperationException(message: "Missing EmailConfig");
       }
       else
       {

@@ -28,18 +28,10 @@ public class GetGamesShould : IAsyncDisposable
   [Test]
   public async Task ReturnAllGames()
   {
-    DbContextOptions<BoardGamesDb> options =
-      new DbContextOptionsBuilder<BoardGamesDb>()
-      .UseSqlServer(_sqlContainer.GetConnectionString())
-      .ConfigureWarnings(w
-        => w.Ignore(RelationalEventId.PendingModelChangesWarning))
-      .Options;
-    BoardGamesDb db = new BoardGamesDb(options);
-    await db.Database.EnsureCreatedAsync();
-    await Worker.SeedGamesAsync(db, CancellationToken.None);
-
+    BoardGamesDb db = 
+      await new BoardGamesDbFactory()
+      .CreateAsync(_sqlContainer.GetConnectionString());
     List<BoardGame> games = db.BoardGames.ToList();
-
     await Assert.That(games.Count).IsEqualTo(3);
   }
 }
