@@ -1,4 +1,4 @@
-﻿<Project Sdk="Aspire.AppHost.Sdk/13.1.0">
+<Project Sdk="Aspire.AppHost.Sdk/13.2.2">
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <!-- User Secrets -->
@@ -6,9 +6,6 @@
         <!-- Source Generator should emit to disk -->
         <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     </PropertyGroup>
-    <ItemGroup>
-        <PackageReference Include="Aspire.Hosting.AppHost" />
-    </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Aspire.Hosting.Azure.Sql" />
     </ItemGroup>
