@@ -3,14 +3,45 @@ using TUnit.Core;
 namespace ModularMonolith.APIs.Tests.EFCore.OutboxPattern;
 
 /// <summary>
-/// Uses a globally-shared SqlServerContainerFixture so the container is started once
-/// for all tests in this class, matching the previous xUnit [Collection] behaviour.
+/// Verifies the outbox pattern publishes integration events that are
+/// inserted during SaveChanges. Uses a per-test SQL Server container
+/// following the same lifecycle pattern as the other test classes.
 /// </summary>
-[ClassDataSource<SqlServerContainerFixture>(Shared = SharedType.PerTestSession)]
-public class OutboxPatternShould(SqlServerContainerFixture fixture)
+public class OutboxPatternShould : IAsyncDisposable
 {
+  private readonly MsSqlContainer _sqlContainer =
+    new MsSqlBuilder("mcr.microsoft.com/mssql/server:2022-latest")
+    .Build();
+
+  [Before(Test)]
+  public async Task Setup()
+  {
+    await _sqlContainer.StartAsync();
+
+    DbContextOptions<CurrenciesDb> options =
+      new DbContextOptionsBuilder<CurrenciesDb>()
+        .UseSqlServer(_sqlContainer.GetConnectionString())
+        .ConfigureWarnings(w
+          => w.Ignore(RelationalEventId.PendingModelChangesWarning))
+        .Options;
+
+    using CurrenciesDb db = new(options);
+    await db.Database.EnsureCreatedAsync();
+  }
+
+  [After(Test)]
+  public async Task Teardown()
+  {
+    await _sqlContainer.StopAsync();
+  }
+
+  public async ValueTask DisposeAsync()
+  {
+    await _sqlContainer.DisposeAsync();
+  }
+
   [Test]
-  public async Task PublishMessagesInsertedInOutboxTable(CancellationToken cancellationToken)
+  public async Task PublishMessagesInsertedInOutboxTable()
   {
     // TCS is signalled by the mock publisher as soon as the event is delivered,
     // replacing the arbitrary Task.Delay(1000) with a deterministic wait.
@@ -23,7 +54,7 @@ public class OutboxPatternShould(SqlServerContainerFixture fixture)
     IServiceCollection services = new ServiceCollection();
     services.AddDbContext<CurrenciesDb>(options =>
     {
-      options.UseSqlServer(fixture.ConnectionString);
+      options.UseSqlServer(_sqlContainer.GetConnectionString());
     });
     services.AddSingleton<IIntegrationEventPublisher>(pub);
     services.AddSingleton<ILogger<OutboxHostedService<CurrenciesDb>>>(
@@ -33,34 +64,37 @@ public class OutboxPatternShould(SqlServerContainerFixture fixture)
       .AddKeyedSingleton<IOutboxSignal, OutboxSignal>(nameof(CurrenciesDb))
       .AddHostedService<OutboxHostedService<CurrenciesDb>>();
 
-    IServiceProvider serviceProvider = services.BuildServiceProvider();
-
-    using IServiceScope scope = serviceProvider.CreateScope();
-
-    OutboxHostedService<CurrenciesDb> hostedService =
-      serviceProvider.GetServices<IHostedService>()
-        .OfType<OutboxHostedService<CurrenciesDb>>()
-        .First();
-
-    Task runner = Task.Run(() => hostedService.StartAsync(cancellationToken), cancellationToken);
-
-    IOutboxSignal signal = serviceProvider
-      .GetRequiredKeyedService<IOutboxSignal>(nameof(CurrenciesDb));
-    using CurrenciesDb db = serviceProvider.GetRequiredService<CurrenciesDb>();
-
-    TestIntegrationEvent @event = new()
+    ServiceProvider serviceProvider = services.BuildServiceProvider();
+    await using (serviceProvider.ConfigureAwait(false))
     {
-      EventId = Guid.NewGuid()
-    };
-    await db.SaveChangesAsync(@event, signal, CancellationToken.None);
+      OutboxHostedService<CurrenciesDb> hostedService =
+        serviceProvider.GetServices<IHostedService>()
+          .OfType<OutboxHostedService<CurrenciesDb>>()
+          .First();
 
-    // Block until the background service publishes the event — no arbitrary timeout.
-    await published.Task.WaitAsync(cancellationToken);
+      using CancellationTokenSource cts = new(TimeSpan.FromSeconds(30));
 
-    await pub.Received(requiredNumberOfCalls: 1)
-      .PublishIntegrationEventAsync(
-        Arg.Is<TestIntegrationEvent>(ev => ev.EventId == @event.EventId)
-      , Arg.Any<CancellationToken>()
-      );
+      Task runner = Task.Run(
+        () => hostedService.StartAsync(cts.Token), cts.Token);
+
+      IOutboxSignal signal = serviceProvider
+        .GetRequiredKeyedService<IOutboxSignal>(nameof(CurrenciesDb));
+      using CurrenciesDb db = serviceProvider.GetRequiredService<CurrenciesDb>();
+
+      TestIntegrationEvent @event = new()
+      {
+        EventId = Guid.NewGuid()
+      };
+      await db.SaveChangesAsync(@event, signal, CancellationToken.None);
+
+      // Block until the background service publishes the event.
+      await published.Task.WaitAsync(cts.Token);
+
+      await pub.Received(requiredNumberOfCalls: 1)
+        .PublishIntegrationEventAsync(
+          Arg.Is<TestIntegrationEvent>(ev => ev.EventId == @event.EventId)
+        , Arg.Any<CancellationToken>()
+        );
+    }
   }
 }
