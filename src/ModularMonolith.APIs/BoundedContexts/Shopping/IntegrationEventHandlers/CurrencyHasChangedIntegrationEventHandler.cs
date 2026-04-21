@@ -26,10 +26,12 @@ internal sealed class CurrencyHasChangedIntegrationEventHandler
   {
     _logger.LogInformation("Beginning Integration event");
 
-    // TODO: Update the prices of the products in the shopping baskets.
-    // This is just an example, in a real application you would probably
-    // want to do this in a more efficient way, e.g. by using a stored procedure
-    // or by using a background job.
+    // We have a product that costs 10$ and dollar has exchange rate of 1.0
+    // Now when we change the exchange rate to 2.0 (so value of $ has doubled)
+    // Our product was 20 EUR and 20 DLR whan exchange rate was 1.0
+    // With exchage rate of 2.0 the price of the product should become 10 DLR
+    // Factor is equivalent to 1/factor of exchange rate 
+    // Factor is 20 DLR * OldValueInEuro / NewValueInEuro
 
     List<ShoppingBasket> baskets =
       await _queryHandler.HandleAsync(ShoppingBasketsWithStateQuery.Open);

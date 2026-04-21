@@ -66,7 +66,7 @@ public sealed partial class BoardGamesPage
 
   public void Dispose()
   {
-    State.PropertyChanged += OnPropertyChanged;
+    State.PropertyChanged -= OnPropertyChanged;
   }
 
   private void OnPropertyChanged(object? sender, PropertyChangedEventArgs e)

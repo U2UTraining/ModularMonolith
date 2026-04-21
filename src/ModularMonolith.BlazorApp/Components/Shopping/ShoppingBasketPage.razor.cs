@@ -22,9 +22,15 @@ public sealed partial class ShoppingBasketPage
 
   protected override async Task OnInitializedAsync()
   {
+    await base.OnInitializedAsync();
 
-    State.PropertyChanged += (_, __) => InvokeAsync(() => StateHasChanged());
+    //State.PropertyChanged += (_, __) => InvokeAsync(() => StateHasChanged());
 
+    await RefreshAsync();
+  }
+
+  public async Task RefreshAsync()
+  {
     if (State.ShoppingBasketId is not null)
     {
       ShoppingBasket =
@@ -33,6 +39,7 @@ public sealed partial class ShoppingBasketPage
       {
         _games = ShoppingBasket.Games.AsQueryable();
       }
+      this.StateHasChanged();
     }
   }
 

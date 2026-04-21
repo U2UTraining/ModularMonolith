@@ -63,6 +63,7 @@ public static partial class Program
     builder.Services.AddScoped<State>();
     builder.Services.AddScoped<U2UBlazorIntegrationEventProcessor>();
     builder.Services.AddScoped<IIntegrationEventHandler<CurrencyHasChangedIntegrationEvent>, ClientCurrencyHasChangedIntegrationEventHandler>();
+    builder.Services.AddScoped<IIntegrationEventHandler<CurrencyHasChangedIntegrationEvent>, CurrencyHasChangedIntegrationEventHandler>();
     builder.Services.AddSingleton<IntegrationEventsMetrics>();
     builder.Services.AddScoped<IIntegrationEventHandler<BoardGameSelectedForShoppingBasketIntegrationEvent>, BoardGameSelectedForShoppingBasketIntegrationEventHandler>();
     builder.Services.AddScoped<IIntegrationEventHandler<GamesHaveChangedIntegrationEvent>, GamesHaveChangedIntegrationEventHandler>();
