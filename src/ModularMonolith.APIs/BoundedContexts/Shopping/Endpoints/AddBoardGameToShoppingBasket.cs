@@ -21,13 +21,13 @@ public sealed class AddBoardGameToShoppingBasket(
       BoardGame? game = await querySender.AskAsync(new GetGameByIdQuery(dto.BoardGameId));
       if (game is not null)
       {
-        sb.AddGame(dto.BoardGameId, new Money(dto.PriceInEuro));
+        sb.AddGame(dto.BoardGameId, new Money(dto.Price, Currency.Parse(dto.Currency)));
         BoardGameSelectedForShoppingBasketIntegrationEvent e = new(
           EventId: Guid.NewGuid()
         , ShoppingBasketId: dto.ShoppingBasketId
         , BoardGameId: dto.BoardGameId
         , BoardGameName: game.Name.Value
-        , PriceInEuro: dto.PriceInEuro
+        , PriceInEuro: dto.Price
         );
         await db.SaveChangesAsync(e, outboxSignal, cancellationToken);
         return TypedResults.Ok();

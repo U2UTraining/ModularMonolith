@@ -63,4 +63,13 @@ public readonly record struct PositiveDecimal
 
   public static implicit operator PositiveDecimal(decimal d)
   => new PositiveDecimal(d);
+
+  public PositiveDecimal Rounded()
+  {
+    decimal amount = Value * 100 + 49;
+    int rounded = (int)amount;
+    rounded = rounded - (rounded % 50);
+    amount = (decimal)(rounded - 1) / 100;
+    return new PositiveDecimal(amount);
+  }
 }

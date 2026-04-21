@@ -1,4 +1,9 @@
+using System.Globalization;
+
 using BlazorSseClient.Server;
+
+using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Options;
 
 using ModularMonolith.APIs.BoundedContexts.BoardGames.IntegrationEvents;
 using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
@@ -30,6 +35,24 @@ public static partial class Program
     // Add support for MS FluentUI
     builder.Services
       .AddFluentUIComponents();
+
+    // Localization: supported cultures for the culture selector
+    builder.Services.AddLocalization();
+    builder.Services.Configure<RequestLocalizationOptions>(options =>
+    {
+      CultureInfo[] supportedCultures =
+      [
+        new("en-US"), new("en-GB"),
+        new("nl-NL"), new("nl-BE"),
+        new("fr-FR"), new("fr-BE"),
+        new("de-DE"), new("de-AT"),
+        new("es-ES"), new("pt-BR"),
+        new("ja-JP"), new("zh-CN"), new("ko-KR"),
+      ];
+      options.DefaultRequestCulture = new RequestCulture("en-US");
+      options.SupportedCultures = supportedCultures;
+      options.SupportedUICultures = supportedCultures;
+    });
 
     builder.Services
            .AddDistributedMemoryCache()
@@ -81,6 +104,8 @@ public static partial class Program
     app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);
     app.UseHttpsRedirection();
 
+    app.UseRequestLocalization();
+
     app.UseSession();
 
     app.UseAntiforgery();
@@ -88,6 +113,28 @@ public static partial class Program
     app.MapStaticAssets();
     app.MapRazorComponents<App>()
         .AddInteractiveServerRenderMode();
+
+    // Endpoint to set the culture cookie and redirect back
+    app.MapGet("/culture/set", (string culture, string redirectUri, HttpContext httpContext) =>
+    {
+      RequestLocalizationOptions localizationOptions = httpContext.RequestServices
+        .GetRequiredService<IOptions<RequestLocalizationOptions>>().Value;
+
+      // Only accept cultures from the supported list
+      bool isSupported = localizationOptions.SupportedCultures?
+        .Any(c => c.Name.Equals(culture, StringComparison.OrdinalIgnoreCase)) ?? false;
+
+      if (isSupported)
+      {
+        httpContext.Response.Cookies.Append(
+          CookieRequestCultureProvider.DefaultCookieName,
+          CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+          new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+        );
+      }
+
+      return Results.LocalRedirect(redirectUri);
+    });
 
     await app.RunAsync();
   }

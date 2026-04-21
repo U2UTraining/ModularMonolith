@@ -4,7 +4,7 @@
   serviceType: typeof(IQueryHandler<ShoppingBasketsWithStateQuery, List<ShoppingBasket>>)
 , lifetime: ServiceLifetime.Scoped
 , methodNameHint: "AddShoppingServices")]
-public class ShoppingBasketsWithStateQueryHandler(ShoppingDb db)
+internal sealed class ShoppingBasketsWithStateQueryHandler(ShoppingDb db)
   : IQueryHandler<ShoppingBasketsWithStateQuery, List<ShoppingBasket>>
 {
   public async Task<List<ShoppingBasket>> HandleAsync(
@@ -12,7 +12,9 @@ public class ShoppingBasketsWithStateQueryHandler(ShoppingDb db)
   , CancellationToken cancellationToken)
   {
     return await db.Baskets
-        .Where(sb => sb.State == query.State)
-        .ToListAsync(cancellationToken);
+      .Include(sb => sb.Items)
+      .Include(sb => sb.Customer)
+      .Where(sb => sb.State == query.State)
+      .ToListAsync(cancellationToken);
   }
 }

@@ -39,13 +39,14 @@ public class ShoppingBasketClient
   public async Task SelectBoardGame(
     int shoppingBasketId
   , int boardGameId
-  , decimal priceInEuro
+  , Money price
   , CancellationToken cancellationToken = default)
   {
     AddBoardGameToShoppingBasketDto dto = new(
       ShoppingBasketId: shoppingBasketId
     , BoardGameId: boardGameId
-    , PriceInEuro: priceInEuro
+    , Price: price.Amount
+    , Currency: price.Currency.ToString()
     );
     string jsonData =
       JsonSerializer.Serialize(dto);

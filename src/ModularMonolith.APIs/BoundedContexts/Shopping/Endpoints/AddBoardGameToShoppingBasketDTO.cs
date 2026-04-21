@@ -3,5 +3,6 @@
 public record class AddBoardGameToShoppingBasketDto(
   int ShoppingBasketId
 , int BoardGameId
-, decimal PriceInEuro
+, decimal Price
+, string Currency
 );

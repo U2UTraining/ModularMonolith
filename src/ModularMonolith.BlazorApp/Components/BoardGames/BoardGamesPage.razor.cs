@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Globalization;
 
 using ModularMonolith.APIs.BoundedContexts.BoardGames.Queries;
 using ModularMonolith.BlazorApp.Components.Currencies;
@@ -24,10 +25,26 @@ public sealed partial class BoardGamesPage
   // Easy Access
   private IQueryable<GameDto>? Games => State.Games;
 
-  private GetGamesQuery filter = new(decimal.Zero, 1000M, false, CurrencyName.EUR);
+  private GetGamesQuery filter = new(decimal.Zero, 1000M, false, GetCurrencyForCurrentCulture());
+
+  /// <summary>
+  /// Maps the current culture's ISO currency symbol to the matching <see cref="CurrencyName"/> enum value,
+  /// falling back to EUR when no match is found.
+  /// </summary>
+  private static CurrencyName GetCurrencyForCurrentCulture()
+  {
+    RegionInfo region = new(CultureInfo.CurrentCulture.Name);
+    if (Enum.TryParse(region.ISOCurrencySymbol, ignoreCase: true, out CurrencyName currency))
+    {
+      return currency;
+    }
+
+    return CurrencyName.EUR;
+  }
 
   internal async Task RefreshBoardGamesAsync()
   {
+
     State.Games = await GetBoardGames(filter).ConfigureAwait(true);
     this.StateHasChanged();
   }
@@ -73,7 +90,7 @@ public sealed partial class BoardGamesPage
     await ShoppingBasketClient.SelectBoardGame(
       shoppingBasketId: State.ShoppingBasketId!.Value
     , boardGameId: game.Id
-    , priceInEuro: game.Price);
+    , price: new Money(game.Price, game.Currency));
   }
 
   //public async Task UpdateGame()

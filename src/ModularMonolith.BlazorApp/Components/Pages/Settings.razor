@@ -1,6 +1,10 @@
 ﻿@page "/settings"
+@using System.Globalization
+@using Microsoft.AspNetCore.Localization
 @using Microsoft.FluentUI.AspNetCore.Components
 @using Microsoft.FluentUI.AspNetCore.Components.Extensions
+@inject IOptions<RequestLocalizationOptions> LocalizationOptions
+@inject NavigationManager NavigationManager
 
 <h3>Settings</h3>
 
@@ -32,6 +36,17 @@
       </FluentSelect>
       <FluentButton Appearance="Appearance.Accent" OnClick="PickRandomColor">Feeling lucky?</FluentButton>
     </FluentGridItem>
+
+    <FluentGridItem>
+      <FluentSelect Label="Language / Region"
+                    Width="250px"
+                    Items="@supportedCultures"
+                    OptionValue="@(c => c?.Name ?? string.Empty)"
+                    OptionText="@(c => c is not null ? $"{c.NativeName} ({c.Name})" : string.Empty)"
+                    Height="200px"
+                    @bind-SelectedOption="@selectedCulture"
+                    @bind-SelectedOption:after="OnCultureChanged" />
+    </FluentGridItem>
   </FluentGrid>
 </div>
 
@@ -40,6 +55,34 @@
   public DesignThemeModes Mode { get; set; }
 
   public OfficeColor? OfficeColor { get; set; }
+
+  private List<CultureInfo> supportedCultures = [];
+  private CultureInfo? selectedCulture;
+
+  protected override void OnInitialized()
+  {
+    supportedCultures = LocalizationOptions.Value.SupportedCultures?
+      .OrderBy(c => c.NativeName)
+      .ToList() ?? [];
+
+    selectedCulture = supportedCultures
+      .FirstOrDefault(c => c.Name == CultureInfo.CurrentCulture.Name)
+      ?? supportedCultures.FirstOrDefault();
+  }
+
+  private void OnCultureChanged()
+  {
+    if (selectedCulture is null || selectedCulture.Name == CultureInfo.CurrentCulture.Name)
+    {
+      return;
+    }
+
+    // Navigate to the culture-setting endpoint, which sets the cookie and redirects back
+    string redirectUri = new Uri(NavigationManager.Uri).PathAndQuery;
+    NavigationManager.NavigateTo(
+      $"/culture/set?culture={Uri.EscapeDataString(selectedCulture.Name)}&redirectUri={Uri.EscapeDataString(redirectUri)}",
+      forceLoad: true);
+  }
 
   private void PickRandomColor()
   {

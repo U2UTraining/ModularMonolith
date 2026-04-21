@@ -35,7 +35,7 @@ internal sealed class CurrencyHasChangedIntegrationEventHandler
       await _queryHandler.HandleAsync(ShoppingBasketsWithStateQuery.Open);
 
     CurrencyName currency = Currency.Parse(notification.CurrencyName);
-    decimal factor = notification.NewValueInEuro / notification.OldValueInEuro;
+    decimal factor = notification.OldValueInEuro / notification.NewValueInEuro;
     foreach (ShoppingBasket basket in baskets)
     {
       basket.SyncGamePrices(currency, factor);
