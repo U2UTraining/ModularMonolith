@@ -1,7 +1,4 @@
-﻿using ModularMonolith.APIs.EFCore.Auditability;
-using ModularMonolith.APIs.EFCore.SoftDelete;
-
-namespace ModularMonolith.APIs.BoundedContexts.Shopping.Entities;
+﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.Entities;
 
 public sealed class ShoppingBasket
 : EntityBase<PK<int>>
@@ -12,7 +9,13 @@ public sealed class ShoppingBasket
   public ShoppingBasket(PK<int> id) 
   : base(id) 
   {
+    State = ShoppingBasketState.Open;
     RegisterDomainEvent(new ShoppingBasketHasBeenCreatedDomainEvent(this));
+  }
+
+  public ShoppingBasketState State
+  {
+    get; private set;
   }
 
   public Customer? Customer { get; private set; } = default!;
@@ -32,6 +35,7 @@ public sealed class ShoppingBasket
 
   public void CheckOut()
   {
+    State = ShoppingBasketState.CheckedOut;
     Customer = new Customer(default, new FirstName( "Jefke"), new LastName("Versmossen"));
     Customer.MoveToNewAddress(new Address(new StreetName("ResearchPark 110"), new CityName("Zellik")));
     RegisterDomainEvent(
@@ -41,6 +45,10 @@ public sealed class ShoppingBasket
 
   public void AddGame(PK<int> boardGameId, Money price)
   {
+    if (State is not ShoppingBasketState.Open)
+    {
+      throw new Exception("Games can only be added to open shoppingbasket");
+    }
     GetBasket()
       .Add(new BasketItem(default) 
       { 
@@ -51,6 +59,17 @@ public sealed class ShoppingBasket
       new ShoppingBasketHasNewGameDomainEvent(
         this,
         boardGameId));
+  }
+
+  public void SyncGamePrices(CurrencyName currency, decimal factor)
+  {
+    foreach (BasketItem item in GetBasket())
+    {
+      if (item.Price.Currency == currency)
+      {
+        item.Price = item.Price * factor;
+      }
+    }
   }
 
   private ICollection<BasketItem> GetBasket()

@@ -21,6 +21,12 @@ internal sealed class ShoppingBasketConfiguration
       //)
       ;
 
+    shoppingBasket
+      .Property(sb => sb.State)
+      .HasConversion(
+        state => state.ToString()
+      , state => Enum.Parse<ShoppingBasketState>(state));
+
     //builder.Ignore(sb => sb.Games);
 
     _ = shoppingBasket

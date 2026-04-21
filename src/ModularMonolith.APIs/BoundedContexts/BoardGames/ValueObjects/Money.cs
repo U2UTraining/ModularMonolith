@@ -77,4 +77,9 @@ public readonly record struct Money
     Debug.Assert(m1.Currency == m2.Currency);
     return new Money(m1.Amount - m2.Amount, m1.Currency);
   }
+
+  public static Money operator *(Money m, decimal factor)
+  {
+    return new Money(m.Amount * factor, m.Currency);
+  }
 }
