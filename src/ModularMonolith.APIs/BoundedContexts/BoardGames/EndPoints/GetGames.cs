@@ -12,6 +12,7 @@ public sealed class GetGames(BoardGamesDb db, IQuerySender querySender)
     GetGamesQuery query
   , CancellationToken cancellationToken)
   {
+    // Run query in current bounded context
     IQueryable<BoardGame> gamesQuery =
       db.BoardGames
         .AsNoTracking()
@@ -30,23 +31,17 @@ public sealed class GetGames(BoardGamesDb db, IQuerySender querySender)
     }
     List<BoardGame> boardGames = await gamesQuery.ToListAsync(cancellationToken);
 
-    //.Select(g => new GameDto
-    //(
-    //    Id: g.Id
-    //  , GameName: g.Name.Value
-    //  , Price: g.Price.Amount
-    //  , ImageURL: g.ImageURL
-    //  , PublisherName: query.IncludePublisher ? g.PublisherName : string.Empty
-    //))
+    // ==============================================================================
 
-
+    // Run query in other bounded context
     GetValueForCurrencyQuery currencyQuery = new(
        FromCurrency: CurrencyName.EUR
      , ToCurrency: query.AsCurrency
      , Amounts: boardGames.Select(g => new PositiveDecimal(g.Price.Amount)).ToArray());
 
-
     PositiveDecimal[] convertedAmounts = await querySender.AskAsync(currencyQuery, cancellationToken);
+
+    // ==============================================================================
 
     List<GameDto> result = [];
 

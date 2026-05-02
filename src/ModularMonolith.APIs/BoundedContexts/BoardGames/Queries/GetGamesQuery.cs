@@ -10,4 +10,6 @@ public sealed record class GetGamesQuery(
 , CurrencyName AsCurrency = CurrencyName.EUR
 )
 : IQuery<IQueryable<BoardGame>>
-;
+{
+}
+
