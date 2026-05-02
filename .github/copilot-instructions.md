@@ -74,6 +74,7 @@
 - Demonstrate how to mock dependencies for effective testing.
 - Show how to test authentication and authorization logic.
 - Explain test-driven development principles as applied to API development.
+- Unit tests should be given a category for better grouping of tests.
 
 ## Performance Optimization
 
