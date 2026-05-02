@@ -2,6 +2,8 @@
 
 namespace ModularMonolith.APIs.Tests.Common.Specifications;
 
+[TUnit.Core.Category("UnitTests")]
+
 public class SpecificationShould
 {
   private const string FirstName = "Jefke";

@@ -1,4 +1,7 @@
+[assembly: TUnit.Core.Category("ArchitectureTests")]
+
 namespace ModularMonolith.Architecture.Tests.BoundedContexts;
+
 
 public class CurrencyBoundedContextShould
 {

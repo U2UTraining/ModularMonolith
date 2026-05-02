@@ -2,6 +2,8 @@
 
 namespace ModularMonolith.APIs.Tests.Common;
 
+[TUnit.Core.Category("UnitTests")]
+
 public class PositiveDecimalShould
 {
   [Test]

@@ -1,6 +1,9 @@
+using ModularMonolith.APIs.BoundedContexts.BoardGames.Queries;
 using ModularMonolith.MigrationService;
 
 namespace ModularMonolith.APIs.Tests.BoundedContexts.BoardGames;
+
+[TUnit.Core.Category("IntegrationTests")]
 
 public class GetGamesShould : IAsyncDisposable
 {
@@ -26,12 +29,16 @@ public class GetGamesShould : IAsyncDisposable
   }
 
   [Test]
-  public async Task ReturnAllGames()
+  public async Task ReturnAllGames(CancellationToken cancellationToken)
   {
     BoardGamesDb db = 
       await new BoardGamesDbFactory()
       .CreateAsync(_sqlContainer.GetConnectionString());
-    List<BoardGame> games = db.BoardGames.ToList();
+
+    GetGamesQuery query = new GetGamesQuery();
+    GetGamesQueryHandler sut = new(db);
+    IQueryable<BoardGame> games = await sut.HandleAsync(query, cancellationToken);
+
     await Assert.That(games.Count).IsEqualTo(3);
   }
 }

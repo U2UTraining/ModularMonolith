@@ -4,6 +4,8 @@ using ModularMonolith.APIs.Tests.Common;
 
 namespace ModularMonolith.APIs.Tests.Common.Specifications;
 
+[TUnit.Core.Category("UnitTests")]
+
 public class RepositoryShould
 {
   internal static Student[] Students

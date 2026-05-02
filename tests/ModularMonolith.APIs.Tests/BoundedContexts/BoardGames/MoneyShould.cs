@@ -3,6 +3,8 @@ using ModularMonolith.APIs.BoundedContexts.Currencies.ValueObjects;
 
 namespace ModularMonolith.APIs.Tests.BoundedContexts.BoardGames;
 
+[TUnit.Core.Category("UnitTests")]
+
 public class MoneyShould
 {
   [Test]

@@ -7,6 +7,8 @@ using ModularMonolith.APIs.BoundedContexts.Currencies.Queries;
 
 namespace ModularMonolith.APIs.Tests.BoundedContexts.Currencies;
 
+[TUnit.Core.Category("IntegrationTests")]
+
 public sealed class CurrencyTests
   : IAsyncDisposable
 {

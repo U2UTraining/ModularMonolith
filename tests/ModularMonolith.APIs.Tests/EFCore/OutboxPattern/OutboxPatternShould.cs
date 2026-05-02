@@ -2,6 +2,8 @@ using TUnit.Core;
 
 namespace ModularMonolith.APIs.Tests.EFCore.OutboxPattern;
 
+[TUnit.Core.Category("IntegrationTests")]
+
 /// <summary>
 /// Verifies the outbox pattern publishes integration events that are
 /// inserted during SaveChanges. Uses a per-test SQL Server container
