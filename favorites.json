@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "items": [
+    {
+      "name": "CurrencyHasChangedIntegrationEventHandler.cs",
+      "path": "src\\ModularMonolith.APIs\\BoundedContexts\\Shopping\\IntegrationEventHandlers\\CurrencyHasChangedIntegrationEventHandler.cs"
+    },
+    {
+      "name": "GetGames.cs",
+      "path": "src\\ModularMonolith.APIs\\BoundedContexts\\BoardGames\\EndPoints\\GetGames.cs"
+    },
+    {
+      "name": "GetGamesQueryHandler.cs",
+      "path": "src\\ModularMonolith.APIs\\BoundedContexts\\BoardGames\\Queries\\GetGamesQueryHandler.cs"
+    }
+  ]
+}
