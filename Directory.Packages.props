@@ -5,9 +5,9 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- Aspire -->
-    <PackageVersion Include="Aspire.Hosting" Version="13.2.2" />
-    <PackageVersion Include="Aspire.Hosting.Azure.Sql" Version="13.2.2" />
-    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="13.2.2" />
+    <PackageVersion Include="Aspire.Hosting" Version="13.2.4" />
+    <PackageVersion Include="Aspire.Hosting.Azure.Sql" Version="13.2.4" />
+    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="13.2.4" />
     <PackageVersion Include="BlazorSseClient" Version="0.13.0" />
     <PackageVersion Include="FluentValidation" Version="12.1.1" />
     <PackageVersion Include="NSubstitute.Analyzers.CSharp" Version="1.0.17" />
@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <!-- Redis Cache Server -->
-    <PackageVersion Include="Aspire.Hosting.Redis" Version="13.2.2" />
+    <PackageVersion Include="Aspire.Hosting.Redis" Version="13.2.4" />
   </ItemGroup>
   <ItemGroup>
     <!-- Blazor WebAssembly -->
