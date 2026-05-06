@@ -3,4 +3,4 @@
 public record class GetGameByIdQuery(
   int GameId
 )
-: IQuery<BoardGame?>;
+: IQuery<GameDto?>;

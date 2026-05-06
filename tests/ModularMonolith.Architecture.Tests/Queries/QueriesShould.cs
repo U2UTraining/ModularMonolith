@@ -5,7 +5,7 @@ namespace ModularMonolith.Architecture.Tests.Queries;
 public sealed class QueriesShould
 {
   [Test]
-  public void UseQuerySuffix()
+  public void QueriesShouldUseQuerySuffix()
   {
     NetArchTest.Rules.TestResult result = Types
     .InAssembly(AssembliesUnderTest.ApiAssembly)

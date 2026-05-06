@@ -37,7 +37,7 @@ public class GetGamesShould : IAsyncDisposable
 
     GetGamesQuery query = new GetGamesQuery();
     GetGamesQueryHandler sut = new(db);
-    IQueryable<BoardGame> games = await sut.HandleAsync(query, cancellationToken);
+    IEnumerable<BoardGame> games = await sut.HandleAsync(query, cancellationToken);
 
     await Assert.That(games.Count).IsEqualTo(3);
   }

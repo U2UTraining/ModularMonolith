@@ -18,7 +18,7 @@ public sealed class AddBoardGameToShoppingBasket(
         .SingleOrDefaultAsync(b => b.Id == dto.ShoppingBasketId, cancellationToken);
     if (sb is not null)
     {
-      BoardGame? game = await querySender.AskAsync(new GetGameByIdQuery(dto.BoardGameId));
+      GameDto? game = await querySender.AskAsync(new GetGameByIdQuery(dto.BoardGameId));
       if (game is not null)
       {
         sb.AddGame(dto.BoardGameId, new Money(dto.Price, Currency.Parse(dto.Currency)));
@@ -26,7 +26,7 @@ public sealed class AddBoardGameToShoppingBasket(
           EventId: Guid.NewGuid()
         , ShoppingBasketId: dto.ShoppingBasketId
         , BoardGameId: dto.BoardGameId
-        , BoardGameName: game.Name.Value
+        , BoardGameName: game.GameName
         , PriceInEuro: dto.Price
         );
         await db.SaveChangesAsync(e, outboxSignal, cancellationToken);

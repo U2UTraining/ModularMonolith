@@ -9,7 +9,7 @@ public sealed record class GetGamesQuery(
 , bool IncludePublisher = false
 , CurrencyName AsCurrency = CurrencyName.EUR
 )
-: IQuery<IQueryable<BoardGame>>
+: IQuery<IEnumerable<BoardGame>>
 {
 }
 

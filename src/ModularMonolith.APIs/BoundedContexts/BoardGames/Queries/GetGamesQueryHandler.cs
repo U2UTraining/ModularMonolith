@@ -7,13 +7,13 @@ namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Queries;
 // ==============================================================================
 
 [Register(
-  serviceType: typeof(IQueryHandler<GetGamesQuery, IQueryable<BoardGame>>)
+  serviceType: typeof(IQueryHandler<GetGamesQuery, IEnumerable<BoardGame>>)
 , lifetime: ServiceLifetime.Scoped
 , methodNameHint: "AddBoardGameServices")]
 internal sealed class GetGamesQueryHandler(BoardGamesDb db)
-: IQueryHandler<GetGamesQuery, IQueryable<BoardGame>>
+: IQueryHandler<GetGamesQuery, IEnumerable<BoardGame>>
 {
-  public async Task<IQueryable<BoardGame>> HandleAsync(
+  public async Task<IEnumerable<BoardGame>> HandleAsync(
     GetGamesQuery query
   , CancellationToken cancellationToken = default)
   {
@@ -33,7 +33,8 @@ internal sealed class GetGamesQueryHandler(BoardGamesDb db)
     {
       gamesQuery = gamesQuery.Include(g => g.Publisher);
     }
-    return gamesQuery;
+    return await gamesQuery.ToListAsync(cancellationToken);
+    ;
   }
 }
 

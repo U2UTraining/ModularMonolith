@@ -2,8 +2,5 @@
 
 public interface IIntegrationEvent
 {
-  public Guid EventId
-  {
-    get;init;
-  }
+  public Guid EventId { get;init; }
 }
