@@ -1,6 +1,6 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.Queries;
 
-public record class GetGameByIdQuery(
+public sealed record class GetGameByIdQuery(
   int GameId
 )
 : IQuery<GameDto?>;

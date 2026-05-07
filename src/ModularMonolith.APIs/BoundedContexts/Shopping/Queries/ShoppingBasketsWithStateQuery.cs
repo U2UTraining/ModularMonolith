@@ -1,6 +1,6 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.Queries;
 
-public class ShoppingBasketsWithStateQuery
+public sealed class ShoppingBasketsWithStateQuery
   : IQuery<List<ShoppingBasket>>
 {
   public ShoppingBasketState State

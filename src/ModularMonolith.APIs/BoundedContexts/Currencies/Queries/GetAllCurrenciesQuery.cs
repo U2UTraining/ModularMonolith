@@ -6,7 +6,7 @@
 /// <remarks>
 /// This is a perfect example for a Flyweight  
 /// </remarks>
-public record class GetAllCurrenciesQuery
+public sealed record class GetAllCurrenciesQuery
 : IQuery<List<Currency>> 
 {
   private GetAllCurrenciesQuery() { }
