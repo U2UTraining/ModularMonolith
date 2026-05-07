@@ -1,10 +1,13 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
+﻿using System.Text.Json.Serialization;
+
+namespace ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
 
 /// <summary>
 /// EmailAddress
 /// </summary>
 /// <exception cref="ArgumentException">Thrown when invalid</exception>
 
+[JsonConverter(typeof(EmailAddressJsonConverter))]
 [DebuggerDisplay("Email {Value,nq}")]
 public readonly record struct EmailAddress
 {

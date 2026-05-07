@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
+﻿using System.Text.Json.Serialization;
+
+namespace ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
 
 /// <summary>
 /// PositiveDecimal represents a decimal number which > 0M
@@ -13,6 +15,7 @@
 /// The database uses a constraint to ensure positive!
 /// </remarks>
 
+[JsonConverter(typeof(PositiveDecimalJsonConverter))]
 [DebuggerDisplay("Positive Decimal {Value}")]
 public readonly record struct PositiveDecimal
 : IEquatable<PositiveDecimal>    // handled by record 

@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
+﻿using System.Text.Json.Serialization;
+
+namespace ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
 
 /// <summary>
 /// ValueObject to denote primary key
@@ -8,6 +10,7 @@
 /// For performance, declare structs as readonly to avoid unnecessary copying
 /// Also, use default to create a new PK
 /// </remarks>
+[JsonConverter(typeof(PKJsonConverterFactory))]
 [DebuggerDisplay("PK {Key}")]
 public readonly record struct PK<T>
 {

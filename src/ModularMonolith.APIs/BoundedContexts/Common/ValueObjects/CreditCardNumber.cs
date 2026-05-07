@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
+﻿using System.Text.Json.Serialization;
+
+namespace ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
 
 /// <summary>
 /// CreditCardNumber represents a credit card number
@@ -8,6 +10,7 @@
 /// </remarks>
 /// <exception cref="ArgumentException">Thrown when invalid</exception>
 
+[JsonConverter(typeof(CreditCardNumberJsonConverter))]
 [DebuggerDisplay("CCN {Value,nq}")]
 public readonly record struct CreditCardNumber
 {

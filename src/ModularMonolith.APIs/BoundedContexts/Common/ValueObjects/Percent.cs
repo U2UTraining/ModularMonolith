@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
+﻿using System.Text.Json.Serialization;
+
+namespace ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
 
 /// <summary>
 /// Percentage, with normal value between 0% and 100%
@@ -7,6 +9,7 @@
 /// Allows for smaller and bigger percentages, like 120%
 /// </remarks>
 
+[JsonConverter(typeof(PercentJsonConverter))]
 [DebuggerDisplay("{Percentage}%")]
 public readonly record struct Percent
 : IEquatable<Percent>
