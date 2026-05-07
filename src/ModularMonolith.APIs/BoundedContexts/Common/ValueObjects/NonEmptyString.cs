@@ -1,4 +1,6 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
+﻿using System.Text.Json.Serialization;
+
+namespace ModularMonolith.APIs.BoundedContexts.Common.ValueObjects;
 
 /// <summary>
 /// String whose value cannot be empty
@@ -10,6 +12,7 @@
 ///   Thrown when invalid (null)
 /// </exception>
 
+[JsonConverter(typeof(NonEmptyStringJsonConverter))]
 [DebuggerDisplay("NonEmpty String {Value,nq}")]
 public readonly record struct NonEmptyString
 : IEquatable<NonEmptyString>
