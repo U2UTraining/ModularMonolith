@@ -1,8 +1,11 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.ValueObjects;
+﻿using System.Text.Json.Serialization;
+
+namespace ModularMonolith.APIs.BoundedContexts.BoardGames.ValueObjects;
 
 /// <summary>
 /// A board game name should be a non-empty string with a maximum length of 128.
 /// </summary>
+[JsonConverter(typeof(BoardGameNameJsonConverter))]
 [DebuggerDisplay("Board Game {Value,nq}")]
 public readonly record struct BoardGameName 
 {

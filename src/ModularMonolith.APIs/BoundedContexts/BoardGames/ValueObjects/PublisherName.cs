@@ -1,8 +1,11 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.ValueObjects;
+﻿using System.Text.Json.Serialization;
+
+namespace ModularMonolith.APIs.BoundedContexts.BoardGames.ValueObjects;
 
 /// <summary>
 /// PublisherName ensures that the Publisher name contraints are met
 /// </summary>
+[JsonConverter(typeof(PublisherNameJsonConverter))]
 [DebuggerDisplay("Publisher Game {Value,nq}")]
 public readonly record struct PublisherName
 {

@@ -1,5 +1,8 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.Shopping.ValueObjects;
+﻿using System.Text.Json.Serialization;
 
+namespace ModularMonolith.APIs.BoundedContexts.Shopping.ValueObjects;
+
+[JsonConverter(typeof(FirstNameJsonConverter))]
 public readonly record struct FirstName
 {
   public const int FirstNameMaxLength = 128;

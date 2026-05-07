@@ -1,5 +1,8 @@
-﻿namespace ModularMonolith.APIs.BoundedContexts.BoardGames.ValueObjects;
+﻿using System.Text.Json.Serialization;
 
+namespace ModularMonolith.APIs.BoundedContexts.BoardGames.ValueObjects;
+
+[JsonConverter(typeof(MoneyJsonConverter))]
 [DebuggerDisplay("{Amount}{Currency,nq}")]
 public readonly record struct Money
 {
