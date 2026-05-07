@@ -33,6 +33,7 @@ internal sealed class UpdateGamePriceCommandHandler
       BoardGamePriceUpdateEvent @event = new(
         EventId: Guid.NewGuid()
         , BoardGameId: request.BoardGameId
+        , Name: boardGame.Name
         , PriceInEuro: request.PriceInEuro
         ); 
       await _db.SaveChangesAsync(@event, _outboxSignal, cancellationToken);

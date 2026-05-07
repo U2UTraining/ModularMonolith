@@ -3,23 +3,20 @@ using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
 
 namespace ModularMonolith.BlazorApp.Components.BoardGames;
 
-public sealed class BoardGameSelectedForShoppingBasketIntegrationEventHandler(
+public sealed class BoardGamePriceUpdateEventHandler(
   State state
 , IToastService toastService)
-  : IIntegrationEventHandler<BoardGameSelectedForShoppingBasketIntegrationEvent>
+: IIntegrationEventHandler<BoardGamePriceUpdateEvent>
 {
   public async ValueTask HandleAsync(
-    BoardGameSelectedForShoppingBasketIntegrationEvent @event
+    BoardGamePriceUpdateEvent @event
   , CancellationToken cancellationToken)
   {
     if (state.CurrentPage is BoardGamesPage boardGamesPage)
     {
-      if (state.ShoppingBasketId == @event.ShoppingBasketId)
-      {
-        toastService.ShowWarning(
-          title: $"Game {@event.BoardGameName} was added to basket.");
-      }
       await boardGamesPage.RefreshBoardGamesAsync();
     }
+    toastService.ShowWarning(title: $"Game {@event.Name} was added to basket.");
   }
 }
+
