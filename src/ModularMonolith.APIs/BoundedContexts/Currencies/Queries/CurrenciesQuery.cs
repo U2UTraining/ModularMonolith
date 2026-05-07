@@ -1,7 +1,7 @@
 ﻿namespace ModularMonolith.APIs.BoundedContexts.Currencies.Queries;
 
 [Register(
-  lifetime: ServiceLifetime.Singleton
+  lifetime: ServiceLifetime.Scoped
 , methodNameHint: "AddCurrencyServices")]
 public sealed class CurrenciesQuery(IQuerySender _querySender)
 {

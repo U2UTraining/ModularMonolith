@@ -6,7 +6,7 @@
 /// <param name="Game">The Game</param>
 /// <param name="PriceInEuro">New price</param>
 public sealed record UpdateGamePriceCommand(
-  BoardGame Game
+  PK<int> BoardGameId
 , Money PriceInEuro) 
 : ICommand<bool>
 ;

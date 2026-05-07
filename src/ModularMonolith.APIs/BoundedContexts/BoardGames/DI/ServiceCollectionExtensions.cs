@@ -7,11 +7,7 @@ public static class ServiceCollectionExtensions
   {
     builder.Services
       .AddBoardGameServices()
-             //.AddBoardGamesQueries()
-             //.AddBoardGamesCommands()
-             //.AddBoardGamesEndpoints()
-             //.AddBoardGamesIntegrationEventHandlers()
-             ;
+      ;
 
     builder.Services
       .AddKeyedSingleton<IOutboxSignal, OutboxSignal>(nameof(BoardGamesDb))
