@@ -30,7 +30,7 @@ internal sealed class UpdateGamePriceCommandHandler
     {
       boardGame.SetPrice(request.PriceInEuro);
 
-      BoardGamePriceUpdateEvent @event = new(
+      BoardGamePriceUpdateIntegrationEvent @event = new(
         EventId: Guid.NewGuid()
         , BoardGameId: request.BoardGameId
         , Name: boardGame.Name

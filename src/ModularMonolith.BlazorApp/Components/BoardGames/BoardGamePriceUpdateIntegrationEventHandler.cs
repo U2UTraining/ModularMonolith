@@ -3,13 +3,13 @@ using ModularMonolith.APIs.BoundedContexts.Common.IntegrationEvents;
 
 namespace ModularMonolith.BlazorApp.Components.BoardGames;
 
-public sealed class BoardGamePriceUpdateEventHandler(
+public sealed class BoardGamePriceUpdateIntegrationEventHandler(
   State state
 , IToastService toastService)
-: IIntegrationEventHandler<BoardGamePriceUpdateEvent>
+: IIntegrationEventHandler<BoardGamePriceUpdateIntegrationEvent>
 {
   public async ValueTask HandleAsync(
-    BoardGamePriceUpdateEvent @event
+    BoardGamePriceUpdateIntegrationEvent @event
   , CancellationToken cancellationToken)
   {
     if (state.CurrentPage is BoardGamesPage boardGamesPage)
